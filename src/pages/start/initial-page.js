@@ -47,8 +47,8 @@ export default function InitialPage() {
           </Stack>
         </Stack>
         <Box
-          py={{ base: '0', sm: '8' }}
-          px={{ base: '4', sm: '10' }}
+          py={{ base: '0', sm: '4' }}
+          px={{ base: '4', sm: '5' }}
           bg={{ base: 'transparent', sm: 'bg.surface' }}
           boxShadow={{ base: 'none', sm: 'md' }}
           borderRadius={{ base: 'none', sm: 'xl' }}

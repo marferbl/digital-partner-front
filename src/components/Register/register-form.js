@@ -8,6 +8,10 @@ import {
   Button,
   InputRightElement,
   InputGroup,
+  Radio,
+  Flex,
+  RadioGroup,
+  Stack
 } from "@chakra-ui/react";
 import axios from "axios";
 import CaptchaComponent from "../base/captcha-component";
@@ -25,7 +29,8 @@ const RegisterForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  const [showPassword, setShowPassword] = React.useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [rol, setRol] = useState('1')
 
   const toast = useToast();
 
@@ -40,7 +45,7 @@ const RegisterForm = () => {
     if (isEmpty(email) || isEmpty(password)) {
       setEmptyFieldMessage(true);
     } else {
-      signup(email, password, name)
+      signup(email, password, name, rol)
         .then((res) => {
           setEmptyFieldMessage(false);
           toast({
@@ -114,6 +119,12 @@ const RegisterForm = () => {
           </InputRightElement>
         </InputGroup>
       </FormControl>
+      <RadioGroup onChange={setRol} value={rol}>
+        <Stack pb={4}>
+          <Radio value='COMPANY'>Soy empresa y busco soluciones digitales</Radio>
+          <Radio value='SOFTWARE'>Quiero mostrar mi solución digital</Radio>
+        </Stack>
+      </RadioGroup>
 
       <Button
         mt={4}
