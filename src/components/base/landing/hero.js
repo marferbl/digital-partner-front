@@ -25,16 +25,16 @@ export default function Hero() {
           py={{ base: 20, md: 24 }}>
           <Heading
             fontWeight={'800'}
-            fontSize={{ base: '2xl', sm: '4xl', md: '6xl' }}
+            fontSize={{ base: '3xl', sm: '4xl', md: '6xl' }}
             lineHeight={'110%'}
           >
             Compara, implementa y triunfa. <br />
-            <Text as={'span'} fontSize={{ base: 'xl', sm: '3xl', md: '5xl' }} fonts color={COLORS.secondary}>
+            <Text as={'span'} fontSize={{ base: '2xl', sm: '3xl', md: '5xl' }} fonts color={COLORS.secondary}>
               Conquista el futuro digital
             </Text>
           </Heading>
           <Center>
-            <Text color={'gray.500'} maxW={'3xl'} >
+            <Text color={'gray.500'} maxW={'3xl'} fontSize={{base: 12, md: 18}} px={3} >
               Desafiamos la norma ofreciendo soluciones digitales audaces y diversas. Transforma desafíos en oportunidades con innovación, excelencia y una revolución digital única.
             </Text>
           </Center>
