@@ -6,6 +6,7 @@ import Hero from "../../components/base/landing/hero";
 import Testimonials from "../../components/base/landing//testimonials";
 import Navbar from "../../components/base/navbar";
 import MarketplaceSection from "../../components/base/landing/marketplacesection";
+import { PhotoFullScreen } from "../../components/base/landing/photo-fullscreen";
 
 const LandingPage = () => {
   return (
@@ -13,6 +14,7 @@ const LandingPage = () => {
       <Navbar />
       <Hero />
       <MarketplaceSection />
+      <PhotoFullScreen />
       <FooterLanding />
     </>
   );

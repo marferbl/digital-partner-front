@@ -54,7 +54,7 @@ export default function Navbar() {
                 color={'black'}
               >
                 {Links.map((link) => (
-                  <Box p={3} _hover={{ shadow: 'sm' }} rounded={'lg'}>
+                  <Box p={3} _hover={{ fontWeight:800 }} rounded={'lg'}>
                     <Link to={link.link}>{link.label}</Link>
                   </Box>
                 ))}
