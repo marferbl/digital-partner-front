@@ -7,11 +7,11 @@ const CardSoftware = ({ name, description, logo, slogan }) => {
     return (
         <Box maxW="md" borderWidth="1px" borderRadius="lg" overflow="hidden">
             <Box height={40}>
-                <Image src={logo} alt={name} height={'100%'} backgroundSize={'contain'} />
+                <Image w={'100%'} src={logo} alt={name} height={'100%'} backgroundSize={'contain'} />
             </Box>
             <Box p="6">
                 <Box d="flex" alignItems="baseline">
-                    <Heading as="h2" size="md" isTruncated>
+                    <Heading as="h2" size="md">
                         {name}
                     </Heading>
                 </Box>

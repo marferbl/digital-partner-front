@@ -21,6 +21,7 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/userContext";
 import { Link } from "react-router-dom";
 import { COLORS } from "../../colors/colors";
+import Navbar from "../../components/base/navbar";
 
 export default function InitialPage() {
   const [showLogin, setShowLogin] = useState(true);

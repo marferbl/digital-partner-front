@@ -35,9 +35,7 @@ export default function Hero() {
           </Heading>
           <Center>
             <Text color={'gray.500'} maxW={'3xl'} >
-              Monetize your content by charging your most loyal readers and reward them
-              loyalty points. Give back to your loyal readers by granting them access to
-              your pre-releases and sneak-peaks.
+              Desafiamos la norma ofreciendo soluciones digitales audaces y diversas. Transforma desafíos en oportunidades con innovación, excelencia y una revolución digital única.
             </Text>
           </Center>
           {/* <Stack

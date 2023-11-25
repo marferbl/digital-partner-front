@@ -8,6 +8,7 @@ import {
   useDisclosure,
   useColorModeValue,
   Text,
+  Stack
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon, AddIcon } from "@chakra-ui/icons";
 import { Link } from "react-router-dom";
@@ -19,20 +20,6 @@ const Links = [{
 }];
 
 
-const NavLink = ({ children }) => (
-  <Link
-    px={2}
-    py={1}
-    rounded={"md"}
-    _hover={{
-      textDecoration: "none",
-      bg: useColorModeValue("gray.200", "gray.700"),
-    }}
-    href={"#Testimonials"}
-  >
-    {children}
-  </Link>
-);
 export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -45,7 +32,14 @@ export default function Navbar() {
               TheDigitalPartner
             </Text>
           </Link>
-          <Flex h={16} alignItems={"center"}>
+          <IconButton
+            size={'md'}
+            icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
+            aria-label={'Open Menu'}
+            display={{ md: 'none' }}
+            onClick={isOpen ? onClose : onOpen}
+          />
+          <Flex display={{ base: 'none', md: 'block' }} alignItems={"center"}>
             <HStack spacing={8} alignItems={"center"}>
               <HStack
                 as={"nav"}
@@ -54,8 +48,8 @@ export default function Navbar() {
                 color={'black'}
               >
                 {Links.map((link) => (
-                  <Box p={3} _hover={{ fontWeight:800 }} rounded={'lg'}>
-                    <Link to={link.link}>{link.label}</Link>
+                  <Box p={3} _hover={{ shadow: 'sm' }} rounded={'lg'}>
+                    <Link key={link} to={link.link}>{link.label}</Link>
                   </Box>
                 ))}
               </HStack>
@@ -63,16 +57,16 @@ export default function Navbar() {
           </Flex>
         </Flex>
 
-        {/* {isOpen ? (
+        {isOpen ? (
           <Box pb={4} display={{ md: "none" }}>
             <Stack as={"nav"} spacing={4}>
               {Links.map((link) => (
-                // <NavLink key={link}>{link}</NavLink>
-                <a href="#Contact">Hero</a>
+
+                <Link to={link.link} href="#Contact">{link.label}</Link>
               ))}
             </Stack>
           </Box>
-        ) : null} */}
+        ) : null}
       </Box>
     </>
   );

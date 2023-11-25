@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from "react";
 import {
-  Text,
+  Center,
   Box,
   Heading,
 } from "@chakra-ui/react";
@@ -16,14 +16,13 @@ export const Marketplace = () => {
     <Heading textAlign={'center'} fontFamily={'Montserrat'} fontSize={30}>
       Marketplace
     </Heading>
-    <Box px={{ base: 4, md: 10, lg: 60 }}>
-      <SectionMarketPlace title={'Recomendados'} />
-      <SectionMarketPlace title={'Gestion financiera'} />
-      <SectionMarketPlace title={'Recursos Humanos'} />
-
-
-
-    </Box>
+    <Center>
+      <Box px={{ base: 5, md: 10, lg: 10 }} maxW={'4xl'}>
+        <SectionMarketPlace title={'Recomendados'} />
+        <SectionMarketPlace title={'Gestion financiera'} />
+        <SectionMarketPlace title={'Recursos Humanos'} />
+      </Box>
+    </Center>
   </Box>
 };
 

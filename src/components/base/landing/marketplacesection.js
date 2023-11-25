@@ -7,7 +7,7 @@ import SectionMarketPlace from '../../marketplace/section-marketplace'
 const MarketplaceSection = () => {
     return (
         <Center>
-            <Box maxW={'3xl'}>
+            <Box maxW={'3xl'} px={{base: 8, md:2}}>
                 <Flex w={'full'} justify={'end'}>
                     <Link to={'marketplace'}>
                         <Text mb={-5} fontSize={14} color={COLORS.primary}>Ver el marketplace</Text>
