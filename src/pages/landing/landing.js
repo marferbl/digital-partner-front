@@ -7,12 +7,16 @@ import Testimonials from "../../components/base/landing//testimonials";
 import Navbar from "../../components/base/navbar";
 import MarketplaceSection from "../../components/base/landing/marketplacesection";
 import { PhotoFullScreen } from "../../components/base/landing/photo-fullscreen";
+import SoftwareSearcher from "../../components/base/landing/searcher-software";
+import Quiz from "../../components/quiz/Quiz";
 
 const LandingPage = () => {
   return (
     <>
       <Navbar />
       <Hero />
+      <SoftwareSearcher />
+      <Quiz />
       <MarketplaceSection />
       <PhotoFullScreen />
       <FooterLanding />

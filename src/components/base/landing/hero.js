@@ -22,7 +22,8 @@ export default function Hero() {
           as={Box}
           textAlign={'center'}
           spacing={{ base: 8, md: 14 }}
-          py={{ base: 20, md: 24 }}>
+          pt={{ base: 20, md: 24 }}
+          pb={{ base: 8, md: 10 }}>
           <Heading
             fontWeight={'800'}
             fontSize={{ base: '3xl', sm: '4xl', md: '6xl' }}
@@ -33,29 +34,6 @@ export default function Hero() {
               Conquista el futuro digital
             </Text>
           </Heading>
-          <Center>
-            <Text color={'gray.500'} maxW={'3xl'} fontSize={{base: 12, md: 18}} px={3} >
-              Desafiamos la norma ofreciendo soluciones digitales audaces y diversas. Transforma desafíos en oportunidades con innovación, excelencia y una revolución digital única.
-            </Text>
-          </Center>
-          {/* <Stack
-            direction={'column'}
-            spacing={3}
-            align={'center'}
-            alignSelf={'center'}
-            position={'relative'}>
-            <Button
-              colorScheme={'blue'}
-              bg={'blue.800'}
-              rounded={'full'}
-              px={6}
-              _hover={{
-                bg: 'blue.700',
-              }}>
-              Get Started
-            </Button>
-
-          </Stack> */}
         </Stack>
       </Container>
     </>

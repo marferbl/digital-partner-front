@@ -7,6 +7,7 @@ import Dashboard from "../components/dashboard/dashboard";
 import { ProfilePage } from "../pages/profile/profile";
 import LandingPage from "../pages/landing/landing";
 import { MarketplacePage } from "../pages/maketplace/marketplace";
+import SearcherPage from "../pages/searcher/SearcherPage";
 
 export const PageRoutes = () => {
   return (
@@ -15,9 +16,11 @@ export const PageRoutes = () => {
         <Route path={"/"} element={<LandingPage />} />
         <Route path={"/newRouteHidden"} element={<App />} />
         <Route path={"/marketplace"} element={<MarketplacePage />} />
+        <Route path={"search/:term"} element={<SearcherPage />} />
         <Route path={"private"} element={<PrivateRoute />}>
           <Route path={"dashboard"} element={<Dashboard />} />
           <Route path={"profile"} element={<ProfilePage />} />
+          <Route path={"search/:term"} element={<SearcherPage />} />
         </Route>
       </Routes>
     </Router>

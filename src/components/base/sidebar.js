@@ -32,7 +32,7 @@ const LinkItems = [
 export default function SimpleSidebar({ children }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
-    <Box minH="100vh" bg={useColorModeValue("gray.100", "gray.900")}>
+    <Box minH="100vh" bg={'#f8fafc'}>
       <SidebarContent
         onClose={() => onClose}
         display={{ base: "none", md: "block" }}
@@ -62,16 +62,16 @@ export default function SimpleSidebar({ children }) {
 const SidebarContent = ({ onClose, ...rest }) => {
   return (
     <Box
-      bg={useColorModeValue("white", "gray.900")}
+      bg={useColorModeValue("white", "gray.100")}
       borderRight="1px"
-      borderRightColor={useColorModeValue("gray.200", "gray.700")}
+      borderRightColor={useColorModeValue("gray.200", "gray.400")}
       w={{ base: "full", md: 60 }}
       pos="fixed"
       h="full"
       {...rest}
     >
       <Flex h="20" alignItems="center" mx="5" justifyContent="space-between">
-        <Text fontSize="lg" fontWeight="bold" bgColor={'black'} color={'white'} p={3} rounded={'xl'}>
+        <Text fontSize="lg" fontWeight="bold" color={'black'} p={3} rounded={'xl'}>
           TheDigitalPartner
         </Text>
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
@@ -82,7 +82,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
       <NavItem>
         <Link to="dashboard"> Dashboard </Link>
       </NavItem>
-     
+
     </Box>
   );
 };
