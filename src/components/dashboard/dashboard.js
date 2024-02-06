@@ -10,7 +10,7 @@ const Dashboard = () => {
 
 
   return (
-    <Flex py={10} flexDir={'column'} gap={4} >
+    <Flex py={6} flexDir={'column'} gap={4} >
       <Box bg={'white'} rounded={'lg'} py={4}>
         <SoftwareSearcher />
       </Box>

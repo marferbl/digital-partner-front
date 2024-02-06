@@ -7,9 +7,13 @@ const UserContext = createContext({});
 function AuthProviderWrapper(props) {
   const verifyUrl = useBackendUrlBuilder("/user/verify");
 
+
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [loggedUser, setUser] = useState();
+  const [userView, setUserView] = useState();
+
+
 
   const storeToken = (token) => {
     localStorage.setItem("token", token);
@@ -32,6 +36,7 @@ function AuthProviderWrapper(props) {
 
   const authenticateUser = () => {
     const storedToken = getToken();
+    const view = localStorage.getItem("userView");
 
     if (!storedToken) {
       logOutUser();
@@ -47,14 +52,23 @@ function AuthProviderWrapper(props) {
           setIsLoggedIn(true);
           setUser(user);
           setIsLoading(false);
+          setUserView(view || 'user')
+
         })
         .catch(() => logOutUser());
     }
   };
 
+  const changeUserView = () => {
+    const state = userView === 'user' ? 'corporate' : 'user'
+    setUserView(state);
+    localStorage.setItem("userView", state);
+    window.location.href = state === 'user' ? '/private/profile' : '/private/corporate/profile'
+  }
+
+
   useEffect(() => {
     authenticateUser();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -67,6 +81,8 @@ function AuthProviderWrapper(props) {
         authenticateUser,
         logOutUser,
         getToken,
+        userView,
+        changeUserView
       }}
     >
       {props.children}

@@ -31,6 +31,7 @@ const LoginForm = () => {
   };
 
   const handleSubmit = () => {
+    const view = localStorage.getItem("userView");
     if (isEmpty(email) || isEmpty(password)) {
       setEmptyFieldMessage(true);
     } else {
@@ -46,7 +47,7 @@ const LoginForm = () => {
             duration: 5000,
             isClosable: true,
           });
-          setTimeout(() => navigate("/private/dashboard"), 1000);
+          setTimeout(() => navigate(view === 'corporate' ? "/private/corporate/profile" : "/private/profile"), 1000);
         })
         .catch((err) => {
           console.log(err);
@@ -89,7 +90,7 @@ const LoginForm = () => {
         type="submit"
         width={"100%"}
         onClick={handleSubmit}
-        // disabled={isEmpty(email)}
+      // disabled={isEmpty(email)}
       >
         Entrar
       </Button>

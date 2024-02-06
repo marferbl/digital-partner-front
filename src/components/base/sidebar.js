@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useContext } from "react";
 import {
   IconButton,
   Box,
@@ -15,14 +15,16 @@ import {
 import {
   FiHome,
   FiTrendingUp,
-  FiCompass,
+  FiUsers,
   FiStar,
   FiSettings,
+  FiUser,
   FiMenu,
 } from "react-icons/fi";
 import { IconType } from "react-icons";
 import { ReactText } from "react";
 import { Link } from "react-router-dom";
+import { UserContext } from "../../context/userContext";
 
 const LinkItems = [
   { name: "Inicio", icon: FiHome },
@@ -31,6 +33,9 @@ const LinkItems = [
 
 export default function SimpleSidebar({ children }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+
+
   return (
     <Box minH="100vh" bg={'#f8fafc'}>
       <SidebarContent
@@ -60,6 +65,18 @@ export default function SimpleSidebar({ children }) {
 }
 
 const SidebarContent = ({ onClose, ...rest }) => {
+  const { userView } = useContext(UserContext);
+
+  const userRoutes = [
+    { name: "Perfil", icon: FiUser, to: "profile" },
+    { name: "Freelance", icon: FiTrendingUp, to: "dashboard" },
+    { name: "Guru", icon: FiStar, to: "dashboard" },
+  ]
+
+  const adminRoutes = [
+    { name: "Corporate", icon: FiSettings, to: "corporate/profile" },
+    { name: "Equipo", icon: FiUsers, to: "dashboard" },
+  ]
   return (
     <Box
       bg={useColorModeValue("white", "gray.100")}
@@ -76,12 +93,21 @@ const SidebarContent = ({ onClose, ...rest }) => {
         </Text>
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
-      <NavItem>
-        <Link to="profile"> Perfil </Link>
-      </NavItem>
-      <NavItem>
-        <Link to="dashboard"> Dashboard </Link>
-      </NavItem>
+      {userView === 'corporate' ? (adminRoutes.map((link) => (
+        <NavItem key={link.name} icon={link.icon} to={link.to}>
+          <Link to={link.to}>
+            {link.name}
+          </Link>
+        </NavItem>
+      ))) : (userRoutes.map((link) => (
+        <NavItem key={link.name} icon={link.icon} to={link.to}>
+          <Link to={link.to}>
+            {link.name}
+          </Link>
+        </NavItem>
+      )
+      )
+      )}
 
     </Box>
   );
