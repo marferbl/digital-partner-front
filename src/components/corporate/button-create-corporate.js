@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Box, Button, Flex, Text, Input, } from '@chakra-ui/react'
 import {
     Modal,
@@ -12,21 +12,51 @@ import {
     Select
 } from '@chakra-ui/react'
 import { COLORS } from "../../colors/colors";
+import { useBackendUrlBuilder } from '../../hooks/useBackendUrlBuilder';
+import axios from 'axios';
+import { UserContext } from '../../context/userContext';
 
 
 
 
-export const ButtonCreateCorporate = () => {
+
+export const ButtonCreateCorporate = ({ refreshCorporate }) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     const [country, setCountry] = useState("");
     const [name, setName] = useState("");
     const [cif, setCif] = useState("");
     const [size, setSize] = useState("");
+    const [web, setWeb] = useState("");
+
+
+    const createCorporateURL = useBackendUrlBuilder("/corporate/create");
+    const { getToken } = useContext(UserContext);
+
+
+    const createCorporate = async () => {
+        const storedToken = getToken();
+        axios
+            .post(
+                createCorporateURL,
+                { name, country, cif, size, web },
+                {
+                    headers: {
+                        authorization: `Bearer ${storedToken || ""}`,
+                    },
+                }
+            )
+            .then((res) => {
+                refreshCorporate()
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
 
     return (
         <>
-            <Button bg={COLORS.primary} color={'white'} _hover={{bg:'blue.700'}} onClick={onOpen}>Crear corporate</Button>
+            <Button bg={COLORS.primary} color={'white'} _hover={{ bg: 'blue.700' }} onClick={onOpen}>Crear corporate</Button>
 
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
@@ -65,7 +95,7 @@ export const ButtonCreateCorporate = () => {
                             <Text mt={3} fontWeight={"bold"}>
                                 País:{" "}
                             </Text>
-                            <Select placeholder='Select option'>
+                            <Select placeholder='Select option' onChange={(e) => setCountry(e.target.value)}>
                                 <option value='option1'>Option 1</option>
                                 <option value='option2'>Option 2</option>
                                 <option value='option3'>Option 3</option>
@@ -75,9 +105,8 @@ export const ButtonCreateCorporate = () => {
                             </Text>
                             <Input
                                 placeholder="www.corporate.com"
-                                type={"number"}
-                                value={size}
-                                onChange={(e) => setSize(e.target.value)}
+                                value={web}
+                                onChange={(e) => setWeb(e.target.value)}
                             />
                         </Box>
                     </ModalBody>
@@ -86,7 +115,7 @@ export const ButtonCreateCorporate = () => {
                         <Button variant='ghost' mr={3} onClick={onClose}>
                             cancelar
                         </Button>
-                        <Button colorScheme='twitter'>Confirmar</Button>
+                        <Button onClick={createCorporate} colorScheme='teal'>Confirmar</Button>
                     </ModalFooter>
                 </ModalContent>
             </Modal>

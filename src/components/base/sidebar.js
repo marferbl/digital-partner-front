@@ -20,6 +20,7 @@ import {
   FiSettings,
   FiUser,
   FiMenu,
+  FiTool,
 } from "react-icons/fi";
 import { IconType } from "react-icons";
 import { ReactText } from "react";
@@ -76,6 +77,9 @@ const SidebarContent = ({ onClose, ...rest }) => {
   const adminRoutes = [
     { name: "Corporate", icon: FiSettings, to: "corporate/profile" },
     { name: "Equipo", icon: FiUsers, to: "dashboard" },
+    { name: "Soluciones", icon: FiTool, to: "dashboard" },
+
+    
   ]
   return (
     <Box
