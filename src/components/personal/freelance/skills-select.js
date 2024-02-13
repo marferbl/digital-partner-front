@@ -1,20 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Flex, Input, Text, Box, Center } from '@chakra-ui/react';
 import SearchSelect from '../../base/search-select';
 import { FiXOctagon } from "react-icons/fi";
 
 
-const SkillSelector = ({ set }) => {
+const SkillSelector = ({ onChange }) => {
     const [skills, setSkills] = useState([{ name: '', level: '' }]);
-    const [languages, setLanguages] = useState("")
+    const [languages, setLanguages] = useState([])
 
     const languageOptions = [
         { value: 'english', label: 'Inglés' },
         { value: 'spanish', label: 'Español' },
         { value: 'french', label: 'Francés' },
         { value: 'italian', label: 'Italiano' },
-
     ];
+
+    useEffect(() => {
+        onChange({ skills, languages });
+    }, [skills, languages])
+
 
     const addSkill = () => {
         setSkills([...skills, { name: '', level: '' }]);
@@ -38,7 +42,7 @@ const SkillSelector = ({ set }) => {
                 <Text mt={5} fontWeight={"bold"}>
                     Idiomas:{" "}
                 </Text>
-                <SearchSelect options={languageOptions} value={languages} isMulti onChange={(e) => console.log(e)} />
+                <SearchSelect options={languageOptions} value={languages} isMulti onChange={(value) => setLanguages(value)} />
                 <Text mt={5} fontWeight={"bold"}>
                     Habilidades:{" "}
                 </Text>

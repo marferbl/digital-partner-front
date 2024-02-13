@@ -11,9 +11,9 @@ import {
     useDisclosure,
     Select
 } from '@chakra-ui/react'
-import { createCorporate } from '../../../services/corporate';
 import { COLORS } from '../../../colors/colors';
 import SkillSelector from "./skills-select"
+import { FinancialStep } from "./financial-step"
 
 
 export const ButtonCreateFreelance = ({ refreshCorporate, disabled }) => {
@@ -26,20 +26,22 @@ export const ButtonCreateFreelance = ({ refreshCorporate, disabled }) => {
     const [slogan, setSlogan] = useState("");
     const [web, setWeb] = useState("");
     const [telephone, setTelephone] = useState("");
+    const [skills, setSkills] = useState({});
+    const [financial, setFinancial] = useState({});
 
+    const closeModal = () => {
+        setStep(1);
+        onClose();
+    }
 
+    const setSkillsData = (data) => {
+        setSkills(data);
+    }
 
+    const setFinancialData = (data) => {
+        setFinancial(data);
+    }
 
-
-
-    const create = async () => {
-        // createCorporate({ name, cif, size, country, web }).then((res) => {
-        //     refreshCorporate();
-        //     onClose();
-        // }).catch((err) => {
-        //     console.log(err);
-        // });
-    };
 
     return (
         <>
@@ -47,7 +49,7 @@ export const ButtonCreateFreelance = ({ refreshCorporate, disabled }) => {
 
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
-                <ModalContent>
+                <ModalContent minH={520}>
                     <ModalHeader>Alta como freelance</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody py={5}>
@@ -86,19 +88,27 @@ export const ButtonCreateFreelance = ({ refreshCorporate, disabled }) => {
                                     placeholder='Here is a sample placeholder'
                                     size='sm'
                                 />
+                                <Text mt={5} fontWeight={"bold"}>
+                                    Web:{" "}
+                                </Text>
+                                <Input
+                                    value={web}
+                                    onChange={(e) => setWeb(e.target.value)}
+                                    placeholder="www.portfolio.com"
+                                />
                             </Box>
                         </Box> :
                             <Box>
-                                <SkillSelector />
+                                {step === 2 ? <SkillSelector onChange={(data) => { setSkillsData(data) }} /> : <FinancialStep onChange={(data) => { setFinancialData(data) }} />}
                             </Box>
                         }
                     </ModalBody>
 
                     <ModalFooter>
-                        <Button variant='ghost' mr={3} onClick={onClose}>
-                            cancelar
+                        <Button variant='ghost' mr={3} onClick={() => { step > 1 ? setStep(step - 1) : closeModal() }}>
+                            {step === 1 ? "Cancelar" : "Atras"}
                         </Button>
-                        <Button onClick={() => setStep(step + 1)} colorScheme='teal'>Continuar</Button>
+                        <Button onClick={() => setStep(step + 1)} bg={COLORS.primary} color={'white'} _hover={{ bg: 'blue.600' }}>{step < 3 ? " Continuar" : "Confirmar"}</Button>
                     </ModalFooter>
                 </ModalContent>
             </Modal>
