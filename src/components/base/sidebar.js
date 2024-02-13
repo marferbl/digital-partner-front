@@ -17,7 +17,7 @@ import {
   FiTrendingUp,
   FiUsers,
   FiStar,
-  FiSettings,
+  FiDatabase,
   FiUser,
   FiMenu,
   FiTool,
@@ -70,16 +70,15 @@ const SidebarContent = ({ onClose, ...rest }) => {
 
   const userRoutes = [
     { name: "Perfil", icon: FiUser, to: "profile" },
-    { name: "Freelance", icon: FiTrendingUp, to: "dashboard" },
+    { name: "Freelance", icon: FiTrendingUp, to: "freelance" },
     { name: "Guru", icon: FiStar, to: "dashboard" },
   ]
 
   const adminRoutes = [
-    { name: "Corporate", icon: FiSettings, to: "corporate/profile" },
-    { name: "Equipo", icon: FiUsers, to: "dashboard" },
-    { name: "Soluciones", icon: FiTool, to: "dashboard" },
+    { name: "Corporate", icon: FiDatabase, to: "corporate/profile" },
+    { name: "Soluciones", icon: FiTool, to: "corporate/solutions" },
 
-    
+
   ]
   return (
     <Box
@@ -93,21 +92,17 @@ const SidebarContent = ({ onClose, ...rest }) => {
     >
       <Flex h="20" alignItems="center" mx="5" justifyContent="space-between">
         <Text fontSize="lg" fontWeight="bold" color={'black'} p={3} rounded={'xl'}>
-          TheDigitalPartner
+          TDP
         </Text>
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
       {userView === 'corporate' ? (adminRoutes.map((link) => (
         <NavItem key={link.name} icon={link.icon} to={link.to}>
-          <Link to={link.to}>
-            {link.name}
-          </Link>
+          {link.name}
         </NavItem>
       ))) : (userRoutes.map((link) => (
         <NavItem key={link.name} icon={link.icon} to={link.to}>
-          <Link to={link.to}>
-            {link.name}
-          </Link>
+          {link.name}
         </NavItem>
       )
       )
@@ -117,11 +112,10 @@ const SidebarContent = ({ onClose, ...rest }) => {
   );
 };
 
-const NavItem = ({ icon, children, ...rest }) => {
+const NavItem = ({ icon, children, to, ...rest }) => {
   return (
     <Flex
       align="center"
-      p="4"
       mx="4"
       borderRadius="lg"
       role="group"
@@ -132,17 +126,20 @@ const NavItem = ({ icon, children, ...rest }) => {
       }}
       {...rest}
     >
-      {icon && (
-        <Icon
-          mr="4"
-          fontSize="16"
-          _groupHover={{
-            color: "white",
-          }}
-          as={icon}
-        />
-      )}
-      {children}
+      <Link to={to} style={{ width: '100%', padding: '12px', display: 'flex', alignItems: 'center' }}>
+        {icon && (
+          <Icon
+            mr="4"
+            fontSize="16"
+            _groupHover={{
+              color: "white",
+            }}
+            as={icon}
+          />
+        )}
+        {children}
+      </Link>
+
     </Flex>
   );
 };

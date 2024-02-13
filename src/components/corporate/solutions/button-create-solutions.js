@@ -11,14 +11,14 @@ import {
     useDisclosure,
     Select
 } from '@chakra-ui/react'
-import { COLORS } from "../../colors/colors";
-import { createCorporate } from '../../services/corporate';
+import { COLORS } from "../../../colors/colors";
+import { createCorporate } from '../../../services/corporate';
 
 
 
 
 
-export const ButtonCreateCorporate = ({ refreshCorporate }) => {
+export const ButtonCreateSolution = ({ refreshCorporate, disabled }) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     const [country, setCountry] = useState("");
@@ -41,12 +41,12 @@ export const ButtonCreateCorporate = ({ refreshCorporate }) => {
 
     return (
         <>
-            <Button bg={COLORS.primary} color={'white'} _hover={{ bg: 'blue.700' }} onClick={onOpen}>Crear corporate</Button>
+            <Button bg={COLORS.primary} color={'white'} _hover={{ bg: 'blue.700' }} disabled={disabled} onClick={onOpen}>Crear solución digital</Button>
 
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent>
-                    <ModalHeader>Crear Corporate</ModalHeader>
+                    <ModalHeader>Crear Solución Digital</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody py={5}>
                         <Box fontSize={12} display={'flex'} alignItems={'start'} flexDir={'column'}>
@@ -81,11 +81,9 @@ export const ButtonCreateCorporate = ({ refreshCorporate }) => {
                                 País:{" "}
                             </Text>
                             <Select placeholder='Select option' onChange={(e) => setCountry(e.target.value)}>
-                                <option value='option1'>España</option>
-                                <option value='option2'>Estados Unidos</option>
-                                <option value='option3'>Francia</option>
-                                <option value='option3'>Alemania</option>
-
+                                <option value='option1'>Option 1</option>
+                                <option value='option2'>Option 2</option>
+                                <option value='option3'>Option 3</option>
                             </Select>
                             <Text mt={3} fontWeight={"bold"}>
                                 Página web:{" "}

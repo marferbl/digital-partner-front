@@ -9,6 +9,8 @@ import LandingPage from "../pages/landing/landing";
 import { MarketplacePage } from "../pages/maketplace/marketplace";
 import SearcherPage from "../pages/searcher/SearcherPage";
 import { ProfileCorporatePage } from "../pages/admin/profile/index";
+import { SolutionsCorporatePage } from "../pages/admin/solutions";
+import { FreelancePage } from "../pages/personal/freelance";
 
 export const PageRoutes = () => {
   return (
@@ -23,6 +25,9 @@ export const PageRoutes = () => {
           <Route path={"profile"} element={<ProfilePage />} />
           <Route path={"corporate/profile"} element={<ProfileCorporatePage />} />
           <Route path={"search/:term"} element={<SearcherPage />} />
+          <Route path={'corporate/solutions'} element={<SolutionsCorporatePage />} />
+          <Route path={'freelance'} element={<FreelancePage />} />
+
         </Route>
       </Routes>
     </Router>
