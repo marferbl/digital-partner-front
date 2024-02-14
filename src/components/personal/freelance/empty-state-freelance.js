@@ -6,7 +6,7 @@ import { ButtonCreateFreelance } from "./button-create-freelance";
 import { COLORS } from "../../../colors/colors";
 import { FiUserCheck } from "react-icons/fi";
 
-export const EmptyStateFreelance = ({ refreshCorporate, corporate }) => {
+export const EmptyStateFreelance = ({ refreshFreelance, corporate }) => {
 
 
     return (
@@ -17,7 +17,7 @@ export const EmptyStateFreelance = ({ refreshCorporate, corporate }) => {
             </Text>
             <Tooltip isDisabled={!!corporate} label={'Crea primero una corporate'}>
                 <Box>
-                    <ButtonCreateFreelance refreshCorporate={refreshCorporate} disabled={!corporate} />
+                    <ButtonCreateFreelance refreshFreelance={refreshFreelance} disabled={!corporate} />
                 </Box>
             </Tooltip>
         </Center>

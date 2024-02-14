@@ -21,11 +21,11 @@ export const FinancialStep = ({ onChange }) => {
 
     const [price, setPrice] = useState("");
     const [coin, setCoin] = useState("");
-    const [type, setType] = useState("");
+    const [paymentType, setType] = useState("");
 
     useEffect(() => {
-        onChange({ type, coin, price });
-    }, [type, coin, price])
+        onChange({ paymentType, coin, price });
+    }, [paymentType, coin, price])
 
     return (
 
@@ -34,8 +34,8 @@ export const FinancialStep = ({ onChange }) => {
                 ¿En qué moneda puedes cobrar?:{" "}
             </Text>
             <Select placeholder='Seleccionar' onChange={(e) => setCoin(e.target.value)}>
-                <option value='option1'>Euros €</option>
-                <option value='option2'>Dolares $ </option>
+                <option value='euro'>Euros €</option>
+                <option value='dollar'>Dolares $ </option>
             </Select>
             <Flex justify={'space-between'} gap={2} w={'full'}>
                 <Flex flexDir={'column'} w={'35%'} mt={5}>
@@ -47,9 +47,9 @@ export const FinancialStep = ({ onChange }) => {
                         Tipo de pago:{" "}
                     </Text>
                     <Select placeholder='Selecciona' onChange={(e) => setType(e.target.value)}>
-                        <option value='option1'>Pago por hora</option>
-                        <option value='option2'>Pago por día</option>
-                        <option value='option3'>Pago por mes</option>
+                        <option value='perHour'>Pago por hora</option>
+                        <option value='perDay'>Pago por día</option>
+                        <option value='perMonth'>Pago por mes</option>
                     </Select>
                 </Flex>
             </Flex>

@@ -14,9 +14,9 @@ import {
 import { COLORS } from '../../../colors/colors';
 import SkillSelector from "./skills-select"
 import { FinancialStep } from "./financial-step"
+import { createFreelance } from "../../../services/freelance"
 
-
-export const ButtonCreateFreelance = ({ refreshCorporate, disabled }) => {
+export const ButtonCreateFreelance = ({ refreshFreelance, disabled }) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     const [step, setStep] = useState(1);
@@ -26,8 +26,20 @@ export const ButtonCreateFreelance = ({ refreshCorporate, disabled }) => {
     const [slogan, setSlogan] = useState("");
     const [web, setWeb] = useState("");
     const [telephone, setTelephone] = useState("");
-    const [skills, setSkills] = useState({});
+    const [skillLevels, setSkillLevels] = useState({});
     const [financial, setFinancial] = useState({});
+
+    const countryOptions = [
+        { value: 'ESP', label: 'España' },
+        { value: 'ENG', label: 'Inglaterra' },
+        { value: 'EEUU', label: 'United States' },
+        { value: 'CH', label: 'China' },
+        { value: 'IN', label: 'India' },
+        { value: 'BR', label: 'Brazil' },
+        { value: 'RUS', label: 'Russia' },
+        { value: 'GER', label: 'Germany' },
+        { value: 'FR', label: 'France' },
+    ];
 
     const closeModal = () => {
         setStep(1);
@@ -35,17 +47,43 @@ export const ButtonCreateFreelance = ({ refreshCorporate, disabled }) => {
     }
 
     const setSkillsData = (data) => {
-        setSkills(data);
+        setSkillLevels(data);
     }
 
     const setFinancialData = (data) => {
         setFinancial(data);
     }
 
+    const createFreelanceProfile = () => {
+        const { languages, skills } = skillLevels;
+        const { paymentType, coin, price } = financial;
+
+        let data = {
+            country: country,
+            description: description,
+            slogan: slogan,
+            web: web,
+            telephone: telephone,
+            languages: languages,
+            paymentType: paymentType,
+            coin: coin,
+            price: price,
+            skills: skills
+        }
+
+        createFreelance(data).then((res) => {
+            onClose();
+            refreshFreelance();
+        }).catch((err) => {
+            console.log(err);
+        });
+
+    }
+
 
     return (
         <>
-            <Button bg={COLORS.primary} color={'white'} _hover={{ bg: 'blue.700' }} disabled={disabled} onClick={onOpen}>Alta como freelance</Button>
+            <Button bg={COLORS.primary} color={'white'} _hover={{ bg: 'blue.700' }} onClick={onOpen}>Alta como freelance</Button>
 
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
@@ -72,10 +110,12 @@ export const ButtonCreateFreelance = ({ refreshCorporate, disabled }) => {
                                         <Text mt={5} fontWeight={"bold"}>
                                             País:{" "}
                                         </Text>
-                                        <Select placeholder='Select option' onChange={(e) => setCountry(e.target.value)}>
-                                            <option value='option1'>Option 1</option>
-                                            <option value='option2'>Option 2</option>
-                                            <option value='option3'>Option 3</option>
+                                        <Select placeholder='Seleccionar' onChange={(e) => setCountry(e.target.value)}>
+                                            {countryOptions.map((option) => (
+                                                <option key={option.value} value={option.value}>
+                                                    {option.label}
+                                                </option>
+                                            ))}
                                         </Select>
                                     </Flex>
                                 </Flex>
@@ -108,7 +148,7 @@ export const ButtonCreateFreelance = ({ refreshCorporate, disabled }) => {
                         <Button variant='ghost' mr={3} onClick={() => { step > 1 ? setStep(step - 1) : closeModal() }}>
                             {step === 1 ? "Cancelar" : "Atras"}
                         </Button>
-                        <Button onClick={() => setStep(step + 1)} bg={COLORS.primary} color={'white'} _hover={{ bg: 'blue.600' }}>{step < 3 ? " Continuar" : "Confirmar"}</Button>
+                        <Button onClick={() => { step < 3 ? setStep(step + 1) : createFreelanceProfile() }} bg={COLORS.primary} color={'white'} _hover={{ bg: 'blue.600' }}>{step < 3 ? " Continuar" : "Confirmar"}</Button>
                     </ModalFooter>
                 </ModalContent>
             </Modal>
