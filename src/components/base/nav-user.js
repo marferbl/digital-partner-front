@@ -13,18 +13,30 @@ import {
 import { get } from 'mongoose';
 import React, { useContext, useEffect } from 'react';
 import { UserContext } from "../../context/userContext";
+import { getMe } from '../../services/auth';
 import { SoftwareSearcherInput } from './software-searcher-input';
 
 
 
 export const NavbarUser = () => {
-    const { loggedUser, userView, changeUserView, logOutUser } = useContext(UserContext);
+    const { loggedUser, userView, changeUserView, logOutUser, setMe, me } = useContext(UserContext);
+
+    useEffect(() => {
+        setMeData()
+    }, [])
 
 
     const LinkDropdown = ({ label, action }) => {
         return (
             <MenuItem onClick={action} _hover={{ bg: 'gray.100' }} h={'full'} fontSize={14} textAlign={'center'} width={'full'} fontWeight={'bold'}>{label}</MenuItem>
         )
+    }
+
+
+    const setMeData = () => {
+        getMe().then((res) => {
+            setMe(res.data)
+        })
     }
 
 

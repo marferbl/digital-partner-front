@@ -1,6 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
 import { useBackendUrlBuilder } from "../hooks/useBackendUrlBuilder";
 import axios from "axios";
+import { getMe } from "../services/auth";
 
 const UserContext = createContext({});
 
@@ -12,6 +13,8 @@ function AuthProviderWrapper(props) {
   const [isLoading, setIsLoading] = useState(true);
   const [loggedUser, setUser] = useState();
   const [userView, setUserView] = useState();
+  const [me, setMe] = useState(null);
+
 
 
 
@@ -82,7 +85,9 @@ function AuthProviderWrapper(props) {
         logOutUser,
         getToken,
         userView,
-        changeUserView
+        changeUserView,
+        setMe,
+        me
       }}
     >
       {props.children}

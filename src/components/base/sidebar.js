@@ -92,7 +92,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
     >
       <Flex h="20" alignItems="center" mx="5" justifyContent="space-between">
         <Text fontSize="lg" fontWeight="bold" color={'black'} p={3} rounded={'xl'}>
-          TDP
+          TheDigitalPartner
         </Text>
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
