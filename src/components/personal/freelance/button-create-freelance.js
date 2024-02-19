@@ -28,6 +28,7 @@ export const ButtonCreateFreelance = ({ refreshFreelance, disabled }) => {
     const [telephone, setTelephone] = useState("");
     const [skillLevels, setSkillLevels] = useState({});
     const [financial, setFinancial] = useState({});
+    const [study, setStudy] = useState({ name: "", year: "" });
 
     const countryOptions = [
         { value: 'ESP', label: 'España' },
@@ -56,7 +57,7 @@ export const ButtonCreateFreelance = ({ refreshFreelance, disabled }) => {
 
     const createFreelanceProfile = () => {
         const { languages, skills } = skillLevels;
-        const { paymentType, coin, price } = financial;
+        const { paymentType, coin, price, jobType, onlyRemote, hasSetup } = financial;
 
         let data = {
             country: country,
@@ -68,7 +69,10 @@ export const ButtonCreateFreelance = ({ refreshFreelance, disabled }) => {
             paymentType: paymentType,
             coin: coin,
             price: price,
-            skills: skills
+            skills: skills,
+            jobType: jobType,
+            onlyRemote: onlyRemote,
+            hasSetup: hasSetup
         }
 
         createFreelance(data).then((res) => {
@@ -128,6 +132,24 @@ export const ButtonCreateFreelance = ({ refreshFreelance, disabled }) => {
                                     placeholder='Here is a sample placeholder'
                                     size='sm'
                                 />
+                                <Text mt={5} fontWeight={"bold"}>
+                                    Formación:{" "}
+                                </Text>
+                                <Flex w={'full'} gap={1}>
+                                    <Input
+                                        value={study.name}
+                                        onChange={(e) => setStudy({ ...study, name: e.target.value })}
+                                        placeholder="Título"
+                                        w={'70%'}
+                                    />
+                                    <Input
+                                        value={study.year}
+                                        onChange={(e) => setStudy({ ...study, year: e.target.value })}
+                                        placeholder="Año"
+                                        w={'25%'}
+                                    />
+                                </Flex>
+
                                 <Text mt={5} fontWeight={"bold"}>
                                     Web:{" "}
                                 </Text>

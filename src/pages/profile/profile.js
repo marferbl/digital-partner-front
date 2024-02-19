@@ -9,7 +9,7 @@ export const ProfilePage = () => {
     setShowEdit(!showEdit)
   }
 
-  return <Box>
+  return <Box h={'fit-content'}>
     <Profile />
   </Box>;
 };

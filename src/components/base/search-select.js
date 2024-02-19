@@ -13,7 +13,7 @@ export default function SearchSelect({ options, isMulti, onChange }) {
     };
 
     return (
-        <div className="App">
+        <div className="App" style={{ width: '100%' }}>
             <Select
                 value={selectedOption}
                 onChange={handleSelectChange}

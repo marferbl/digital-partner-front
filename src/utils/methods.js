@@ -5,3 +5,4 @@ export const capitalizeFirstLetter = (text) => {
 export const dateToString = (date) => {
     return new Date(date).toLocaleDateString('en-GB')
 }
+

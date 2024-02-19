@@ -6,7 +6,7 @@ import { COLORS } from "../../../colors/colors";
 import { getCorporate } from "../../../services/corporate";
 import { Tooltip } from '@chakra-ui/react'
 
-export const EmptySolutionsState = ({ refreshCorporate }) => {
+export const EmptySolutionsState = ({ refreshSolutions }) => {
 
     const [corporate, setCorporate] = useState(null);
 
@@ -32,7 +32,7 @@ export const EmptySolutionsState = ({ refreshCorporate }) => {
             </Text>
             <Tooltip isDisabled={!!corporate} label={'Crea primero una corporate'}>
                 <Box>
-                    <ButtonCreateSolution refreshCorporate={refreshCorporate} disabled={!corporate} />
+                    <ButtonCreateSolution refreshSolutions={refreshSolutions} disabled={!corporate} />
                 </Box>
             </Tooltip>
         </Center>

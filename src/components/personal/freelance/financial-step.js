@@ -1,19 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { Box, Button, Flex, Text, Input, Textarea, } from '@chakra-ui/react'
 import {
-    Modal,
-    ModalOverlay,
-    ModalContent,
-    ModalHeader,
-    ModalFooter,
-    ModalBody,
-    ModalCloseButton,
-    useDisclosure,
     Select
 } from '@chakra-ui/react'
-import { createCorporate } from '../../../services/corporate';
-import { COLORS } from '../../../colors/colors';
-import SkillSelector from "./skills-select"
+import { Checkbox } from '@chakra-ui/react';
+import { set } from 'mongoose';
+
 
 
 export const FinancialStep = ({ onChange }) => {
@@ -22,9 +14,14 @@ export const FinancialStep = ({ onChange }) => {
     const [price, setPrice] = useState("");
     const [coin, setCoin] = useState("");
     const [paymentType, setType] = useState("");
+    const [jobType, setJobType] = useState("");
+    const [onlyRemote, setOnlyRemote] = useState(true);
+    const [hasSetup, setHasSetup] = useState(false);
+
+
 
     useEffect(() => {
-        onChange({ paymentType, coin, price });
+        onChange({ paymentType, coin, price, jobType, onlyRemote, hasSetup });
     }, [paymentType, coin, price])
 
     return (
@@ -53,6 +50,34 @@ export const FinancialStep = ({ onChange }) => {
                     </Select>
                 </Flex>
             </Flex>
+            <Flex flexDir={'column'} w={'65%'}>
+                <Text mt={5} fontWeight={"bold"}>
+                    Como prefieres trabajar:{" "}
+                </Text>
+                <Select placeholder='Selecciona' onChange={(e) => setJobType(e.target.value)}>
+                    <option value='objectives'>Solo por objetivos</option>
+                    <option value='schedules'>Solo con horarios</option>
+                    <option value='all'>Ambas</option>
+                </Select>
+            </Flex>
+            <Checkbox
+                mt={4}
+                isChecked={!onlyRemote}
+                onChange={(e => setOnlyRemote(!e.target.checked))}
+            >
+                <Text fontSize={13}>
+                    Estás dispuesto a trabajar presencial
+                </Text>
+            </Checkbox>
+            <Checkbox
+                mt={4}
+                isChecked={hasSetup}
+                onChange={(e => setHasSetup(e.target.checked))}
+            >
+                <Text fontSize={13}>
+                    Tienes los medios necesarios para trabajar remotamente
+                </Text>
+            </Checkbox>
         </Box>
     )
 }
