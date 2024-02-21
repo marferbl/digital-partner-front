@@ -11,6 +11,7 @@ import SearcherPage from "../pages/searcher/SearcherPage";
 import { ProfileCorporatePage } from "../pages/admin/profile/index";
 import { SolutionsCorporatePage } from "../pages/admin/solutions";
 import { FreelancePage } from "../pages/personal/freelance";
+import { SolutionDetailPage } from "../pages/admin/solutions/solution-detail";
 
 export const PageRoutes = () => {
   return (
@@ -27,6 +28,7 @@ export const PageRoutes = () => {
           <Route path={"search/:term"} element={<SearcherPage />} />
           <Route path={'corporate/solutions'} element={<SolutionsCorporatePage />} />
           <Route path={'freelance'} element={<FreelancePage />} />
+          <Route path={'solution/:id'} element={<SolutionDetailPage />} />
 
         </Route>
       </Routes>

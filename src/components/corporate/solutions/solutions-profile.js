@@ -4,6 +4,10 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Avatar, Box, Grid, GridItem, Text, Flex } from "@chakra-ui/react";
 import { ButtonCreateSolution } from "./button-create-solutions";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { COLORS } from "../../../colors/colors";
+import { Link } from "react-router-dom";
+
 
 export const SolutionsProfile = ({ solutions, refreshSolutions }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -24,32 +28,19 @@ export const SolutionsProfile = ({ solutions, refreshSolutions }) => {
 
     return (
         <div>
+            <Flex justify='end' mb={6} pb={4}>
+                <ButtonCreateSolution refreshSolutions={refreshSolutions} />
+            </Flex>
             <Slider {...settings}>
                 {solutions.map((solution, index) => (
                     <div key={index}>
-                        <Grid templateColumns="repeat(3, 1fr)" gap={6}>
-                            <GridItem colSpan={3}>
-                                <Flex justify='end'>
-                                    <ButtonCreateSolution refreshSolutions={refreshSolutions} />
-                                </Flex>
-                            </GridItem>
+                        <Grid templateColumns="repeat(1, 1fr)" gap={6} pb={20}>
                             <GridItem colSpan={1}>
-                                <Box mt={1} rounded={"xl"} bgColor={"white"} w={"100%"} minH={400} px={10}>
+                                <Box textAlign={'center'} mt={1} rounded={"xl"} bgColor={"white"} w={"100%"} minH={400} px={10}>
                                     <Avatar size="2xl" name={solution.name} src={solution.logo} mb={5} />
-                                    <Text fontWeight={'bold'} fontSize={34}>{solution.name}</Text>
-                                    <Text fontSize={14} mt={3}>Se dedica a:</Text>
-                                    <Text fontSize={18} mt={0}>{solution.description}</Text>
-                                    <Text></Text>
-                                </Box>
-                            </GridItem>
-                            <GridItem colSpan={1}>
-                                <Box mt={1} p={5} rounded={"xl"} bgColor={"white"} w={"100%"} minH={400} px={10}>
-                                    <Text fontSize={18} mt={3}>{solution.type == 'sector' ? 'Solución sectorial' : 'Solucion multisectorial'}</Text>
+                                    <Link to={`/private/solution/${solution._id}`}><Text fontWeight={'bold'} fontSize={34}>{solution.name}</Text></Link>
                                     <Text fontSize={18} mt={3} textDecor='underline'>{solution.website}</Text>
                                 </Box>
-                            </GridItem>
-                            <GridItem colSpan={1}>
-
                             </GridItem>
                         </Grid>
                     </div>
@@ -62,22 +53,32 @@ export const SolutionsProfile = ({ solutions, refreshSolutions }) => {
 const NextArrow = (props) => {
     const { className, style, onClick } = props;
     return (
-        <div
-            className={className}
-            style={{ ...style, display: "block", background: "black", marginRight: "20px", zIndex: 99, }}
+        <Box
+            style={{ ...style, zIndex: 99, position: 'absolute', bottom: 0, left: '52%', cursor: 'pointer' }}
             onClick={onClick}
-        />
+            p={1}
+            rounded={"xl"}
+            borderWidth={1}
+            _hover={{ bg: 'gray.200' }}
+        >
+            <FaChevronRight size={30} color={COLORS.primary} />
+        </Box>
     );
 };
 
 const PrevArrow = (props) => {
     const { className, style, onClick } = props;
     return (
-        <div
-            className={className}
-            style={{ ...style, display: "block", background: "black", marginLeft: "20px", zIndex: 99 }}
+        <Box
+            style={{ ...style, zIndex: 99, position: 'absolute', bottom: 0, left: '46%', cursor: 'pointer' }}
             onClick={onClick}
-        />
+            p={1}
+            rounded={"xl"}
+            borderWidth={1}
+            _hover={{ bg: 'gray.200' }}
+        >
+            <FaChevronLeft size={30} color={COLORS.primary} />
+        </Box>
     );
 };
 

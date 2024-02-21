@@ -71,14 +71,19 @@ const SidebarContent = ({ onClose, ...rest }) => {
   const userRoutes = [
     { name: "Perfil", icon: FiUser, to: "profile" },
     { name: "Freelance", icon: FiTrendingUp, to: "freelance" },
-    { name: "Guru", icon: FiStar, to: "dashboard" },
+    { name: "Empleo", icon: FiStar, to: "dashboard" },
+    { name: "Gurús", icon: FiStar, to: "dashboard" },
+
   ]
 
   const adminRoutes = [
     { name: "Corporate", icon: FiDatabase, to: "corporate/profile" },
     { name: "Soluciones", icon: FiTool, to: "corporate/solutions" },
-
-
+    { name: "Servicios", icon: FiUsers, to: "corporate/users" },
+    { name: "Eventos", icon: FiUsers, to: "corporate/users" },
+    { name: "Equipo", icon: FiUsers, to: "corporate/users" },
+    { name: "Licencias", icon: FiUsers, to: "corporate/users" },
+    { name: "Ofertas", icon: FiUsers, to: "corporate/users" },
   ]
   return (
     <Box
