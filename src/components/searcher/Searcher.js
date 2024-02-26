@@ -9,21 +9,23 @@ const Searcher = () => {
     const { term } = useParams()
 
     const getLabelTerm = () => {
+        if (!term) return 'digitales'
         return capitalizeFirstLetter(decodeURIComponent(term?.replace(/\+/g, ' ')))
 
     }
 
     return (
         <Box p={5} >
+
             <Heading textAlign={'center'} fontFamily={'Montserrat'} fontSize={30}>
-                Mejores soluciones digitales sobre
+                {term ? 'Mejores soluciones digitales sobre' : 'Viendo todas las soluciones'}
             </Heading>
             <Center>
                 <Text fontSize={30} fontWeight={'bold'} color={'#00A3FF'}>{getLabelTerm()}</Text>
             </Center>
-            <FiltersSection />
+            {/* <FiltersSection /> */}
             <Center pt={20} flexDir={'column'}>
-                <MarketplaceSection />
+                <MarketplaceSection term={term} />
             </Center>
         </Box >
     )

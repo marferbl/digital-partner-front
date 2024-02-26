@@ -17,7 +17,10 @@ const SoftwareSearcher = () => {
     }
 
     const getRoute = () => {
-        return routeIsDashboard() ? `/private/search/${searchTerm}` : `/search/${searchTerm}`
+        if (searchTerm === '' || searchTerm === undefined || searchTerm === null) {
+            return routeIsDashboard() ? '/private/search' : '/search'
+        }
+        return routeIsDashboard() ? `/private/search/${searchTerm || ''}` : `/search/${searchTerm || ''}`
     }
 
 

@@ -6,9 +6,9 @@ const SectionMarketPlace = ({ list }) => {
 
 
     return (
-        <Box mb={10}>
-            <Grid templateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(3, 1fr)' }} gap={6}>
-                {list?.map(item => <GridItem><CardSoftware {...item} /></GridItem>)}
+        <Box mb={10} w='full'>
+            <Grid w='full' templateColumns={{ md: 'repeat(2, 1fr)', lg: 'repeat(4, 1fr)' }} gap={3}>
+                {list?.map(item => <GridItem colSpan={1} key={item._id}><CardSoftware {...item} /></GridItem>)}
             </Grid>
         </Box>
     )

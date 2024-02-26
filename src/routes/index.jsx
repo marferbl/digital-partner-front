@@ -26,6 +26,7 @@ export const PageRoutes = () => {
           <Route path={"profile"} element={<ProfilePage />} />
           <Route path={"corporate/profile"} element={<ProfileCorporatePage />} />
           <Route path={"search/:term"} element={<SearcherPage />} />
+          <Route path={"search"} element={<SearcherPage />} />
           <Route path={'corporate/solutions'} element={<SolutionsCorporatePage />} />
           <Route path={'freelance'} element={<FreelancePage />} />
           <Route path={'solution/:id'} element={<SolutionDetailPage />} />

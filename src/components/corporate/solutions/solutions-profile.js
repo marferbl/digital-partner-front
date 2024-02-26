@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Avatar, Box, Grid, GridItem, Text, Flex } from "@chakra-ui/react";
+import { Avatar, Box, Grid, GridItem, Text, Flex, Button } from "@chakra-ui/react";
 import { ButtonCreateSolution } from "./button-create-solutions";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { COLORS } from "../../../colors/colors";
@@ -19,8 +19,8 @@ export const SolutionsProfile = ({ solutions, refreshSolutions }) => {
         slidesToShow: 1,
         slidesToScroll: 1,
         arrows: true,
-        nextArrow: <NextArrow />,
-        prevArrow: <PrevArrow />,
+        // nextArrow: <NextArrow />,
+        // prevArrow: <PrevArrow />,
     };
 
 
@@ -34,13 +34,22 @@ export const SolutionsProfile = ({ solutions, refreshSolutions }) => {
             <Slider {...settings}>
                 {solutions.map((solution, index) => (
                     <div key={index}>
-                        <Grid templateColumns="repeat(1, 1fr)" gap={6} pb={20}>
+                        <Grid templateColumns="repeat(1, 1fr)" gap={6}>
                             <GridItem colSpan={1}>
-                                <Box textAlign={'center'} mt={1} rounded={"xl"} bgColor={"white"} w={"100%"} minH={400} px={10}>
+                                <Flex textAlign={'center'} flexDir='column' alignItems={'center'} mt={1} rounded={"xl"} bgColor={"white"} w={"100%"} minH={400} px={10}>
                                     <Avatar size="2xl" name={solution.name} src={solution.logo} mb={5} />
-                                    <Link to={`/private/solution/${solution._id}`}><Text fontWeight={'bold'} fontSize={34}>{solution.name}</Text></Link>
-                                    <Text fontSize={18} mt={3} textDecor='underline'>{solution.website}</Text>
-                                </Box>
+                                    <Text mb={5}> {solution.website} </Text>
+                                    <Button
+                                        variant="solid"
+                                        bg={COLORS.primary}
+                                        color="white"
+                                        _hover={{ bg: 'blue.700' }}
+                                    >
+                                        <Link to={`/private/solution/${solution._id}`}><Text fontWeight={'bold'} fontSize={14}>{'Ir a detalles'}</Text></Link>
+                                    </Button>
+                                </Flex>
+
+
                             </GridItem>
                         </Grid>
                     </div>

@@ -21,11 +21,14 @@ import {
   FiUser,
   FiMenu,
   FiTool,
+  FiRepeat,
+  FiBookOpen,
+  FiCalendar,
+  FiSearch
 } from "react-icons/fi";
-import { IconType } from "react-icons";
-import { ReactText } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../context/userContext";
+import { FiGrid } from "react-icons/fi";
 
 const LinkItems = [
   { name: "Inicio", icon: FiHome },
@@ -71,7 +74,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
   const userRoutes = [
     { name: "Perfil", icon: FiUser, to: "profile" },
     { name: "Freelance", icon: FiTrendingUp, to: "freelance" },
-    { name: "Empleo", icon: FiStar, to: "dashboard" },
+    { name: "Empleo", icon: FiGrid, to: "dashboard" },
     { name: "Gurús", icon: FiStar, to: "dashboard" },
 
   ]
@@ -79,11 +82,11 @@ const SidebarContent = ({ onClose, ...rest }) => {
   const adminRoutes = [
     { name: "Corporate", icon: FiDatabase, to: "corporate/profile" },
     { name: "Soluciones", icon: FiTool, to: "corporate/solutions" },
-    { name: "Servicios", icon: FiUsers, to: "corporate/users" },
-    { name: "Eventos", icon: FiUsers, to: "corporate/users" },
+    { name: "Servicios", icon: FiRepeat, to: "corporate/users" },
+    { name: "Eventos", icon: FiCalendar, to: "corporate/users" },
     { name: "Equipo", icon: FiUsers, to: "corporate/users" },
-    { name: "Licencias", icon: FiUsers, to: "corporate/users" },
-    { name: "Ofertas", icon: FiUsers, to: "corporate/users" },
+    { name: "Licencias", icon: FiBookOpen, to: "corporate/users" },
+    { name: "Ofertas", icon: FiSearch, to: "corporate/users" },
   ]
   return (
     <Box

@@ -14,4 +14,4 @@ API.interceptors.request.use((req) => {
 export const getSolutionsByCorporate = () => API.get(`/solution/by-corporate`);
 export const createSolution = (body) => API.post(`/solution/create`, body);
 export const getSolutionById = (id) => API.get(`/solution/details/${id}`);
-export const getAllSolutions = () => API.get(`/solution/all`);
+export const getAllSolutions = (queryParams) => API.get(`/solution/all`, { params: queryParams });
