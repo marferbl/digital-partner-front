@@ -82,7 +82,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
   const adminRoutes = [
     { name: "Corporate", icon: FiDatabase, to: "corporate/profile" },
     { name: "Soluciones", icon: FiTool, to: "corporate/solutions" },
-    { name: "Servicios", icon: FiRepeat, to: "corporate/users" },
+    { name: "Servicios", icon: FiRepeat, to: "corporate/service" },
     { name: "Eventos", icon: FiCalendar, to: "corporate/users" },
     { name: "Equipo", icon: FiUsers, to: "corporate/users" },
     { name: "Licencias", icon: FiBookOpen, to: "corporate/users" },
