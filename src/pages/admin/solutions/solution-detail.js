@@ -16,7 +16,7 @@ export const SolutionDetailPage = () => {
     const { id } = useParams();
 
     const LINKS = [
-        { label: 'Implantador', component: <PartnerComponent /> },
+        { label: 'Partner', component: <PartnerComponent /> },
         { label: 'Demo', component: <DemoComponent /> },
         { label: 'Manuales', component: <ManualComponent /> },
         { label: 'Referencias', component: <ReferencesComponent /> },

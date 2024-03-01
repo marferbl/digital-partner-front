@@ -8,7 +8,16 @@ export default function SearchSelect({ options, isMulti, onChange, searchable })
         setSelectedOption(selectedOption);
         // Call the onChange function passed from parent component
         if (onChange) {
-            onChange(selectedOption);
+            if (isMulti) {
+                if (selectedOption) {
+                    onChange(selectedOption.map(e => e.value));
+                } else {
+                    onChange([]);
+                }
+            }
+            else {
+                onChange(selectedOption.value);
+            }
         }
     };
     return (

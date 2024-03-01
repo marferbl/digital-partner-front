@@ -13,6 +13,7 @@ import { SolutionsCorporatePage } from "../pages/admin/solutions";
 import { FreelancePage } from "../pages/personal/freelance";
 import { SolutionDetailPage } from "../pages/admin/solutions/solution-detail";
 import { ServicePage } from "../pages/admin/service";
+import ServiceDetailsPage from "../pages/admin/service/service-details";
 
 export const PageRoutes = () => {
   return (
@@ -32,6 +33,7 @@ export const PageRoutes = () => {
           <Route path={'freelance'} element={<FreelancePage />} />
           <Route path={'solution/:id'} element={<SolutionDetailPage />} />
           <Route path={'corporate/service'} element={<ServicePage />} />
+          <Route path={'service/:id'} element={<ServiceDetailsPage />} />
         </Route>
       </Routes>
     </Router>

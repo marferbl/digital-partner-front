@@ -10,81 +10,76 @@ import {
     ModalCloseButton,
     useDisclosure,
     Grid,
-
+    Menu,
+    MenuButton,
+    MenuList,
+    MenuItem,
 } from '@chakra-ui/react'
 import { COLORS } from "../../../colors/colors";
 import { createCorporate } from '../../../services/corporate';
-import { SearchSelectSolutions } from '../../base/search-select-solutions';
+import PartnerModalCreate from './create-service/partner';
+import { createService } from '../../../services/service';
 
 
 
 
 
-export const ButtonCreateService = ({ refreshCorporate }) => {
+export const ButtonCreateService = ({ refreshServices }) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
 
-    const [step, setStep] = useState(1);
-    const [selected, setSelected] = useState('');
+    const [serviceType, setServiceType] = useState('');
+    const [config, setConfig] = useState({});
 
+    const closeModal = () => {
+        onClose();
+    }
+
+    const openModal = (type) => {
+        setServiceType(type);
+        onOpen();
+    }
 
     const create = async () => {
-        createCorporate().then((res) => {
-            refreshCorporate();
+        createService({ ...config, serviceType: serviceType }).then((res) => {
+            refreshServices();
             onClose();
-        }).catch((err) => {
+        }
+        ).catch((err) => {
             console.log(err);
-        });
+        }
+        );
     };
-
-    const renderCard = (label) => {
-        return (
-            <Box onClick={() => { setSelected(label) }} cursor='pointer' textAlign={'center'} fontSize={12} display={'flex'} alignItems={'start'} flexDir={'column'} py={8} borderWidth={1} shadow='xl' _hover={{ transform: 'scale(1.05)' }}>
-                <Text textAlign={'center'} w='full'>{label}</Text>
-            </Box>
-        )
-    }
 
     return (
         <>
-            <Button bg={COLORS.primary} color={'white'} _hover={{ bg: 'blue.700' }} onClick={onOpen}>Crear servicio</Button>
-
+            <Menu>
+                <MenuButton rounded={'xl'} p={2} bg={'white'} justify={'space-between'} align={'center'}>
+                    <Button bg={COLORS.primary} color={'white'} _hover={{ bg: 'blue.700' }} onClick={onOpen}>Crear servicio</Button>
+                </MenuButton>
+                <MenuList width={20} p={0}>
+                    <MenuItem onClick={() => { openModal('partner') }} _hover={{ bg: 'gray.100' }} h={'full'} fontSize={14} textAlign={'center'} width={'full'} fontWeight={'bold'}>Partner</MenuItem>
+                    <MenuItem onClick={() => { openModal('development') }} _hover={{ bg: 'gray.100' }} h={'full'} fontSize={14} textAlign={'center'} width={'full'} fontWeight={'bold'}>Desarrollo</MenuItem>
+                    <MenuItem onClick={() => { openModal('renting') }} _hover={{ bg: 'gray.100' }} h={'full'} fontSize={14} textAlign={'center'} width={'full'} fontWeight={'bold'}>Renting</MenuItem>
+                    <MenuItem onClick={() => { openModal('helps') }} _hover={{ bg: 'gray.100' }} h={'full'} fontSize={14} textAlign={'center'} width={'full'} fontWeight={'bold'}>Ayudas</MenuItem>
+                    <MenuItem onClick={() => { openModal('training') }} _hover={{ bg: 'gray.100' }} h={'full'} fontSize={14} textAlign={'center'} width={'full'} fontWeight={'bold'}>Training</MenuItem>
+                </MenuList>
+            </Menu>
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent>
-                    <ModalHeader>Crear Servicio</ModalHeader>
-                    <ModalCloseButton />
+                    <ModalHeader>Crear Servicio ({serviceType})</ModalHeader>
+                    <ModalCloseButton onClick={closeModal} />
                     <ModalBody py={5}>
-                        {step === 1 && <Box fontSize={12} display={'flex'} alignItems={'start'} flexDir={'column'}>
-                            <Grid templateColumns="repeat(6, 1fr)" gap={6} w='full'>
-                                <GridItem textAlign={'center'} colSpan={2} m>
-                                    {renderCard('Partner')}
-                                </GridItem>
-                                <GridItem textAlign={'center'} colSpan={2}>
-                                    {renderCard('Desarrollo')}
-                                </GridItem>
-                                <GridItem textAlign={'center'} colSpan={2} m>
-                                    {renderCard('Renting')}
-                                </GridItem>
-                                <GridItem textAlign={'center'} colSpan={3}>
-                                    {renderCard('Ayudas')}
-                                </GridItem>
-                                <GridItem textAlign={'center'} colSpan={3}>
-                                    {renderCard('Training')}
-                                </GridItem>
-                            </Grid>
-                        </Box>}
-                        {step === 2 && <Box>
-                            <SearchSelectSolutions />
-                        </Box>
-                        }
+                        {serviceType === 'partner' && <PartnerModalCreate onChangeConfig={(value) => {
+                            setConfig(value)
+                        }} />}
                     </ModalBody>
 
                     <ModalFooter>
-                        <Button variant='ghost' mr={3} onClick={onClose}>
+                        <Button variant='ghost' mr={3} onClick={closeModal}>
                             cancelar
                         </Button>
-                        <Button onClick={() => setStep(step + 1)} colorScheme='teal'>Confirmar</Button>
-
+                        <Button colorScheme='teal' onClick={create}>Confirmar</Button>
                     </ModalFooter>
                 </ModalContent>
             </Modal>

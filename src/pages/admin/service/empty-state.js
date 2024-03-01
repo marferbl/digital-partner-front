@@ -5,14 +5,14 @@ import { FiRepeat } from "react-icons/fi";
 import { COLORS } from "../../../colors/colors";
 import { ButtonCreateService } from "../../../components/corporate/service/button-create-service";
 
-export const EmptyServiceState = ({ refreshCorporate }) => {
+export const EmptyServiceState = ({ refreshServices }) => {
     return (
         <Center flexDir={'column'} minH={'300'}>
             <FiRepeat size={70} color={COLORS.primary} />
             <Text my={6} fontSize={24}>
                 Todavia no tienes servicios dados de alta
             </Text>
-            <ButtonCreateService refreshCorporate={refreshCorporate} />
+            <ButtonCreateService refreshServices={refreshServices} />
         </Center>
 
     )
