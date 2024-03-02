@@ -2,6 +2,7 @@ import React from 'react'
 import ReactCountryFlag from "react-country-flag"
 
 const CountryFlag = ({ country }) => {
+    console.log(country)
 
     const COUNTRY_KEYS = {
         'spain': 'ES',
@@ -21,6 +22,7 @@ const CountryFlag = ({ country }) => {
         'france': 'FR',
         'italy': 'IT',
         'germany': 'DE',
+        'england': 'GB',
     }
     return (
         <ReactCountryFlag countryCode={COUNTRY_KEYS[country]} />

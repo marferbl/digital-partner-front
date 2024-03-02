@@ -12,7 +12,7 @@ import { useParams } from "react-router-dom";
 export const SolutionDetailPage = () => {
     const [solution, setSolution] = useState(null);
     const [selectedComponent, setSelectedComponent] = useState(<PartnerComponent />);
-    const [label, setLabel] = useState('Implantador');
+    const [label, setLabel] = useState('Partner');
     const { id } = useParams();
 
     const LINKS = [
@@ -22,6 +22,7 @@ export const SolutionDetailPage = () => {
         { label: 'Referencias', component: <ReferencesComponent /> },
         { label: 'Certificaciones', component: <CertificationComponent /> },
     ];
+
 
     useEffect(() => {
         getMySolutions();

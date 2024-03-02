@@ -41,9 +41,9 @@ const ServicesTable = ({ services, solutionView }) => {
             <Table variant='simple'>
                 <Thead>
                     <Tr>
+                        {solutionView && <Th>Corporate</Th>}
                         <Th>Tipo de servicio</Th>
                         {!solutionView && <Th>Solución</Th>}
-                        <Th>Descripción</Th>
                         <Th>Lenguajes</Th>
                         <Th>Países</Th>
                         <Th></Th>
@@ -54,9 +54,9 @@ const ServicesTable = ({ services, solutionView }) => {
                     {services.map((service) => {
                         return (
                             <Tr key={service._id}>
+                                {solutionView && <Td>{service.corporate?.name}</Td>}
                                 <Td>{capitalizeFirstLetter(service.serviceType)} {'('} {arrayToSentence(service.partnerType)} {')'}</Td>
                                 {!solutionView && <Td>{service.solutionId?.name}</Td>}
-                                <Td>{service.description}</Td>
                                 <Td>{service?.languages?.map(e => <Text>{e}</Text>)}</Td>
                                 <Td fontSize={16}>{service?.countries?.map(e => <CountryFlag country={e} />)}</Td>
                                 <Td>

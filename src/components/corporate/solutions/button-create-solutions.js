@@ -43,6 +43,11 @@ export const ButtonCreateSolution = ({ refreshSolutions, disabled }) => {
         { value: 'french', label: 'Francés' },
         { value: 'italian', label: 'Italiano' },
     ];
+
+    const featureOptions = [
+        { value: 'fichajes', label: 'Fichajes' },
+        { value: 'ausencias', label: 'Ausencias' },
+    ];
     const typesOptions = [
         { value: 'sector', label: 'Sector' },
         { value: 'multi', label: 'Multisector' },
@@ -53,7 +58,7 @@ export const ButtonCreateSolution = ({ refreshSolutions, disabled }) => {
             name,
             description,
             website,
-            type: type.value,
+            type,
             countries,
             languages,
             feature
@@ -118,7 +123,7 @@ export const ButtonCreateSolution = ({ refreshSolutions, disabled }) => {
                                     <Text mt={3} fontWeight={"bold"}>
                                         Funcionalidades:{" "}
                                     </Text>
-                                    <SearchSelect options={languageOptions} value={feature} isMulti onChange={(value) => setFeature(value)} />
+                                    <SearchSelect options={featureOptions} value={feature} isMulti onChange={(value) => setFeature(value)} />
                                 </Box>
                             </Flex>
                             <Flex gap={2} w='full'>

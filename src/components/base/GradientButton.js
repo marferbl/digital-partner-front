@@ -24,7 +24,7 @@ const GradientButton = ({ type, label, onClick, size }) => {
             bgGradient={bgGradient}
             _hover={{ bgGradient: hoverGradient }}
             _active={{ bgGradient: activeGradient }}
-            color="white"
+            color={type === "green" ? "black" : "white"}
             fontWeight="bold"
             _focus={{ boxShadow: "outline" }}
             onClick={onClick}
