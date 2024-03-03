@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API = axios.create({ baseURL: "http://localhost:4000" });
+const API = axios.create({ baseURL: process.env.REACT_APP_BASE_URL });
 
 API.interceptors.request.use((req) => {
   const token = localStorage.getItem("token")
@@ -10,6 +10,8 @@ API.interceptors.request.use((req) => {
 
   return req;
 });
+
+console.log(process.env.REACT_APP_BASE_URL);
 
 export const signup = (email, password, name, rol) =>
   API.post(`/user/signup`, { email, password, name, rol });
