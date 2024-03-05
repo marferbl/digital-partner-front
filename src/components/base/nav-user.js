@@ -10,7 +10,6 @@ import {
     MenuDivider,
     Button
 } from '@chakra-ui/react';
-import { get } from 'mongoose';
 import React, { useContext, useEffect } from 'react';
 import { UserContext } from "../../context/userContext";
 import { getMe } from '../../services/auth';
