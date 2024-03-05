@@ -72,7 +72,8 @@ export const ButtonCreateFreelance = ({ refreshFreelance, disabled }) => {
             skills: skills,
             jobType: jobType,
             onlyRemote: onlyRemote,
-            hasSetup: hasSetup
+            hasSetup: hasSetup,
+            study: study
         }
 
         createFreelance(data).then((res) => {

@@ -62,8 +62,10 @@ const SkillSelector = ({ onChange }) => {
                         <Flex flexDir="column">
                             <Input
                                 value={skill.level}
+                                type="number"
+                                max={5}
                                 onChange={(e) => handleSkillChange(index, 'level', e.target.value)}
-                                placeholder="Nivel"
+                                placeholder="Nivel del 1-5"
                             />
                         </Flex>
                         <Center cursor={'pointer'} onClick={() => removeSkill(index)} pl={2}>

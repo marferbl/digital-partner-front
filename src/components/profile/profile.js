@@ -3,7 +3,7 @@ import { UserContext } from "../../context/userContext";
 import {
   Box,
   Text,
-  useToast,
+  Flex,
 } from "@chakra-ui/react";
 import { useBackendUrlBuilder } from "../../hooks/useBackendUrlBuilder";
 import axios from "axios";
@@ -44,7 +44,10 @@ export const Profile = () => {
 
   return (
     <Box mt={6} p={5} rounded={"xl"} bgColor={"white"} minH={400}>
-      <Text fontSize={22} mb={5} pb={3} borderBottomWidth={1}>Perfil</Text>
+      <Flex w='full' justify='space-between' mb={5} pb={3} borderBottomWidth={1}>
+        <Text fontSize={22} >Perfil</Text>
+        <Text cursor={'pointer'} onClick={() => setShowEdit(!showEdit)}>{showEdit ? 'Volver' : 'Editar'}</Text>
+      </Flex>
       {showEdit ? <ProfileEdit me={me} /> : <ProfileUser me={me} toggleShowEdit={toggleShowEdit} />}
     </Box>
   );

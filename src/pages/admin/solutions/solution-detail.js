@@ -18,7 +18,7 @@ export const SolutionDetailPage = () => {
     const LINKS = [
         { label: 'Partner', component: <PartnerComponent /> },
         { label: 'Demo', component: <DemoComponent /> },
-        { label: 'Manuales', component: <ManualComponent /> },
+        { label: 'Manuales', component: <ManualComponent solution={solution} /> },
         { label: 'Referencias', component: <ReferencesComponent /> },
         { label: 'Certificaciones', component: <CertificationComponent /> },
     ];

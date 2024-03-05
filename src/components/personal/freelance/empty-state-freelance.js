@@ -15,11 +15,9 @@ export const EmptyStateFreelance = ({ refreshFreelance, corporate }) => {
             <Text my={6} fontSize={24}>
                 No te has dado de alta de freelance
             </Text>
-            <Tooltip isDisabled={!!corporate} label={'Crea primero una corporate'}>
-                <Box>
-                    <ButtonCreateFreelance refreshFreelance={refreshFreelance} disabled={!corporate} />
-                </Box>
-            </Tooltip>
+            <Box>
+                <ButtonCreateFreelance refreshFreelance={refreshFreelance} disabled={!corporate} />
+            </Box>
         </Center>
 
     )

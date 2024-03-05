@@ -11,7 +11,6 @@ API.interceptors.request.use((req) => {
   return req;
 });
 
-console.log(process.env.REACT_APP_BASE_URL);
 
 export const signup = (email, password, name, rol) =>
   API.post(`/user/signup`, { email, password, name, rol });

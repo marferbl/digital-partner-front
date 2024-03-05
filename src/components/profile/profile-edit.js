@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import {
     Box,
     Button,
@@ -26,6 +26,14 @@ export const ProfileEdit = ({ me }) => {
     const [phone, setPhone] = useState("");
     const [job, setJob] = useState("");
 
+    useEffect(() => {
+        setEmail(me?.email);
+        setName(me?.name);
+        setAge(me?.age);
+        setPhone(me?.phone);
+        setJob(me?.job);
+    }, [])
+
 
     const updateMeURL = useBackendUrlBuilder("/user/update");
 
@@ -42,6 +50,7 @@ export const ProfileEdit = ({ me }) => {
                 }
             )
             .then((res) => {
+                window.location.reload();
                 toast({
                     description: "Cambios guardados",
                     duration: 4000,

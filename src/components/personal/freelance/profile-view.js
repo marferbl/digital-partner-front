@@ -4,6 +4,8 @@ import { FiCheckSquare, FiShoppingCart, FiUser } from "react-icons/fi";
 import { useContext } from "react";
 import { UserContext } from "../../../context/userContext";
 import { capitalizeFirstLetter, dateToString } from "../../../utils/methods";
+import pdf from "../../../pdf/dummy.pdf"
+
 
 const ProfileView = ({ freelance }) => {
     const { me } = useContext(UserContext);
@@ -28,8 +30,6 @@ const ProfileView = ({ freelance }) => {
     }
 
 
-
-
     return (<Box>
         <Grid templateColumns="repeat(3, 1fr)" gap={6} justifyItems={'center'}>
             <GridItem colSpan={1} borderWidth={1} rounded={'md'} shadow={'xl'}>
@@ -40,6 +40,9 @@ const ProfileView = ({ freelance }) => {
                         <Text mt={2} fontStyle='italic'>{slogan}</Text>
 
                         <Text fontSize={12}> Miembro desde el {dateToString(me?.createdAt)}</Text>
+                        <a href={pdf} target="_blank" rel="noreferrer">
+                            <Text mt={2} fontSize={14} color={COLORS["secondary"]} fontWeight='bold' textDecor={'underline'}> Descargar CV</Text>
+                        </a>
 
                     </Flex>
                 </Flex>
@@ -54,7 +57,7 @@ const ProfileView = ({ freelance }) => {
                             <Text mt={2} fontWeight="bold" mr={2}> Teléfono:</Text>
                             <Text>{telephone}</Text>
                             <Text mt={2} fontWeight="bold" mr={2}> Formación:</Text>
-                            <Text>Ingeniería infomática - 2020</Text>
+                            <Text>{freelance.study.name} - {freelance.study.year} </Text>
                         </Box>
                     </Box>
                 </Box>
@@ -109,7 +112,7 @@ const ProfileView = ({ freelance }) => {
                     <Text fontWeight="bold" mr={2}> Idiomas:</Text>
                     {languages.map((language, index) => (
                         <Text key={index}>
-                            {language.label}
+                            {capitalizeFirstLetter(language)}
                         </Text>
                     ))}
                 </Box>

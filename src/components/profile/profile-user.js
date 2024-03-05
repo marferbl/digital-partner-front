@@ -14,8 +14,7 @@ import { EditIcon } from "@chakra-ui/icons";
 import CardTemplate from "../base/card-template";
 import { EmptyState } from "../base/empty-state";
 import GradientButton from "../base/GradientButton";
-import { LineChart } from "../charts/Linechart";
-
+import { Link } from "react-router-dom";
 export const ProfileUser = ({ me }) => {
 
     const data = [
@@ -90,10 +89,10 @@ export const ProfileUser = ({ me }) => {
                     </Flex>
                     <Box px={3}>
                         <Box rounded={'lg'} w={'full'} mb={3}>
-                            <Box py={3} px={4}>
+                            {/* <Box py={3} px={4}>
                                 <Text fontSize={14} mr={2}> No tienes corporate.</Text>
                                 <Text fontSize={14} mt={2} mr={2}> No tienes perfil de freelance.</Text>
-                            </Box>
+                            </Box> */}
                         </Box>
                     </Box>
                 </GridItem>
@@ -102,29 +101,27 @@ export const ProfileUser = ({ me }) => {
                         <Text fontWeight="bold" mr={2} textAlign='center' borderBottomWidth={1}> Freelance</Text>
                         <EmptyState>
                             <Text mb={2} textAlign='center'> No tienes ninguna actividad de freelance</Text>
-                            <GradientButton label='Ir a freelance' type='red' size={'sm'} />
+                            <Link to='/private/freelance'>
+                                <GradientButton label='Ir a freelance' type='red' size={'sm'} />
+                            </Link>
                         </EmptyState>
                     </CardTemplate>
                     <Box h={2}></Box>
-                    {/* <CardTemplate mt={4}>
-                        <Text fontWeight="bold" mr={2} textAlign='center' borderBottomWidth={1}> Freelance</Text>
+
+                </GridItem>
+                <GridItem w='full' colSpan={1} px={5}>
+                    <CardTemplate>
+                        <Text fontWeight="bold" mr={2} textAlign='center' borderBottomWidth={1}> Selección</Text>
                         <EmptyState>
-                            <Text mb={2} textAlign='center'> No tienes ninguna actividad de freelance</Text>
-                            <GradientButton label='Ir a freelance' type='red' size={'sm'} />
+                            <Text mb={2} textAlign='center'> No tienes ninguna actividad de selección</Text>
+                            <Link to='/private/freelance'>
+                                <GradientButton label='Ir a selección' type='red' size={'sm'} />
+                            </Link>
                         </EmptyState>
-                    </CardTemplate> */}
+                    </CardTemplate>
                 </GridItem>
             </Grid>
-            {/* <GridItem w='full' colSpan={3} mt={6} px={5}>
-                <CardTemplate>
-                    <Text fontWeight="bold" mr={2} textAlign='center' borderBottomWidth={1}> Estadísticas</Text>
-                    <Box minH={200}>
-                        <LineChart data={data} />
-                        <Text textAlign={'center'}>Visitas en la última semana</Text>
 
-                    </Box>
-                </CardTemplate>
-            </GridItem> */}
         </Box >
     );
 }
