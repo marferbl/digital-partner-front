@@ -14,6 +14,7 @@ import {
 import { COLORS } from "../../../colors/colors";
 import { createSolution } from '../../../services/solution';
 import SearchSelect from '../../base/search-select';
+import { COUNTRIES, LANGUAGES } from '../../../utils/constants';
 
 
 
@@ -31,22 +32,17 @@ export const ButtonCreateSolution = ({ refreshSolutions, disabled }) => {
     const [languages, setLanguages] = useState([]);
     const [feature, setFeature] = useState([]);
 
-    const countriesOptions = [
-        { value: 'england', label: 'Inglaterra' },
-        { value: 'spain', label: 'España' },
-        { value: 'france', label: 'Francés' },
-        { value: 'italy', label: 'Italia' },
-    ];
-    const languageOptions = [
-        { value: 'english', label: 'Inglés' },
-        { value: 'spanish', label: 'Español' },
-        { value: 'french', label: 'Francés' },
-        { value: 'italian', label: 'Italiano' },
-    ];
+    const countriesOptions = COUNTRIES
+    const languageOptions = LANGUAGES
 
     const featureOptions = [
-        { value: 'fichajes', label: 'Fichajes' },
-        { value: 'ausencias', label: 'Ausencias' },
+        { value: 'rrhh', label: 'RRHH' },
+        { value: 'sellmarketing', label: 'Ventas y marketing' },
+        { value: 'finance', label: 'Finanzas' },
+        { value: 'logistics', label: 'Cadena de suministro' },
+        { value: 'it', label: 'IT' },
+        { value: 'data', label: 'IT' },
+        { value: 'other', label: 'Otro' },
     ];
     const typesOptions = [
         { value: 'sector', label: 'Sector' },

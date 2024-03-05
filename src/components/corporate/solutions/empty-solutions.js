@@ -30,11 +30,13 @@ export const EmptySolutionsState = ({ refreshSolutions }) => {
             <Text my={6} fontSize={24}>
                 Todavia no tienes soluciones creadas
             </Text>
-            <Tooltip isDisabled={!!corporate} label={'Crea primero una corporate'}>
-                <Box>
-                    <ButtonCreateSolution refreshSolutions={refreshSolutions} disabled={!corporate} />
-                </Box>
-            </Tooltip>
+            {/* <Tooltip isDisabled={!!corporate} label={'Crea primero una corporate'}> */}
+            <Box mb={3}>
+                <ButtonCreateSolution refreshSolutions={refreshSolutions} disabled={!corporate} />
+            </Box>
+            {!corporate && <Text fontSize={12} color={COLORS.primary}>Debes tener una corporate para crear soluciones</Text>}
+
+            {/* </Tooltip> */}
         </Center>
 
     )
