@@ -1,51 +1,57 @@
-import { Box, Image, Flex, Text } from '@chakra-ui/react'
+import { Box, Image, Flex, Text, Avatar } from '@chakra-ui/react'
 import React, { useContext } from 'react'
-import { EditIcon } from "@chakra-ui/icons";
 import { Grid, GridItem } from '@chakra-ui/react'
-import { CardPanel } from '../base/card-panel'
-import { TeamCard } from './team-card'
+import GradientButton from '../base/GradientButton'
+import CardTemplate from '../base/card-template'
+import { Link } from 'react-router-dom'
+import { EmptyState } from '../base/empty-state'
+import { CardSolutionsCorporate } from './card-solutions-corporate'
 
 
 export const CorporateProfile = ({ corporate }) => {
+    console.log(corporate)
 
     return (
         <Box>
-            <Grid templateColumns={{ base: 'repeat(2, 1fr)', lg: 'repeat(5, 1fr)' }} gap={6}>
-                <GridItem colSpan={2} w='100%'>
-                    <CardPanel title={'Detalles'}>
-                        <Flex w={'full'} justify={'space-between'}>
-                            <Image rounded={"xl"} h={100} src={corporate?.logo} />
+            <Grid templateColumns="repeat(3, 1fr)" gap={6} justifyItems={'center'}>
+                <GridItem colSpan={1} borderWidth={1} rounded={'md'} shadow={'xl'}>
+                    <Flex pb={4} flexDir='column' align={'center'} pt={3}>
+
+                        <Avatar name={corporate?.name} />
+                        <Flex px={10} gap={1} flexDir='column' textAlign={'center'} >
+                            <Text mt={2} fontSize={20} fontWeight='bold'> {corporate?.name}</Text>
+                            <Text mt={2} >{corporate?.cif}</Text>
+                            <Text mt={2} fontStyle='italic'>{corporate?.web}</Text>
                         </Flex>
-                        <Flex gap={3} pt={5} flexDir={'column'}>
-                            <Flex gap={2}>
-                                <Text fontSize={18} fontWeight={'bold'}>Nombre: </Text>
-                                <Text fontSize={18}>{corporate?.name}</Text>
-                            </Flex>
-                            <Flex gap={2}>
-                                <Text fontSize={18} fontWeight={'bold'}>CIF: </Text>
-                                <Text fontSize={18}>{corporate?.cif}</Text>
-                            </Flex>
-                            <Flex gap={2}>
-                                <Text fontSize={18} fontWeight={'bold'}>País: </Text>
-                                <Text fontSize={18}>{corporate?.country}</Text>
-                            </Flex>
-                            <Flex gap={2}>
-                                <Text fontSize={18} fontWeight={'bold'}>Web: </Text>
-                                <Text fontSize={18}>{corporate?.web}</Text>
-                            </Flex>
-                            <Flex w={'fit-content'} px={2} py={1} rounded='lg' cursor={'pointer'} _hover={{ shadow: 'md' }} h={'fit-content'} gap={2} align={'center'} >
-                                <Text>
-                                    Editar campos
-                                </Text>
-                                <EditIcon />
-                            </Flex>
-                        </Flex>
-                    </CardPanel>
+                    </Flex>
+                    <Box px={3}>
+                        <Box rounded={'lg'} w={'full'} mb={3}>
+                            {/* <Box py={3} px={4}>
+                            <Text fontSize={14} mr={2}> No tienes corporate.</Text>
+                            <Text fontSize={14} mt={2} mr={2}> No tienes perfil de freelance.</Text>
+                        </Box> */}
+                        </Box>
+                    </Box>
                 </GridItem>
-                <GridItem w='100%' colSpan={2} h={'100%'} rounded={'lg'}>
-                    <TeamCard />
+                <GridItem colSpan={1} w='full'>
+                    <CardTemplate>
+                        <Text fontWeight="bold" mr={2} textAlign='center' borderBottomWidth={1}> Soluciones</Text>
+                        <CardSolutionsCorporate />
+                    </CardTemplate>
+                    <Box h={2}></Box>
+
                 </GridItem>
-                <GridItem colSpan={{ base: 2, lg: 1 }} w='100%' rounded={'lg'} />
+                <GridItem w='full' colSpan={1} px={5}>
+                    <CardTemplate>
+                        <Text fontWeight="bold" mr={2} textAlign='center' borderBottomWidth={1}> Servicio</Text>
+                        <EmptyState>
+                            <Text mb={2} textAlign='center'> No tienes ningún servicio creado</Text>
+                            <Link to='/private/freelance'>
+                                <GradientButton label='Ir a servicios' type='red' size={'sm'} />
+                            </Link>
+                        </EmptyState>
+                    </CardTemplate>
+                </GridItem>
             </Grid>
 
         </Box >

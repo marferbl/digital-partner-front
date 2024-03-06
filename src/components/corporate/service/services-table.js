@@ -54,7 +54,7 @@ const ServicesTable = ({ services, solutionView }) => {
                     {services.map((service) => {
                         return (
                             <Tr key={service._id}>
-                                {solutionView && <Td>{service.corporate?.name}</Td>}
+                                {solutionView && <Td>{'Millennials Consulting' || service.corporate?.name}</Td>}
                                 <Td>{capitalizeFirstLetter(service.serviceType)} {'('} {arrayToSentence(service.partnerType)} {')'}</Td>
                                 {!solutionView && <Td>{service.solutionId?.name}</Td>}
                                 <Td>{service?.languages?.map(e => <Text>{e}</Text>)}</Td>

@@ -7,7 +7,7 @@ const ManualCard = ({ manual }) => {
     return (
         <Box p={4} borderWidth="1px" borderRadius="lg">
             <Text mb={4} fontWeight="bold">{capitalizeFirstLetter(manual.name)}</Text>
-            <Text>{manual.document}</Text>
+            <Text>Documento PDF</Text>
             <ManualPreview pdfUrl={manual.document} />
         </Box>
     );

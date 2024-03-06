@@ -4,10 +4,22 @@ import React, { useState, useContext, useEffect } from "react";
 
 export const SolutionDetail = ({ solution }) => {
 
+    const KEYS_FEATURES = {
+        rrhh: 'RRHH',
+        sellmarketing: 'Ventas y marketing',
+        finance: 'Finanzas',
+        logistics: 'Cadena de suministro',
+        it: 'IT',
+        data: 'Data',
+        other: 'Otro'
+    };
+
+
+
     const solutionsArrayToString = (features) => {
         let string = '';
         features.forEach((feature, index) => {
-            string += feature.label;
+            string += KEYS_FEATURES[feature]
             if (index < features.length - 1) {
                 string += ', ';
             }
@@ -30,7 +42,7 @@ export const SolutionDetail = ({ solution }) => {
                     <Box mt={1} p={5} bgColor={"white"} w={"100%"} minH={300} px={10} rounded='xl' shadow={'xl'} mb={3}>
                         <Text fontSize={14} mt={3} fontWeight='bold' textDecor={'underline'}>Descripción:</Text>
                         <Text fontSize={18} mt={0}>{solution.description}</Text>
-                        <Text fontSize={14} mt={5} fontWeight='bold' textDecor={'underline'}>Funcionalidades:</Text>
+                        <Text fontSize={14} mt={5} fontWeight='bold' textDecor={'underline'}>Funcionalidad:</Text>
                         <Text fontSize={18} mt={0}>{solutionsArrayToString(solution.feature)}</Text>
                     </Box>
                 </GridItem>
