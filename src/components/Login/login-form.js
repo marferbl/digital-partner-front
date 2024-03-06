@@ -78,6 +78,7 @@ const LoginForm = () => {
         <Input
           id="password"
           placeholder="Password"
+          type="password"
           onChange={(e) => setPassword(e.target.value)}
           value={password}
         />
