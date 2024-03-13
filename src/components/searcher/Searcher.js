@@ -5,7 +5,7 @@ import FiltersSection from './Filters'
 import MarketplaceSection from '../base/landing/marketplacesection'
 
 
-const Searcher = () => {
+const Searcher = ({ answers }) => {
     const { term } = useParams()
 
     const getLabelTerm = () => {
@@ -13,7 +13,6 @@ const Searcher = () => {
         return capitalizeFirstLetter(decodeURIComponent(term?.replace(/\+/g, ' ')))
 
     }
-
     return (
         <Box p={5} >
 
@@ -25,7 +24,7 @@ const Searcher = () => {
             </Center>
             {/* <FiltersSection /> */}
             <Center pt={20} flexDir={'column'}>
-                <MarketplaceSection term={term} />
+                <MarketplaceSection term={term} answers={answers} />
             </Center>
         </Box >
     )

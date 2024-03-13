@@ -9,7 +9,8 @@ import {
     ModalBody,
     ModalCloseButton,
     useDisclosure,
-    Select
+    Select,
+    Checkbox
 } from '@chakra-ui/react'
 import { COLORS } from "../../../colors/colors";
 import { createSolution } from '../../../services/solution';
@@ -28,9 +29,11 @@ export const ButtonCreateSolution = ({ refreshSolutions, disabled }) => {
     const [description, setDescription] = useState("");
     // const [logo, setLogo] = useState("");
     const [website, setWebsite] = useState("");
-    const [type, setType] = useState("");
+    const [sectorType, setSectorType] = useState("");
     const [languages, setLanguages] = useState([]);
     const [feature, setFeature] = useState([]);
+    const [isVertical, setIsVertical] = useState(false);
+
 
     const countriesOptions = COUNTRIES
     const languageOptions = LANGUAGES
@@ -38,15 +41,18 @@ export const ButtonCreateSolution = ({ refreshSolutions, disabled }) => {
     const featureOptions = [
         { value: 'rrhh', label: 'RRHH' },
         { value: 'sellmarketing', label: 'Ventas y marketing' },
-        { value: 'finance', label: 'Finanzas' },
+        { value: 'finance', label: 'Finanzas y contabilidad' },
         { value: 'logistics', label: 'Cadena de suministro' },
         { value: 'it', label: 'IT' },
-        { value: 'data', label: 'IT' },
-        { value: 'other', label: 'Otro' },
+        { value: 'data', label: 'Data' },
+        { value: 'law', label: 'Legal' },
+        { value: 'transversal', label: 'Transversal' },
     ];
     const typesOptions = [
-        { value: 'sector', label: 'Sector' },
-        { value: 'multi', label: 'Multisector' },
+        { value: 'services', label: 'Servicios' },
+        { value: 'industrial', label: 'Industrial' },
+        { value: 'firstSector', label: 'Primer sector' },
+
     ];
 
     const create = async () => {
@@ -54,16 +60,21 @@ export const ButtonCreateSolution = ({ refreshSolutions, disabled }) => {
             name,
             description,
             website,
-            type,
+            sectorType,
             countries,
             languages,
-            feature
+            feature,
+            isVertical
         }).then((res) => {
             refreshSolutions();
             console.log("gola", res)
             onClose();
         }
         )
+    };
+
+    const handleCheckboxChange = (event) => {
+        setIsVertical(event.target.checked); // Update state based on checkbox's checked status
     };
 
     return (
@@ -108,18 +119,26 @@ export const ButtonCreateSolution = ({ refreshSolutions, disabled }) => {
                                 placeholder='Descripción de la solución digital'
                                 size='sm'
                             />
+                            <Checkbox
+                                mt={4}
+                                isChecked={isVertical}
+                                onChange={handleCheckboxChange} // Attach onChange handler to update state
+                            >
+                                <Text fontSize={13}>¿Es una solución vertical?</Text>
+                            </Checkbox>
                             <Flex gap={2} w='full'>
-                                <Box w='48%'>
+
+                                {isVertical && <Box w='48%'>
                                     <Text mt={3} fontWeight={"bold"}>
-                                        Tipo de software:{" "}
+                                        Sector:{" "}
                                     </Text>
-                                    <SearchSelect options={typesOptions} value={type} onChange={(value) => setType(value)} />
-                                </Box>
-                                <Box w='49%'>
+                                    <SearchSelect options={typesOptions} value={sectorType} onChange={(value) => setSectorType(value)} />
+                                </Box>}
+                                <Box w={isVertical ? '49%' : '100%'}>
                                     <Text mt={3} fontWeight={"bold"}>
                                         Funcionalidades:{" "}
                                     </Text>
-                                    <SearchSelect options={featureOptions} value={feature} isMulti onChange={(value) => setFeature(value)} />
+                                    <SearchSelect options={featureOptions} value={feature} onChange={(value) => setFeature(value)} />
                                 </Box>
                             </Flex>
                             <Flex gap={2} w='full'>

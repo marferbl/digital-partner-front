@@ -5,15 +5,16 @@ import { COLORS } from '../../../colors/colors'
 import { getAllSolutions } from '../../../services/solution'
 import SectionMarketPlace from '../../marketplace/section-marketplace'
 
-const MarketplaceSection = ({ term }) => {
+const MarketplaceSection = ({ term, answers }) => {
     const [solutions, setSolutions] = useState([])
 
     useEffect(() => {
         getSolutions();
-    }, [term]);
+    }, [term, answers]);
 
     const getSolutions = () => {
-        getAllSolutions(term).then((res) => {
+        console.log(answers)
+        getAllSolutions(term, answers).then((res) => {
             setSolutions(res.data.solutions);
         }
         ).catch((error) => {
@@ -22,8 +23,9 @@ const MarketplaceSection = ({ term }) => {
         );
     };
 
+
     return (
-        <Center w='full' px={{base:2, lg: 5}}>
+        <Center w='full' px={{ base: 2, lg: 5 }}>
             <Box w='full' px={{ base: 8, md: 2 }}>
                 <SectionMarketPlace list={solutions} />
             </Box>

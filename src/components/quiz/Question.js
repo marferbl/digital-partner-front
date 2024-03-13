@@ -10,11 +10,11 @@ const Question = ({ title, options, nextQuestion }) => {
         setOpacity(1);
     }, [title]); // Assuming 'title' is the prop that changes when the question changes
 
-    const handleOptionClick = () => {
+    const handleOptionClick = (option) => {
         // Trigger opacity animation and then move to the next question
         setOpacity(0);
         setTimeout(() => {
-            nextQuestion();
+            nextQuestion(option);
         }, 500); // Adjust the duration of the animation (in milliseconds) as needed
     };
 
@@ -33,13 +33,15 @@ const Question = ({ title, options, nextQuestion }) => {
                             height={32}
                             width={32}
                             rounded='md'
-                            _hover={{ opacity: 0.8, borderWidth:3 }}
+                            _hover={{ opacity: 0.8, borderWidth: 3 }}
                             borderWidth={2}
                             borderColor={COLORS.secondary}
                             cursor='pointer'
-                            onClick={handleOptionClick}
+                            onClick={() => handleOptionClick(option)}
                         >
-                            {option.description}
+                            <Text textAlign={'center'}>
+                                {option.label}
+                            </Text>
                         </Center>
                     ))}
                 </Flex>
