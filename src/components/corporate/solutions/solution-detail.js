@@ -31,7 +31,7 @@ export const SolutionDetail = ({ solution }) => {
                         <Text fontSize={14} mt={3} fontWeight='bold' textDecor={'underline'}>Descripción:</Text>
                         <Text fontSize={18} mt={0}>{solution.description}</Text>
                         <Text fontSize={14} mt={5} fontWeight='bold' textDecor={'underline'}>Funcionalidad:</Text>
-                        <Text fontSize={18} mt={0}>{solution.feature}</Text>
+                        <Text fontSize={18} mt={0}>{KEYS_FEATURES[solution.feature]}</Text>
                     </Box>
                 </GridItem>
             </Grid>}

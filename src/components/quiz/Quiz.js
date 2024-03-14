@@ -30,7 +30,8 @@ const Quiz = () => {
                     label: 'Eventos',
                     key: 'events'
                 },
-            ]
+            ],
+            id: 'searchType'
         },
     ]
     const [questions, setQuestions] = useState(questionsList)
@@ -49,7 +50,8 @@ const Quiz = () => {
                 { key: 'data', label: 'Data' },
                 { key: 'law', label: 'legal' },
                 { key: 'transversal', label: 'transversal' },
-            ]
+            ],
+            id: 'feature'
         },
         {
             order: 2,
@@ -57,7 +59,8 @@ const Quiz = () => {
             options: [
                 { key: 'true', label: 'Si' },
                 { key: 'false', label: 'No' }
-            ]
+            ],
+            id: 'isVertical'
         },
         {
             order: 4,
@@ -71,7 +74,8 @@ const Quiz = () => {
                 {
                     key: 'above500', label: '> 500'
                 }
-            ]
+            ],
+            id: 'size'
         }
     ]
 
@@ -82,18 +86,21 @@ const Quiz = () => {
             { key: 'services', label: 'Servicios' },
             { key: 'industry', label: 'Industria' },
             { key: 'firstsector', label: 'Primer sector' },
-        ]
+        ],
+        id: 'sector'
     }
 
     const [currentQuestion, setCurrentQuestion] = useState(questions[0])
     const [option, setOption] = useState('')
 
     const goToSearch = () => {
-        navigate(`/search/${'quiz' || ''}`, { state: { answers } })
+        navigate(`/search/${''}`, { state: { filters: answers } })
     }
 
 
     const nextQuestion = (selectedOption) => {
+        setAnswers({ ...answers, [currentQuestion.id]: selectedOption.key });
+
         if (currentQuestion.order === 0) {
             setOption(selectedOption.key);
         }
@@ -112,12 +119,11 @@ const Quiz = () => {
         else {
             setCurrentQuestion(newQuestions[currentQuestion.order + 1]);
         }
-        setAnswers([...answers, selectedOption.key])
         if (option === 'solutions' && currentQuestion.order === 4) {
             goToSearch()
         }
     };
-
+    console.log(answers)
 
     return (
         <Box pt={16} pb={24} w='full' bg={COLORS['secondary.50']} mb={20}>

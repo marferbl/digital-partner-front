@@ -5,24 +5,23 @@ import { COLORS } from '../../../colors/colors'
 import { getAllSolutions } from '../../../services/solution'
 import SectionMarketPlace from '../../marketplace/section-marketplace'
 
-const MarketplaceSection = ({ term, answers }) => {
+const MarketplaceSection = ({ term, filters }) => {
     const [solutions, setSolutions] = useState([])
 
     useEffect(() => {
-        getSolutions();
-    }, [term, answers]);
+        if (!!term || (filters && Object.keys(filters).length > 0)) getSolutions()
+    }, [term, filters]);
 
     const getSolutions = () => {
-        console.log(answers)
-        getAllSolutions(term, answers).then((res) => {
+        getAllSolutions({ term: term, ...filters }).then((res) => {
             setSolutions(res.data.solutions);
+
         }
         ).catch((error) => {
             console.log(error);
         }
         );
     };
-
 
     return (
         <Center w='full' px={{ base: 2, lg: 5 }}>

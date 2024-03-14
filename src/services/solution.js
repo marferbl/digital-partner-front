@@ -14,14 +14,6 @@ API.interceptors.request.use((req) => {
 export const getSolutionsByCorporate = () => API.get(`/solution/by-corporate`);
 export const createSolution = (body) => API.post(`/solution/create`, body);
 export const getSolutionById = (id) => API.get(`/solution/details/${id}`);
-export const getAllSolutions = (queryParams, answers) => {
-  let params = { queryParams: queryParams };
-
-  console.log(queryParams, answers)
-
-  if (answers && answers.length > 0) {
-    params = { ...params, answers };
-  }
-
-  return API.get(`/solution/all`, { params });
+export const getAllSolutions = (queryParams) => {
+  return API.get(`/solution/all`, { params: queryParams });
 };

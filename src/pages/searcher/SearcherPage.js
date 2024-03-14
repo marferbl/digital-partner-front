@@ -10,13 +10,13 @@ import { useLocation } from "react-router-dom";
 const SearcherPage = () => {
     const { isLoggedIn } = useContext(UserContext);
     const location = useLocation();
-    const [answers, setAnswers] = useState([])
+    const [filters, setFilters] = useState({})
 
     useEffect(() => {
         if (location && location.state) {
             const { state } = location;
-            const { answers } = state
-            setAnswers(answers)
+            const { filters } = state
+            setFilters(filters)
         }
     }, [location])
 
@@ -25,7 +25,7 @@ const SearcherPage = () => {
         <>
             {!isLoggedIn ? <Navbar /> : null}
             <Box mt={6} p={5} rounded={"xl"} bgColor={"white"} w={"100%"}>
-                <Searcher answers={answers} />
+                <Searcher filters={filters} />
             </Box>
         </>
 

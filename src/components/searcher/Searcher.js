@@ -5,7 +5,7 @@ import FiltersSection from './Filters'
 import MarketplaceSection from '../base/landing/marketplacesection'
 
 
-const Searcher = ({ answers }) => {
+const Searcher = ({ filters }) => {
     const { term } = useParams()
 
     const getLabelTerm = () => {
@@ -24,7 +24,7 @@ const Searcher = ({ answers }) => {
             </Center>
             {/* <FiltersSection /> */}
             <Center pt={20} flexDir={'column'}>
-                <MarketplaceSection term={term} answers={answers} />
+                <MarketplaceSection term={term} filters={filters} />
             </Center>
         </Box >
     )

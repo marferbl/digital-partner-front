@@ -23,6 +23,7 @@ export const PageRoutes = () => {
         <Route path={"/newRouteHidden"} element={<App />} />
         <Route path={"/marketplace"} element={<MarketplacePage />} />
         <Route path={"search/:term"} element={<SearcherPage />} />
+        <Route path={"search"} element={<SearcherPage />} />
         <Route path={'solution/:id'} element={<SolutionDetailPage />} />
         <Route path={"private"} element={<PrivateRoute />}>
           <Route path={"dashboard"} element={<Dashboard />} />
