@@ -9,6 +9,7 @@ import { ReferencesComponent } from "../../../components/corporate/solutions/sol
 import { CertificationComponent } from "../../../components/corporate/solutions/solution-detail/certificacions-component";
 import { Link, useParams } from "react-router-dom";
 import { UserContext } from "../../../context/userContext";
+import Navbar from "../../../components/base/navbar";
 
 export const SolutionDetailPage = () => {
     const { isLoggedIn } = useContext(UserContext)
@@ -47,37 +48,40 @@ export const SolutionDetailPage = () => {
     };
 
     return (
-        <Box mt={6} p={5} rounded={"xl"} bgColor={"white"} w={"100%"} minH={400}>
-            <SolutionDetail solution={solution} />
-            <Flex w='full' justify={'space-around'} mt={4} filter={'grayscale(100)'}
-                cursor={isLoggedIn ? 'pointer' : 'not-allowed'}
-            >
-                {LINKS.map(link => (
-                    <Text
-                        key={link.label}
-                        flex='1'
-                        textAlign='center'
-                        borderWidth={1}
-                        py={1}
-                        _hover={isLoggedIn ? { bgColor: 'gray.100' } : null}
-                        bgColor={label === link.label ? 'gray.100' : 'white'}
-                        onClick={isLoggedIn ? () => renderComponent(link.label) : null}
-                        opacity={isLoggedIn ? 1 : 0.5} // Adjust opacity for disabled appearance
-                        pointerEvents={isLoggedIn ? 'auto' : 'none'} // Enable or disable pointer events
-                    >
-                        {link.label}
-                    </Text>
-                ))}
-            </Flex>
-            {isLoggedIn ? <Box mt={4} px={5}>
-                {selectedComponent}
-            </Box> : <Flex w='full' justify={'center'} align={'center'} flexDir='column' mt={4} >
-                <Text mt={6} fontSize='xl' fontWeight='bold' color={'gray.400'}>Debes iniciar sesión para ver más detalles</Text>
-                <Link to={'/newRouteHidden'}>
-                    <Text mt={2} fontSize='sm' fontWeight='bold' color={'blue.500'} _hover={{ color: 'blue.700' }}>Iniciar sesión</Text>
-                </Link>
+        <Box>
+            {!isLoggedIn ? <Navbar></Navbar> : null}
+            <Box mt={6} p={5} rounded={"xl"} bgColor={"white"} w={"100%"} minH={400}>
+                <SolutionDetail solution={solution} />
+                <Flex w='full' justify={'space-around'} mt={4} filter={'grayscale(100)'}
+                    cursor={isLoggedIn ? 'pointer' : 'not-allowed'}
+                >
+                    {LINKS.map(link => (
+                        <Text
+                            key={link.label}
+                            flex='1'
+                            textAlign='center'
+                            borderWidth={1}
+                            py={1}
+                            _hover={isLoggedIn ? { bgColor: 'gray.100' } : null}
+                            bgColor={label === link.label ? 'gray.100' : 'white'}
+                            onClick={isLoggedIn ? () => renderComponent(link.label) : null}
+                            opacity={isLoggedIn ? 1 : 0.5} // Adjust opacity for disabled appearance
+                            pointerEvents={isLoggedIn ? 'auto' : 'none'} // Enable or disable pointer events
+                        >
+                            {link.label}
+                        </Text>
+                    ))}
+                </Flex>
+                {isLoggedIn ? <Box mt={4} px={5}>
+                    {selectedComponent}
+                </Box> : <Flex w='full' justify={'center'} align={'center'} flexDir='column' mt={4} >
+                    <Text mt={6} fontSize='xl' fontWeight='bold' color={'gray.400'}>Debes iniciar sesión para ver más detalles</Text>
+                    <Link to={'/newRouteHidden'}>
+                        <Text mt={2} fontSize='sm' fontWeight='bold' color={'blue.500'} _hover={{ color: 'blue.700' }}>Iniciar sesión</Text>
+                    </Link>
 
-            </Flex>}
+                </Flex>}
+            </Box>
         </Box>
     );
 };

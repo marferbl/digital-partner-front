@@ -1,6 +1,7 @@
 export const COLORS = {
     primary: '#1f2d52',
     secondary: '#5dbda2',
+    'digitalando.green': '#80cbb6',
     'secondary.50': '#80cbb6',
     'blue.400': '#0C2D48',
     'blue.300': '#145DA0',

@@ -19,14 +19,20 @@ import { useContext, useEffect, useState } from "react";
 import RegisterForm from "../../components/Register/register-form";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/userContext";
-import { Link } from "react-router-dom";
 import { COLORS } from "../../colors/colors";
-import Navbar from "../../components/base/navbar";
+import { useLocation } from 'react-router-dom';
 
 export default function InitialPage() {
+  const location = useLocation();
   const [showLogin, setShowLogin] = useState(true);
   const navigate = useNavigate();
   const { isLoggedIn } = useContext(UserContext);
+
+  useEffect(() => {
+    setShowLogin(location.pathname === '/newRouteHidden');
+  }, [location.pathname])
+
+
 
   useEffect(() => {
     isLoggedIn && navigate("/private/dashboard");
@@ -37,7 +43,7 @@ export default function InitialPage() {
       <Stack spacing="0">
         <Stack spacing="6">
           <Center>
-            <Image src={"./logo-digitalpartner.png"} height={16} w={16} />
+            <Image src={'/logo-d.png'} height={16} w={16} />
           </Center>
           <Stack spacing={{ base: '2', md: '3' }} textAlign="center">
             <Heading size={{ base: 'xs', md: 'sm' }} fontFamily={'Montserrat'}>Inicia sesión</Heading>

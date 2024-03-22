@@ -19,6 +19,7 @@ const LoginForm = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const toast = useToast();
 
@@ -31,12 +32,14 @@ const LoginForm = () => {
   };
 
   const handleSubmit = () => {
+    setLoading(true);
     const view = localStorage.getItem("userView");
     if (isEmpty(email) || isEmpty(password)) {
       setEmptyFieldMessage(true);
     } else {
       login(email, password)
         .then((res) => {
+          setLoading(false);
           storeToken(res.data.token);
           setEmptyFieldMessage(false);
           authenticateUser();
@@ -51,6 +54,7 @@ const LoginForm = () => {
         })
         .catch((err) => {
           console.log(err);
+          setLoading(false);
           toast({
             title: "ERROR",
             description: err.response.data.message,
@@ -91,6 +95,7 @@ const LoginForm = () => {
         type="submit"
         width={"100%"}
         onClick={handleSubmit}
+        isLoading={loading}
       // disabled={isEmpty(email)}
       >
         Entrar

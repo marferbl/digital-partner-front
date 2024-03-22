@@ -71,11 +71,6 @@ const RegisterForm = () => {
   };
   return (
     <Box py={0} rounded={"xl"} bgColor={"white"}>
-      {/* <FormControl isRequired my={5}>
-        <FormLabel htmlFor="name">Username</FormLabel>
-        <Input id="username" placeholder="Nombre" onChange={(e) => setUsername(e.target.value)} value={username} />
-      </FormControl> */}
-
       <FormControl isRequired my={5}>
         <FormLabel htmlFor="name">Nombre completo</FormLabel>
         <Input
@@ -119,12 +114,7 @@ const RegisterForm = () => {
           </InputRightElement>
         </InputGroup>
       </FormControl>
-      <RadioGroup onChange={setRol} value={rol}>
-        <Stack pb={4}>
-          <Radio value='COMPANY'>Soy empresa y busco soluciones digitales</Radio>
-          <Radio value='SOFTWARE'>Quiero mostrar mi solución digital</Radio>
-        </Stack>
-      </RadioGroup>
+
 
       <Button
         mt={4}
@@ -135,7 +125,7 @@ const RegisterForm = () => {
         // disabled={isEmpty(email)}
         onClick={handleSubmit}
       >
-        Submit
+        Registrarse
       </Button>
 
       {emptyFieldMessage && (

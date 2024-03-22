@@ -23,7 +23,6 @@ export const SolutionDetail = ({ solution }) => {
                         <Avatar size="2xl" name={solution.name} src={solution.logo} mb={5} />
                         <Text fontWeight={'bold'} fontSize={34}>{solution.name}</Text>
                         <Text fontSize={18} mt={3} textDecor='underline'>{solution.website}</Text>
-                        <Text fontSize={18} mt={3}>{solution.isVertical ? 'Solución vertical' : 'No es solución vertical'}</Text>
                     </Box>
                 </GridItem>
                 <GridItem colSpan={5} pr={7}>
@@ -31,7 +30,10 @@ export const SolutionDetail = ({ solution }) => {
                         <Text fontSize={14} mt={3} fontWeight='bold' textDecor={'underline'}>Descripción:</Text>
                         <Text fontSize={18} mt={0}>{solution.description}</Text>
                         <Text fontSize={14} mt={5} fontWeight='bold' textDecor={'underline'}>Funcionalidad:</Text>
-                        <Text fontSize={18} mt={0}>{KEYS_FEATURES[solution.feature]}</Text>
+                        <Flex align={'center'} gap={2} pt={2}>
+                            <Text fontSize={18}>{KEYS_FEATURES[solution.feature]}</Text>
+                            ( <Text fontSize={18} >{solution.isVertical ? 'Solución vertical' : 'No es solución vertical'}</Text> )
+                        </Flex>
                     </Box>
                 </GridItem>
             </Grid>}

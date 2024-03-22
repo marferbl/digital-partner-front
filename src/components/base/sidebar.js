@@ -29,6 +29,7 @@ import {
 import { Link } from "react-router-dom";
 import { UserContext } from "../../context/userContext";
 import { FiGrid } from "react-icons/fi";
+import { COLORS } from "../../colors/colors";
 
 const LinkItems = [
   { name: "Inicio", icon: FiHome },
@@ -74,8 +75,8 @@ const SidebarContent = ({ onClose, ...rest }) => {
   const userRoutes = [
     { name: "Perfil", icon: FiUser, to: "profile" },
     { name: "Freelance", icon: FiTrendingUp, to: "freelance" },
-    { name: "Empleo", icon: FiGrid, to: "dashboard" },
-    { name: "Gurús", icon: FiStar, to: "dashboard" },
+    { name: "Empleo", icon: FiGrid, to: "dashboard", soon: true },
+    { name: "Gurús", icon: FiStar, to: "dashboard", soon: true },
 
   ]
 
@@ -83,10 +84,10 @@ const SidebarContent = ({ onClose, ...rest }) => {
     { name: "Corporate", icon: FiDatabase, to: "corporate/profile" },
     { name: "Soluciones", icon: FiTool, to: "corporate/solutions" },
     { name: "Servicios", icon: FiRepeat, to: "corporate/service" },
-    { name: "Eventos", icon: FiCalendar, to: "corporate/users" },
-    { name: "Equipo", icon: FiUsers, to: "corporate/users" },
-    { name: "Licencias", icon: FiBookOpen, to: "corporate/users" },
-    { name: "Ofertas", icon: FiSearch, to: "corporate/users" },
+    { name: "Eventos", icon: FiCalendar, to: "corporate/users", soon: true },
+    { name: "Equipo", icon: FiUsers, to: "corporate/users", soon: true },
+    { name: "Licencias", icon: FiBookOpen, to: "corporate/users", soon: true },
+    { name: "Ofertas", icon: FiSearch, to: "corporate/users", soon: true },
   ]
   return (
     <Box
@@ -99,18 +100,22 @@ const SidebarContent = ({ onClose, ...rest }) => {
       {...rest}
     >
       <Flex h="20" alignItems="center" mx="5" justifyContent="space-between">
-        <Text fontSize="lg" fontWeight="bold" color={'black'} p={3} rounded={'xl'}>
-          TheDigitalPartner
-        </Text>
+        <Link to="/">
+          <Image src={"/logo-digitalando.png"} height={14} />
+        </Link>
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
       {userView === 'corporate' ? (adminRoutes.map((link) => (
-        <NavItem key={link.name} icon={link.icon} to={link.to}>
+        <NavItem key={link.name} icon={link.icon} to={link.to} soon={link.soon}>
           {link.name}
+          {link.soon ? <Text fontSize={9} color="gray.400" ml="auto">Próximamente</Text> : null}
+
         </NavItem>
       ))) : (userRoutes.map((link) => (
-        <NavItem key={link.name} icon={link.icon} to={link.to}>
+        <NavItem key={link.name} icon={link.icon} to={link.to} soon={link.soon}>
           {link.name}
+          {link.soon ? <Text fontSize={10} color="gray.400" ml="auto">Próximamente</Text> : null}
+
         </NavItem>
       )
       )
@@ -120,26 +125,26 @@ const SidebarContent = ({ onClose, ...rest }) => {
   );
 };
 
-const NavItem = ({ icon, children, to, ...rest }) => {
+const NavItem = ({ icon, children, to, soon, ...rest }) => {
   return (
     <Flex
       align="center"
       mx="4"
       borderRadius="lg"
       role="group"
-      cursor="pointer"
-      _hover={{
+      _hover={!soon && {
         bg: "cyan.400",
         color: "white",
       }}
+      color={soon ? "gray.400" : COLORS.primary}
       {...rest}
     >
-      <Link to={to} style={{ width: '100%', padding: '12px', display: 'flex', alignItems: 'center' }}>
+      <Link to={!soon ? to : null} style={{ width: '100%', padding: '12px', display: 'flex', alignItems: 'center', cursor: !soon ? 'pointer' : 'not-allowed' }}>
         {icon && (
           <Icon
-            mr="4"
+            mr="3"
             fontSize="16"
-            _groupHover={{
+            _groupHover={!soon && {
               color: "white",
             }}
             as={icon}

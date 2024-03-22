@@ -3,6 +3,20 @@ import React, { useState, useEffect } from 'react'
 import { COLORS } from '../../colors/colors'
 import Question from './Question'
 import { useNavigate } from "react-router-dom";
+import {
+    FiHome,
+    FiTrendingUp,
+    FiUsers,
+    FiStar,
+    FiDatabase,
+    FiUser,
+    FiMenu,
+    FiTool,
+    FiRepeat,
+    FiBookOpen,
+    FiCalendar,
+    FiSearch
+} from "react-icons/fi";
 
 
 const Quiz = () => {
@@ -15,20 +29,24 @@ const Quiz = () => {
             options: [
                 {
                     label: 'Soluciones',
-                    key: 'solutions'
+                    key: 'solutions',
+                    icon: FiTool
 
                 },
                 {
                     label: 'Servicios',
-                    key: 'services'
+                    key: 'services',
+                    icon: FiRepeat
                 },
                 {
                     label: 'Talento',
-                    key: 'talent'
+                    key: 'talent',
+                    icon: FiUsers
                 },
                 {
                     label: 'Eventos',
-                    key: 'events'
+                    key: 'events',
+                    icon: FiCalendar
                 },
             ],
             id: 'searchType'
@@ -99,6 +117,10 @@ const Quiz = () => {
 
 
     const nextQuestion = (selectedOption) => {
+        console.log(selectedOption)
+        if (selectedOption.key !== 'solutions' && currentQuestion.order === 0) {
+            goToSearch()
+        }
         setAnswers({ ...answers, [currentQuestion.id]: selectedOption.key });
 
         if (currentQuestion.order === 0) {
@@ -123,10 +145,9 @@ const Quiz = () => {
             goToSearch()
         }
     };
-    console.log(answers)
 
     return (
-        <Box pt={16} pb={24} w='full' bg={COLORS['secondary.50']} mb={20}>
+        <Box pt={16} pb={14} w='full' bg={'gray.50'} mb={20}>
             <Center flexDir={'column'} px={{ base: 10, lg: 32 }}>
                 <Question {...currentQuestion} nextQuestion={nextQuestion} goToSearch={goToSearch} />
             </Center>

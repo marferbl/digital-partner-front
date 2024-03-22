@@ -2,22 +2,20 @@ import { Flex, Button, Center, Text } from '@chakra-ui/react'
 import { Input } from '@chakra-ui/react'
 import { COLORS } from '../../colors/colors'
 import { Link } from "react-router-dom"
-import { useContext, useState } from 'react'
-import { UserContext } from '../../context/userContext'
-
+import { useState } from 'react'
 
 export const SoftwareSearcherInput = () => {
-    const { isLoggedIn } = useContext(UserContext);
 
     const [searchTerm, setSearchTerm] = useState('')
-
 
     const isInPanel = () => {
         return window.location.pathname.includes('private')
     }
 
+
+
     const getRoute = () => {
-        return isInPanel ? `/private/search/${searchTerm}` : `/search/${searchTerm}`
+        return isInPanel() ? `/private/search/${searchTerm}` : `/search/${searchTerm}`
     }
 
 

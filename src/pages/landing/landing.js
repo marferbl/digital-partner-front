@@ -15,7 +15,6 @@ const LandingPage = () => {
     <>
       <Navbar />
       <Hero />
-      <SoftwareSearcher />
       <Quiz />
       <MarketplaceSection />
       <PhotoFullScreen />

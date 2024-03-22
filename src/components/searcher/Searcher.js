@@ -9,7 +9,7 @@ const Searcher = ({ filters }) => {
     const { term } = useParams()
 
     const getLabelTerm = () => {
-        if (!term) return 'digitales'
+        if (!term) return ''
         return capitalizeFirstLetter(decodeURIComponent(term?.replace(/\+/g, ' ')))
 
     }
@@ -17,7 +17,7 @@ const Searcher = ({ filters }) => {
         <Box p={5} >
 
             <Heading textAlign={'center'} fontFamily={'Montserrat'} fontSize={30}>
-                {term ? 'Mejores soluciones digitales sobre' : 'Viendo todas las soluciones'}
+                {term ? 'Mejores resultados sobre' : 'Resultados:'}
             </Heading>
             <Center>
                 <Text fontSize={30} fontWeight={'bold'} color={'#00A3FF'}>{getLabelTerm()}</Text>
