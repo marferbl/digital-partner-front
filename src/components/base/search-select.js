@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Select from 'react-select';
 
-export default function SearchSelect({ options, isMulti, onChange, searchable }) {
+export default function SearchSelect({ options, isMulti, onChange, searchable, ...props }) {
     const [selectedOption, setSelectedOption] = useState(null);
 
     const handleSelectChange = (selectedOption) => {
@@ -21,7 +21,7 @@ export default function SearchSelect({ options, isMulti, onChange, searchable })
         }
     };
     return (
-        <div className="App" style={{ width: '100%' }}>
+        <div className="App" style={{ width: '100%', ...props }}>
             <Select
                 value={selectedOption}
                 onChange={handleSelectChange}

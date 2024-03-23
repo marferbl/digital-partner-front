@@ -1,23 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Flex, Box, Checkbox, VStack, Heading, Text } from '@chakra-ui/react';
+import SearchSelectCountries from '../base/search-select-countries';
+import SearchSelectLanguage from '../base/search-select-language';
+import SearchSelect from '../base/search-select';
 
-const FiltersSection = () => {
-    const [filterValues, setFilterValues] = useState({
-        filter1: false,
-        filter2: false,
-        filter3: false,
-        filter4: false,
-        filter5: false,
-        filter6: false,
+const FiltersSection = ({ filters, onChangeFilters }) => {
+    const [filterValues, setFilterValues] = useState(filters);
 
-    });
-
-    const handleToggle = (filterName) => {
+    const handleToggle = (filterName, value) => {
         setFilterValues((prevValues) => ({
             ...prevValues,
-            [filterName]: !prevValues[filterName],
+            [filterName]: value,
         }));
+        onChangeFilters(filterValues);
     };
+
+    useEffect(() => {
+        // Call onChangeFilters whenever filterValues change
+        onChangeFilters(filterValues);
+    }, [filterValues]);
+
+    const lineTypeOptions = [
+        { value: 'solutions', label: 'Soluciones' },
+        { value: 'services', label: 'Servicios' },
+        { value: 'talent', label: 'Talento' },
+        { value: 'events', label: 'Eventos' },
+    ]
 
     return (
         <Box p={4} borderWidth={1} rounded={'md'} mt={5} bg={'white'} >
@@ -27,53 +35,14 @@ const FiltersSection = () => {
                 </Text>
                 <Flex gap={6} flexWrap={'wrap'}>
                     <Flex gap={1} align='center'>
-                        <Checkbox
-                            isChecked={filterValues.filter1}
-                            onChange={() => handleToggle('filter1')}
-                        >
-                            Fichajes
-                        </Checkbox>
+                        <SearchSelect options={lineTypeOptions} width={150} onChange={(value) => handleToggle('lineType', value)} value={filterValues.lineType} />
                     </Flex>
+
                     <Flex gap={1} align='center'>
-                        <Checkbox
-                            isChecked={filterValues.filter2}
-                            onChange={() => handleToggle('filter2')}
-                        >
-                            Descansos
-                        </Checkbox>
+                        <SearchSelectCountries width={36} onChange={(value) => handleToggle('countries', value)} />
+                        <SearchSelectLanguage width={36} onChange={(value) => handleToggle('languages', value)} />
                     </Flex>
-                    <Flex gap={1} align='center'>
-                        <Checkbox
-                            isChecked={filterValues.filter3}
-                            onChange={() => handleToggle('filter3')}
-                        >
-                            Vacaciones
-                        </Checkbox>
-                    </Flex>
-                    <Flex gap={1} align='center'>
-                        <Checkbox
-                            isChecked={filterValues.filter4}
-                            onChange={() => handleToggle('filter4')}
-                        >
-                            Denuncias
-                        </Checkbox>
-                    </Flex>
-                    <Flex gap={1} align='center'>
-                        <Checkbox
-                            isChecked={filterValues.filter5}
-                            onChange={() => handleToggle('filter5')}
-                        >
-                            Reclutamiento
-                        </Checkbox>
-                    </Flex>
-                    <Flex gap={1} align='center'>
-                        <Checkbox
-                            isChecked={filterValues.filter6}
-                            onChange={() => handleToggle('filter6')}
-                        >
-                            Nóminas
-                        </Checkbox>
-                    </Flex>
+
                 </Flex>
 
             </VStack>

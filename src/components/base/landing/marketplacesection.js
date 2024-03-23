@@ -5,20 +5,22 @@ import { COLORS } from '../../../colors/colors'
 import { getAllSolutions } from '../../../services/solution'
 import SectionMarketPlace from '../../marketplace/section-marketplace'
 import { FiAirplay } from 'react-icons/fi'
+import FiltersSection from '../../searcher/Filters'
+import { getAllSearch } from '../../../services/search'
 
 const MarketplaceSection = ({ term, filters }) => {
     const [solutions, setSolutions] = useState([])
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
-        if (!!term || (filters && Object.keys(filters).length > 0)) getSolutions()
+        if (!!term || filters) getSolutions()
     }, [term, filters]);
 
     const getSolutions = () => {
         setLoading(true)
-        getAllSolutions({ term: term, ...filters }).then((res) => {
+        getAllSearch({ term: term, ...filters }).then((res) => {
             setLoading(false)
-            setSolutions(res.data.solutions);
+            setSolutions(res.data.results);
 
         }
         ).catch((error) => {
@@ -28,8 +30,9 @@ const MarketplaceSection = ({ term, filters }) => {
         );
     };
 
+
     return (
-        <Center w='full' px={{ base: 2, lg: 5 }}>
+        <Center w='full' flexDir={'column'} px={{ base: 2, lg: 5 }}>
             <Box w='full' px={{ base: 8, md: 2 }}>
                 {loading ? <Center> <Spinner
                     thickness='4px'
@@ -37,7 +40,7 @@ const MarketplaceSection = ({ term, filters }) => {
                     emptyColor='gray.200'
                     color='blue.500'
                     size='xl'
-                /></Center> : solutions.length === 0 ?
+                /></Center> : solutions && solutions.length === 0 ?
                     <Center flexDir={'column'}>
                         <Icon
                             fontSize={60}

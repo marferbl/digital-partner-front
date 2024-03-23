@@ -7,23 +7,26 @@ import { useContext } from 'react';
 import { UserContext } from '../../context/userContext';
 import { COLORS } from '../../colors/colors';
 
-const CardSoftware = ({ _id, name, website, logo, description }) => {
+const CardSoftware = ({ _id, name, logo, description, ...rest }) => {
     const { isLoggedIn } = useContext(UserContext);
 
     return (
         <Box w='full' borderWidth="1px" borderRadius="lg" overflow="hidden">
-            <Center height={40} >
+            <Center height={36} >
                 {logo ? <Image w={28} src={logo} alt={name} height={24} backgroundSize={'contain'} /> : <Center h='full'><Avatar size="xl" name={name} /> </Center>}
             </Center>
             <Box p="1">
                 <Box d="flex" alignItems="baseline">
                     <Heading as="p" size="sm" textAlign={'center'} _hover={{ textDecor: 'underline' }}>
-                        <Link to={isLoggedIn ? `/private/solution/${_id}` : `/solution/${_id}`}>
-                            {name}
-                        </Link>
+                        {rest.lineType === 'solutions' && <Link to={isLoggedIn ? `/private/solution/${_id}` : `/solution/${_id}`}>
+                            {rest.lineType === 'solutions' ? name : 'Partner de ' + rest.solutionId?.name}
+                        </Link>}
+                        {rest.lineType === 'services' && <Link to={isLoggedIn ? `/private/service/${_id}` : `/service/${_id}`}>
+                            {'Partner de ' + rest.solutionId?.name}
+                        </Link>}
                     </Heading>
                 </Box>
-                <Flex h={14} mt={3} px={12} fontSize={12} mb={2}>
+                <Flex h={14} mt={3} px={{ base: 3, md: 5, '2xl': 12 }} fontSize={12} mb={2}>
                     <Box
                         h={14}
                         overflow="hidden"

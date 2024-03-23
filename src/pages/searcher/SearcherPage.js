@@ -20,10 +20,13 @@ const SearcherPage = () => {
         }
     }, [location])
 
+    const isInPanel = () => {
+        return window.location.pathname.includes('private')
+    }
 
     return (
         <>
-            {!isLoggedIn ? <Navbar /> : null}
+            {!isInPanel() && <Navbar />}
             <Box mt={6} p={5} rounded={"xl"} bgColor={"white"} w={"100%"}>
                 <Searcher filters={filters} />
             </Box>

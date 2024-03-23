@@ -2,8 +2,9 @@ import React from 'react'
 import SearchSelect from './search-select.js';
 import { useState } from 'react';
 import { Box } from '@chakra-ui/react';
+import { LANGUAGES } from '../../utils/constants.js';
 
-const SearchSelectLanguage = ({ isMulti, onChange, props }) => {
+const SearchSelectLanguage = ({ isMulti, onChange, ...props }) => {
 
     const [value, setValue] = useState(null)
 
@@ -13,15 +14,10 @@ const SearchSelectLanguage = ({ isMulti, onChange, props }) => {
     }
 
 
-    const languageOptions = [
-        { value: 'english', label: 'Inglés' },
-        { value: 'spanish', label: 'Español' },
-        { value: 'french', label: 'Francés' },
-        { value: 'italian', label: 'Italiano' },
-    ];
+    const languageOptions = LANGUAGES
 
     return (
-        <Box my={1}>
+        <Box my={1} {...props}>
             <SearchSelect options={languageOptions} value={value} isMulti={isMulti} onChange={(value) => changeValue(value)} />
         </Box>
     )

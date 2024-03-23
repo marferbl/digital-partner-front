@@ -49,7 +49,7 @@ const Quiz = () => {
                     icon: FiCalendar
                 },
             ],
-            id: 'searchType'
+            id: 'lineType'
         },
     ]
     const [questions, setQuestions] = useState(questionsList)
@@ -117,7 +117,6 @@ const Quiz = () => {
 
 
     const nextQuestion = (selectedOption) => {
-        console.log(selectedOption)
         if (selectedOption.key !== 'solutions' && currentQuestion.order === 0) {
             goToSearch()
         }
