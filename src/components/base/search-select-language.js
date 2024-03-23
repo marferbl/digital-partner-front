@@ -17,7 +17,6 @@ const SearchSelectLanguage = ({ isMulti, onChange, showLabel, defaultValue, ...p
         if (!defaultValue) setValue(null)
     }, [defaultValue])
 
-
     const languageOptions = LANGUAGES
 
     return (
