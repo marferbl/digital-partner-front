@@ -37,7 +37,7 @@ const FiltersSection = ({ filters, onChangeFilters }) => {
     const clearFilters = () => {
         setFilterValues({
             lineType: '',
-            features: '',
+            feature: '',
             partnerType: '',
             countries: '',
             languages: '',
@@ -55,7 +55,7 @@ const FiltersSection = ({ filters, onChangeFilters }) => {
 
                 <Flex gap={6} flexWrap={'wrap'} alignItems={'center'}>
                     <SearchSelect options={lineTypeOptions} width={160} label={'Tipo'} onChange={(value) => handleToggle('lineType', value)} value={filterValues.lineType} />
-                    {filterValues.lineType === 'solutions' && <SearchSelectFeatures showLabel width={44} onChange={(value) => handleToggle('features', value)} />}
+                    {filterValues.lineType === 'solutions' && <SearchSelectFeatures showLabel width={44} onChange={(value) => handleToggle('feature', value)} />}
                     {filterValues.lineType === 'services' && <SearchSelect options={partnerTypeOptions} width={150} label={'Servicio'} onChange={(value) => handleToggle('partnerType', value)} value={filterValues.partnerType} />}
 
                     {/* {(filterValues.lineType === 'solutions' || filterValues.lineType === 'services') && */}
