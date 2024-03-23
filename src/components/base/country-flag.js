@@ -2,7 +2,6 @@ import React from 'react'
 import ReactCountryFlag from "react-country-flag"
 
 const CountryFlag = ({ country }) => {
-    console.log(country)
 
     const COUNTRY_KEYS = {
         'spain': 'ES',

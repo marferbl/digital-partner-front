@@ -13,7 +13,6 @@ const Searcher = ({ filters }) => {
     const getLabelTerm = () => {
         if (!term) return ''
         return capitalizeFirstLetter(decodeURIComponent(term?.replace(/\+/g, ' ')))
-
     }
 
     const updateFilters = (filters) => {

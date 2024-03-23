@@ -12,7 +12,6 @@ const SearchSelectCountries = ({ isMulti, onChange, ...props }) => {
         setValue(value);
         onChange(value);
     }
-    console.log(value)
     const countriesOptions = COUNTRIES
 
     return (

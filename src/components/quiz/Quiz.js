@@ -115,11 +115,19 @@ const Quiz = () => {
         navigate(`/search/${''}`, { state: { filters: answers } })
     }
 
-
-    const nextQuestion = (selectedOption) => {
-        if (selectedOption.key !== 'solutions' && currentQuestion.order === 0) {
+    useEffect(() => {
+        if (['services', 'events', 'talent'].includes(answers.lineType)) {
             goToSearch()
         }
+    }, [answers]);
+
+
+    const nextQuestion = (selectedOption) => {
+
+        if (['services', 'events', 'talent'].includes(answers.lineType)) {
+            return;
+        }
+
         setAnswers({ ...answers, [currentQuestion.id]: selectedOption.key });
 
         if (currentQuestion.order === 0) {
@@ -144,6 +152,7 @@ const Quiz = () => {
             goToSearch()
         }
     };
+
 
     return (
         <Box pt={16} pb={14} w='full' bg={'gray.50'} mb={20}>

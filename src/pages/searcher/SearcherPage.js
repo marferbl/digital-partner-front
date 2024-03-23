@@ -10,7 +10,7 @@ import { useLocation } from "react-router-dom";
 const SearcherPage = () => {
     const { isLoggedIn } = useContext(UserContext);
     const location = useLocation();
-    const [filters, setFilters] = useState({})
+    const [filters, setFilters] = useState(location?.state?.filters || {})
 
     useEffect(() => {
         if (location && location.state) {
@@ -19,6 +19,7 @@ const SearcherPage = () => {
             setFilters(filters)
         }
     }, [location])
+
 
     const isInPanel = () => {
         return window.location.pathname.includes('private')

@@ -7,16 +7,14 @@ const Question = ({ title, options, nextQuestion }) => {
     const [opacity, setOpacity] = useState(1);
 
     useEffect(() => {
-        // Reset opacity to 1 when the question changes
         setOpacity(1);
-    }, [title]); // Assuming 'title' is the prop that changes when the question changes
+    }, [title]);
 
     const handleOptionClick = (option) => {
-        // Trigger opacity animation and then move to the next question
         setOpacity(0);
         setTimeout(() => {
             nextQuestion(option);
-        }, 500); // Adjust the duration of the animation (in milliseconds) as needed
+        }, 500);
     };
 
     return (
