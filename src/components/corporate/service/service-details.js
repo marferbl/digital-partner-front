@@ -45,18 +45,18 @@ const ServiceDetails = ({ service }) => {
                 <GridItem colSpan={3} pr={7}>
                     <Text fontSize={14} mt={3} fontWeight='bold' mb={4} textAlign='center'>Solución:</Text>
                     <Box textAlign={'center'} mt={1} p={5} bgColor={"white"} w={"100%"} minH={300} px={10} rounded='xl' shadow={'xl'} mb={3}>
-                        <Avatar size="2xl" name={solution.name} src={solution.logo} mb={5} />
-                        <Text fontWeight={'bold'} fontSize={34}>{solution.name}</Text>
-                        <Text fontSize={16}>{solution.website}</Text>
-                        <Button
-                        mt={3}
+                        <Avatar size="2xl" name={service.otherSolution || solution.name} src={solution?.logo} mb={5} />
+                        <Text fontWeight={'bold'} fontSize={34}>{service.otherSolution || solution.name}</Text>
+                        <Text fontSize={16}>{solution?.website}</Text>
+                        {service.otherSolution ? <Text fontSize={14} mt={4}>Esta solución no está dada de alta</Text> : <Button
+                            mt={3}
                             variant="solid"
                             bg={COLORS.primary}
                             color="white"
                             _hover={{ bg: 'blue.700' }}
                         >
-                            <Link to={`/private/solution/${solution._id}`}><Text fontWeight={'bold'} fontSize={14}>{'Ir a detalles'}</Text></Link>
-                        </Button>
+                            <Link to={`/private/solution/${solution?._id}`}><Text fontWeight={'bold'} fontSize={14}>{'Ir a detalles'}</Text></Link>
+                        </Button>}
 
                     </Box>
                 </GridItem>

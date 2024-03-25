@@ -9,6 +9,7 @@ import { COLORS } from '../../colors/colors';
 
 const CardSoftware = ({ _id, name, logo, description, ...rest }) => {
     const { isLoggedIn } = useContext(UserContext);
+    console.log(rest.otherSolution)
 
     return (
         <Box w='full' borderWidth="1px" borderRadius="lg" overflow="hidden">
@@ -19,10 +20,10 @@ const CardSoftware = ({ _id, name, logo, description, ...rest }) => {
                 <Box d="flex" alignItems="baseline">
                     <Heading as="p" size="sm" textAlign={'center'} _hover={{ textDecor: 'underline' }}>
                         {rest.lineType === 'solutions' && <Link to={isLoggedIn ? `/private/solution/${_id}` : `/solution/${_id}`}>
-                            {rest.lineType === 'solutions' ? name : 'Partner de ' + rest.solutionId?.name}
+                            {name}
                         </Link>}
                         {rest.lineType === 'services' && <Link to={isLoggedIn ? `/private/service/${_id}` : `/service/${_id}`}>
-                            {'Partner de ' + rest.solutionId?.name}
+                            {'Partner de ' + (rest.solutionId?.name || rest.otherSolution)}
                         </Link>}
                     </Heading>
                 </Box>
