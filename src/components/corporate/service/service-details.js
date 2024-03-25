@@ -1,12 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { Box, Grid, GridItem, Text, Avatar, Button } from "@chakra-ui/react";
 import { capitalizeFirstLetter } from '../../../utils/methods'
 import CountryFlag from '../../base/country-flag'
 import { Link } from 'react-router-dom'
 import { COLORS } from "../../../colors/colors"
+import { UserContext } from "../../../context/userContext";
 
 
 const ServiceDetails = ({ service }) => {
+    const { isLoggedIn } = useContext(UserContext)
+
+
+
+
     const PARTNER_TYPE_KEYS = {
         'selling': 'Venta',
         'implant': 'Implantador',
@@ -25,7 +31,6 @@ const ServiceDetails = ({ service }) => {
             return `${PARTNER_TYPE_KEYS[array[0]]}, ${PARTNER_TYPE_KEYS[array[1]]} y ${PARTNER_TYPE_KEYS[array[1]]} más`
         }
     }
-
 
     return (
         <Box mt={6} p={5} rounded={"xl"} bgColor={"white"} w={"100%"}>
@@ -55,7 +60,7 @@ const ServiceDetails = ({ service }) => {
                             color="white"
                             _hover={{ bg: 'blue.700' }}
                         >
-                            <Link to={`/private/solution/${solution?._id}`}><Text fontWeight={'bold'} fontSize={14}>{'Ir a detalles'}</Text></Link>
+                            <Link to={isLoggedIn ? `/private/solution/${solution?._id}` : `/solution/${solution?._id}`}><Text fontWeight={'bold'} fontSize={14}>{'Ir a detalles'}</Text></Link>
                         </Button>}
 
                     </Box>

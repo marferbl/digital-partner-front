@@ -9,7 +9,6 @@ import { COLORS } from '../../colors/colors';
 
 const CardSoftware = ({ _id, name, logo, description, ...rest }) => {
     const { isLoggedIn } = useContext(UserContext);
-    console.log(rest.otherSolution)
 
     return (
         <Box w='full' borderWidth="1px" borderRadius="lg" overflow="hidden">
