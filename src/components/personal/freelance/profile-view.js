@@ -3,7 +3,7 @@ import { COLORS } from "../../../colors/colors";
 import { FiCheckSquare, FiShoppingCart, FiUser } from "react-icons/fi";
 import { useContext } from "react";
 import { UserContext } from "../../../context/userContext";
-import { capitalizeFirstLetter, dateToString } from "../../../utils/methods";
+import { capitalizeFirstLetter, dateToString, languageLabelFromValue } from "../../../utils/methods";
 import pdf from "../../../pdf/dummy.pdf"
 
 
@@ -112,7 +112,7 @@ const ProfileView = ({ freelance }) => {
                     <Text fontWeight="bold" mr={2}> Idiomas:</Text>
                     {languages.map((language, index) => (
                         <Text key={index}>
-                            {capitalizeFirstLetter(language)}
+                            {capitalizeFirstLetter(languageLabelFromValue(language))}
                         </Text>
                     ))}
                 </Box>

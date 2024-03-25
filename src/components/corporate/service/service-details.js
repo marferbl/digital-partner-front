@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Box, Grid, GridItem, Text, Avatar, Button } from "@chakra-ui/react";
-import { capitalizeFirstLetter } from '../../../utils/methods'
+import { capitalizeFirstLetter, languageLabelFromValue } from '../../../utils/methods'
 import CountryFlag from '../../base/country-flag'
 import { Link } from 'react-router-dom'
 import { COLORS } from "../../../colors/colors"
@@ -31,18 +31,21 @@ const ServiceDetails = ({ service }) => {
             return `${PARTNER_TYPE_KEYS[array[0]]}, ${PARTNER_TYPE_KEYS[array[1]]} y ${PARTNER_TYPE_KEYS[array[1]]} más`
         }
     }
+    console.log(service)
 
     return (
         <Box mt={6} p={5} rounded={"xl"} bgColor={"white"} w={"100%"}>
             {service && <Grid templateColumns="repeat(8, 1fr)" gap={6} pb={20}>
                 <GridItem colSpan={5}>
                     <Box textAlign={'left'} mt={1} rounded={"xl"} bgColor={"white"} w={"100%"} px={10}>
+                        <Text fontSize={14} mt={3} fontWeight='bold' textDecor={'underline'}>Corporate:</Text>
+                        <Text fontSize={16}>{service?.corporate?.name} </Text>
                         <Text fontSize={14} mt={3} fontWeight='bold' textDecor={'underline'}>Tipo de servicio:</Text>
                         <Text>{capitalizeFirstLetter(service.serviceType)} {'('} {arrayToSentence(service.partnerType)} {')'}</Text>
                         <Text fontSize={14} mt={3} fontWeight='bold' textDecor={'underline'}>Descripción:</Text>
                         <Text>{service.description}</Text>
                         <Text fontSize={14} mt={3} fontWeight='bold' textDecor={'underline'}>Idiomas disponibles para el servicio:</Text>
-                        <Text>{service?.languages?.map(e => <Text>{e}</Text>)}</Text>
+                        <Text>{service?.languages?.map(e => <Text>{languageLabelFromValue(e)}</Text>)}</Text>
                         <Text fontSize={14} mt={3} fontWeight='bold' textDecor={'underline'}>Países disponibles para el servicio:</Text>
                         <Text fontSize={16}>{service?.countries?.map(e => <CountryFlag country={e} />)}</Text>
                     </Box>

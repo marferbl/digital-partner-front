@@ -10,7 +10,7 @@ import {
     TableCaption,
     TableContainer,
 } from '@chakra-ui/react'
-import { capitalizeFirstLetter } from '../../../utils/methods'
+import { capitalizeFirstLetter, languageLabelFromValue } from '../../../utils/methods'
 import CountryFlag from '../../base/country-flag'
 import GradientButton from '../../base/GradientButton'
 import { Link } from 'react-router-dom'
@@ -56,8 +56,8 @@ const ServicesTable = ({ services, solutionView }) => {
                             <Tr key={service._id}>
                                 {solutionView && <Td>{service.corporate?.name}</Td>}
                                 <Td>{capitalizeFirstLetter(service.serviceType)} {'('} {arrayToSentence(service.partnerType)} {')'}</Td>
-                                {!solutionView && <Td>{service.solutionId?.name ||  service.otherSolution}</Td>}
-                                <Td>{service?.languages?.map(e => <Text>{e}</Text>)}</Td>
+                                {!solutionView && <Td>{service.solutionId?.name || service.otherSolution}</Td>}
+                                <Td>{service?.languages?.map(e => <Text>{languageLabelFromValue(e)}</Text>)}</Td>
                                 <Td fontSize={16}>{service?.countries?.map(e => <CountryFlag country={e} />)}</Td>
                                 <Td>
                                     <Link to={`/private/service/${service._id}`}>
