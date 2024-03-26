@@ -74,7 +74,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
 
   const userRoutes = [
     { name: "Perfil", icon: FiUser, to: "profile" },
-    { name: "Freelance", icon: FiTrendingUp, to: "freelance" },
+    { name: "Freelance", icon: FiTrendingUp, to: "freelance", soon: true },
     { name: "Empleo", icon: FiGrid, to: "dashboard", soon: true },
     { name: "Gurús", icon: FiStar, to: "dashboard", soon: true },
 
@@ -114,7 +114,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
       ))) : (userRoutes.map((link) => (
         <NavItem key={link.name} icon={link.icon} to={link.to} soon={link.soon}>
           {link.name}
-          {link.soon ? <Text fontSize={10} color="gray.400" ml="auto">Próximamente</Text> : null}
+          {link.soon ? <Text fontSize={9} color="gray.400" ml="auto">Próximamente</Text> : null}
 
         </NavItem>
       )
@@ -124,6 +124,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
     </Box>
   );
 };
+
 
 const NavItem = ({ icon, children, to, soon, ...rest }) => {
   return (

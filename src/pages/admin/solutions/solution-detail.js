@@ -19,11 +19,11 @@ export const SolutionDetailPage = () => {
     const { id } = useParams();
 
     const LINKS = [
-        { label: 'Partner', component: <PartnerComponent /> },
-        { label: 'Demo', component: <DemoComponent /> },
-        { label: 'Manuales', component: <ManualComponent solution={solution} /> },
-        { label: 'Referencias', component: <ReferencesComponent /> },
-        { label: 'Certificaciones', component: <CertificationComponent /> },
+        { label: 'Descubrir partners', component: <PartnerComponent /> },
+        { label: 'Pedir demo', component: <DemoComponent /> },
+        { label: 'Descargar manuales', component: <ManualComponent solution={solution} /> },
+        { label: 'Comprar referencias', component: <ReferencesComponent /> },
+        { label: 'Obtener certificaciones', component: <CertificationComponent /> },
     ];
 
 
@@ -62,6 +62,7 @@ export const SolutionDetailPage = () => {
                             textAlign='center'
                             borderWidth={1}
                             py={1}
+                            fontSize={14}
                             _hover={isLoggedIn ? { bgColor: 'gray.100' } : null}
                             bgColor={label === link.label ? 'gray.100' : 'white'}
                             onClick={isLoggedIn ? () => renderComponent(link.label) : null}

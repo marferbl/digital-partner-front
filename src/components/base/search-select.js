@@ -7,7 +7,6 @@ export default function SearchSelect({ options, isMulti, onChange, searchable, v
     const [selectedOption, setSelectedOption] = useState(value ? options.find(e => e.value === value) : null);
 
     useEffect(() => {
-        console.log(value)
         if (!value) setSelectedOption(null)
     }, [value])
 
@@ -43,8 +42,9 @@ export default function SearchSelect({ options, isMulti, onChange, searchable, v
             backgroundColor: '#5dbda299',
             padding: 3,
             borderRadius: 5,
+            width:'fit-content'
             // Add other styles as needed
-        })
+        }),
     }
 
     return (

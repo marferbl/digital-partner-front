@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 
 const Logo = (props) => {
-  return <Image src={"/logo-digitalpartner.png"} h={10} ml={-2} />;
+  return <Image src={"/logo-d.png"} h={10} ml={-2} />;
 };
 
 const ListHeader = ({ children }) => {
@@ -38,7 +38,7 @@ export default function FooterLanding() {
             <Box>
               <Logo color={useColorModeValue("gray.700", "white")} />
             </Box>
-            <Text fontSize={"sm"}>© 2023 TheDigitalPartner. All rights reserved</Text>
+            <Text fontSize={"sm"}>© 2024 digitalando. All rights reserved</Text>
           </Stack>
         </SimpleGrid>
       </Container>

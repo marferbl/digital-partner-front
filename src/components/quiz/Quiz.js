@@ -1,4 +1,4 @@
-import { Box, Center, Text } from '@chakra-ui/react'
+import { Box, Center, Flex } from '@chakra-ui/react'
 import React, { useState, useEffect } from 'react'
 import { COLORS } from '../../colors/colors'
 import Question from './Question'
@@ -25,7 +25,7 @@ const Quiz = () => {
     const questionsList = [
         {
             order: 0,
-            title: '¿Qué necesitas?',
+            title: '¿Qué buscas?',
             options: [
                 {
                     label: 'Soluciones',
@@ -60,20 +60,20 @@ const Quiz = () => {
             order: 1,
             title: '¿Qué funcionalidad quieres cubrir?',
             options: [
-                { key: 'rrhh', label: 'RRHH' },
-                { key: 'sellmarketing', label: 'Ventas y marketing' },
                 { key: 'finance', label: 'Finanzas y contabilidad' },
+                { key: 'sellmarketing', label: 'Ventas y marketing' },
                 { key: 'logistics', label: 'Cadena de suministro' },
+                { key: 'rrhh', label: 'RRHH' },
                 { key: 'it', label: 'IT' },
                 { key: 'data', label: 'Data' },
-                { key: 'law', label: 'legal' },
-                { key: 'transversal', label: 'transversal' },
+                { key: 'law', label: 'Legal' },
+                { key: 'transversal', label: 'Transversal' },
             ],
             id: 'feature'
         },
         {
             order: 2,
-            title: '¿Es una solución vertical?',
+            title: '¿Buscas una solución sectorial?',
             options: [
                 { key: 'true', label: 'Si' },
                 { key: 'false', label: 'No' }
@@ -96,6 +96,12 @@ const Quiz = () => {
             id: 'size'
         }
     ]
+
+    const startTest = () => {
+        setAnswers([])
+        setQuestions(questionsList)
+        setCurrentQuestion(questions[0])
+    }
 
     const QUESTION_SOLUTION_VERTICAL = {
         order: 3,
@@ -155,8 +161,9 @@ const Quiz = () => {
 
 
     return (
-        <Box pt={16} pb={14} w='full' bg={'gray.50'} mb={20}>
-            <Center flexDir={'column'} px={{ base: 10, lg: 32 }}>
+        <Box pb={14} w='full' bg={'gray.50'} mb={20}>
+            <Flex w='full' justify={'end'} mt={-3} pr={5} pt={3} _hover={{ fontWeight: 'bold' }} cursor='pointer' onClick={startTest}>Volver a empezar</Flex>
+            <Center pt={12} flexDir={'column'} px={{ base: 10, lg: 32 }}>
                 <Question {...currentQuestion} nextQuestion={nextQuestion} goToSearch={goToSearch} />
             </Center>
         </Box>

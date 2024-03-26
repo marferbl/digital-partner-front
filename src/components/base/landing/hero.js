@@ -29,9 +29,9 @@ export default function Hero() {
             fontSize={{ base: '3xl', sm: '4xl', md: '6xl' }}
             lineHeight={'110%'}
           >
-            Compara, implementa y triunfa. <br />
+            Descubre, compara y transforma. <br />
             <Text as={'span'} fontSize={{ base: '2xl', sm: '3xl', md: '5xl' }} fonts color={COLORS.secondary}>
-              Conquista el futuro digital
+            Bienvenidx a tu comunidad digital
             </Text>
           </Heading>
         </Stack>

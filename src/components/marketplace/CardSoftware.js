@@ -13,7 +13,12 @@ const CardSoftware = ({ _id, name, logo, description, ...rest }) => {
     return (
         <Box w='full' borderWidth="1px" borderRadius="lg" overflow="hidden">
             <Center height={36} >
-                {logo ? <Image w={28} src={logo} alt={name} height={24} backgroundSize={'contain'} /> : <Center h='full'><Avatar size="xl" name={name} /> </Center>}
+                {rest.lineType === 'solutions' && <Link to={isLoggedIn ? `/private/solution/${_id}` : `/solution/${_id}`}>
+                    {logo ? <Image w={28} src={logo} alt={name} height={24} backgroundSize={'contain'} /> : <Center h='full'><Avatar size="xl" name={name} /> </Center>}
+                </Link>}
+                {rest.lineType === 'services' && <Link to={isLoggedIn ? `/private/service/${_id}` : `/service/${_id}`}>
+                    {logo ? <Image w={28} src={logo} alt={name} height={24} backgroundSize={'contain'} /> : <Center h='full'><Avatar size="xl" name={name} /> </Center>}
+                </Link>}
             </Center>
             <Box p="1">
                 <Box d="flex" alignItems="baseline">

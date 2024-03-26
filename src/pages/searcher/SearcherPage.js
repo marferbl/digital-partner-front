@@ -28,7 +28,7 @@ const SearcherPage = () => {
     return (
         <>
             {!isInPanel() && <Navbar />}
-            <Box mt={6} p={5} rounded={"xl"} bgColor={"white"} w={"100%"}>
+            <Box mt={6} p={0} rounded={"xl"} bgColor={"white"} w={"100%"}>
                 <Searcher filters={filters} />
             </Box>
         </>
