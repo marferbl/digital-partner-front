@@ -26,7 +26,7 @@ export const ServicePage = () => {
     return (
         <Box mt={6} p={5} rounded={"xl"} bgColor={"white"} w={"100%"} minH={400}>
             <Text fontSize={22} mb={5} pb={3} borderBottomWidth={1}>Servicios</Text>
-            {services.length === 0 ? <EmptyServiceState refreshServices={getMyServices} /> : <ServicesTable services={services} />}
+            {services.length === 0 ? <EmptyServiceState refreshServices={getMyServices} /> : <ServicesTable services={services} refreshServices={getMyServices} />}
         </Box>
     )
 };

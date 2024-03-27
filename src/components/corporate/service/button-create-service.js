@@ -70,9 +70,9 @@ export const ButtonCreateService = ({ refreshServices }) => {
                     <ModalHeader>Crear Servicio ({serviceType})</ModalHeader>
                     <ModalCloseButton onClick={closeModal} />
                     <ModalBody py={5}>
-                        {serviceType === 'partner' && <PartnerModalCreate onChangeConfig={(value) => {
+                        <PartnerModalCreate type={serviceType} onChangeConfig={(value) => {
                             setConfig(value)
-                        }} />}
+                        }} />
                     </ModalBody>
 
                     <ModalFooter>

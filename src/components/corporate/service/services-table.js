@@ -7,21 +7,37 @@ import {
     Tr,
     Th,
     Td,
-    TableCaption,
+    Button,
     TableContainer,
+    Menu,
+    MenuButton,
+    MenuList,
+    MenuItem,
+    useDisclosure,
 } from '@chakra-ui/react'
 import { capitalizeFirstLetter, languageLabelFromValue } from '../../../utils/methods'
 import CountryFlag from '../../base/country-flag'
 import GradientButton from '../../base/GradientButton'
 import { Link } from 'react-router-dom'
+import { deleteService } from '../../../services/service'
+import { FiMoreVertical } from "react-icons/fi";
 
 
-const ServicesTable = ({ services, solutionView }) => {
+
+const ServicesTable = ({ services, solutionView, refreshServices }) => {
 
     const PARTNER_TYPE_KEYS = {
         'selling': 'Venta',
         'implant': 'Implantador',
         'training': 'Formación'
+    }
+
+
+    const deleteItem = (id) => {
+        deleteService(id).then(() => {
+            refreshServices()
+        }
+        )
     }
 
     const arrayToSentence = (array) => {
@@ -41,11 +57,11 @@ const ServicesTable = ({ services, solutionView }) => {
             <Table variant='simple'>
                 <Thead>
                     <Tr>
-                        {solutionView && <Th>Corporate</Th>}
+                        <Th>Corporate</Th>
                         <Th>Tipo de servicio</Th>
-                        {!solutionView && <Th>Solución</Th>}
                         <Th>Lenguajes</Th>
                         <Th>Países</Th>
+                        <Th></Th>
                         <Th></Th>
 
                     </Tr>
@@ -54,15 +70,24 @@ const ServicesTable = ({ services, solutionView }) => {
                     {services.map((service) => {
                         return (
                             <Tr key={service._id}>
-                                {solutionView && <Td>{service.corporate?.name}</Td>}
-                                <Td>{capitalizeFirstLetter(service.serviceType)} {'('} {arrayToSentence(service.partnerType)} {')'}</Td>
-                                {!solutionView && <Td>{service.solutionId?.name || service.otherSolution}</Td>}
+                                <Td>{service.corporate?.name}</Td>
+                                <Td>{capitalizeFirstLetter(service.serviceType)} {service.serviceType === 'partner' && <Text as={'span'}> {'('} {arrayToSentence(service.partnerType)} {')'} </Text>}</Td>
                                 <Td>{service?.languages?.map(e => <Text>{languageLabelFromValue(e)}</Text>)}</Td>
                                 <Td fontSize={16}>{service?.countries?.map(e => <CountryFlag country={e} />)}</Td>
                                 <Td>
                                     <Link to={`/private/service/${service._id}`}>
                                         <GradientButton label={'Detalles'} type='red' size={'sm'} />
                                     </Link>
+                                </Td>
+                                <Td width={30}>
+                                    <Menu>
+                                        <MenuButton rounded={'xl'} p={2} bg={'white'} justify={'space-between'} align={'center'}>
+                                            <FiMoreVertical size={20} pt={3} />
+                                        </MenuButton>
+                                        <MenuList width={20} p={0}>
+                                            <MenuItem onClick={() => deleteItem(service._id)} _hover={{ bg: 'gray.100' }} h={'full'} fontSize={12} textAlign={'center'} width={'full'} fontWeight={'bold'}>Eliminar</MenuItem>
+                                        </MenuList>
+                                    </Menu>
                                 </Td>
                             </Tr>
                         )

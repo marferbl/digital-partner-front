@@ -9,7 +9,7 @@ import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { COLORS } from '../../colors/colors';
 
 
-const FiltersSection = ({ filters, onChangeFilters }) => {
+const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
     const [filterValues, setFilterValues] = useState(filters);
 
     const handleToggle = (filterName, value) => {
@@ -37,6 +37,16 @@ const FiltersSection = ({ filters, onChangeFilters }) => {
         { value: 'training', label: 'Formación' },
     ];
 
+    const serviceTypeOptions = [
+        { value: 'partner', label: 'Partner' },
+        { value: 'development', label: 'Desarrollo' },
+        { value: 'renting', label: 'Renting' },
+        { value: 'helps', label: 'Ayudas' },
+        { value: 'training', label: 'Training' },
+
+
+    ];
+
     const clearFilters = () => {
         setFilterValues({
             lineType: '',
@@ -44,7 +54,9 @@ const FiltersSection = ({ filters, onChangeFilters }) => {
             partnerType: '',
             countries: '',
             languages: '',
+            serviceType: ''
         });
+        setTermLabel('');
     };
 
     const hasFilters = Object.values(filterValues).some((value) => value !== '');
@@ -55,7 +67,8 @@ const FiltersSection = ({ filters, onChangeFilters }) => {
                 <Flex pr={5} gap={1} flexWrap={'wrap'} alignItems={'center'} flexDir='column'>
                     <SearchSelect options={lineTypeOptions} width={'100%'} label={'Tipo'} onChange={(value) => handleToggle('lineType', value)} value={filterValues.lineType} />
                     {filterValues.lineType === 'solutions' && <SearchSelectFeatures showLabel width={'100%'} onChange={(value) => handleToggle('feature', value)} />}
-                    {filterValues.lineType === 'services' && <SearchSelect options={partnerTypeOptions} width={'100%'} label={'Servicio'} onChange={(value) => handleToggle('partnerType', value)} value={filterValues.partnerType} />}
+                    {filterValues.lineType === 'services' && <SearchSelect options={serviceTypeOptions} width={'100%'} label={'Tipo'} onChange={(value) => handleToggle('serviceType', value)} value={filterValues.serviceType} />}
+                    {filterValues.lineType === 'services' && filterValues.serviceType === 'partner' && <SearchSelect options={partnerTypeOptions} width={'100%'} label={'Servicio'} onChange={(value) => handleToggle('partnerType', value)} value={filterValues.partnerType} />}
                     <SearchSelectCountries showLabel width={'100%'} onChange={(value) => handleToggle('countries', value)} defaultValue={filterValues.countries} />
                     <SearchSelectLanguage showLabel width={'100%'} onChange={(value) => handleToggle('languages', value)} defaultValue={filterValues.languages} />
                     {hasFilters && (

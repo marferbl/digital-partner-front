@@ -39,10 +39,10 @@ export default function SearchSelect({ options, isMulti, onChange, searchable, v
         }),
         singleValue: (provided, state) => ({
             ...provided,
-            backgroundColor: '#5dbda299',
             padding: 3,
             borderRadius: 5,
-            width:'fit-content'
+            width:'fit-content',
+            color: COLORS.secondary,
             // Add other styles as needed
         }),
     }

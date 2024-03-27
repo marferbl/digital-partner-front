@@ -9,7 +9,7 @@ import SearchSelect from '../../../../base/search-select'
 
 
 
-const PartnerModalCreate = ({ onChangeConfig, type }) => {
+const PartnerModalCreate = ({ onChangeConfig }) => {
     const [languages, setLanguages] = useState(null);
     const [countries, setCountries] = useState(null);
     const [description, setDescription] = useState(null);
@@ -33,19 +33,16 @@ const PartnerModalCreate = ({ onChangeConfig, type }) => {
     return (
         <Box>
             <Box>
-                {type === 'partner' && < Box >
-                    {!showOtherSolution && <Text fontSize={14} mb={1}>Selecciona de que solución eres implantador</Text>}
-                    {!showOtherSolution && <SearchSelectSolutions onChange={(value) => setSolutionId(value)} />}
-                    <Flex gap={3}>
-                        <Text mt={3} fontSize={12}>¿No encuentras la solución? </Text>
-                        <Text mt={3} fontSize={12} cursor={'pointer'} color={'blue.500'} onClick={() => setShowOtherSolution(!showOtherSolution)}>{showOtherSolution ? 'Volver a la lista' : 'Añadir a mano'}</Text>
-                    </Flex>
-                    {showOtherSolution && <Input placeholder="Nombre de la solución" onChange={(e) => setOtherSolution(e.target.value)} />}
+                {!showOtherSolution && <Text fontSize={14} mb={1}>Selecciona de que solución eres implantador</Text>}
+                {!showOtherSolution && <SearchSelectSolutions onChange={(value) => setSolutionId(value)} />}
+                <Flex gap={3}>
+                    <Text mt={3} fontSize={12}>¿No encuentras la solución? </Text>
+                    <Text mt={3} fontSize={12} cursor={'pointer'} color={'blue.500'} onClick={() => setShowOtherSolution(!showOtherSolution)}>{showOtherSolution ? 'Volver a la lista' : 'Añadir a mano'}</Text>
+                </Flex>
+                {showOtherSolution && <Input placeholder="Nombre de la solución" onChange={(e) => setOtherSolution(e.target.value)} />}
 
-                    <Text fontSize={14} mb={1} mt={2}>Selecciona uno o más tipos de servicio</Text>
-                    <SearchSelect options={options} isMulti onChange={(value) => setPartnerType(value)} />
-                </Box>}
-
+                <Text fontSize={14} mb={1} mt={2}>Selecciona uno o más tipos de servicio</Text>
+                <SearchSelect options={options} isMulti onChange={(value) => setPartnerType(value)} />
                 <Text fontSize={14} mt={4} mb={1}>Descripción</Text>
                 <Textarea
                     borderColor="gray.300"
@@ -66,7 +63,7 @@ const PartnerModalCreate = ({ onChangeConfig, type }) => {
                     placeholder="www.portfolio.com"
                 />
             </Box>
-        </Box >
+        </Box>
     )
 }
 

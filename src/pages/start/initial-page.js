@@ -35,7 +35,9 @@ export default function InitialPage() {
 
 
   useEffect(() => {
-    isLoggedIn && navigate("/private/dashboard");
+    const view = localStorage.getItem("userView");
+    isLoggedIn && navigate(view === 'corporate' ? "/private/corporate/profile" : "/private/profile");
+
   }, [isLoggedIn]);
 
   return (

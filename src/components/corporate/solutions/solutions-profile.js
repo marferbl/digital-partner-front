@@ -18,7 +18,7 @@ export const SolutionsProfile = ({ solutions, refreshSolutions }) => {
                 <Flex w='full' justify={'end'} pb={3}>
                 <ButtonCreateSolution refreshSolutions={refreshSolutions} />
                 </Flex>
-                <SolutionsTable solutions={solutions} />
+                <SolutionsTable solutions={solutions} refreshSolutions={refreshSolutions} />
             </Flex>
         </div>
     );

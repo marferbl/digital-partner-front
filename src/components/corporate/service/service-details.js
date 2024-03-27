@@ -41,9 +41,13 @@ const ServiceDetails = ({ service }) => {
                         <Text fontSize={14} mt={3} fontWeight='bold' textDecor={'underline'}>Corporate:</Text>
                         <Text fontSize={16}>{service?.corporate?.name} </Text>
                         <Text fontSize={14} mt={3} fontWeight='bold' textDecor={'underline'}>Tipo de servicio:</Text>
-                        <Text>{capitalizeFirstLetter(service.serviceType)} {'('} {arrayToSentence(service.partnerType)} {')'}</Text>
-                        <Text fontSize={14} mt={3} fontWeight='bold' textDecor={'underline'}>Descripción:</Text>
-                        <Text>{service.description}</Text>
+                        <Text>{capitalizeFirstLetter(service.serviceType)} {service.serviceType === 'partner' && <Text as={'span'}> {'('} {arrayToSentence(service.partnerType)} {')'} </Text>}</Text>
+                        {service.serviceType === 'partner' &&
+                            <Box>
+                                <Text fontSize={14} mt={3} fontWeight='bold' textDecor={'underline'}>Descripción:</Text>
+                                <Text>{service.description}</Text>
+                            </Box>
+                        }
                         <Text fontSize={14} mt={3} fontWeight='bold' textDecor={'underline'}>Idiomas disponibles para el servicio:</Text>
                         <Text>{service?.languages?.map(e => <Text>{languageLabelFromValue(e)}</Text>)}</Text>
                         <Text fontSize={14} mt={3} fontWeight='bold' textDecor={'underline'}>Países disponibles para el servicio:</Text>
@@ -51,10 +55,10 @@ const ServiceDetails = ({ service }) => {
                     </Box>
                 </GridItem>
                 <GridItem colSpan={3} pr={7}>
-                    <Text fontSize={14} mt={3} fontWeight='bold' mb={4} textAlign='center'>Solución:</Text>
-                    <Box textAlign={'center'} mt={1} p={5} bgColor={"white"} w={"100%"} minH={300} px={10} rounded='xl' shadow={'xl'} mb={3}>
-                        <Avatar size="2xl" name={service.otherSolution || solution.name} src={solution?.logo} mb={5} />
-                        <Text fontWeight={'bold'} fontSize={34}>{service.otherSolution || solution.name}</Text>
+                    <Text fontSize={14} mt={3} fontWeight='bold' mb={4} textAlign='center'>{service.serviceType === 'partner' ? 'Solución' : 'Descripción'} :</Text>
+                    {service.serviceType === 'partner' ? <Box textAlign={'center'} mt={1} p={5} bgColor={"white"} w={"100%"} minH={300} px={10} rounded='xl' shadow={'xl'} mb={3}>
+                        <Avatar size="2xl" name={service.solutionId?.otherSolution || service.solutionId?.name} src={service.solutionId?.logo} mb={5} />
+                        <Text fontWeight={'bold'} fontSize={34}>{service.otherSolution || solution?.name}</Text>
                         <Text fontSize={16}>{solution?.website}</Text>
                         {service.otherSolution ? <Text fontSize={14} mt={4}>Esta solución no está dada de alta</Text> : <Button
                             mt={3}
@@ -65,8 +69,7 @@ const ServiceDetails = ({ service }) => {
                         >
                             <Link to={isLoggedIn ? `/private/solution/${solution?._id}` : `/solution/${solution?._id}`}><Text fontWeight={'bold'} fontSize={14}>{'Ir a detalles'}</Text></Link>
                         </Button>}
-
-                    </Box>
+                    </Box> : <Box textAlign={'center'} mt={1} p={5} bgColor={"white"} w={"100%"} minH={300} px={10} rounded='xl' shadow={'xl'} mb={3}>{service.description}</Box>}
                 </GridItem>
             </Grid>}
         </Box>

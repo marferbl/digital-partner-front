@@ -7,24 +7,35 @@ import { useContext } from 'react';
 import { UserContext } from '../../context/userContext';
 import { COLORS } from '../../colors/colors';
 
-const CardSoftware = ({ _id, name, logo, description, lineType, ...rest }) => {
+const CardService = ({ item }) => {
     const { isLoggedIn } = useContext(UserContext);
 
 
+    const getLabelText = (serviceType) => {
+        const label = {
+            'partner': 'Partner de ' + item.solutionId?.name || item.otherSolution,
+            'development': 'Desarrollo por ' + item.corporate?.name,
+            'renting': 'Renting por ' + item.corporate?.name,
+            'training': 'Training por' + item.corporate?.name,
+            'helps': 'Ayudas por ' + item.corporate?.name,
+        }
+        return label[serviceType];
+    }
+
     return (
         <Box w='full' borderWidth="1px" borderRadius="lg" overflow="hidden">
-            <Center bg={'green.100'}>Solución</Center>
+            <Center bg={'blue.100'}>{'Servicio'}</Center>
             <Center height={36} >
-                {lineType === 'solutions' && <Link to={isLoggedIn ? `/private/solution/${_id}` : `/solution/${_id}`}>
-                    {logo ? <Image w={28} src={logo} alt={name} height={24} backgroundSize={'contain'} /> : <Center h='full'><Avatar size="xl" name={name} /> </Center>}
-                </Link>}
+                <Link to={isLoggedIn ? `/private/service/${item._id}` : `/service/${item._id}`}>
+                    <Center h='full'><Avatar size="xl" name={item?.corporate?.name} /> </Center>
+                </Link>
             </Center>
             <Box p="1">
                 <Box d="flex" alignItems="baseline">
                     <Heading as="p" size="sm" textAlign={'center'} _hover={{ textDecor: 'underline' }}>
-                        {lineType === 'solutions' && <Link to={isLoggedIn ? `/private/solution/${_id}` : `/solution/${_id}`}>
-                            {name}
-                        </Link>}
+                        <Link to={isLoggedIn ? `/private/service/${item._id}` : `/service/${item._id}`}>
+                            {getLabelText(item.serviceType)}
+                        </Link>
                     </Heading>
                 </Box>
                 <Flex h={14} mt={3} px={{ base: 3, md: 5, '2xl': 12 }} fontSize={12} mb={2}>
@@ -41,7 +52,7 @@ const CardSoftware = ({ _id, name, logo, description, lineType, ...rest }) => {
                             whiteSpace: 'normal',
                         }}
                     >
-                        {description}
+                        {item.description}
                     </Box>
                 </Flex>
             </Box>
@@ -49,4 +60,4 @@ const CardSoftware = ({ _id, name, logo, description, lineType, ...rest }) => {
     );
 };
 
-export default CardSoftware;
+export default CardService;
