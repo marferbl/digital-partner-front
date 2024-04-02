@@ -17,6 +17,7 @@ const Question = ({ title, options, nextQuestion }) => {
         }, 500);
     };
 
+
     return (
         <Box w={'full'}>
             <Center>

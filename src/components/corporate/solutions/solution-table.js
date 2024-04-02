@@ -41,7 +41,7 @@ const SolutionsTable = ({ solutions, refreshSolutions }) => {
                     <Tr>
                         <Th>Nombre</Th>
                         <Th>Web</Th>
-                        <Th>Descripción</Th>
+                        <Th>ERP</Th>
                         <Th></Th>
                         <Th></Th>
 
@@ -53,7 +53,7 @@ const SolutionsTable = ({ solutions, refreshSolutions }) => {
                             <Tr key={solution._id}>
                                 <Td>{solution.name}</Td>
                                 <Td>{solution.website}</Td>
-                                <Td>{solution.type == 'sector' ? 'Solución sectorial' : 'Solucion multisectorial'}</Td>
+                                <Td>{solution.isErp ? 'SI' : 'NO'}</Td>
                                 <Td>
                                     <Link to={`/private/solution/${solution._id}`}>
                                         <GradientButton label={'Detalles'} type='red' size={'sm'} />

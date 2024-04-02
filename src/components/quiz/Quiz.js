@@ -17,6 +17,8 @@ import {
     FiCalendar,
     FiSearch
 } from "react-icons/fi";
+import { SPECIFY_FEATURES } from '../../utils/constants';
+import SearchSelectSpecifyFeatures from '../base/search-select-specify-features';
 
 
 const Quiz = () => {
@@ -58,7 +60,7 @@ const Quiz = () => {
     const QUESTIONS_SOLUTIONS = [
         {
             order: 1,
-            title: '¿Qué funcionalidad quieres cubrir?',
+            title: '¿A quien va dirigido tu negocio?',
             options: [
                 { key: 'finance', label: 'Finanzas y contabilidad' },
                 { key: 'sellmarketing', label: 'Ventas y marketing' },
@@ -73,6 +75,13 @@ const Quiz = () => {
         },
         {
             order: 2,
+            title: '¿Que funcionalidad específica debe tener la solución?',
+            options: SPECIFY_FEATURES[answers.feature],
+            id: 'isVertical',
+            component: 'specifyFeatures'
+        },
+        {
+            order: 3,
             title: '¿Buscas una solución sectorial?',
             options: [
                 { key: 'true', label: 'Si' },
@@ -81,7 +90,7 @@ const Quiz = () => {
             id: 'isVertical'
         },
         {
-            order: 4,
+            order: 5,
             title: '¿Para cuanta gente?',
             options: [
                 { key: 'below5', label: '< 5' },
@@ -154,7 +163,7 @@ const Quiz = () => {
         else {
             setCurrentQuestion(newQuestions[currentQuestion.order + 1]);
         }
-        if (option === 'solutions' && currentQuestion.order === 4) {
+        if (option === 'solutions' && currentQuestion.order === 5) {
             goToSearch()
         }
     };

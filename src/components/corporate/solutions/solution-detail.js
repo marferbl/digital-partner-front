@@ -1,5 +1,8 @@
 import { Box, Text, Flex, Grid, GridItem, Avatar } from "@chakra-ui/react";
 import React, { useState, useContext, useEffect } from "react";
+import CountryFlag from "../../base/country-flag";
+import { languageLabelFromValue } from "../../../utils/methods";
+
 
 
 export const SolutionDetail = ({ solution }) => {
@@ -11,9 +14,9 @@ export const SolutionDetail = ({ solution }) => {
         logistics: 'Cadena de suministro',
         it: 'IT',
         data: 'Data',
-        other: 'Otro'
+        other: 'Otro',
+        law: 'Legal',
     };
-
 
     return (
         <Box mt={6} p={5} rounded={"xl"} bgColor={"white"} w={"100%"}>
@@ -31,9 +34,24 @@ export const SolutionDetail = ({ solution }) => {
                         <Text fontSize={18} mt={0}>{solution.description}</Text>
                         <Text fontSize={14} mt={5} fontWeight='bold' textDecor={'underline'}>Funcionalidad:</Text>
                         <Flex align={'center'} gap={2} pt={2}>
-                            <Text fontSize={18}>{KEYS_FEATURES[solution.feature]}</Text>
-                            ( <Text fontSize={18} >{solution.isVertical ? 'Solución vertical' : 'No es solución vertical'}</Text> )
+                            {solution?.features.map((feature, index) => (
+                                <Text key={index} fontSize={18} >{KEYS_FEATURES[feature]} {index < solution.features.length - 1 ? '-' : ''}</Text>
+                            ))}
+                            (<Text fontSize={18} >{!solution.isErp ? 'No es ERP' : 'Es ERP'}</Text>)
                         </Flex>
+                        <Text fontSize={14} mt={5} fontWeight='bold' textDecor={'underline'}>Países:</Text>
+                        <Flex align={'center'} gap={2} pt={1}>
+                            {solution?.countries.map((country, index) => (
+                                <Text key={index} fontSize={18} >{<CountryFlag country={country} />}</Text>
+                            ))}
+                        </Flex>
+                        <Text fontSize={14} mt={5} fontWeight='bold' textDecor={'underline'}>Idiomas:</Text>
+                        <Flex align={'center'} gap={2} pt={1}>
+                            {solution?.languages?.map((language, index) => (
+                                <Text key={index} >{languageLabelFromValue(language)} </Text>
+                            ))}
+                        </Flex>
+
                     </Box>
                 </GridItem>
             </Grid>}

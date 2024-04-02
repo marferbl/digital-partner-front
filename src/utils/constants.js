@@ -3,7 +3,7 @@ export const COUNTRIES = [
     { value: 'spain', label: 'España' },
     { value: 'france', label: 'Francia' },
     { value: 'italy', label: 'Italia' },
-    { value: 'usa', label: 'Estados Unidos' },
+    { value: 'usa', label: 'Estados Unkeyos' },
     { value: 'china', label: 'China' },
     { value: 'india', label: 'India' },
     { value: 'germany', label: 'Alemania' },
@@ -64,3 +64,205 @@ export const LANGUAGES = [
     { value: 'malay', label: 'Malayo' },
 ];
 
+export const SPECIFY_FEATURES = {
+    'finance': [
+        {
+            key: 'ticketing',
+            label: 'Ticketing'
+        },
+        {
+            key: 'accounting',
+            label: 'Contabilkeyad'
+        },
+        {
+            key: 'payment',
+            label: 'Facturación'
+        },
+        {
+            key: 'ticketing',
+            label: 'Tesorería'
+        },
+        {
+            key: 'other',
+            label: 'Other'
+        }
+    ],
+    'sellmarketing': [
+        {
+            key: 'crm',
+            label: 'CRM'
+        },
+        {
+            key: 'marketingrelational',
+            label: 'Marketing relacional'
+        },
+        {
+            key: 'marketingdigital',
+            label: 'Marketing digital'
+        },
+        {
+            key: 'other',
+            label: 'Other'
+        }
+    ],
+    'rrhh': [
+        {
+            key: 'time',
+            label: 'Control horario'
+        },
+        {
+            key: 'salary',
+            label: 'Nóminas'
+        },
+        {
+            key: 'marketingdigital',
+            label: 'Gestión de personal'
+        },
+        {
+            key: 'other',
+            label: 'Selección'
+        },
+        {
+            key: 'other',
+            label: 'Formación'
+        },
+        {
+            key: 'other',
+            label: 'Desempeño'
+        },
+        {
+            key: 'other',
+            label: 'Otros'
+        }
+    ],
+    'logistics': [
+        {
+            key: 'other',
+            label: 'Almacen'
+        },
+        {
+            key: 'other',
+            label: 'Flotas'
+        },
+        {
+            key: 'other',
+            label: 'Compras'
+        },
+        {
+            key: 'other',
+            label: 'Manufactoring'
+        },
+        {
+            key: 'other',
+            label: 'Otros'
+        }
+    ],
+    'it': [
+        {
+            key: 'other',
+            label: 'BBDD'
+        },
+        {
+            key: 'other',
+            label: 'Lenguajes de programación'
+        },
+        {
+            key: 'other',
+            label: 'Soluciones para tu web'
+        },
+        {
+            key: 'other',
+            label: 'Soluciones app'
+        },
+        {
+            key: 'other',
+            label: 'Helpdesk'
+        },
+        {
+            key: 'other',
+            label: 'Servkeyores cloud'
+        },
+        {
+            key: 'other',
+            label: 'Otros'
+        },
+    ],
+    'data': [
+        {
+            key: 'other',
+            label: 'Análisis descriptivo'
+        },
+        {
+            key: 'other',
+            label: 'RRSS'
+        },
+        {
+            key: 'other',
+            label: 'Visualizacion de datos'
+        },
+        {
+            key: 'other',
+            label: 'Segmentacion de clientes'
+        },
+        {
+            key: 'other',
+            label: 'Otros'
+        }
+    ],
+    'law': [
+        {
+            key: 'other',
+            label: 'Firma electrónica'
+        },
+        {
+            key: 'other',
+            label: 'GDPR'
+        },
+        {
+            key: 'other',
+            label: 'GRC'
+        },
+        {
+            key: 'other',
+            label: 'Risk management'
+        }
+    ],
+    'transversal': [
+        {
+            key: 'other',
+            label: 'Centralita virtual'
+        },
+        {
+            key: 'other',
+            label: 'Gestor documental'
+        },
+        {
+            key: 'other',
+            label: 'Productivkeyad'
+        },
+        {
+            key: 'other',
+            label: 'Segurkeyad'
+        },
+        {
+            key: 'other',
+            label: 'Gestión de proyectos'
+        },
+        {
+            key: 'other',
+            label: 'Suites ofimáticas'
+        },
+        {
+            key: 'other',
+            label: 'Diseño & comunicación'
+        },
+        {
+            key: 'other',
+            label: 'IA'
+        },
+        {
+            key: 'other',
+            label: 'Otros'
+        },
+    ],
+}

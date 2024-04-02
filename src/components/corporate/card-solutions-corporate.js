@@ -31,7 +31,18 @@ export const CardSolutionsCorporate = () => {
                     <Link to='/private/corporate/solutions'>
                         <GradientButton label='Ir a soluciones' type='red' size={'sm'} />
                     </Link>
-                </EmptyState> : <Box>Soluciones</Box>}
+                </EmptyState> : solutions.map((solution) => {
+                    return (
+                        <Flex key={solution._id} p={2} rounded={"xl"} bgColor={"white"} w={"100%"} justifyContent={"space-between"}>
+                            <Link to={`/private/solution/${solution?._id}`}>
+                                <Text fontWeight={'bold'} fontSize={14} _hover={{textDecor:'underline'}}>
+                                    {solution.name}
+                                </Text>
+                            </Link>
+                        </Flex>
+                    )
+                })
+            }
         </Box>
     )
 };

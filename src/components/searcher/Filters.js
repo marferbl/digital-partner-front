@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Flex, Box, Icon, VStack, Heading, Text } from '@chakra-ui/react';
+import { Flex, Box, Icon, VStack, Heading, Text, Checkbox } from '@chakra-ui/react';
 import SearchSelectCountries from '../base/search-select-countries';
 import SearchSelectLanguage from '../base/search-select-language';
 import SearchSelectFeatures from '../base/search-select-features';
@@ -48,14 +48,7 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
     ];
 
     const clearFilters = () => {
-        setFilterValues({
-            lineType: '',
-            feature: '',
-            partnerType: '',
-            countries: '',
-            languages: '',
-            serviceType: ''
-        });
+        setFilterValues({});
         setTermLabel('');
     };
 
@@ -66,7 +59,15 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
             <VStack align="left" spacing={4} pt={4}>
                 <Flex pr={5} gap={1} flexWrap={'wrap'} alignItems={'center'} flexDir='column'>
                     <SearchSelect options={lineTypeOptions} width={'100%'} label={'Tipo'} onChange={(value) => handleToggle('lineType', value)} value={filterValues.lineType} />
-                    {filterValues.lineType === 'solutions' && <SearchSelectFeatures showLabel width={'100%'} onChange={(value) => handleToggle('feature', value)} />}
+                    {filterValues.lineType === 'solutions' && <Checkbox
+                        w={'full'}
+                        isChecked={filterValues.isErp}
+                        onChange={(e) => handleToggle('isErp', e.target.checked)}
+                        my={2}
+                    >
+                        <Text fontSize={13}>¿Solo ERPs?</Text>
+                    </Checkbox>}
+                    {filterValues.lineType === 'solutions' && <SearchSelectFeatures showLabel width={'100%'} isMulti onChange={(value) => handleToggle('features', value)} />}
                     {filterValues.lineType === 'services' && <SearchSelect options={serviceTypeOptions} width={'100%'} label={'Tipo'} onChange={(value) => handleToggle('serviceType', value)} value={filterValues.serviceType} />}
                     {filterValues.lineType === 'services' && filterValues.serviceType === 'partner' && <SearchSelect options={partnerTypeOptions} width={'100%'} label={'Servicio'} onChange={(value) => handleToggle('partnerType', value)} value={filterValues.partnerType} />}
                     <SearchSelectCountries showLabel width={'100%'} onChange={(value) => handleToggle('countries', value)} defaultValue={filterValues.countries} />

@@ -18,7 +18,10 @@ const MarketplaceSection = ({ term, filters }) => {
 
     const getSolutions = () => {
         setLoading(true)
-        getAllSearch({ term: term, ...filters }).then((res) => {
+        const featuresToArray = typeof filters.features === 'string' ? filters.features.split(',') : filters.features;
+        const completedFilters = filters;
+        completedFilters.features = featuresToArray;
+        getAllSearch({ term: term, ...completedFilters }).then((res) => {
             setLoading(false)
             setSolutions(res.data.results);
 

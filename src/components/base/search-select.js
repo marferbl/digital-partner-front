@@ -3,7 +3,7 @@ import Select from 'react-select';
 import { Text } from '@chakra-ui/react';
 import { COLORS } from '../../colors/colors';
 
-export default function SearchSelect({ options, isMulti, onChange, searchable, value, label, ...props }) {
+export default function SearchSelect({ options, isMulti, onChange, searchable, value, label, disabled, ...props }) {
     const [selectedOption, setSelectedOption] = useState(value ? options.find(e => e.value === value) : null);
 
     useEffect(() => {
@@ -41,7 +41,7 @@ export default function SearchSelect({ options, isMulti, onChange, searchable, v
             ...provided,
             padding: 3,
             borderRadius: 5,
-            width:'fit-content',
+            width: 'fit-content',
             color: COLORS.secondary,
             // Add other styles as needed
         }),
@@ -59,6 +59,7 @@ export default function SearchSelect({ options, isMulti, onChange, searchable, v
                 placeholder={'Seleccionar'}
                 isSearchable={searchable}
                 styles={customStyles}
+                disabled={disabled}
             />
         </div >
     );

@@ -33,6 +33,7 @@ export const ButtonCreateSolution = ({ refreshSolutions, disabled }) => {
     const [languages, setLanguages] = useState([]);
     const [feature, setFeature] = useState([]);
     const [isVertical, setIsVertical] = useState(false);
+    const [isErp, setIsErp] = useState(false);
 
 
     const countriesOptions = COUNTRIES
@@ -56,6 +57,7 @@ export const ButtonCreateSolution = ({ refreshSolutions, disabled }) => {
     ];
 
     const create = async () => {
+        const featureArray = typeof feature === 'string' ? [feature] : feature;
         createSolution({
             name,
             description,
@@ -63,7 +65,8 @@ export const ButtonCreateSolution = ({ refreshSolutions, disabled }) => {
             sectorType,
             countries,
             languages,
-            feature,
+            features: featureArray,
+            isErp,
             isVertical
         }).then((res) => {
             refreshSolutions();
@@ -119,27 +122,29 @@ export const ButtonCreateSolution = ({ refreshSolutions, disabled }) => {
                                 placeholder='Descripción de la solución digital'
                                 size='sm'
                             />
-                            <Checkbox
-                                mt={4}
-                                isChecked={isVertical}
-                                onChange={handleCheckboxChange} // Attach onChange handler to update state
-                            >
-                                <Text fontSize={13}>¿Es una solución vertical?</Text>
-                            </Checkbox>
-                            <Flex gap={2} w='full'>
-
-                                {isVertical && <Box w='48%'>
-                                    <Text mt={3} fontWeight={"bold"}>
-                                        Sector:{" "}
-                                    </Text>
+                            <Flex mt={3} gap={2} w='full' align={'center'}>
+                                <Checkbox
+                                    w={'40%'}
+                                    isChecked={isErp}
+                                    onChange={(e) => setIsErp(e.target.checked)}
+                                >
+                                    <Text fontSize={13}>¿Es un ERP?</Text>
+                                </Checkbox>
+                                <Box flex={1}>
+                                    <SearchSelect options={featureOptions} value={feature} isMulti={isErp} onChange={(value) => setFeature(value)} />
+                                </Box>
+                            </Flex>
+                            <Flex mt={3} gap={2} w='full' align={'center'} h={12}>
+                                <Checkbox
+                                    w={'40%'}
+                                    isChecked={isVertical}
+                                    onChange={handleCheckboxChange} // Attach onChange handler to update state
+                                >
+                                    <Text fontSize={13}>¿Es una solución sectorial?</Text>
+                                </Checkbox>
+                                {isVertical && <Box flex={1}>
                                     <SearchSelect options={typesOptions} value={sectorType} onChange={(value) => setSectorType(value)} />
                                 </Box>}
-                                <Box w={isVertical ? '49%' : '100%'}>
-                                    <Text mt={3} fontWeight={"bold"}>
-                                        Funcionalidades:{" "}
-                                    </Text>
-                                    <SearchSelect options={featureOptions} value={feature} onChange={(value) => setFeature(value)} />
-                                </Box>
                             </Flex>
                             <Flex gap={2} w='full'>
                                 <Box w='48%'>
