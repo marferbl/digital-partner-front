@@ -25,6 +25,7 @@ export default function SearchSelect({ options, isMulti, onChange, searchable, v
             }
             else {
                 onChange(selectedOption.value);
+
             }
         }
     };

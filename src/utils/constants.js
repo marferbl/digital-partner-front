@@ -3,7 +3,7 @@ export const COUNTRIES = [
     { value: 'spain', label: 'España' },
     { value: 'france', label: 'Francia' },
     { value: 'italy', label: 'Italia' },
-    { value: 'usa', label: 'Estados Unkeyos' },
+    { value: 'usa', label: 'Estados Unvalueos' },
     { value: 'china', label: 'China' },
     { value: 'india', label: 'India' },
     { value: 'germany', label: 'Alemania' },
@@ -15,7 +15,7 @@ export const COUNTRIES = [
     { value: 'mexico', label: 'México' },
     { value: 'south_korea', label: 'Corea del Sur' },
     { value: 'indonesia', label: 'Indonesia' },
-    { value: 'turkey', label: 'Turquía' },
+    { value: 'turvalue', label: 'Turquía' },
     { value: 'netherlands', label: 'Países Bajos' },
     { value: 'saudi_arabia', label: 'Arabia Saudita' },
     { value: 'switzerland', label: 'Suiza' },
@@ -67,201 +67,201 @@ export const LANGUAGES = [
 export const SPECIFY_FEATURES = {
     'finance': [
         {
-            key: 'ticketing',
+            value: 'ticketing',
             label: 'Ticketing'
         },
         {
-            key: 'accounting',
-            label: 'Contabilkeyad'
+            value: 'accounting',
+            label: 'Contabilvaluead'
         },
         {
-            key: 'payment',
+            value: 'payment',
             label: 'Facturación'
         },
         {
-            key: 'ticketing',
+            value: 'ticketing',
             label: 'Tesorería'
         },
         {
-            key: 'other',
+            value: 'other',
             label: 'Other'
         }
     ],
     'sellmarketing': [
         {
-            key: 'crm',
+            value: 'crm',
             label: 'CRM'
         },
         {
-            key: 'marketingrelational',
+            value: 'marketingrelational',
             label: 'Marketing relacional'
         },
         {
-            key: 'marketingdigital',
+            value: 'marketingdigital',
             label: 'Marketing digital'
         },
         {
-            key: 'other',
+            value: 'other',
             label: 'Other'
         }
     ],
     'rrhh': [
         {
-            key: 'time',
+            value: 'time',
             label: 'Control horario'
         },
         {
-            key: 'salary',
+            value: 'salary',
             label: 'Nóminas'
         },
         {
-            key: 'marketingdigital',
+            value: 'marketingdigital',
             label: 'Gestión de personal'
         },
         {
-            key: 'other',
+            value: 'other',
             label: 'Selección'
         },
         {
-            key: 'other',
+            value: 'other',
             label: 'Formación'
         },
         {
-            key: 'other',
+            value: 'other',
             label: 'Desempeño'
         },
         {
-            key: 'other',
+            value: 'other',
             label: 'Otros'
         }
     ],
     'logistics': [
         {
-            key: 'other',
+            value: 'other',
             label: 'Almacen'
         },
         {
-            key: 'other',
+            value: 'other',
             label: 'Flotas'
         },
         {
-            key: 'other',
+            value: 'other',
             label: 'Compras'
         },
         {
-            key: 'other',
+            value: 'other',
             label: 'Manufactoring'
         },
         {
-            key: 'other',
+            value: 'other',
             label: 'Otros'
         }
     ],
     'it': [
         {
-            key: 'other',
+            value: 'other',
             label: 'BBDD'
         },
         {
-            key: 'other',
+            value: 'other',
             label: 'Lenguajes de programación'
         },
         {
-            key: 'other',
+            value: 'other',
             label: 'Soluciones para tu web'
         },
         {
-            key: 'other',
+            value: 'other',
             label: 'Soluciones app'
         },
         {
-            key: 'other',
+            value: 'other',
             label: 'Helpdesk'
         },
         {
-            key: 'other',
-            label: 'Servkeyores cloud'
+            value: 'other',
+            label: 'Servvalueores cloud'
         },
         {
-            key: 'other',
+            value: 'other',
             label: 'Otros'
         },
     ],
     'data': [
         {
-            key: 'other',
+            value: 'other',
             label: 'Análisis descriptivo'
         },
         {
-            key: 'other',
+            value: 'other',
             label: 'RRSS'
         },
         {
-            key: 'other',
+            value: 'other',
             label: 'Visualizacion de datos'
         },
         {
-            key: 'other',
+            value: 'other',
             label: 'Segmentacion de clientes'
         },
         {
-            key: 'other',
+            value: 'other',
             label: 'Otros'
         }
     ],
     'law': [
         {
-            key: 'other',
+            value: 'other',
             label: 'Firma electrónica'
         },
         {
-            key: 'other',
+            value: 'other',
             label: 'GDPR'
         },
         {
-            key: 'other',
+            value: 'other',
             label: 'GRC'
         },
         {
-            key: 'other',
+            value: 'other',
             label: 'Risk management'
         }
     ],
     'transversal': [
         {
-            key: 'other',
+            value: 'other',
             label: 'Centralita virtual'
         },
         {
-            key: 'other',
+            value: 'other',
             label: 'Gestor documental'
         },
         {
-            key: 'other',
-            label: 'Productivkeyad'
+            value: 'other',
+            label: 'Productivvaluead'
         },
         {
-            key: 'other',
-            label: 'Segurkeyad'
+            value: 'other',
+            label: 'Segurvaluead'
         },
         {
-            key: 'other',
+            value: 'other',
             label: 'Gestión de proyectos'
         },
         {
-            key: 'other',
+            value: 'other',
             label: 'Suites ofimáticas'
         },
         {
-            key: 'other',
+            value: 'other',
             label: 'Diseño & comunicación'
         },
         {
-            key: 'other',
+            value: 'other',
             label: 'IA'
         },
         {
-            key: 'other',
+            value: 'other',
             label: 'Otros'
         },
     ],

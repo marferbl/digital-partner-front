@@ -1,4 +1,4 @@
-import { Box, Center, Flex } from '@chakra-ui/react'
+import { Box, Button, Center, Flex } from '@chakra-ui/react'
 import React, { useState, useEffect } from 'react'
 import { COLORS } from '../../colors/colors'
 import Question from './Question'
@@ -19,6 +19,9 @@ import {
 } from "react-icons/fi";
 import { SPECIFY_FEATURES } from '../../utils/constants';
 import SearchSelectSpecifyFeatures from '../base/search-select-specify-features';
+import SolutionsQuiz from './SolutionsQuiz';
+import SearchSelectCountries from '../base/search-select-countries';
+import SearchSelectLanguage from '../base/search-select-language';
 
 
 const Quiz = () => {
@@ -56,124 +59,50 @@ const Quiz = () => {
     ]
     const [questions, setQuestions] = useState(questionsList)
     const [answers, setAnswers] = useState([])
-
-    const QUESTIONS_SOLUTIONS = [
-        {
-            order: 1,
-            title: '¿A quien va dirigido tu negocio?',
-            options: [
-                { key: 'finance', label: 'Finanzas y contabilidad' },
-                { key: 'sellmarketing', label: 'Ventas y marketing' },
-                { key: 'logistics', label: 'Cadena de suministro' },
-                { key: 'rrhh', label: 'RRHH' },
-                { key: 'it', label: 'IT' },
-                { key: 'data', label: 'Data' },
-                { key: 'law', label: 'Legal' },
-                { key: 'transversal', label: 'Transversal' },
-            ],
-            id: 'feature'
-        },
-        {
-            order: 2,
-            title: '¿Que funcionalidad específica debe tener la solución?',
-            options: SPECIFY_FEATURES[answers.feature],
-            id: 'isVertical',
-            component: 'specifyFeatures'
-        },
-        {
-            order: 3,
-            title: '¿Buscas una solución sectorial?',
-            options: [
-                { key: 'true', label: 'Si' },
-                { key: 'false', label: 'No' }
-            ],
-            id: 'isVertical'
-        },
-        {
-            order: 5,
-            title: '¿Para cuanta gente?',
-            options: [
-                { key: 'below5', label: '< 5' },
-                { key: '5to20', label: '5 - 20' },
-                { key: '21to50', label: '21 - 50' },
-                { key: '51to100', label: '51 - 100' },
-                { key: '101to500', label: '101-500' },
-                {
-                    key: 'above500', label: '> 500'
-                }
-            ],
-            id: 'size'
-        }
-    ]
+    const [order, setOrder] = useState(0)
+    const [lineType, setLineType] = useState('solutions')
 
     const startTest = () => {
         setAnswers([])
         setQuestions(questionsList)
-        setCurrentQuestion(questions[0])
+        setOrder(0)
     }
-
-    const QUESTION_SOLUTION_VERTICAL = {
-        order: 3,
-        title: '¿De que sector?',
-        options: [
-            { key: 'services', label: 'Servicios' },
-            { key: 'industry', label: 'Industria' },
-            { key: 'firstsector', label: 'Primer sector' },
-        ],
-        id: 'sector'
-    }
-
-    const [currentQuestion, setCurrentQuestion] = useState(questions[0])
-    const [option, setOption] = useState('')
 
     const goToSearch = () => {
         navigate(`/search/${''}`, { state: { filters: answers } })
     }
 
-    useEffect(() => {
-        if (['services', 'events', 'talent'].includes(answers.lineType)) {
-            goToSearch()
-        }
-    }, [answers]);
+    const setFiltersInAnswers = (value, key) => {
+        const array = typeof value === 'string' ? [value] : value
+        setAnswers({ ...answers, [key]: array })
+    }
 
-
-    const nextQuestion = (selectedOption) => {
-
-        if (['services', 'events', 'talent'].includes(answers.lineType)) {
-            return;
+    const nextQuestion = () => {
+        if (order === 0) {
+            setAnswers({ ...answers, lineType })
         }
-
-        setAnswers({ ...answers, [currentQuestion.id]: selectedOption.key });
-
-        if (currentQuestion.order === 0) {
-            setOption(selectedOption.key);
-        }
-        let newQuestions = [...questions];
-        if (selectedOption.key === 'solutions' && currentQuestion.order === 0) {
-            newQuestions = [...questions, ...QUESTIONS_SOLUTIONS];
-            setQuestions(newQuestions);
-            setCurrentQuestion(newQuestions[currentQuestion.order + 1]);
-        }
-        else if (selectedOption.key === 'true' && currentQuestion.order === 2) {
-            const newQuestions = [...questions];
-            newQuestions.splice(3, 0, QUESTION_SOLUTION_VERTICAL);
-            setQuestions(newQuestions);
-            setCurrentQuestion(newQuestions[currentQuestion.order + 1]);
-        }
-        else {
-            setCurrentQuestion(newQuestions[currentQuestion.order + 1]);
-        }
-        if (option === 'solutions' && currentQuestion.order === 5) {
-            goToSearch()
-        }
+        setOrder(order + 1)
     };
+
+    const updateConfig = (config) => {
+        setAnswers({ ...answers, ...config })
+    }
+    console.log(answers)
 
 
     return (
         <Box pb={14} w='full' bg={'gray.50'} mb={20}>
             <Flex w='full' justify={'end'} mt={-3} pr={5} pt={3} _hover={{ fontWeight: 'bold' }} cursor='pointer' onClick={startTest}>Volver a empezar</Flex>
             <Center pt={12} flexDir={'column'} px={{ base: 10, lg: 32 }}>
-                <Question {...currentQuestion} nextQuestion={nextQuestion} goToSearch={goToSearch} />
+                {order === 0 && <Question currentQuestion={questions[0]} setLineType={setLineType} nextQuestion={nextQuestion} goToSearch={goToSearch} />}
+                {(order > 0 && order < 3 && lineType === 'solutions') && <SolutionsQuiz order={order} nextQuestion={nextQuestion} setOrder={setOrder} updateConfig={updateConfig} />}
+                {((order === 3 && lineType === 'solutions') || (order === 1 && lineType !== 'solutions')) && <Box>
+                    <SearchSelectCountries isMulti w={'xs'} onChange={value => setFiltersInAnswers(value, 'countries')} />
+                    <SearchSelectLanguage isMulti onChange={value => setFiltersInAnswers(value, 'languages')} />
+                    <Button onClick={goToSearch} colorScheme='twitter' mt={5} w={'xs'}>Buscar</Button>
+                </Box>}
+
+
             </Center>
         </Box>
     )

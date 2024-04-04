@@ -16,6 +16,7 @@ import { COLORS } from "../../../colors/colors";
 import { createSolution } from '../../../services/solution';
 import SearchSelect from '../../base/search-select';
 import { COUNTRIES, LANGUAGES } from '../../../utils/constants';
+import SearchSelectSpecifyFeatures from '../../base/search-select-specify-features';
 
 
 
@@ -34,6 +35,7 @@ export const ButtonCreateSolution = ({ refreshSolutions, disabled }) => {
     const [feature, setFeature] = useState([]);
     const [isVertical, setIsVertical] = useState(false);
     const [isErp, setIsErp] = useState(false);
+    const [specifyFeatures, setSpecifyFeatures] = useState([]);
 
 
     const countriesOptions = COUNTRIES
@@ -57,7 +59,7 @@ export const ButtonCreateSolution = ({ refreshSolutions, disabled }) => {
     ];
 
     const create = async () => {
-        const featureArray = typeof feature === 'string' ? [feature] : feature;
+        const specifyFeaturesArray = typeof specifyFeatures === 'string' ? [specifyFeatures] : specifyFeatures;
         createSolution({
             name,
             description,
@@ -65,9 +67,10 @@ export const ButtonCreateSolution = ({ refreshSolutions, disabled }) => {
             sectorType,
             countries,
             languages,
-            features: featureArray,
+            features: feature,
             isErp,
-            isVertical
+            isVertical,
+            specifyFeatures: specifyFeaturesArray
         }).then((res) => {
             refreshSolutions();
             console.log("gola", res)
@@ -131,9 +134,20 @@ export const ButtonCreateSolution = ({ refreshSolutions, disabled }) => {
                                     <Text fontSize={13}>¿Es un ERP?</Text>
                                 </Checkbox>
                                 <Box flex={1}>
-                                    <SearchSelect options={featureOptions} value={feature} isMulti={isErp} onChange={(value) => setFeature(value)} />
+                                    <SearchSelect options={featureOptions} value={feature} isMulti={isErp} onChange={(value) => {
+                                        const array = typeof value === 'string' ? [value] : value;
+                                        setFeature(array)
+                                    }} />
                                 </Box>
                             </Flex>
+                            {feature.length ? <Flex mt={3} gap={2} w='full' align={'center'}>
+                                <Box flex={1}>
+                                    <Text mt={5} fontWeight={"bold"}>
+                                        Funcionalidades específicas:{" "}
+                                    </Text>
+                                    <SearchSelectSpecifyFeatures feature={feature} value={specifyFeatures} isMulti onChange={(value) => setSpecifyFeatures(value)} />
+                                </Box>
+                            </Flex> : <></>}
                             <Flex mt={3} gap={2} w='full' align={'center'} h={12}>
                                 <Checkbox
                                     w={'40%'}
