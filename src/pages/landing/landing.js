@@ -16,6 +16,7 @@ const LandingPage = () => {
       <Navbar />
       <Hero />
       <Quiz />
+      <Features />
       <PhotoFullScreen />
       <FooterLanding />
     </>

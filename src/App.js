@@ -1,5 +1,4 @@
 import { Flex } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
 import InitialPage from "./pages/start/initial-page";
 import { PageRoutes } from "./routes";
 

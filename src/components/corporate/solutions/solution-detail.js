@@ -1,4 +1,4 @@
-import { Box, Text, Flex, Grid, GridItem, Avatar } from "@chakra-ui/react";
+import { Box, Text, Flex, Grid, GridItem, Avatar, Checkbox } from "@chakra-ui/react";
 import React, { useState, useContext, useEffect } from "react";
 import CountryFlag from "../../base/country-flag";
 import { languageLabelFromValue } from "../../../utils/methods";
@@ -43,12 +43,29 @@ export const SolutionDetail = ({ solution }) => {
                         </Flex>
                         <Text fontSize={14} mt={5} fontWeight='bold' textDecor={'underline'}>Funcionalidades específicas:</Text>
 
-                        <Flex align={'center'} gap={2} pt={1}>
-                                {solution?.specifyFeatures?.map((feature, index) => (
-                                    <Text key={index} fontSize={18}>{SPECIFY_FEATURES_LABELS[feature]} {index < solution.specifyFeatures.length - 1 ? '-' : '.'} </Text>
+                        <Flex align="center" gap={2} pt={2}>
+                            <Grid templateColumns="repeat(2, 1fr)" gap={4}>
+                                {/* First column */}
+                                {solution?.specifyFeatures.slice(0, 4).map((feature, index) => (
+                                    <Flex key={index} alignItems="center">
+                                        <Checkbox
+                                            isChecked={true}
+                                        />
+                                        <Text ml={1} fontSize={18}>{SPECIFY_FEATURES_LABELS[feature]}</Text>
+                                    </Flex>
                                 ))}
-                            </Flex>
 
+                                {/* Second column */}
+                                {solution?.specifyFeatures.slice(4, 8).map((feature, index) => (
+                                    <Flex key={index} alignItems="center">
+                                        <Checkbox
+                                            isChecked={true}
+                                        />
+                                        <Text ml={1} fontSize={18}>{SPECIFY_FEATURES_LABELS[feature]}</Text>
+                                    </Flex>
+                                ))}
+                            </Grid>
+                        </Flex>
                         <Text fontSize={14} mt={5} fontWeight='bold' textDecor={'underline'}>Países:</Text>
                         <Flex align={'center'} gap={2} pt={1}>
                             {solution?.countries.map((country, index) => (
