@@ -1,6 +1,6 @@
 import { Button } from "@chakra-ui/react";
 
-const GradientButton = ({ type, label, onClick, size }) => {
+const GradientButton = ({ type, label, onClick, size, ...props }) => {
     // Define the gradients based on the type prop
     let bgGradient, hoverGradient, activeGradient;
 
@@ -29,6 +29,7 @@ const GradientButton = ({ type, label, onClick, size }) => {
             _focus={{ boxShadow: "outline" }}
             onClick={onClick}
             size={size || 'md'}
+            {...props}
         >
             {label}
         </Button>

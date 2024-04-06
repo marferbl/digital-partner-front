@@ -6,6 +6,7 @@ import CardTemplate from '../base/card-template'
 import { Link } from 'react-router-dom'
 import { EmptyState } from '../base/empty-state'
 import { CardSolutionsCorporate } from './card-solutions-corporate'
+import { CardServicesCorporate } from './card-services-corporate'
 
 
 export const CorporateProfile = ({ corporate }) => {
@@ -44,12 +45,7 @@ export const CorporateProfile = ({ corporate }) => {
                 <GridItem w='full' colSpan={1} px={5}>
                     <CardTemplate>
                         <Text fontWeight="bold" mr={2} textAlign='center' borderBottomWidth={1}> Servicio</Text>
-                        <EmptyState>
-                            <Text mb={2} textAlign='center'> No tienes ningún servicio creado</Text>
-                            <Link to='/private/corporate/service'>
-                                <GradientButton label='Ir a servicios' type='red' size={'sm'} />
-                            </Link>
-                        </EmptyState>
+                        <CardServicesCorporate />
                     </CardTemplate>
                 </GridItem>
             </Grid>

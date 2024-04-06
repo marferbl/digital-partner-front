@@ -6,9 +6,7 @@ import { COUNTRIES } from '../../utils/constants';
 import { SPECIFY_FEATURES } from '../../utils/constants';
 
 
-const SearchSelectSpecifyFeatures = ({ feature, defaultValue, onChange, props, showLabel }) => {
-
-    console.log(feature)
+const SearchSelectSpecifyFeatures = ({ feature, defaultValue, onChange, showLabel, label, ...props }) => {
 
     const [value, setValue] = useState(defaultValue || null)
     const [options, setOptions] = useState([])
@@ -40,7 +38,7 @@ const SearchSelectSpecifyFeatures = ({ feature, defaultValue, onChange, props, s
 
     return (
         <Box my={1} {...props}>
-            <SearchSelect options={options} value={value} isMulti label={showLabel ? 'Funcionalidad' : null} onChange={(value) => changeValue(value)} />
+            <SearchSelect options={options} value={value} isMulti label={showLabel ? (label || 'Funcionalidad') : null} onChange={(value) => changeValue(value)} />
         </Box>
     )
 }

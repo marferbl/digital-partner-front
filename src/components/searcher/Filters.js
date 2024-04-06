@@ -7,6 +7,7 @@ import SearchSelect from '../base/search-select';
 import GradientButton from '../base/GradientButton';
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { COLORS } from '../../colors/colors';
+import SearchSelectSpecifyFeatures from '../base/search-select-specify-features';
 
 
 const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
@@ -68,6 +69,7 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
                         <Text fontSize={13}>¿Solo ERPs?</Text>
                     </Checkbox>}
                     {filterValues.lineType === 'solutions' && <SearchSelectFeatures showLabel width={'100%'} isMulti onChange={(value) => handleToggle('features', value)} />}
+                    {(filterValues.lineType === 'solutions' && filterValues.features?.length) ? <SearchSelectSpecifyFeatures showLabel width={'100%'} label={'Funcionalidad especifica'} feature={filterValues.features} onChange={(value) => handleToggle('specifyFeatures', value)} /> : null}
                     {filterValues.lineType === 'services' && <SearchSelect options={serviceTypeOptions} width={'100%'} label={'Tipo'} onChange={(value) => handleToggle('serviceType', value)} value={filterValues.serviceType} />}
                     {filterValues.lineType === 'services' && filterValues.serviceType === 'partner' && <SearchSelect options={partnerTypeOptions} width={'100%'} label={'Servicio'} onChange={(value) => handleToggle('partnerType', value)} value={filterValues.partnerType} />}
                     <SearchSelectCountries showLabel width={'100%'} onChange={(value) => handleToggle('countries', value)} defaultValue={filterValues.countries} />

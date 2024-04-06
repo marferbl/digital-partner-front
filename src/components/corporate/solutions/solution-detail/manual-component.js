@@ -31,11 +31,12 @@ export const ManualComponent = ({ solution }) => {
 
     return (
         <Box>
-            <Flex w='full' justify={'flex-end'} my={8}>
+            Próximanente
+            {/* <Flex w='full' justify={'flex-end'} my={8}>
                 {me?.corporateId === solution.corporate && <ButtonCreateManual refreshManuals={getManuals} />}
             </Flex>
 
-            <ManualsTable manuals={manuals} />
+            <ManualsTable manuals={manuals} /> */}
         </Box>
 
     )

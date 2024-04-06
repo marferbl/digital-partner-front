@@ -1,4 +1,4 @@
-import { Box, Button, Center, Flex } from '@chakra-ui/react'
+import { Box, Button, Center, Flex, Text } from '@chakra-ui/react'
 import React, { useState, useEffect } from 'react'
 import { COLORS } from '../../colors/colors'
 import Question from './Question'
@@ -22,6 +22,8 @@ import SearchSelectSpecifyFeatures from '../base/search-select-specify-features'
 import SolutionsQuiz from './SolutionsQuiz';
 import SearchSelectCountries from '../base/search-select-countries';
 import SearchSelectLanguage from '../base/search-select-language';
+import GradientButton from '../base/GradientButton';
+import LoadingSpinner from '../base/LoadingSpinner';
 
 
 const Quiz = () => {
@@ -61,6 +63,7 @@ const Quiz = () => {
     const [answers, setAnswers] = useState([])
     const [order, setOrder] = useState(0)
     const [lineType, setLineType] = useState('solutions')
+    const [loading, setLoading] = useState(false)
 
     const startTest = () => {
         setAnswers([])
@@ -69,7 +72,11 @@ const Quiz = () => {
     }
 
     const goToSearch = () => {
-        navigate(`/search/${''}`, { state: { filters: answers } })
+        setLoading(true)
+        setTimeout(() => {
+            setLoading(false)
+            navigate(`/search/${''}`, { state: { filters: answers } })
+        }, 2500)
     }
 
     const setFiltersInAnswers = (value, key) => {
@@ -87,23 +94,27 @@ const Quiz = () => {
     const updateConfig = (config) => {
         setAnswers({ ...answers, ...config })
     }
-    console.log(answers)
-
 
     return (
         <Box pb={14} w='full' bg={'gray.50'} mb={20}>
-            <Flex w='full' justify={'end'} mt={-3} pr={5} pt={3} _hover={{ fontWeight: 'bold' }} cursor='pointer' onClick={startTest}>Volver a empezar</Flex>
-            <Center pt={12} flexDir={'column'} px={{ base: 10, lg: 32 }}>
-                {order === 0 && <Question currentQuestion={questions[0]} setLineType={setLineType} nextQuestion={nextQuestion} goToSearch={goToSearch} />}
-                {(order > 0 && order < 3 && lineType === 'solutions') && <SolutionsQuiz order={order} nextQuestion={nextQuestion} setOrder={setOrder} updateConfig={updateConfig} />}
-                {((order === 3 && lineType === 'solutions') || (order === 1 && lineType !== 'solutions')) && <Box>
-                    <SearchSelectCountries isMulti w={'xs'} onChange={value => setFiltersInAnswers(value, 'countries')} />
-                    <SearchSelectLanguage isMulti onChange={value => setFiltersInAnswers(value, 'languages')} />
-                    <Button onClick={goToSearch} colorScheme='twitter' mt={5} w={'xs'}>Buscar</Button>
-                </Box>}
-
-
-            </Center>
+            {!loading ? <Box>
+                <Flex w='full' justify={'end'} mt={-3} pr={5} pt={3} _hover={{ fontWeight: 'bold' }} cursor='pointer' onClick={startTest}>Volver a empezar</Flex>
+                <Center pt={12} flexDir={'column'} px={{ base: 10, lg: 32 }}>
+                    {order === 0 && <Question currentQuestion={questions[0]} setLineType={setLineType} nextQuestion={nextQuestion} goToSearch={goToSearch} />}
+                    {(order > 0 && order < 3 && lineType === 'solutions') && <SolutionsQuiz order={order} nextQuestion={nextQuestion} setOrder={setOrder} updateConfig={updateConfig} />}
+                    {((order === 3 && lineType === 'solutions') || (order === 1 && lineType !== 'solutions')) && <Box>
+                        <Text>En qué países quieres buscar? </Text>
+                        <SearchSelectCountries isMulti w={'xs'} onChange={value => setFiltersInAnswers(value, 'countries')} />
+                        <Text>En qué idiomas quieres buscar? </Text>
+                        <SearchSelectLanguage isMulti onChange={value => setFiltersInAnswers(value, 'languages')} />
+                        <GradientButton onClick={goToSearch} label={'Sorpréndeme'} w='full' mt={5} />
+                    </Box>}
+                </Center>
+            </Box>
+                : <Center minH={300} w='full' bg={'gray.50'}>
+                    <LoadingSpinner label={'Digitaleando...'} />
+                </Center>
+            }
         </Box>
     )
 }

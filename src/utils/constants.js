@@ -84,7 +84,7 @@ export const SPECIFY_FEATURES = {
         },
         {
             value: 'other',
-            label: 'Other'
+            label: 'Otros'
         }
     ],
     'sellmarketing': [
@@ -102,7 +102,7 @@ export const SPECIFY_FEATURES = {
         },
         {
             value: 'other',
-            label: 'Other'
+            label: 'Otros'
         }
     ],
     'rrhh': [
@@ -115,19 +115,19 @@ export const SPECIFY_FEATURES = {
             label: 'Nóminas'
         },
         {
-            value: 'marketingdigital',
+            value: 'personalmanagement',
             label: 'Gestión de personal'
         },
         {
-            value: 'other',
+            value: 'selection',
             label: 'Selección'
         },
         {
-            value: 'other',
+            value: 'training',
             label: 'Formación'
         },
         {
-            value: 'other',
+            value: 'performance',
             label: 'Desempeño'
         },
         {
@@ -137,19 +137,19 @@ export const SPECIFY_FEATURES = {
     ],
     'logistics': [
         {
-            value: 'other',
+            value: 'warehouse',
             label: 'Almacen'
         },
         {
-            value: 'other',
+            value: 'transport',
             label: 'Flotas'
         },
         {
-            value: 'other',
+            value: 'shopping',
             label: 'Compras'
         },
         {
-            value: 'other',
+            value: 'manufactoring',
             label: 'Manufactoring'
         },
         {
@@ -159,28 +159,28 @@ export const SPECIFY_FEATURES = {
     ],
     'it': [
         {
-            value: 'other',
+            value: 'bbdd',
             label: 'BBDD'
         },
         {
-            value: 'other',
+            value: 'programminglanguages',
             label: 'Lenguajes de programación'
         },
         {
-            value: 'other',
+            value: 'webSolutions',
             label: 'Soluciones para tu web'
         },
         {
-            value: 'other',
+            value: 'appSolutions',
             label: 'Soluciones app'
         },
         {
-            value: 'other',
+            value: 'helpDesk',
             label: 'Helpdesk'
         },
         {
-            value: 'other',
-            label: 'Servvalueores cloud'
+            value: 'cloud',
+            label: 'Servidores cloud'
         },
         {
             value: 'other',
@@ -189,19 +189,19 @@ export const SPECIFY_FEATURES = {
     ],
     'data': [
         {
-            value: 'other',
+            value: 'descriptiveAnalysis',
             label: 'Análisis descriptivo'
         },
         {
-            value: 'other',
+            value: 'rrss',
             label: 'RRSS'
         },
         {
-            value: 'other',
+            value: 'dataVisualization',
             label: 'Visualizacion de datos'
         },
         {
-            value: 'other',
+            value: 'clientSegmentation',
             label: 'Segmentacion de clientes'
         },
         {
@@ -211,53 +211,53 @@ export const SPECIFY_FEATURES = {
     ],
     'law': [
         {
-            value: 'other',
+            value: 'electronicSignature',
             label: 'Firma electrónica'
         },
         {
-            value: 'other',
+            value: 'gdpr',
             label: 'GDPR'
         },
         {
-            value: 'other',
+            value: 'grc',
             label: 'GRC'
         },
         {
-            value: 'other',
+            value: 'riskManagement',
             label: 'Risk management'
         }
     ],
     'transversal': [
         {
-            value: 'other',
+            value: 'virtualSwitchboard',
             label: 'Centralita virtual'
         },
         {
-            value: 'other',
+            value: 'documentManager',
             label: 'Gestor documental'
         },
         {
-            value: 'other',
-            label: 'Productivvaluead'
+            value: 'productivity',
+            label: 'Productividad'
         },
         {
             value: 'other',
-            label: 'Segurvaluead'
+            label: 'Seguridad'
         },
         {
-            value: 'other',
+            value: 'projectManagement',
             label: 'Gestión de proyectos'
         },
         {
-            value: 'other',
+            value: 'officeSuites',
             label: 'Suites ofimáticas'
         },
         {
-            value: 'other',
+            value: 'communicationAndDesign',
             label: 'Diseño & comunicación'
         },
         {
-            value: 'other',
+            value: 'ia',
             label: 'IA'
         },
         {
@@ -266,3 +266,47 @@ export const SPECIFY_FEATURES = {
         },
     ],
 }
+
+export const SPECIFY_FEATURES_LABELS = {
+    ticketing: 'Ticketing',
+    accounting: 'Contabilidad',
+    payment: 'Facturación',
+    tesoreria: 'Tesorería',
+    other: 'Otros',
+    crm: 'CRM',
+    marketingrelational: 'Marketing relacional',
+    marketingdigital: 'Marketing digital',
+    time: 'Control horario',
+    salary: 'Nóminas',
+    personalmanagement: 'Gestión de personal',
+    selection: 'Selección',
+    training: 'Formación',
+    performance: 'Desempeño',
+    warehouse: 'Almacen',
+    transport: 'Flotas',
+    shopping: 'Compras',
+    manufactoring: 'Manufactoring',
+    bbdd: 'BBDD',
+    programminglanguages: 'Lenguajes de programación',
+    webSolutions: 'Soluciones para tu web',
+    appSolutions: 'Soluciones app',
+    helpDesk: 'Helpdesk',
+    cloud: 'Servidores cloud',
+    descriptiveAnalysis: 'Análisis descriptivo',
+    rrss: 'RRSS',
+    dataVisualization: 'Visualizacion de datos',
+    clientSegmentation: 'Segmentacion de clientes',
+    electronicSignature: 'Firma electrónica',
+    gdpr: 'GDPR',
+    grc: 'GRC',
+    riskManagement: 'Risk management',
+    virtualSwitchboard: 'Centralita virtual',
+    documentManager: 'Gestor documental',
+    productivity: 'Productividad',
+    projectManagement: 'Gestión de proyectos',
+    officeSuites: 'Suites ofimáticas',
+    communicationAndDesign: 'Diseño & comunicación',
+    ia: 'IA'
+}
+
+

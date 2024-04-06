@@ -2,6 +2,7 @@ import { Box, Text, Flex, Grid, GridItem, Avatar } from "@chakra-ui/react";
 import React, { useState, useContext, useEffect } from "react";
 import CountryFlag from "../../base/country-flag";
 import { languageLabelFromValue } from "../../../utils/methods";
+import { SPECIFY_FEATURES_LABELS } from "../../../utils/constants";
 
 
 
@@ -17,6 +18,7 @@ export const SolutionDetail = ({ solution }) => {
         other: 'Otro',
         law: 'Legal',
     };
+
 
     return (
         <Box mt={6} p={5} rounded={"xl"} bgColor={"white"} w={"100%"}>
@@ -39,6 +41,14 @@ export const SolutionDetail = ({ solution }) => {
                             ))}
                             (<Text fontSize={18} >{!solution.isErp ? 'No es ERP' : 'Es ERP'}</Text>)
                         </Flex>
+                        <Text fontSize={14} mt={5} fontWeight='bold' textDecor={'underline'}>Funcionalidades específicas:</Text>
+
+                        <Flex align={'center'} gap={2} pt={1}>
+                                {solution?.specifyFeatures?.map((feature, index) => (
+                                    <Text key={index} fontSize={18}>{SPECIFY_FEATURES_LABELS[feature]} {index < solution.specifyFeatures.length - 1 ? '-' : '.'} </Text>
+                                ))}
+                            </Flex>
+
                         <Text fontSize={14} mt={5} fontWeight='bold' textDecor={'underline'}>Países:</Text>
                         <Flex align={'center'} gap={2} pt={1}>
                             {solution?.countries.map((country, index) => (
@@ -51,7 +61,6 @@ export const SolutionDetail = ({ solution }) => {
                                 <Text key={index} >{languageLabelFromValue(language)} </Text>
                             ))}
                         </Flex>
-
                     </Box>
                 </GridItem>
             </Grid>}
