@@ -13,6 +13,8 @@ import {
 } from '@chakra-ui/react'
 import { COLORS } from "../../colors/colors";
 import { createCorporate } from '../../services/corporate';
+import { PaymentForm } from '../stripe';
+import { FaInfoCircle } from "react-icons/fa";
 
 
 
@@ -26,6 +28,7 @@ export const ButtonCreateCorporate = ({ refreshCorporate }) => {
     const [cif, setCif] = useState("");
     const [size, setSize] = useState("");
     const [web, setWeb] = useState("");
+    const [step, setStep] = useState(0);
 
 
 
@@ -39,17 +42,28 @@ export const ButtonCreateCorporate = ({ refreshCorporate }) => {
         });
     };
 
+    const closeModal = () => {
+        onClose();
+        setName("");
+        setCif("");
+        setSize("");
+        setCountry("");
+        setWeb("");
+        setStep(0);
+    };
+
+
     return (
         <>
             <Button bg={COLORS.primary} color={'white'} _hover={{ bg: 'blue.700' }} onClick={onOpen}>Crear corporate</Button>
 
-            <Modal isOpen={isOpen} onClose={onClose}>
+            <Modal isOpen={isOpen} onClose={closeModal}>
                 <ModalOverlay />
                 <ModalContent>
                     <ModalHeader>Crear Corporate</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody py={5}>
-                        <Box fontSize={12} display={'flex'} alignItems={'start'} flexDir={'column'}>
+                        {step === 0 ? <Box fontSize={12} display={'flex'} alignItems={'start'} flexDir={'column'}>
                             <Text fontWeight={"bold"}>Nombre: </Text>
                             <Input value={name} w={300} onChange={(e) => setName(e.target.value)} placeholder={'Corporate Nueva'} />
                             <Flex gap={2}>
@@ -95,14 +109,34 @@ export const ButtonCreateCorporate = ({ refreshCorporate }) => {
                                 value={web}
                                 onChange={(e) => setWeb(e.target.value)}
                             />
-                        </Box>
+                        </Box> : <Box py={1}>
+                            <Flex flexDir={'column'} pb={8}>
+                                <Flex align='baseline' justify={'start'}>
+                                    <Text ml={2} fontSize={40} fontWeight={'extrabold'}> 0€</Text>
+                                </Flex>
+                                <Flex align='start' justify={'start'}>
+                                    <FaInfoCircle size={20} />
+                                    <Text fontSize={12} ml={2}>
+                                        El pago unico incluye la creación de la corporate y la publicación de una oferta de servicio o de solución.
+                                    </Text>
+                                </Flex>
+                            </Flex>
+                            <Box position='relative' >
+                                <Text align={'center'} position={'absolute'} left={'%'} top={'40%'} zIndex={99} bg={'gray.100'} rounded='xl' p={2}>
+                                   Para pagos de 0 euros no es necesario introducir datos de pago.
+                                </Text>
+                                <Box opacity={0.15}>
+                                    <PaymentForm />
+                                </Box>
+                            </Box>
+                        </Box>}
                     </ModalBody>
 
                     <ModalFooter>
-                        <Button variant='ghost' mr={3} onClick={onClose}>
+                        <Button variant='ghost' mr={3} onClick={closeModal}>
                             cancelar
                         </Button>
-                        <Button onClick={create} colorScheme='teal'>Confirmar</Button>
+                        <Button onClick={() => { step === 0 ? setStep(1) : create() }} colorScheme='teal'>Confirmar</Button>
                     </ModalFooter>
                 </ModalContent>
             </Modal>

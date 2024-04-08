@@ -9,6 +9,7 @@ import {
   Button
 } from '@chakra-ui/react';
 import { Link } from "react-router-dom";
+import { COLORS } from '../../../colors/colors';
 
 
 
@@ -70,6 +71,7 @@ const features = [
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
+        color="white" // Match the button's text color
       >
         <path
           stroke-linecap="round"
@@ -87,7 +89,7 @@ const features = [
 const Features = () => {
   const gradientColor = "#1e96d9";
   return (
-    <Container maxW="6xl" p={{ base: 5, md: 10 }} mb={10}>
+    <Container maxW="6xl" p={{ base: 5, md: 10 }} mb={{base: 5, lg: 20}}>
       <SimpleGrid columns={{ base: 1, sm: 2, md: 3 }} placeItems="center" spacing={10} mb={4}>
         {features.map((feature, index) => (
           <Box
@@ -122,14 +124,14 @@ const Features = () => {
             <Link to={{ pathname: '/newRouteHidden/a', state: { filter: 'register' } }} >
               <Button
                 mt={5}
-                bgGradient={`linear(to-r, ${gradientColor}, #17a7c2)`} // Adjust gradient stops as needed
-                _hover={{ bgGradient: `linear(to-r, ${gradientColor}, #17a7c2)` }} // Adjust hover effect if necessary
-                _active={{ bgGradient: `linear(to-r, ${gradientColor}, #17a7c2)` }} // Adjust active effect if necessary
+                bgGradient={`linear(to-r, ${COLORS.secondary}, #17a7c2)`} // Adjust gradient stops as needed
+                _hover={{ bgGradient: `linear(to-r, ${COLORS.secondary}, #17a7c2)` }} // Adjust hover effect if necessary
+                _active={{ bgGradient: `linear(to-r, ${COLORS.secondary}, #17a7c2)` }} // Adjust active effect if necessary
                 color="white"
                 fontWeight="bold"
                 _focus={{ boxShadow: "outline" }}
               >
-                Configura tu perfil
+               {feature.button}
               </Button>
             </Link>
           </Box>
