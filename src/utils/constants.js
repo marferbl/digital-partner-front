@@ -3,7 +3,7 @@ export const COUNTRIES = [
     { value: 'spain', label: 'España' },
     { value: 'france', label: 'Francia' },
     { value: 'italy', label: 'Italia' },
-    { value: 'usa', label: 'Estados Unvalueos' },
+    { value: 'usa', label: 'Estados Unidos' },
     { value: 'china', label: 'China' },
     { value: 'india', label: 'India' },
     { value: 'germany', label: 'Alemania' },
@@ -15,7 +15,7 @@ export const COUNTRIES = [
     { value: 'mexico', label: 'México' },
     { value: 'south_korea', label: 'Corea del Sur' },
     { value: 'indonesia', label: 'Indonesia' },
-    { value: 'turvalue', label: 'Turquía' },
+    { value: 'turkey', label: 'Turquía' },
     { value: 'netherlands', label: 'Países Bajos' },
     { value: 'saudi_arabia', label: 'Arabia Saudita' },
     { value: 'switzerland', label: 'Suiza' },
@@ -72,7 +72,7 @@ export const SPECIFY_FEATURES = {
         },
         {
             value: 'accounting',
-            label: 'Contabilvaluead'
+            label: 'Contabilidad'
         },
         {
             value: 'payment',

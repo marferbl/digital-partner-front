@@ -15,6 +15,7 @@ import { COLORS } from "../../colors/colors";
 import { createCorporate } from '../../services/corporate';
 import { PaymentForm } from '../stripe';
 import { FaInfoCircle } from "react-icons/fa";
+import SearchSelectCountries from '../base/search-select-countries';
 
 
 
@@ -94,13 +95,7 @@ export const ButtonCreateCorporate = ({ refreshCorporate }) => {
                             <Text mt={3} fontWeight={"bold"}>
                                 País:{" "}
                             </Text>
-                            <Select placeholder='Select option' onChange={(e) => setCountry(e.target.value)}>
-                                <option value='option1'>España</option>
-                                <option value='option2'>Estados Unidos</option>
-                                <option value='option3'>Francia</option>
-                                <option value='option3'>Alemania</option>
-
-                            </Select>
+                            <SearchSelectCountries w='full' isMulti={false} onChange={(value) => setCountry(value)} />
                             <Text mt={3} fontWeight={"bold"}>
                                 Página web:{" "}
                             </Text>
@@ -110,20 +105,20 @@ export const ButtonCreateCorporate = ({ refreshCorporate }) => {
                                 onChange={(e) => setWeb(e.target.value)}
                             />
                         </Box> : <Box py={1}>
-                            <Flex flexDir={'column'} pb={8}>
+                            <Flex flexDir={'column'} pb={8} >
                                 <Flex align='baseline' justify={'start'}>
-                                    <Text ml={2} fontSize={40} fontWeight={'extrabold'}> 0€</Text>
+                                    <Text ml={2} fontSize={50} fontWeight={'extrabold'}> 0€</Text>
                                 </Flex>
-                                <Flex align='start' justify={'start'}>
+                                <Flex align='start' justify={'start'} ml={2}>
                                     <FaInfoCircle size={20} />
                                     <Text fontSize={12} ml={2}>
                                         El pago unico incluye la creación de la corporate y la publicación de una oferta de servicio o de solución.
                                     </Text>
                                 </Flex>
                             </Flex>
-                            <Box position='relative' >
+                            <Box position='relative' minH={52} >
                                 <Text align={'center'} position={'absolute'} left={'%'} top={'40%'} zIndex={99} bg={'gray.100'} rounded='xl' p={2}>
-                                   Para pagos de 0 euros no es necesario introducir datos de pago.
+                                    Para pagos de 0 euros no es necesario introducir datos de pago.
                                 </Text>
                                 <Box opacity={0.15}>
                                     <PaymentForm />

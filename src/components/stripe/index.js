@@ -77,13 +77,13 @@ const CheckoutForm = () => {
         </form>
     );
 };
-const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
+const key = `${process.env.REACT_APP_STRIPE_PUBLIC_KEY}`
+const stripePromise = loadStripe(key);
 
 const options = {
     mode: 'payment',
     amount: 27500,
     currency: 'usd',
-    // Fully customizable with appearance API.
     appearance: {
         /*...*/
     },
@@ -91,6 +91,6 @@ const options = {
 
 export const PaymentForm = () => (
     <Elements stripe={stripePromise} options={options}>
-        <CheckoutForm />
+        {key ? <CheckoutForm /> : <></>}
     </Elements>
 );

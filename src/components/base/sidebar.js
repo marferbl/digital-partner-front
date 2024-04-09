@@ -24,12 +24,15 @@ import {
   FiRepeat,
   FiBookOpen,
   FiCalendar,
-  FiSearch
+  FiSearch,
 } from "react-icons/fi";
+import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
+
 import { Link } from "react-router-dom";
 import { UserContext } from "../../context/userContext";
 import { FiGrid } from "react-icons/fi";
 import { COLORS } from "../../colors/colors";
+import { useState } from "react";
 
 const LinkItems = [
   { name: "Inicio", icon: FiHome },
@@ -38,7 +41,7 @@ const LinkItems = [
 
 export default function SimpleSidebar({ children }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
 
   return (
@@ -46,6 +49,7 @@ export default function SimpleSidebar({ children }) {
       <SidebarContent
         onClose={() => onClose}
         display={{ base: "none", md: "block" }}
+        isSidebarOpen={isSidebarOpen} setIsSidebarOpen={() => setIsSidebarOpen(!isSidebarOpen)}
       />
       <Drawer
         autoFocus={false}
@@ -57,20 +61,25 @@ export default function SimpleSidebar({ children }) {
         size="full"
       >
         <DrawerContent>
-          <SidebarContent onClose={onClose} />
+          <SidebarContent onClose={onClose} isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
         </DrawerContent>
       </Drawer>
       {/* mobilenav */}
       <MobileNav display={{ base: "flex", md: "none" }} onOpen={onOpen} />
-      <Box ml={{ base: 0, md: 60 }} p="6">
+      <Box ml={{ base: 0, md: isSidebarOpen ? 60 : 10 }} p="6">
         {children}
       </Box>
     </Box>
   );
 }
 
-const SidebarContent = ({ onClose, ...rest }) => {
+const SidebarContent = ({ onClose, isSidebarOpen, setIsSidebarOpen, ...rest }) => {
   const { userView } = useContext(UserContext);
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
 
   const userRoutes = [
     { name: "Perfil", icon: FiUser, to: "profile" },
@@ -94,32 +103,49 @@ const SidebarContent = ({ onClose, ...rest }) => {
       bg={useColorModeValue("white", "gray.100")}
       borderRight="1px"
       borderRightColor={useColorModeValue("gray.200", "gray.400")}
-      w={{ base: "full", md: 60 }}
+      w={isSidebarOpen ? { base: "full", md: 60 } : 0}
       pos="fixed"
       h="full"
+      transition="width 0.3s ease"
       {...rest}
     >
-      <Flex h="20" alignItems="center" mx="5" justifyContent="space-between">
-        <Link to="/">
-          <Image src={"/logo-digitalando.png"} height={14} />
-        </Link>
-        <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
+      <Flex w='full' justify={isSidebarOpen ? 'end' : ''}>
+
+        <IconButton
+          bg={'white'}
+          variant="outline"
+          onClick={toggleSidebar}
+          aria-label="open menu"
+          icon={isSidebarOpen ? <FaAngleLeft /> : <FaAngleRight />}
+          mt={2}
+          mx={1}
+        />
       </Flex>
-      {userView === 'corporate' ? (adminRoutes.map((link) => (
-        <NavItem key={link.name} icon={link.icon} to={link.to} soon={link.soon}>
-          {link.name}
-          {link.soon ? <Text fontSize={9} color="gray.400" ml="auto">Próximamente</Text> : null}
+      {isSidebarOpen &&
+        <>
+          <Flex h="20" alignItems="center" mx="5" justifyContent="space-between">
+            <Link to="/">
+              <Image src={"/logo-digitalando.png"} height={14} />
+            </Link>
+            <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
+          </Flex>
+          {userView === 'corporate' ? (adminRoutes.map((link) => (
+            <NavItem key={link.name} icon={link.icon} to={link.to} soon={link.soon}>
+              {link.name}
+              {link.soon ? <Text fontSize={9} color="gray.400" ml="auto">Próximamente</Text> : null}
 
-        </NavItem>
-      ))) : (userRoutes.map((link) => (
-        <NavItem key={link.name} icon={link.icon} to={link.to} soon={link.soon}>
-          {link.name}
-          {link.soon ? <Text fontSize={9} color="gray.400" ml="auto">Próximamente</Text> : null}
+            </NavItem>
+          ))) : (userRoutes.map((link) => (
+            <NavItem key={link.name} icon={link.icon} to={link.to} soon={link.soon}>
+              {link.name}
+              {link.soon ? <Text fontSize={9} color="gray.400" ml="auto">Próximamente</Text> : null}
 
-        </NavItem>
-      )
-      )
-      )}
+            </NavItem>
+          )
+          )
+          )}
+        </>
+      }
 
     </Box>
   );
