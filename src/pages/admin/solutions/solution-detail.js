@@ -18,12 +18,14 @@ export const SolutionDetailPage = () => {
     const [label, setLabel] = useState('Partner');
     const { id } = useParams();
 
+
+
     const LINKS = [
         { label: 'Descubrir partners', component: <PartnerComponent /> },
         { label: 'Pedir demo', component: <DemoComponent solution={solution} /> },
         { label: 'Descargar manuales', component: <ManualComponent solution={solution} /> },
         { label: 'Comprar referencias', component: <ReferencesComponent /> },
-        { label: 'Obtener certificaciones', component: <CertificationComponent /> },
+        { label: 'Obtener certificaciones', component: <CertificationComponent solution={solution} /> },
     ];
 
 

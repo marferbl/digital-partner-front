@@ -19,6 +19,8 @@ export const SolutionDetail = ({ solution }) => {
         law: 'Legal',
     };
 
+    
+
 
     return (
         <Box mt={6} p={5} rounded={"xl"} bgColor={"white"} w={"100%"}>

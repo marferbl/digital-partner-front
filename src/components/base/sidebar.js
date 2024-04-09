@@ -110,22 +110,21 @@ const SidebarContent = ({ onClose, isSidebarOpen, setIsSidebarOpen, ...rest }) =
       {...rest}
     >
       <Flex w='full' justify={isSidebarOpen ? 'end' : ''}>
-
         <IconButton
           bg={'white'}
           variant="outline"
           onClick={toggleSidebar}
           aria-label="open menu"
           icon={isSidebarOpen ? <FaAngleLeft /> : <FaAngleRight />}
-          mt={2}
+          mt={4}
           mx={1}
         />
       </Flex>
       {isSidebarOpen &&
         <>
-          <Flex h="20" alignItems="center" mx="5" justifyContent="space-between">
+          <Flex mt={-10} mb={10} h="10" alignItems="center" ml={1} justifyContent="space-between">
             <Link to="/">
-              <Image src={"/logo-digitalando.png"} height={14} />
+              <Image ml={3} src={"/logo-digitalando.png"} height={12} />
             </Link>
             <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
           </Flex>
