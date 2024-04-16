@@ -59,7 +59,7 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
         <Box borderRightWidth={1} h={'full'} >
             <VStack align="left" spacing={4} pt={4}>
                 <Flex pr={5} gap={1} flexWrap={'wrap'} alignItems={'center'} flexDir='column'>
-                    <SearchSelect options={lineTypeOptions} width={'100%'} label={'Tipo'} onChange={(value) => handleToggle('lineType', value)} value={filterValues.lineType} />
+                    <SearchSelect options={lineTypeOptions} width={'100%'} label={'Línea'} onChange={(value) => handleToggle('lineType', value)} value={filterValues.lineType} />
                     {filterValues.lineType === 'solutions' && <Checkbox
                         w={'full'}
                         isChecked={filterValues.isErp}

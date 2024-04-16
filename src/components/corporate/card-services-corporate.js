@@ -40,7 +40,7 @@ export const CardServicesCorporate = () => {
             {services?.length === 0 ?
                 <EmptyState>
                     <Text mb={2} textAlign='center'> No tienes ningun servicio creado</Text>
-                    <Link to='/private/corporate/solutions'>
+                    <Link to='/private/corporate/service'>
                         <GradientButton label='Ir a servicios' type='red' size={'sm'} />
                     </Link>
                 </EmptyState> : services?.map((service) => {

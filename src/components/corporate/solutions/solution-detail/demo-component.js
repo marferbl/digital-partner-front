@@ -2,7 +2,6 @@ import React from 'react'
 import { Flex, Text, Box } from '@chakra-ui/react'
 
 export const DemoComponent = ({ solution }) => {
-    console.log(solution)
     return (
         <Flex mt={6} p={5} rounded={"xl"} bgColor={"white"} w={"100%"} flexDir='column'>
             <Box>

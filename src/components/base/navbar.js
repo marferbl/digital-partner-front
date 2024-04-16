@@ -32,16 +32,18 @@ export default function Navbar() {
       label: 'Regístrate gratis',
       link: '/newRouteHidden/a',
       param: 'register',
-      hide: isLoggedIn
+      hide: true
     }];
 
   return (
     <>
       <Box bg={useColorModeValue("gray.50", "gray.900")} px={4}>
         <Flex h={'80px'} alignItems={"center"} justifyContent={"space-between"}>
-          <Link to="/">
-            <Image src={"/logo-digitalando.png"} height={14} pl={4} />
-          </Link>
+          <Box display={{ base: 'none', md: 'block' }}>
+            <Link to="/">
+              <Image src={"/logo-digitalando.png"} height={14} pl={4} />
+            </Link>
+          </Box>
           <SoftwareSearcherInput />
           <IconButton
             size={'md'}

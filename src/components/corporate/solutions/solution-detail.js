@@ -19,7 +19,7 @@ export const SolutionDetail = ({ solution }) => {
         law: 'Legal',
     };
 
-    
+
 
 
     return (
@@ -69,13 +69,13 @@ export const SolutionDetail = ({ solution }) => {
                             </Grid>
                         </Flex>
                         <Text fontSize={14} mt={5} fontWeight='bold' textDecor={'underline'}>Países:</Text>
-                        <Flex align={'center'} gap={2} pt={1}>
+                        <Flex align={'center'} gap={2} pt={1} flexWrap='wrap'>
                             {solution?.countries.map((country, index) => (
                                 <Text key={index} fontSize={18} >{<CountryFlag country={country} />}</Text>
                             ))}
                         </Flex>
                         <Text fontSize={14} mt={5} fontWeight='bold' textDecor={'underline'}>Idiomas:</Text>
-                        <Flex align={'center'} gap={2} pt={1}>
+                        <Flex align={'center'} gap={2} pt={1} flexWrap='wrap'>
                             {solution?.languages?.map((language, index) => (
                                 <Text key={index} >{languageLabelFromValue(language)} </Text>
                             ))}

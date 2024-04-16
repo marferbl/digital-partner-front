@@ -98,7 +98,7 @@ const Quiz = () => {
     return (
         <Box pb={14} w='full' bg={'gray.50'} mb={20}>
             {!loading ? <Box>
-                <Flex w='full' justify={'end'} mt={-3} pr={5} pt={3} _hover={{ fontWeight: 'bold' }} cursor='pointer' onClick={startTest}>Volver a empezar</Flex>
+                {order > 0 && <Flex w='full' justify={'end'} mt={-3} pr={5} pt={3} _hover={{ fontWeight: 'bold' }} cursor='pointer' onClick={startTest}>Volver a empezar</Flex>}
                 <Center pt={12} flexDir={'column'} px={{ base: 10, lg: 32 }}>
                     {order === 0 && <Question currentQuestion={questions[0]} setLineType={setLineType} nextQuestion={nextQuestion} goToSearch={goToSearch} />}
                     {(order > 0 && order < 3 && lineType === 'solutions') && <SolutionsQuiz order={order} nextQuestion={nextQuestion} setOrder={setOrder} updateConfig={updateConfig} />}
@@ -107,12 +107,12 @@ const Quiz = () => {
                         <SearchSelectCountries isMulti w={'xs'} onChange={value => setFiltersInAnswers(value, 'countries')} />
                         <Text>En qué idiomas quieres buscar? </Text>
                         <SearchSelectLanguage isMulti onChange={value => setFiltersInAnswers(value, 'languages')} />
-                        <GradientButton onClick={goToSearch} label={'Sorpréndeme'} w='full' mt={5} />
+                        <GradientButton onClick={goToSearch} type='green' label={'Sorpréndeme'} w='full' mt={5} />
                     </Box>}
                 </Center>
             </Box>
                 : <Center minH={300} w='full' bg={'gray.50'}>
-                    <LoadingSpinner label={'Digitaleando...'} />
+                    <LoadingSpinner label={'Digitalando...'} />
                 </Center>
             }
         </Box>

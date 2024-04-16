@@ -11,7 +11,7 @@ import { COLORS } from '../../colors/colors';
 const Searcher = ({ filters }) => {
     const { term } = useParams()
     const [allFilters, setAllFilters] = useState(filters)
-    const [isCollapsed, setIsCollapsed] = useState(true);
+    const [isCollapsed, setIsCollapsed] = useState(false);
     const [termLabel, setTermLabel] = useState(term)
 
     useEffect(() => {

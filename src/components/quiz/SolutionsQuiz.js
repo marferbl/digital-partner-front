@@ -56,7 +56,7 @@ const SolutionsQuiz = ({ order, setOrder, updateConfig }) => {
                 </Box>
             }
             <Flex justify={'end'} mt={10} cursor='pointer'>
-                <GradientButton label={'Siguiente'} type='red' size={'md'} onClick={nextQuestion} />
+                <GradientButton label={'Siguiente'} type='green' size={'md'} onClick={nextQuestion} />
 
             </Flex>
         </Box>

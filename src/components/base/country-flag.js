@@ -4,25 +4,38 @@ import ReactCountryFlag from "react-country-flag"
 const CountryFlag = ({ country }) => {
 
     const COUNTRY_KEYS = {
+        'england': 'GB',
         'spain': 'ES',
-        'united states': 'US',
-        'mexico': 'MX',
-        'argentina': 'AR',
-        'colombia': 'CO',
-        'chile': 'CL',
-        'peru': 'PE',
-        'venezuela': 'VE',
-        'ecuador': 'EC',
-        'guatemala': 'GT',
-        'cuba': 'CU',
-        'bolivia': 'BO',
-        'dominican republic': 'DO',
-        'honduras': 'HN',
         'france': 'FR',
         'italy': 'IT',
+        'usa': 'US',
+        'china': 'CN',
+        'india': 'IN',
         'germany': 'DE',
-        'england': 'GB',
-    }
+        'japan': 'JP',
+        'canada': 'CA',
+        'australia': 'AU',
+        'brazil': 'BR',
+        'russia': 'RU',
+        'mexico': 'MX',
+        'south_korea': 'KR',
+        'indonesia': 'ID',
+        'turkey': 'TR',
+        'netherlands': 'NL',
+        'switzerland': 'CH',
+        'argentina': 'AR',
+        'saudi_arabia': 'SA',
+        'south_africa': 'ZA',
+        'egypt': 'EG',
+        'nigeria': 'NG',
+        'pakistan': 'PK',
+        'iran': 'IR',
+        'philippines': 'PH',
+        'colombia': 'CO',
+        'bangladesh': 'BD',
+        'vietnam': 'VN'
+    };
+
     return (
         <ReactCountryFlag countryCode={COUNTRY_KEYS[country]} />
     )

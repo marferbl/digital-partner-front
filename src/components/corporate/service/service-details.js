@@ -1,10 +1,11 @@
 import React, { useState, useContext } from "react";
-import { Box, Grid, GridItem, Text, Avatar, Button } from "@chakra-ui/react";
+import { Box, Grid, GridItem, Text, Avatar, Button, Tooltip } from "@chakra-ui/react";
 import { capitalizeFirstLetter, languageLabelFromValue } from '../../../utils/methods'
 import CountryFlag from '../../base/country-flag'
 import { Link } from 'react-router-dom'
 import { COLORS } from "../../../colors/colors"
 import { UserContext } from "../../../context/userContext";
+import GradientButton from "../../base/GradientButton";
 
 
 const ServiceDetails = ({ service }) => {
@@ -52,6 +53,16 @@ const ServiceDetails = ({ service }) => {
                         <Text>{service?.languages?.map(e => <Text>{languageLabelFromValue(e)}</Text>)}</Text>
                         <Text fontSize={14} mt={3} fontWeight='bold' textDecor={'underline'}>Países disponibles para el servicio:</Text>
                         <Text fontSize={16}>{service?.countries?.map(e => <CountryFlag country={e} />)}</Text>
+                        <Box pt={6}>
+                            {isLoggedIn ? <a href={`mailto:${service?.corporate?.superadmin?.email}`}>
+                                <GradientButton type='green' label='Contactar' />
+                            </a> :
+                                <Box>
+                                    <GradientButton type='green' label='Contactar' disabled />
+                                    <Text mt={1} fontSize={12}>Inicia sesión para contactar</Text>
+                                </Box>
+                            }
+                        </Box>
                     </Box>
                 </GridItem>
                 <GridItem colSpan={3} pr={7}>

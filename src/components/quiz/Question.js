@@ -47,6 +47,9 @@ const Question = ({ title, options, nextQuestion, setLineType }) => {
     }, [title]);
 
     const handleOptionClick = (option) => {
+        if (option.key === 'events' || option.key === 'talent') {
+            return;
+        }
         setSelected(option.key);
         setLineType(option.key);
     };
@@ -76,6 +79,8 @@ const Question = ({ title, options, nextQuestion, setLineType }) => {
                             flexDir={'column'}
                             cursor='pointer'
                             onClick={() => handleOptionClick(option)}
+                            opacity={['events', 'talent'].includes(option.key) ? 0.5 : 1}
+                            pointerEvents={['events', 'talent'].includes(option.key) && 'none'}
                         >
                             <Box _hover={{ opacity: 0.5 }}>
                                 <Box textAlign={'center'}>
@@ -91,12 +96,15 @@ const Question = ({ title, options, nextQuestion, setLineType }) => {
                                 <Text textAlign={'center'} color={COLORS.primary}>
                                     {option.label}
                                 </Text>
+                                <Text fontSize={10} textAlign={'center'} color={COLORS.primary}>
+                                    {['events', 'talent'].includes(option.key) ? 'Próximamente' : ''}
+                                </Text>
                             </Box>
                         </Center>
                     ))}
                 </Flex>
                 <Flex justify={'end'} mt={10} cursor='pointer'>
-                    <GradientButton label={'Siguiente'} type='red' size={'md'} onClick={() => nextQuestion(selected)} />
+                    <GradientButton label={'Siguiente'} type='green' size={'md'} disabled={!selected} onClick={() => nextQuestion(selected)} />
 
                 </Flex>
             </Box>
