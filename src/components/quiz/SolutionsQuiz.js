@@ -29,7 +29,7 @@ const SolutionsQuiz = ({ order, setOrder, updateConfig }) => {
                 <Box>
                     <Center>
                         <Text fontSize={'3xl'} color={COLORS.primary} fontWeight={'bold'} px={5}>
-                            ¿A quien va dirigido tu negocio?
+                            ¿A quién va dirigida la solución?
                         </Text>
                     </Center>
                     <SearchSelectFeatures showLabel width={'100%'} isMulti={config.isErp} onChange={(value) => {
@@ -49,7 +49,7 @@ const SolutionsQuiz = ({ order, setOrder, updateConfig }) => {
                 <Box>
                     <Center>
                         <Text fontSize={'3xl'} color={COLORS.primary} fontWeight={'bold'} px={5}>
-                            ¿Qué tipo de solución buscas?
+                            ¿Qué funcionalidades específicas buscas?
                         </Text>
                     </Center>
                     <SearchSelectSpecifyFeatures feature={config.features} onChange={(value) => handleToggle('specifyFeatures', value)} />
