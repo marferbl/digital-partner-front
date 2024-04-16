@@ -89,7 +89,7 @@ const features = [
 const Features = () => {
   const gradientColor = "#1e96d9";
   return (
-    <Container maxW="6xl" p={{ base: 5, md: 10 }} mb={{base: 5, lg: 20}}>
+    <Container maxW="6xl" p={{ base: 5, md: 10 }} mb={{ base: 5, lg: 20 }}>
       <SimpleGrid columns={{ base: 1, sm: 2, md: 3 }} placeItems="center" spacing={10} mb={4}>
         {features.map((feature, index) => (
           <Box
@@ -121,7 +121,7 @@ const Features = () => {
             <Text fontSize="xs" mt={4} h={16}>
               {feature.content}
             </Text>
-            <Link to={{ pathname: '/newRouteHidden/a', state: { filter: 'register' } }} >
+            <Link to={{ pathname: '/initial-page-digit/a', state: { filter: 'register' } }} >
               <Button
                 mt={5}
                 bgGradient={`linear(to-r, ${COLORS.secondary}, #17a7c2)`} // Adjust gradient stops as needed
@@ -131,7 +131,7 @@ const Features = () => {
                 fontWeight="bold"
                 _focus={{ boxShadow: "outline" }}
               >
-               {feature.button}
+                {feature.button}
               </Button>
             </Link>
           </Box>

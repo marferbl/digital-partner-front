@@ -26,11 +26,11 @@ export default function Navbar() {
   const Links = [
     {
       label: isLoggedIn ? 'Ir al panel' : 'Iniciar sesión',
-      link: '/newRouteHidden'
+      link: '/initial-page-digit'
     },
     {
       label: 'Regístrate gratis',
-      link: '/newRouteHidden/a',
+      link: '/initial-page-digit/a',
       param: 'register',
       hide: true
     }];
