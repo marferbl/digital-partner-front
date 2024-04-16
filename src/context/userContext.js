@@ -55,7 +55,7 @@ function AuthProviderWrapper(props) {
           setIsLoggedIn(true);
           setUser(user);
           setIsLoading(false);
-          setUserView(view || 'user')
+          setUserView(view || 'corporate')
 
         })
         .catch(() => logOutUser());
