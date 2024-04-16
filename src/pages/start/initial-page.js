@@ -48,7 +48,7 @@ export default function InitialPage() {
             <Image src={'/logo-d.png'} height={16} w={16} />
           </Center>
           <Stack spacing={{ base: '2', md: '3' }} textAlign="center">
-            <Heading size={{ base: 'xs', md: 'sm' }} fontFamily={'Montserrat'}>{showLogin ? 'Inicia sesión' : 'Registrarse'}</Heading>
+            <Heading size={{ base: 'xs', md: 'sm' }} mb={3} fontFamily={'Montserrat'}>{showLogin ? 'Inicia sesión' : 'Registrarse'}</Heading>
             {/* <Text color="fg.muted">
               {showLogin && '¿No tienes cuenta?'} <Text as={'span'} fontWeight={'bold'} color={COLORS.secondary} cursor={'pointer'} _hover={{ textDecor: 'underline' }} onClick={() => setShowLogin(!showLogin)}>{showLogin ? 'Registrarse' : 'Volver a login'}</Text>
             </Text> */}
@@ -56,8 +56,8 @@ export default function InitialPage() {
         </Stack>
         <Box
           py={{ base: '0', sm: '4' }}
-          px={{ base: '4', sm: '5' }}
-          bg={{ base: 'transparent', sm: 'bg.surface' }}
+          px={{ base: '4', sm: '3' }}
+          bg={{ base: 'transparent', sm: 'white' }}
           boxShadow={{ base: 'none', sm: 'md' }}
           borderRadius={{ base: 'none', sm: 'xl' }}
         >

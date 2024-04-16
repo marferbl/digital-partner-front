@@ -21,11 +21,15 @@ import { login, signup } from "../../services/auth";
 import { AiFillEye } from "react-icons/ai";
 import { AiFillEyeInvisible } from "react-icons/ai";
 import { COLORS } from "../../colors/colors";
+import { useNavigate } from "react-router-dom";
+
 
 
 
 const RegisterForm = () => {
   // const [username, setUsername] = useState("");
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -55,6 +59,7 @@ const RegisterForm = () => {
             duration: 5000,
             isClosable: true,
           });
+          navigate('/initial-page-digit')
         })
         .catch((err) => {
           toast({
