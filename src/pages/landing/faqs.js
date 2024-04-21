@@ -13,6 +13,10 @@ import Navbar from '../../components/base/navbar'
 import FooterLanding from '../../components/base/landing/footer'
 
 const FaqsPage = () => {
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
     const SEARCH_QUESTIONS = [
         {
             title: '¿Cómo puedo hacer una búsqueda?',
