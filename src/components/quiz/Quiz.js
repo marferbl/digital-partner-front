@@ -104,7 +104,7 @@ const Quiz = () => {
                     {(order > 0 && order < 3 && lineType === 'solutions') && <SolutionsQuiz order={order} nextQuestion={nextQuestion} setOrder={setOrder} updateConfig={updateConfig} />}
                     {((order === 3 && lineType === 'solutions') || (order === 1 && lineType !== 'solutions')) && <Box>
                         <Text>¿En qué países quieres que esté disponible?</Text>
-                        <SearchSelectCountries isMulti w={'xs'} onChange={value => setFiltersInAnswers(value, 'countries')} />
+                        <SearchSelectCountries isMulti onChange={value => setFiltersInAnswers(value, 'countries')} />
                         <Text>¿En qué idiomas quieres que esté disponible? </Text>
                         <SearchSelectLanguage isMulti onChange={value => setFiltersInAnswers(value, 'languages')} />
                         <GradientButton onClick={goToSearch} type='green' label={'Sorpréndeme'} w='full' mt={5} />

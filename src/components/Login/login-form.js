@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useRef } from "react";
 import {
   Text,
   Box,
@@ -26,6 +26,14 @@ const LoginForm = () => {
   const [emptyFieldMessage, setEmptyFieldMessage] = useState(false);
 
   const { storeToken, authenticateUser } = useContext(UserContext);
+  const buttonRef = useRef(null);
+
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault(); // Prevent form submission
+      buttonRef.current.click(); // Simulate a click on the "Entrar" button
+    }
+  };
 
   const resetFields = () => {
     setEmail("");
@@ -75,6 +83,7 @@ const LoginForm = () => {
           placeholder="email"
           onChange={(e) => setEmail(e.target.value)}
           value={email}
+          onKeyDown={handleKeyPress}
         />
       </FormControl>
       <FormControl isRequired my={5}>
@@ -85,10 +94,12 @@ const LoginForm = () => {
           type="password"
           onChange={(e) => setPassword(e.target.value)}
           value={password}
+          onKeyDown={handleKeyPress}
         />
       </FormControl>
 
       <Button
+        ref={buttonRef} // Assign a ref to the button
         mt={4}
         bg={COLORS.primary}
         color={'white'}

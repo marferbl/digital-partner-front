@@ -23,6 +23,7 @@ const SearchSelectFeatures = ({ isMulti, onChange, defaultValue, showLabel, ...p
         onChange(value);
     }
 
+    console.log(value)
     return (
         <Box my={1} {...props}>
             <SearchSelect options={featureOptions} value={value} label={showLabel ? 'Funcionalidad' : null} isMulti={isMulti} onChange={(value) => changeValue(value)} defaultValue={defaultValue} />

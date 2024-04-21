@@ -52,6 +52,10 @@ const Question = ({ title, options, nextQuestion, setLineType }) => {
         }
         setSelected(option.key);
         setLineType(option.key);
+        setOpacity(0.5);
+        setTimeout(() => {
+            nextQuestion(selected)
+        }, 500);
     };
 
 
@@ -103,10 +107,9 @@ const Question = ({ title, options, nextQuestion, setLineType }) => {
                         </Center>
                     ))}
                 </Flex>
-                <Flex justify={'end'} mt={10} cursor='pointer'>
+                {/* <Flex justify={'end'} mt={10} cursor='pointer'>
                     <GradientButton label={'Siguiente'} type='green' size={'md'} disabled={!selected} onClick={() => nextQuestion(selected)} />
-
-                </Flex>
+                </Flex> */}
             </Box>
         </Box>
     );

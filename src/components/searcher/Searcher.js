@@ -48,14 +48,17 @@ const Searcher = ({ filters }) => {
                             color={COLORS.secondary}
                         />
                     </Flex>
-                    {!isCollapsed && <FiltersSection filters={filters} setTermLabel={setTermLabel} onChangeFilters={(filters) => updateFilters(filters)} />}
+                    <div style={{ display: isCollapsed ? 'none' : 'block' }}>
+                        <FiltersSection filters={filters} setTermLabel={setTermLabel} onChangeFilters={(filters) => updateFilters(filters)} />
+                    </div>
                 </GridItem>
                 <GridItem colSpan={isCollapsed ? 6 : 5}>
                     <Center pt={5} flexDir={'column'} w='100%'>
-                        <MarketplaceSection term={termLabel} filters={allFilters} />
+                        <MarketplaceSection term={termLabel} filters={allFilters} isCollapsed={isCollapsed} />
                     </Center>
                 </GridItem>
             </Grid>
+
 
         </Box >
     )

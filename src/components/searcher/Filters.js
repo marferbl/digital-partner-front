@@ -14,6 +14,8 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
     const [filterValues, setFilterValues] = useState(filters);
 
     const handleToggle = (filterName, value) => {
+        console.log(filterValues)
+
         setFilterValues((prevValues) => ({
             ...prevValues,
             [filterName]: value,
@@ -44,9 +46,8 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
         { value: 'renting', label: 'Renting' },
         { value: 'helps', label: 'Ayudas' },
         { value: 'training', label: 'Training' },
-
-
     ];
+
 
     const clearFilters = () => {
         setFilterValues({});
@@ -54,6 +55,7 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
     };
 
     const hasFilters = Object.values(filterValues).some((value) => value !== '');
+
 
     return (
         <Box borderRightWidth={1} h={'full'} >
@@ -68,15 +70,21 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
                     >
                         <Text fontSize={13}>¿Solo ERPs?</Text>
                     </Checkbox>}
-                    {filterValues.lineType === 'solutions' && <SearchSelectFeatures showLabel width={'100%'} isMulti onChange={(value) => handleToggle('features', value)} />}
-                    {(filterValues.lineType === 'solutions' && filterValues.features?.length) ? <SearchSelectSpecifyFeatures showLabel width={'100%'} label={'Funcionalidad especifica'} feature={filterValues.features} onChange={(value) => handleToggle('specifyFeatures', value)} /> : null}
+                    {filterValues.lineType === 'solutions' && <SearchSelectFeatures value={filterValues.features} showLabel width={'100%'} isMulti onChange={(value) => handleToggle('features', value)} />}
+                    {(filterValues.lineType === 'solutions' && filterValues.features?.length) ? <SearchSelectSpecifyFeatures value={filterValues.specifyFeatures} showLabel width={'100%'} label={'Funcionalidad especifica'} feature={filterValues.features} onChange={(value) => handleToggle('specifyFeatures', value)} /> : null}
                     {filterValues.lineType === 'services' && <SearchSelect options={serviceTypeOptions} width={'100%'} label={'Tipo'} onChange={(value) => handleToggle('serviceType', value)} value={filterValues.serviceType} />}
                     {filterValues.lineType === 'services' && filterValues.serviceType === 'partner' && <SearchSelect options={partnerTypeOptions} width={'100%'} label={'Servicio'} onChange={(value) => handleToggle('partnerType', value)} value={filterValues.partnerType} />}
-                    <SearchSelectCountries showLabel width={'100%'} onChange={(value) => handleToggle('countries', value)} defaultValue={filterValues.countries} />
-                    <SearchSelectLanguage showLabel width={'100%'} onChange={(value) => handleToggle('languages', value)} defaultValue={filterValues.languages} />
+                    <SearchSelectCountries value={filterValues.countries} showLabel width={'100%'} isMulti onChange={(value) => {
+                        let arrayValue = typeof value === 'object' ? value : [value];
+                        handleToggle('countries', arrayValue)
+                    }} defaultValue={filterValues.countries} />
+                    <SearchSelectLanguage value={filterValues.languages} showLabel width={'100%'} isMulti onChange={(value) => {
+                        let arrayValue = typeof value === 'object' ? value : [value];
+                        handleToggle('languages', arrayValue)
+                    }} defaultValue={filterValues.languages} />
                     {hasFilters && (
                         <Box pt={4}>
-                            <GradientButton label='Mostrar todo' type='red' size={'sm'} onClick={clearFilters} />
+                            <GradientButton label='Limpiar filtros' type='red' size={'sm'} onClick={clearFilters} />
                         </Box>
                     )}
                 </Flex>

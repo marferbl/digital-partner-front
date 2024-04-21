@@ -13,6 +13,7 @@ export default function SearchSelect({ options, isMulti, onChange, searchable, v
 
 
     const handleSelectChange = (selectedOption) => {
+
         setSelectedOption(selectedOption);
         // Call the onChange function passed from parent component
         if (onChange) {
@@ -36,6 +37,10 @@ export default function SearchSelect({ options, isMulti, onChange, searchable, v
             fontSize: 14,
             color: 'black',
             backgroundColor: state.isSelected ? COLORS.secondary : 'white',
+            '&:hover': {
+                backgroundColor: 'aliceblue', // Change this to your desired hover color
+                cursor: 'pointer',
+            },
 
         }),
         singleValue: (provided, state) => ({
@@ -61,6 +66,8 @@ export default function SearchSelect({ options, isMulti, onChange, searchable, v
                 isSearchable={searchable}
                 styles={customStyles}
                 disabled={disabled}
+                noOptionsMessage={() => "Sin resultados"} // Change this message as needed
+
             />
         </div >
     );

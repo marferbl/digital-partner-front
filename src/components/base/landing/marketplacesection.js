@@ -8,7 +8,7 @@ import { FiAirplay } from 'react-icons/fi'
 import FiltersSection from '../../searcher/Filters'
 import { getAllSearch } from '../../../services/search'
 
-const MarketplaceSection = ({ term, filters }) => {
+const MarketplaceSection = ({ term, filters, isCollapsed }) => {
     const [solutions, setSolutions] = useState([])
     const [loading, setLoading] = useState(false)
 
@@ -37,14 +37,14 @@ const MarketplaceSection = ({ term, filters }) => {
     return (
         <Center w='full' flexDir={'column'} px={{ base: 2, lg: 5 }}>
             <Box w='full' px={{ base: 8, md: 2 }}>
-                {loading ? <Center> <Spinner
+                {loading ? <Center w={isCollapsed ? '100%' : '80%'}> <Spinner
                     thickness='4px'
                     speed='0.65s'
                     emptyColor='gray.200'
                     color='blue.500'
                     size='xl'
                 /></Center> : solutions && solutions.length === 0 ?
-                    <Center flexDir={'column'}>
+                    <Center flexDir={'column'} w={isCollapsed ? '100%' : '80%'}>
                         <Icon
                             fontSize={60}
                             _groupHover={{

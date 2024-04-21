@@ -31,7 +31,7 @@ export const ManualComponent = ({ solution }) => {
 
     return (
         <Box>
-            Próximanente
+            Próximamente
             {/* <Flex w='full' justify={'flex-end'} my={8}>
                 {me?.corporateId === solution.corporate && <ButtonCreateManual refreshManuals={getManuals} />}
             </Flex>
