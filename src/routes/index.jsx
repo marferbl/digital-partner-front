@@ -14,6 +14,8 @@ import { FreelancePage } from "../pages/personal/freelance";
 import { SolutionDetailPage } from "../pages/admin/solutions/solution-detail";
 import { ServicePage } from "../pages/admin/service";
 import ServiceDetailsPage from "../pages/admin/service/service-details";
+import AboutPage from "../pages/landing/about";
+import FaqsPage from "../pages/landing/faqs";
 
 export const PageRoutes = () => {
   return (
@@ -27,6 +29,9 @@ export const PageRoutes = () => {
         <Route path={"search"} element={<SearcherPage />} />
         <Route path={'solution/:id'} element={<SolutionDetailPage />} />
         <Route path={'service/:id'} element={<ServiceDetailsPage />} />
+        <Route path={'about'} element={<AboutPage />} />
+        <Route path={'faqs'} element={<FaqsPage />} />
+
         <Route path={"private"} element={<PrivateRoute />}>
           <Route path={"dashboard"} element={<Dashboard />} />
           <Route path={"profile"} element={<ProfilePage />} />

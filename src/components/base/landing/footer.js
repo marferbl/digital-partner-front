@@ -1,27 +1,28 @@
-import { ReactNode } from "react";
-
 import {
   Box,
   Container,
   Image,
-  Link,
   SimpleGrid,
   Stack,
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
+
 
 const Logo = (props) => {
   return <Image src={"/logo-d.png"} h={10} ml={-2} />;
 };
 
-const ListHeader = ({ children }) => {
+const NavLink = ({ label, link }) => {
   return (
-    <Text fontWeight={"500"} fontSize={"lg"} mb={2}>
-      {children}
-    </Text>
-  );
-};
+    <Link to={link}>
+      <Text _hover={{ textDecor: 'underline' }}>
+        {label}
+      </Text>
+    </Link>
+  )
+}
 
 export default function FooterLanding() {
   return (
@@ -38,6 +39,8 @@ export default function FooterLanding() {
             <Box>
               <Logo color={useColorModeValue("gray.700", "white")} />
             </Box>
+            <NavLink label='¿Quiénes somos?' link='about' />
+            <NavLink label='Preguntas frecuentes' link='faqs' />
             <Text fontSize={"sm"}>© 2024 digitalando. All rights reserved</Text>
           </Stack>
         </SimpleGrid>
