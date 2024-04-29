@@ -16,12 +16,14 @@ import { ServicePage } from "../pages/admin/service";
 import ServiceDetailsPage from "../pages/admin/service/service-details";
 import AboutPage from "../pages/landing/about";
 import FaqsPage from "../pages/landing/faqs";
+import FalseLanding from "../pages/landing/false-landing";
 
 export const PageRoutes = () => {
   return (
     <Router>
       <Routes>
-        <Route path={"/"} element={<LandingPage />} />
+        <Route path={"/"} element={<FalseLanding />} />
+        <Route path={"/digitalandoapp"} element={<LandingPage />} />
         <Route path={"/initial-page-digit"} element={<App />} />
         <Route path={"/initial-page-digit/a"} element={<App />} />
         <Route path={"/marketplace"} element={<MarketplacePage />} />

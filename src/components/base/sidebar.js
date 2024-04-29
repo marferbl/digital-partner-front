@@ -123,7 +123,7 @@ const SidebarContent = ({ onClose, isSidebarOpen, setIsSidebarOpen, ...rest }) =
       {isSidebarOpen &&
         <>
           <Flex mt={-10} mb={10} h="10" alignItems="center" ml={1} justifyContent="space-between">
-            <Link to="/">
+            <Link to="/digitalandoapp">
               <Image ml={3} src={"/logo-digitalando.png"} height={12} />
             </Link>
             <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
