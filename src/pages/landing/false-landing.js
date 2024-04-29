@@ -26,7 +26,7 @@ const StickyBanner = () => {
         >
             <Text color="black" fontWeight="bold" fontSize={{ base: 10, md: 16 }}>
                 🚀 Ahora mismo digitalando se encuentra en la campaña Corporate Founders. Si te interesa participar puedes enviar un correo{' '}
-                <Link color="blue.400" href="mailto:digitalandocompany@gmail.com" textDecor={'underline'}>
+                <Link color="blue.400" href="mailto:ivan@digitalando.org" textDecor={'underline'}>
                     aquí
                 </Link>
             </Text>        </Box>
