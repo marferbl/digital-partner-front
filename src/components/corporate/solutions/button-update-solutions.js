@@ -13,7 +13,7 @@ import {
     Checkbox
 } from '@chakra-ui/react'
 import { COLORS } from "../../../colors/colors";
-import { createSolution } from '../../../services/solution';
+import { createSolution, updateSolution } from '../../../services/solution';
 import SearchSelect from '../../base/search-select';
 import { COUNTRIES, LANGUAGES } from '../../../utils/constants';
 import SearchSelectSpecifyFeatures from '../../base/search-select-specify-features';
@@ -22,7 +22,7 @@ import SearchSelectSpecifyFeatures from '../../base/search-select-specify-featur
 
 
 
-export const ButtonCreateSolution = ({ refreshSolutions, disabled }) => {
+export const ButtonUpdateSolution = ({ children, refreshSolutions, disabled, solution }) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     const [countries, setCountries] = useState([]);
@@ -36,6 +36,20 @@ export const ButtonCreateSolution = ({ refreshSolutions, disabled }) => {
     const [isSectorial, setisSectorial] = useState(false);
     const [isErp, setIsErp] = useState(false);
     const [specifyFeatures, setSpecifyFeatures] = useState([]);
+
+    useEffect(() => {
+        setName(solution.name);
+        setDescription(solution.description);
+        setWebsite(solution.website);
+        setSectorType(solution.sectorType);
+        setCountries(solution.countries);
+        setLanguages(solution.languages);
+        setFeature(solution.features);
+        setIsErp(solution.isErp);
+        setisSectorial(solution.isSectorial);
+        setSpecifyFeatures(solution.specifyFeatures);
+    }, [solution])
+
 
 
     const countriesOptions = COUNTRIES
@@ -60,7 +74,7 @@ export const ButtonCreateSolution = ({ refreshSolutions, disabled }) => {
 
     const create = async () => {
         const specifyFeaturesArray = typeof specifyFeatures === 'string' ? [specifyFeatures] : specifyFeatures;
-        createSolution({
+        updateSolution(solution._id, {
             name,
             description,
             website,
@@ -73,11 +87,11 @@ export const ButtonCreateSolution = ({ refreshSolutions, disabled }) => {
             specifyFeatures: specifyFeaturesArray
         }).then((res) => {
             refreshSolutions();
-            console.log("gola", res)
             onClose();
         }
         )
     };
+
 
     const handleCheckboxChange = (event) => {
         setisSectorial(event.target.checked); // Update state based on checkbox's checked status
@@ -85,12 +99,12 @@ export const ButtonCreateSolution = ({ refreshSolutions, disabled }) => {
 
     return (
         <>
-            <Button bg={COLORS.primary} color={'white'} _hover={{ bg: 'blue.700' }} disabled={disabled} onClick={onOpen}>Crear solución digital</Button>
+            <Box disabled={disabled} onClick={onOpen}>{children}</Box>
 
             <Modal isOpen={isOpen} onClose={onClose} size='xl'>
                 <ModalOverlay />
                 <ModalContent>
-                    <ModalHeader>Crear Solución Digital</ModalHeader>
+                    <ModalHeader>Editar Solución Digital</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody py={5}>
                         <Box fontSize={12} display={'flex'} alignItems={'start'} flexDir={'column'}>
@@ -99,7 +113,7 @@ export const ButtonCreateSolution = ({ refreshSolutions, disabled }) => {
                             <Flex gap={2} w='full'>
                                 <Box w='48%'>
                                     <Text fontWeight={"bold"}>Nombre: </Text>
-                                    <Input value={name} onChange={(e) => setName(e.target.value)} placeholder={'Solución Nueva'} />
+                                    <Input value={name} onChange={(e) => setName(e.target.value)} placeholder={'Corporate Nueva'} />
                                 </Box>
 
                                 <Box w='49%'>
@@ -145,7 +159,7 @@ export const ButtonCreateSolution = ({ refreshSolutions, disabled }) => {
                                     <Text mt={5} fontWeight={"bold"}>
                                         Funcionalidades específicas:{" "}
                                     </Text>
-                                    <SearchSelectSpecifyFeatures feature={feature} value={specifyFeatures} isMulti onChange={(value) => setSpecifyFeatures(value)} />
+                                    <SearchSelectSpecifyFeatures defaultValue={specifyFeatures} feature={feature} value={specifyFeatures} isMulti onChange={(value) => setSpecifyFeatures(value)} />
                                 </Box>
                             </Flex> : <></>}
                             <Flex mt={3} gap={2} w='full' align={'center'} h={12}>
@@ -182,7 +196,7 @@ export const ButtonCreateSolution = ({ refreshSolutions, disabled }) => {
                         <Button variant='ghost' mr={3} onClick={onClose}>
                             cancelar
                         </Button>
-                        <Button onClick={create} colorScheme='teal'>Confirmar</Button>
+                        <Button onClick={create}>Confirmar</Button>
                     </ModalFooter>
                 </ModalContent>
             </Modal>

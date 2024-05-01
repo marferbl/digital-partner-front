@@ -21,6 +21,7 @@ import GradientButton from '../../base/GradientButton'
 import { Link } from 'react-router-dom'
 import { FiMoreVertical } from "react-icons/fi";
 import { deleteSolution } from '../../../services/solution'
+import { ButtonUpdateSolution } from './button-update-solutions'
 
 
 const SolutionsTable = ({ solutions, refreshSolutions }) => {
@@ -43,7 +44,9 @@ const SolutionsTable = ({ solutions, refreshSolutions }) => {
                         <Th>Web</Th>
                         <Th>ERP</Th>
                         <Th></Th>
+                        <Th>Acciones</Th>
                         <Th></Th>
+
 
                     </Tr>
                 </Thead>
@@ -59,17 +62,20 @@ const SolutionsTable = ({ solutions, refreshSolutions }) => {
                                         <GradientButton label={'Detalles'} type='red' size={'sm'} />
                                     </Link>
                                 </Td>
-                                <Td width={30}>
+                                <Td width={30} textAlign='center'>
                                     <Menu>
-                                        <MenuButton rounded={'xl'} p={2} bg={'white'} justify={'space-between'} align={'center'}>
-                                            <FiMoreVertical size={20} pt={3}/>
+                                        <MenuButton rounded={'xl'} p={2} justify={'space-between'} align={'center'} _hover={{ bg: 'gray.100' }}>
+                                            <FiMoreVertical size={20} pt={3} />
                                         </MenuButton>
                                         <MenuList width={20} p={0}>
-                                            <MenuItem onClick={() => deleteItem(solution._id)} _hover={{ bg: 'gray.100' }} h={'full'} fontSize={12} textAlign={'center'} width={'full'} fontWeight={'bold'}>Eliminar</MenuItem>
+                                            <ButtonUpdateSolution solution={solution} refreshSolutions={refreshSolutions} > <MenuItem _hover={{ bg: 'gray.100' }} h={'full'} fontSize={12} textAlign={'center'} width={'full'} fontWeight={'bold'}>Editar </MenuItem></ButtonUpdateSolution>
+                                            <MenuItem onClick={() => deleteItem(solution._id)} _hover={{ bg: 'gray.100' }} h={'full'} fontSize={12} textAlign={'center'} width={'full'} fontWeight={'bold'} color={'red.300'}>Eliminar</MenuItem>
                                         </MenuList>
                                     </Menu>
-                                    <Button variant={'ghost'}>
-                                    </Button>
+
+                                </Td>
+                                <Td>
+
                                 </Td>
 
                             </Tr>

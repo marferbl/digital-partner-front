@@ -4,30 +4,24 @@ import { Text } from '@chakra-ui/react';
 import { COLORS } from '../../colors/colors';
 
 export default function SearchSelect({ options, isMulti, onChange, searchable, value, label, disabled, ...props }) {
-    const [selectedOption, setSelectedOption] = useState(value ? options.find(e => e.value === value) : null);
+    const [selectedOption, setSelectedOption] = useState(null);
+
 
     useEffect(() => {
-        if (!value) setSelectedOption(null)
-    }, [value])
-
-
+        if (value) {
+            const selected = isMulti
+                ? options.filter(option => value.includes(option.value))
+                : typeof value !== 'string' ? options.find(option => option.value === value[0]) : options.find(option => option.value === value);
+            setSelectedOption(selected);
+        } else {
+            setSelectedOption(null);
+        }
+    }, [value, isMulti, options]);
 
     const handleSelectChange = (selectedOption) => {
-
         setSelectedOption(selectedOption);
-        // Call the onChange function passed from parent component
         if (onChange) {
-            if (isMulti) {
-                if (selectedOption) {
-                    onChange(selectedOption.map(e => e.value));
-                } else {
-                    onChange([]);
-                }
-            }
-            else {
-                onChange(selectedOption.value);
-
-            }
+            onChange(isMulti ? selectedOption.map(option => option.value) : selectedOption.value);
         }
     };
 
@@ -35,28 +29,25 @@ export default function SearchSelect({ options, isMulti, onChange, searchable, v
         option: (provided, state) => ({
             ...provided,
             fontSize: 14,
-            color: 'black',
+            color: state.isSelected ? 'white' : 'black',
             backgroundColor: state.isSelected ? COLORS.secondary : 'white',
             '&:hover': {
-                backgroundColor: 'aliceblue', // Change this to your desired hover color
+                backgroundColor: 'aliceblue',
                 cursor: 'pointer',
             },
-
         }),
-        singleValue: (provided, state) => ({
+        singleValue: (provided) => ({
             ...provided,
             padding: 3,
             borderRadius: 5,
             width: 'fit-content',
             color: COLORS.secondary,
-            // Add other styles as needed
         }),
-    }
+    };
 
     return (
-        <div className="App" style={{ width: '100%', ...props }} >
-            {label && <Text fontSize={12}>{label}</Text>
-            }
+        <div style={{ width: '100%', ...props }}>
+            {label && <Text fontSize={12}>{label}</Text>}
             <Select
                 value={selectedOption}
                 onChange={handleSelectChange}
@@ -66,9 +57,8 @@ export default function SearchSelect({ options, isMulti, onChange, searchable, v
                 isSearchable={searchable}
                 styles={customStyles}
                 disabled={disabled}
-                noOptionsMessage={() => "Sin resultados"} // Change this message as needed
-
+                noOptionsMessage={() => "Sin resultados"}
             />
-        </div >
+        </div>
     );
 }

@@ -21,7 +21,6 @@ const SearchSelectSpecifyFeatures = ({ feature, defaultValue, onChange, showLabe
 
 
     const changeValue = (value) => {
-        console.log(value)
         setValue(value);
         onChange(value);
     }
@@ -36,6 +35,7 @@ const SearchSelectSpecifyFeatures = ({ feature, defaultValue, onChange, showLabe
         setOptions(filtered)
     }
 
+    console.log("asd", value)
     return (
         <Box my={1} {...props}>
             <SearchSelect options={options} value={value} isMulti label={showLabel ? (label || 'Funcionalidad') : null} onChange={(value) => changeValue(value)} />

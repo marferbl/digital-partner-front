@@ -35,7 +35,7 @@ export const ButtonCreateCorporate = ({ refreshCorporate }) => {
 
 
     const create = async () => {
-        createCorporate({ name, cif, size, country, web }).then((res) => {
+        createCorporate({ name, cif, size: Number(size), country, web }).then((res) => {
             refreshCorporate();
             onClose();
         }).catch((err) => {
