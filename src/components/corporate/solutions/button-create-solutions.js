@@ -17,6 +17,7 @@ import { createSolution } from '../../../services/solution';
 import SearchSelect from '../../base/search-select';
 import { COUNTRIES, LANGUAGES } from '../../../utils/constants';
 import SearchSelectSpecifyFeatures from '../../base/search-select-specify-features';
+import { ImageUploadInput } from '../../base/image-upload';
 
 
 
@@ -94,6 +95,7 @@ export const ButtonCreateSolution = ({ refreshSolutions, disabled }) => {
                     <ModalCloseButton />
                     <ModalBody py={5}>
                         <Box fontSize={12} display={'flex'} alignItems={'start'} flexDir={'column'}>
+
 
 
                             <Flex gap={2} w='full'>

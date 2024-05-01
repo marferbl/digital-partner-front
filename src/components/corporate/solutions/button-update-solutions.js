@@ -9,14 +9,16 @@ import {
     ModalBody,
     ModalCloseButton,
     useDisclosure,
-    Select,
-    Checkbox
+    Image,
+    Checkbox,
+    Center
 } from '@chakra-ui/react'
 import { COLORS } from "../../../colors/colors";
 import { createSolution, updateSolution } from '../../../services/solution';
 import SearchSelect from '../../base/search-select';
 import { COUNTRIES, LANGUAGES } from '../../../utils/constants';
 import SearchSelectSpecifyFeatures from '../../base/search-select-specify-features';
+import { ImageUploadInput } from '../../base/image-upload';
 
 
 
@@ -36,6 +38,7 @@ export const ButtonUpdateSolution = ({ children, refreshSolutions, disabled, sol
     const [isSectorial, setisSectorial] = useState(false);
     const [isErp, setIsErp] = useState(false);
     const [specifyFeatures, setSpecifyFeatures] = useState([]);
+    const [logo, setLogo] = useState(null);
 
     useEffect(() => {
         setName(solution.name);
@@ -48,6 +51,8 @@ export const ButtonUpdateSolution = ({ children, refreshSolutions, disabled, sol
         setIsErp(solution.isErp);
         setisSectorial(solution.isSectorial);
         setSpecifyFeatures(solution.specifyFeatures);
+        setLogo(solution.logo);
+
     }, [solution])
 
 
@@ -108,9 +113,13 @@ export const ButtonUpdateSolution = ({ children, refreshSolutions, disabled, sol
                     <ModalCloseButton />
                     <ModalBody py={5}>
                         <Box fontSize={12} display={'flex'} alignItems={'start'} flexDir={'column'}>
+                            <Center w={'full'} flexDir={'column'} gap={5}>
+                                <Image rounded={'xl'} src={logo} alt={solution.name} w={100} h={100} />
+                                <ImageUploadInput url={`solution/uploadImage/${solution._id}`} setLogo={setLogo} />
+                            </Center>
 
 
-                            <Flex gap={2} w='full'>
+                            <Flex gap={2} w='full' mt={5}>
                                 <Box w='48%'>
                                     <Text fontWeight={"bold"}>Nombre: </Text>
                                     <Input value={name} onChange={(e) => setName(e.target.value)} placeholder={'Corporate Nueva'} />
