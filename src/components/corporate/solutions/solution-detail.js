@@ -27,7 +27,7 @@ export const SolutionDetail = ({ solution }) => {
             {solution && <Grid templateColumns="repeat(8, 1fr)" gap={6} pb={20}>
                 <GridItem colSpan={3}>
                     <Box textAlign={'center'} mt={1} rounded={"xl"} bgColor={"white"} w={"100%"} px={10}>
-                        <Avatar size="2xl" name={solution.name} src={solution.logo} mb={5} />
+                        <Avatar size="2xl" name={solution.name} mb={5} />
                         <Text fontWeight={'bold'} fontSize={34}>{solution.name}</Text>
                         <Text fontSize={18} mt={3} textDecor='underline'>{solution.website}</Text>
                     </Box>
@@ -37,12 +37,19 @@ export const SolutionDetail = ({ solution }) => {
                         <Text fontSize={14} mt={3} fontWeight='bold' textDecor={'underline'}>Descripción:</Text>
                         <Text fontSize={18} mt={0}>{solution.description}</Text>
                         <Text fontSize={14} mt={5} fontWeight='bold' textDecor={'underline'}>Funcionalidad:</Text>
-                        <Flex align={'center'} gap={2} pt={2}>
+                        <Flex align={'center'} gap={2} pt={2} flexWrap='wrap'>
                             {solution?.features.map((feature, index) => (
-                                <Text key={index} fontSize={18} >{KEYS_FEATURES[feature]} {index < solution.features.length - 1 ? '-' : ''}</Text>
+                                <Flex key={index} alignItems="center" gap={2}>
+                                    <Checkbox
+                                        isChecked={true}
+                                    />
+                                    <Text key={index} fontSize={18} >{KEYS_FEATURES[feature]} </Text>
+
+                                </Flex>
                             ))}
-                            (<Text fontSize={18} >{!solution.isErp ? 'No es ERP' : 'Es ERP'}</Text>)
                         </Flex>
+                        <Text mt={4} fontSize={18} >({!solution.isErp ? 'No es ERP' : 'Es ERP'})</Text>
+
                         <Text fontSize={14} mt={5} fontWeight='bold' textDecor={'underline'}>Funcionalidades específicas:</Text>
 
                         <Flex align="center" gap={2} pt={2}>

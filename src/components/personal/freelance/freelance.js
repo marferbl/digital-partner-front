@@ -16,7 +16,6 @@ export const FreelanceProfilePage = () => {
             const response = await getFreelance();
             if (response) {
                 setMeFreelance(response.data.freelance);
-                console.log(meFreelance)
             }
         } catch (error) {
             console.error(error);

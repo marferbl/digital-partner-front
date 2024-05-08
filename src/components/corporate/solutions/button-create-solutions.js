@@ -74,7 +74,6 @@ export const ButtonCreateSolution = ({ refreshSolutions, disabled }) => {
             specifyFeatures: specifyFeaturesArray
         }).then((res) => {
             refreshSolutions();
-            console.log("gola", res)
             onClose();
         }
         )

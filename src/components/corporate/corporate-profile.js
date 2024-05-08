@@ -10,7 +10,6 @@ import { CardServicesCorporate } from './card-services-corporate'
 
 
 export const CorporateProfile = ({ corporate }) => {
-    console.log(corporate)
 
     return (
         <Box>

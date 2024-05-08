@@ -32,7 +32,6 @@ const ServiceDetails = ({ service }) => {
             return `${PARTNER_TYPE_KEYS[array[0]]}, ${PARTNER_TYPE_KEYS[array[1]]} y ${PARTNER_TYPE_KEYS[array[1]]} más`
         }
     }
-    console.log(service)
 
     return (
         <Box mt={6} p={5} rounded={"xl"} bgColor={"white"} w={"100%"}>

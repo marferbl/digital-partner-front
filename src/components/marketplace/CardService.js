@@ -13,7 +13,7 @@ const CardService = ({ item }) => {
 
     const getLabelText = (serviceType) => {
         const label = {
-            'partner': 'Partner de ' + item.solutionId?.name || item.otherSolution,
+            'partner': 'Partner de ' + (item.solutionId?.name || item.otherSolution),
             'development': 'Desarrollo por ' + item.corporate?.name,
             'renting': 'Renting por ' + item.corporate?.name,
             'training': 'Training por' + item.corporate?.name,
