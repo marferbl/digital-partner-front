@@ -65,6 +65,12 @@ const Quiz = () => {
     const [lineType, setLineType] = useState('solutions')
     const [loading, setLoading] = useState(false)
 
+    useEffect(() => {
+        setAnswers({ ...answers, lineType: lineType })
+    }, [lineType])
+
+
+
     const startTest = () => {
         setAnswers([])
         setQuestions(questionsList)
@@ -81,7 +87,7 @@ const Quiz = () => {
 
     const setFiltersInAnswers = (value, key) => {
         const array = typeof value === 'string' ? [value] : value
-        setAnswers({ ...answers, [key]: array })
+        setAnswers({ ...answers, lineType: lineType, [key]: array })
     }
 
     const nextQuestion = () => {
