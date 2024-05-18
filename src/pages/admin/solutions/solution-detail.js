@@ -10,6 +10,8 @@ import { CertificationComponent } from "../../../components/corporate/solutions/
 import { Link, useParams } from "react-router-dom";
 import { UserContext } from "../../../context/userContext";
 import Navbar from "../../../components/base/navbar";
+import { IoChevronBack } from "react-icons/io5";
+
 
 export const SolutionDetailPage = () => {
     const { isLoggedIn } = useContext(UserContext)
@@ -49,10 +51,17 @@ export const SolutionDetailPage = () => {
         setSelectedComponent(selectedLink ? selectedLink.component : null);
     };
 
+    
+
     return (
         <Box>
             {!isLoggedIn ? <Navbar></Navbar> : null}
             <Box mt={6} p={5} rounded={"xl"} bgColor={"white"} w={"100%"} minH={400}>
+                <Flex h={8} align={'center'} pr={3} onClick={() => window.history.back()} cursor={'pointer'} _hover={{ borderBottomWidth: 1 }} w={'fit-content'}>
+                    <IoChevronBack size={20} />
+                    <Text ml={2} pt={-4} fontSize={16} fontWeight={'bold'}>Volver</Text>
+                </Flex>
+
                 <SolutionDetail solution={solution} />
                 <Flex w='full' justify={'space-around'} mt={4} filter={'grayscale(100)'}
                     cursor={isLoggedIn ? 'pointer' : 'not-allowed'}

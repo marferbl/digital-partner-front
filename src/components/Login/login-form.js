@@ -14,7 +14,7 @@ import { login, signup } from "../../services/auth";
 import { UserContext } from "../../context/userContext";
 import { useNavigate } from "react-router-dom";
 import { COLORS } from "../../colors/colors";
-
+import ChangePassword from "./Change-password";
 const LoginForm = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -117,6 +117,8 @@ const LoginForm = () => {
           Rellena todos los campos
         </Text>
       )}
+
+      <ChangePassword/>
     </Box>
   );
 };

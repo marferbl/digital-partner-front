@@ -3,6 +3,7 @@ import React, { useState, useContext, useEffect } from "react";
 import CountryFlag from "../../base/country-flag";
 import { languageLabelFromValue } from "../../../utils/methods";
 import { SPECIFY_FEATURES_LABELS } from "../../../utils/constants";
+import GradientButton from "../../base/GradientButton";
 
 
 
@@ -20,6 +21,12 @@ export const SolutionDetail = ({ solution }) => {
     };
 
 
+    const ensureHTTPS = (url) => {
+        if (!url.startsWith('http://') && !url.startsWith('https://')) {
+            return `https://${url}`;
+        }
+        return url;
+    };
 
 
     return (
@@ -29,7 +36,15 @@ export const SolutionDetail = ({ solution }) => {
                     <Box textAlign={'center'} mt={1} rounded={"xl"} bgColor={"white"} w={"100%"} px={10}>
                         <Avatar size="2xl" name={solution.name} mb={5} />
                         <Text fontWeight={'bold'} fontSize={34}>{solution.name}</Text>
-                        <Text fontSize={18} mt={3} textDecor='underline'>{solution.website}</Text>
+                        <Text fontSize={20} color={'blue.600'} _hover={{ textDecor: 'underline' }}>
+                            <a href={ensureHTTPS(solution.website)} target='_blank' fontSize='sm'>{solution.website}</a>
+                        </Text>
+                        <GradientButton
+                            type='green'
+                            label={'Contactar'}
+                            onClick={() => window.open(`mailto:${solution?.corporate?.superadmin?.email}`)}
+                            mt={5}
+                        />
                     </Box>
                 </GridItem>
                 <GridItem colSpan={5} pr={7}>

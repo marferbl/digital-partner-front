@@ -16,8 +16,7 @@ const CardSoftware = ({ _id, name, logo, description, lineType, ...rest }) => {
             <Center bg={'green.100'}>Solución</Center>
             <Center height={36} >
                 {lineType === 'solutions' && <Link to={isLoggedIn ? `/private/solution/${_id}` : `/solution/${_id}`}>
-                    {/* {logo ? <Image w={28} src={logo} alt={name} height={24} backgroundSize={'contain'} /> : */}
-                    <Center h='full'><Avatar size="xl" name={name} /> </Center>
+                    <Center h='full'><Avatar size="xl" name={name} src={logo} /> </Center>
                     {/* } */}
                 </Link>}
             </Center>

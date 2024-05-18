@@ -17,3 +17,6 @@ export const signup = (email, password, name, rol) =>
 export const login = (email, password) =>
   API.post(`/user/login`, { email, password });
 export const getMe = () => API.get(`/user/me`);
+export const changePassword = (email, password) =>
+  API.post(`/user/change-password`, { email, password });
+

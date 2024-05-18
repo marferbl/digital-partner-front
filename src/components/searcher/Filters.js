@@ -73,7 +73,7 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
                     {filterValues.lineType === 'solutions' && <SearchSelectFeatures value={filterValues.features} showLabel width={'100%'} isMulti onChange={(value) => handleToggle('features', value)} />}
                     {(filterValues.lineType === 'solutions' && filterValues.features?.length) ? <SearchSelectSpecifyFeatures value={filterValues.specifyFeatures} showLabel width={'100%'} label={'Funcionalidad especifica'} feature={filterValues.features} onChange={(value) => handleToggle('specifyFeatures', value)} /> : null}
                     {filterValues.lineType === 'services' && <SearchSelect options={serviceTypeOptions} width={'100%'} label={'Tipo'} onChange={(value) => handleToggle('serviceType', value)} value={filterValues.serviceType} />}
-                    {filterValues.lineType === 'services' && filterValues.serviceType === 'partner' && <SearchSelect options={partnerTypeOptions} width={'100%'} label={'Servicio'} onChange={(value) => handleToggle('partnerType', value)} value={filterValues.partnerType} />}
+                    {filterValues.lineType === 'services' && filterValues.serviceType === 'partner' && <SearchSelect options={partnerTypeOptions} isMulti width={'100%'} label={'Servicio'} onChange={(value) => handleToggle('partnerType', value)} value={filterValues.partnerType} />}
                     <SearchSelectCountries value={filterValues.countries} showLabel width={'100%'} isMulti onChange={(value) => {
                         let arrayValue = typeof value === 'object' ? value : [value];
                         handleToggle('countries', arrayValue)
