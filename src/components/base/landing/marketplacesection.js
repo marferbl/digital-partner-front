@@ -6,7 +6,7 @@ import { getAllSolutions } from '../../../services/solution'
 import SectionMarketPlace from '../../marketplace/section-marketplace'
 import { FiAirplay } from 'react-icons/fi'
 import FiltersSection from '../../searcher/Filters'
-import { getAllSearch } from '../../../services/search'
+import { getAllSearch, getOptimizeSearch } from '../../../services/search'
 
 const MarketplaceSection = ({ term, filters, isCollapsed }) => {
     const [solutions, setSolutions] = useState([])
@@ -19,18 +19,32 @@ const MarketplaceSection = ({ term, filters, isCollapsed }) => {
     const getSolutions = () => {
         setLoading(true)
         const featuresToArray = typeof filters.features === 'string' ? filters.features.split(',') : filters.features;
-        const completedFilters = filters;
-        completedFilters.features = featuresToArray;
-        getAllSearch({ term: term, ...completedFilters }).then((res) => {
-            setLoading(false)
-            setSolutions(res.data.results);
+        if (term) {
+            getOptimizeSearch(term).then((res) => {
+                setLoading(false)
+                setSolutions(res.data.results);
+            }
+            ).catch((error) => {
+                setLoading(false)
+                console.log(error);
+            }
+            );
+        }
+        else {
+            const completedFilters = filters;
+            completedFilters.features = featuresToArray;
+            getAllSearch({ term: term, ...completedFilters }).then((res) => {
+                setLoading(false)
+                setSolutions(res.data.results);
 
+            }
+            ).catch((error) => {
+                setLoading(false)
+                console.log(error);
+            }
+            );
         }
-        ).catch((error) => {
-            setLoading(false)
-            console.log(error);
-        }
-        );
+
     };
 
 

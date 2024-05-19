@@ -14,7 +14,6 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
     const [filterValues, setFilterValues] = useState(filters);
 
     const handleToggle = (filterName, value) => {
-        console.log(filterValues)
 
         setFilterValues((prevValues) => ({
             ...prevValues,
@@ -25,6 +24,7 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
 
     useEffect(() => {
         // Call onChangeFilters whenever filterValues change
+        setTermLabel('');
         onChangeFilters(filterValues);
     }, [filterValues]);
 

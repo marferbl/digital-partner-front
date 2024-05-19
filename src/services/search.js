@@ -14,3 +14,7 @@ API.interceptors.request.use((req) => {
 export const getAllSearch = (queryParams) => {
   return API.get(`/search/all`, { params: queryParams });
 };
+
+export const getOptimizeSearch = (keyword) => {
+  return API.get(`/search/optimize/${keyword}`);
+}
