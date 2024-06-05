@@ -8,19 +8,23 @@ import {
   useDisclosure,
   useColorModeValue,
   Text,
-  Stack
+  Stack,
+  Button
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon, AddIcon } from "@chakra-ui/icons";
 import { Link } from "react-router-dom";
 import { COLORS } from "../../colors/colors";
 import { UserContext } from "../../context/userContext";
 import { SoftwareSearcherInput } from "./software-searcher-input";
+import { useTranslation } from "react-i18next";
+import CountryFlag from "./country-flag";
 
 
 
 
 export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { t, i18n } = useTranslation("global")
   const { isLoggedIn } = useContext(UserContext);
 
   const Links = [
@@ -43,6 +47,7 @@ export default function Navbar() {
             <Link to="/">
               <Image src={"/logo-digitalando.png"} height={14} pl={4} />
             </Link>
+
           </Box>
           <SoftwareSearcherInput />
           <IconButton
@@ -66,6 +71,14 @@ export default function Navbar() {
                   </Box>
                 ))}
               </HStack>
+              {/* <Flex gap={3} pr={3}>
+                <Button size={'small'} onClick={()=> i18n.changeLanguage('es')}>
+                  <CountryFlag country={'spain'} />
+                </Button>
+                <Button size={'small'} onClick={()=> i18n.changeLanguage('en')}>
+                  <CountryFlag country={'england'} />
+                </Button>
+              </Flex> */}
             </HStack>
           </Flex>
         </Flex>

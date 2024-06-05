@@ -30,8 +30,8 @@ export const SolutionDetail = ({ solution }) => {
 
 
     return (
-        <Box mt={6} p={5} rounded={"xl"} bgColor={"white"} w={"100%"}>
-            {solution && <Grid templateColumns="repeat(8, 1fr)" gap={6} pb={20}>
+        <Box mt={6} p={5} rounded={"xl"} w={"100%"}>
+            {solution && <Grid templateColumns="repeat(8, 1fr)" gap={6}>
                 <GridItem colSpan={3}>
                     <Box textAlign={'center'} mt={1} rounded={"xl"} bgColor={"white"} w={"100%"} px={10}>
                         <Avatar size="2xl" name={solution.name} mb={5} />

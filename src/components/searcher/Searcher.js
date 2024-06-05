@@ -8,7 +8,7 @@ import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { COLORS } from '../../colors/colors';
 
 
-const Searcher = ({ filters }) => {
+const Searcher = ({ filters, isFavorites }) => {
     const { term } = useParams()
     const [allFilters, setAllFilters] = useState(filters)
     const [isCollapsed, setIsCollapsed] = useState(false);
@@ -17,6 +17,10 @@ const Searcher = ({ filters }) => {
     useEffect(() => {
         setTermLabel(term)
     }, [term])
+
+    useEffect(() => {
+        setIsCollapsed(isFavorites)
+    }, [isFavorites])
 
 
     const getLabelTerm = () => {
@@ -32,14 +36,14 @@ const Searcher = ({ filters }) => {
     return (
         <Box p={5} >
             <Heading textAlign={'center'} fontFamily={'Montserrat'} fontSize={30}>
-                {termLabel ? 'Mejores resultados sobre' : 'Resultados:'}
+                {isFavorites ? 'Tus Favoritos' : termLabel ? 'Mejores resultados sobre' : 'Resultados:'}
             </Heading>
             <Center>
                 <Text fontSize={30} fontWeight={'bold'} color={'#00A3FF'}>{getLabelTerm()}</Text>
             </Center>
             <Grid templateColumns="repeat(6, 1fr)" w={'full'}>
                 <GridItem colSpan={1}>
-                    <Flex cursor={'pointer'} alignItems="center" onClick={() => setIsCollapsed(!isCollapsed)}>
+                    {!isFavorites && <Flex cursor={'pointer'} alignItems="center" onClick={() => setIsCollapsed(!isCollapsed)}>
                         <Text fontSize={14}> {isCollapsed ? 'Mostrar filtros' : 'Ocultar filtros'}</Text>
                         <Icon
                             as={!isCollapsed ? FiChevronLeft : FiChevronRight}
@@ -47,14 +51,14 @@ const Searcher = ({ filters }) => {
                             fontSize="20px"
                             color={COLORS.secondary}
                         />
-                    </Flex>
+                    </Flex>}
                     <div style={{ display: isCollapsed ? 'none' : 'block' }}>
-                        <FiltersSection filters={filters} setTermLabel={setTermLabel} onChangeFilters={(filters) => updateFilters(filters)} />
+                        {!isFavorites && <FiltersSection filters={filters} setTermLabel={setTermLabel} onChangeFilters={(filters) => updateFilters(filters)} />}
                     </div>
                 </GridItem>
                 <GridItem colSpan={isCollapsed ? 6 : 5}>
                     <Center pt={5} flexDir={'column'} w='100%'>
-                        <MarketplaceSection term={termLabel} filters={allFilters} isCollapsed={isCollapsed} />
+                        <MarketplaceSection term={termLabel} filters={allFilters} isCollapsed={isCollapsed} isFavorites={isFavorites} />
                     </Center>
                 </GridItem>
             </Grid>

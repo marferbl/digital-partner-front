@@ -11,12 +11,15 @@ const SearcherPage = () => {
     const { isLoggedIn } = useContext(UserContext);
     const location = useLocation();
     const [filters, setFilters] = useState(location?.state?.filters || {})
+    const [isFavorites, setIsFavorites] = useState(false)
 
     useEffect(() => {
         if (location && location.state) {
             const { state } = location;
-            const { filters } = state
+            const { filters } = state;
             setFilters(filters)
+            const { isFavorites } = state
+            setIsFavorites(isFavorites)
         }
     }, [location])
 
@@ -29,7 +32,7 @@ const SearcherPage = () => {
         <>
             {!isInPanel() && <Navbar />}
             <Box mt={6} p={0} rounded={"xl"} bgColor={"white"} w={"100%"}>
-                <Searcher filters={filters} />
+                <Searcher filters={filters} isFavorites={isFavorites} />
             </Box>
         </>
 

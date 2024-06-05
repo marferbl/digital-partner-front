@@ -10,14 +10,15 @@ import {
 } from '@chakra-ui/react';
 import { Link } from "react-router-dom";
 import { COLORS } from '../../../colors/colors';
+import { useTranslation } from 'react-i18next';
 
 
 
 
 const features = [
   {
-    heading: '¿Tienes una solución digital o eres una empresa de servicios digitales?',
-    content: 'No pierdas la oportunidad de anunciarte en la mayor comnunidad digital del mundo',
+    heading: 'feature1Title',
+    content: 'feature1Description',
     icon: (
       <svg
         width={36}
@@ -35,11 +36,11 @@ const features = [
         ></path>
       </svg>
     ),
-    button: 'Crea un anuncio'
+    button: 'featureButton1'
   },
   {
-    heading: '¿Eres una empresa interesada en mantenerse actualizada en la digitalización?',
-    content: 'Gestión de licencias, equipo interno y gran oferta de manuales y referencias de las soluciones que más te interesen.',
+    heading: 'feature2Title',
+    content: 'feature2Description',
     icon: (
       <svg
         width={36}
@@ -57,12 +58,12 @@ const features = [
         ></path>
       </svg>
     ),
-    button: 'Da de alta tu empresa'
+    button: 'featureButton2'
 
   },
   {
-    heading: '¿Tienes un perfil digital y te interesa conocer las mejores ofertas de empleo?',
-    content: 'Tenemos un gran volumen de ofertas para profesionales, freelancers y gurús.El método más innovador del mercado.',
+    heading: 'feature3Title',
+    content: 'feature3Description',
     icon: (
       <svg
         width={36}
@@ -81,12 +82,14 @@ const features = [
         ></path>
       </svg>
     ),
-    button: 'Configura tu perfil'
+    button: 'featureButton3'
 
   }
 ];
 
 const Features = () => {
+  const { t } = useTranslation('global')
+
   const gradientColor = "#1e96d9";
   return (
     <Container maxW="6xl" p={{ base: 5, md: 10 }} mb={{ base: 5, lg: 20 }}>
@@ -116,10 +119,10 @@ const Features = () => {
               {feature.icon}
             </Flex>
             <chakra.h3 fontWeight="semibold" fontSize="md" mt={6}>
-              {feature.heading}
+              {t(feature.heading)}
             </chakra.h3>
             <Text fontSize="xs" mt={4} h={16}>
-              {feature.content}
+              {t(feature.content)}
             </Text>
             <Link to={{ pathname: '/initial-page-digit/a', state: { filter: 'register' } }} >
               <Button
@@ -131,7 +134,7 @@ const Features = () => {
                 fontWeight="bold"
                 _focus={{ boxShadow: "outline" }}
               >
-                {feature.button}
+                {t(feature.button)}
               </Button>
             </Link>
           </Box>

@@ -14,3 +14,5 @@ API.interceptors.request.use((req) => {
 export const getCorporate = () => API.get(`/corporate/owner`);
 export const createCorporate = (body) => API.post(`/corporate/create`, body);
 export const removeCorporate = (id) => API.get(`/corporate/owner` + id);
+export const updateCorporate = (body) => API.put(`/corporate/update`, body);
+export const getApplications = (id) => API.get(`/corporate/applications/${id}`);

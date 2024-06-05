@@ -16,6 +16,7 @@ import { createCorporate } from '../../services/corporate';
 import { PaymentForm } from '../stripe';
 import { FaInfoCircle } from "react-icons/fa";
 import SearchSelectCountries from '../base/search-select-countries';
+import PlansSelector from '../plan/plan-selector';
 
 
 
@@ -30,14 +31,13 @@ export const ButtonCreateCorporate = ({ refreshCorporate }) => {
     const [size, setSize] = useState("");
     const [web, setWeb] = useState("");
     const [step, setStep] = useState(0);
-
-
-
+    const [selectedPlan, setSelectedPlan] = useState('');
 
     const create = async () => {
-        createCorporate({ name, cif, size: Number(size), country, web }).then((res) => {
+        createCorporate({ name, cif, size: Number(size), country, web, plan: selectedPlan }).then((res) => {
             refreshCorporate();
             onClose();
+            window.location.reload();
         }).catch((err) => {
             console.log(err);
         });
@@ -53,12 +53,15 @@ export const ButtonCreateCorporate = ({ refreshCorporate }) => {
         setStep(0);
     };
 
+    const handlePlanSelection = (plan) => {
+        setSelectedPlan(plan)
+    };
 
     return (
         <>
             <Button bg={COLORS.primary} color={'white'} _hover={{ bg: 'blue.700' }} onClick={onOpen}>Crear corporate</Button>
 
-            <Modal isOpen={isOpen} onClose={closeModal}>
+            <Modal isOpen={isOpen} onClose={closeModal} size='xl'>
                 <ModalOverlay />
                 <ModalContent>
                     <ModalHeader>Crear Corporate</ModalHeader>
@@ -104,6 +107,8 @@ export const ButtonCreateCorporate = ({ refreshCorporate }) => {
                                 value={web}
                                 onChange={(e) => setWeb(e.target.value)}
                             />
+                        </Box> : step === 1 ? <Box>
+                            <PlansSelector setPlanSelected={handlePlanSelection} selectedPlan={selectedPlan} />
                         </Box> : <Box py={1}>
                             <Flex flexDir={'column'} pb={8} >
                                 <Flex align='baseline' justify={'start'}>
@@ -131,7 +136,7 @@ export const ButtonCreateCorporate = ({ refreshCorporate }) => {
                         <Button variant='ghost' mr={3} onClick={closeModal}>
                             cancelar
                         </Button>
-                        <Button onClick={() => { step === 0 ? setStep(1) : create() }} colorScheme='teal'>Confirmar</Button>
+                        <Button onClick={() => { step < 2 ? setStep(step + 1) : create() }} colorScheme='teal'>{step < 2 ? 'Continuar' : 'Confirmar'}</Button>
                     </ModalFooter>
                 </ModalContent>
             </Modal>

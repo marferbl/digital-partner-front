@@ -11,23 +11,35 @@ import { Link, useParams } from "react-router-dom";
 import { UserContext } from "../../../context/userContext";
 import Navbar from "../../../components/base/navbar";
 import { IoChevronBack } from "react-icons/io5";
+import { COLORS } from "../../../colors/colors";
+import AddFavoriteButton from "../../../components/favorites/add-favorite-button";
 
 
 export const SolutionDetailPage = () => {
     const { isLoggedIn } = useContext(UserContext)
     const [solution, setSolution] = useState(null);
-    const [selectedComponent, setSelectedComponent] = useState(<PartnerComponent />);
-    const [label, setLabel] = useState('Partner');
+    const [selectedComponent, setSelectedComponent] = useState(null);
+    const [label, setLabel] = useState(null);
     const { id } = useParams();
+
+    useEffect(() => {
+        if (!selectedComponent && solution) {
+            renderComponent('Info');
+        }
+    }, [solution]);
+
+
 
 
 
     const LINKS = [
+        { label: 'Info', component: <SolutionDetail solution={solution} /> },
         { label: 'Descubrir partners', component: <PartnerComponent /> },
         { label: 'Pedir demo', component: <DemoComponent solution={solution} /> },
         { label: 'Descargar manuales', component: <ManualComponent solution={solution} /> },
         { label: 'Comprar referencias', component: <ReferencesComponent /> },
         { label: 'Obtener certificaciones', component: <CertificationComponent solution={solution} /> },
+
     ];
 
 
@@ -39,6 +51,7 @@ export const SolutionDetailPage = () => {
         getSolutionById(id)
             .then((res) => {
                 setSolution(res.data.solution);
+
             })
             .catch((error) => {
                 console.log(error);
@@ -51,32 +64,34 @@ export const SolutionDetailPage = () => {
         setSelectedComponent(selectedLink ? selectedLink.component : null);
     };
 
-    
 
     return (
         <Box>
             {!isLoggedIn ? <Navbar></Navbar> : null}
-            <Box mt={6} p={5} rounded={"xl"} bgColor={"white"} w={"100%"} minH={400}>
-                <Flex h={8} align={'center'} pr={3} onClick={() => window.history.back()} cursor={'pointer'} _hover={{ borderBottomWidth: 1 }} w={'fit-content'}>
-                    <IoChevronBack size={20} />
-                    <Text ml={2} pt={-4} fontSize={16} fontWeight={'bold'}>Volver</Text>
+            <Box mt={6} p={5} rounded={"xl"} bgColor={"white"} w={"100%"} minH={600}>
+                <Flex w='full' justify={'space-between'}>
+                    <Flex h={8} align={'center'} pr={3} onClick={() => window.history.back()} cursor={'pointer'} _hover={{ borderBottomWidth: 1 }} w={'fit-content'}>
+                        <IoChevronBack size={20} />
+                        <Text ml={2} pt={-4} fontSize={16} fontWeight={'bold'}>Volver</Text>
+                    </Flex>
+                    <AddFavoriteButton entity={solution} />
                 </Flex>
-
-                <SolutionDetail solution={solution} />
-                <Flex w='full' justify={'space-around'} mt={4} filter={'grayscale(100)'}
-                    cursor={isLoggedIn ? 'pointer' : 'not-allowed'}
+                <Flex w='full' justify={'space-evenly'} mt={4} filter={isLoggedIn ? 'none' : 'grayscale(100)'} cursor={isLoggedIn ? 'pointer' : 'not-allowed'}
+                    pb={5}
                 >
                     {LINKS.map(link => (
                         <Text
                             key={link.label}
-                            flex='1'
                             textAlign='center'
                             borderWidth={1}
+                            w={200}
                             py={1}
+                            px={2}
                             fontSize={14}
-                            _hover={isLoggedIn ? { bgColor: 'gray.100' } : null}
-                            bgColor={label === link.label ? 'gray.100' : 'white'}
+                            rounded='md'
+                            bgColor={label === link.label ? COLORS.primary : 'white'}
                             onClick={isLoggedIn ? () => renderComponent(link.label) : null}
+                            color={label === link.label ? 'white' : 'black'}
                             opacity={isLoggedIn ? 1 : 0.5} // Adjust opacity for disabled appearance
                             pointerEvents={isLoggedIn ? 'auto' : 'none'} // Enable or disable pointer events
                         >
@@ -84,7 +99,7 @@ export const SolutionDetailPage = () => {
                         </Text>
                     ))}
                 </Flex>
-                {isLoggedIn ? <Box mt={4} px={5}>
+                {isLoggedIn ? <Box mt={4} px={14} flex={1}>
                     {selectedComponent}
                 </Box> : <Flex w='full' justify={'center'} align={'center'} flexDir='column' mt={4} >
                     <Text mt={6} fontSize='xl' fontWeight='bold' color={'gray.400'}>Debes iniciar sesión para ver más detalles</Text>
@@ -93,6 +108,8 @@ export const SolutionDetailPage = () => {
                     </Link>
 
                 </Flex>}
+
+
             </Box>
         </Box>
     );

@@ -6,8 +6,9 @@ import { Link } from 'react-router-dom'
 import { useContext } from 'react';
 import { UserContext } from '../../context/userContext';
 import { COLORS } from '../../colors/colors';
+import { FcLike } from 'react-icons/fc';
 
-const CardService = ({ item }) => {
+const CardService = ({ item, isFavorites }) => {
     const { isLoggedIn } = useContext(UserContext);
 
 
@@ -25,6 +26,9 @@ const CardService = ({ item }) => {
     return (
         <Box w='full' borderWidth="1px" borderRadius="lg" overflow="hidden">
             <Center bg={'blue.100'}>{'Servicio'}</Center>
+            {isFavorites && <Flex justifyContent="end" pr={1} alignItems="center" h={6} >
+                <FcLike size={20} color={COLORS.primary} />
+            </Flex>}
             <Center height={36} >
                 <Link to={isLoggedIn ? `/private/service/${item._id}` : `/service/${item._id}`}>
                     <Center h='full'><Avatar size="xl" name={item?.corporate?.name} /> </Center>

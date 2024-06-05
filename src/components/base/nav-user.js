@@ -14,11 +14,17 @@ import React, { useContext, useEffect } from 'react';
 import { UserContext } from "../../context/userContext";
 import { getMe } from '../../services/auth';
 import { SoftwareSearcherInput } from './software-searcher-input';
+import { useNavigate } from 'react-router-dom';
+import { FcLike } from "react-icons/fc";
+import { Tooltip } from '@chakra-ui/react'
+
 
 
 
 export const NavbarUser = () => {
     const { loggedUser, userView, changeUserView, logOutUser, setMe, me } = useContext(UserContext);
+    const navigate = useNavigate()
+
 
     useEffect(() => {
         setMeData()
@@ -38,24 +44,40 @@ export const NavbarUser = () => {
         })
     }
 
+    const isInPanel = () => {
+        return window.location.pathname.includes('private');
+    }
+    
+    const goToSearch = () => {
+        navigate(getRoute(), { state: { filters: {}, isFavorites: true } })
+    }
 
+    const getRoute = () => {
+        return isInPanel() ? `/private/search/${''}` : `/search/${''}`;
+    };
 
     return (
         <Flex w={'full'} justify={'space-between'}>
             <SoftwareSearcherInput />
-            <Menu>
-                <MenuButton as={Button} rounded={'xl'} p={2} bg={'white'} w={150} justify={'space-between'} align={'center'}>
-                    <Flex justifyContent={'space-between'} alignItems={'center'}>
-                        <Text fontSize={14}>{userView === 'corporate' ? 'Corporate' : 'Personal'}</Text>
-                        <Image rounded={"100%"} h={6} src={loggedUser?.avatar} />
-                    </Flex>
-                </MenuButton>
-                <MenuList width={20} p={0}>
-                    <LinkDropdown label={userView === 'corporate' ? 'Cambiar a personal' : 'Cambiar a corporate'} action={() => changeUserView()} />
-                    <LinkDropdown label={'Cerrar sesión'} action={logOutUser} />
-                </MenuList>
-            </Menu>
-
+            <Flex>
+                <Menu>
+                    <MenuButton as={Button} rounded={'xl'} p={2} bg={'white'} w={150} justify={'space-between'} align={'center'}>
+                        <Flex justifyContent={'space-between'} alignItems={'center'}>
+                            <Text fontSize={14}>{userView === 'corporate' ? 'Corporate' : 'Personal'}</Text>
+                            <Image rounded={"100%"} h={6} src={loggedUser?.avatar} />
+                        </Flex>
+                    </MenuButton>
+                    <MenuList width={20} p={0}>
+                        <LinkDropdown label={userView === 'corporate' ? 'Cambiar a personal' : 'Cambiar a corporate'} action={() => changeUserView()} />
+                        <LinkDropdown label={'Cerrar sesión'} action={logOutUser} />
+                    </MenuList>
+                </Menu>
+                <Tooltip label="Tus favoritos">
+                    <Button rounded={'xl'} variant='ghost' p={2} w={12} ml={2} justify={'space-between'} align={'center'} onClick={goToSearch}>
+                        <FcLike size={20} />
+                    </Button>
+                </Tooltip>
+            </Flex>
         </Flex>
     )
 } 

@@ -13,8 +13,12 @@ import {
   Center,
 } from '@chakra-ui/react'
 import { COLORS } from '../../../colors/colors'
+import { useTranslation } from 'react-i18next'
 
 export default function Hero() {
+  const { t, i18n } = useTranslation("global")
+
+
   return (
     <>
       <Container maxW={'5xl'}>
@@ -29,9 +33,9 @@ export default function Hero() {
             fontSize={{ base: '3xl', sm: '4xl', md: '6xl' }}
             lineHeight={'110%'}
           >
-            Descubre, compara y transforma. <br />
+            {t('discoverCompareTransform')} <br />
             <Text as={'span'} fontSize={{ base: '2xl', sm: '3xl', md: '5xl' }} fonts color={COLORS.secondary}>
-            Bienvenidx a tu comunidad digital
+              {t('welcomeToDigitalCommunity')}
             </Text>
           </Heading>
         </Stack>

@@ -7,12 +7,35 @@ import { AuthProviderWrapper } from "./context/userContext";
 import { PageRoutes } from "./routes";
 import "@fontsource/montserrat/400.css";
 import theme from "./theme";
+import { I18nextProvider } from "react-i18next"
+import i18Next from "i18next"
+
+import global_es from "./translations/es/global.json"
+import global_en from "./translations/en/global.json"
+
+i18Next.init({
+  interpolation: {
+    escapeValue: false
+  },
+  lng: "es",
+  resources: {
+    es: {
+      global: global_es
+    },
+    en: {
+      global: global_en
+    }
+  }
+})
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <AuthProviderWrapper>
-    <ChakraProvider theme={theme}>
-      <PageRoutes />
-    </ChakraProvider>
-  </AuthProviderWrapper>
+  <I18nextProvider i18n={i18Next}>
+    <AuthProviderWrapper>
+      <ChakraProvider theme={theme}>
+        <PageRoutes />
+      </ChakraProvider>
+    </AuthProviderWrapper>
+  </I18nextProvider>
 );

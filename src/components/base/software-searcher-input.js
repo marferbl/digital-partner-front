@@ -1,7 +1,11 @@
 import { useState } from 'react';
-import { Flex, Input, Button } from '@chakra-ui/react';
+import { Flex, Input, Button, Icon } from '@chakra-ui/react';
 import { Link, useNavigate } from 'react-router-dom';
 import { COLORS } from '../../colors/colors.js'; // Assuming COLORS is imported from your constants file
+import { FiTool, FiRepeat } from "react-icons/fi";
+
+
+
 
 export const SoftwareSearcherInput = () => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -19,6 +23,11 @@ export const SoftwareSearcherInput = () => {
     const getRoute = () => {
         return isInPanel() ? `/private/search/${searchTerm}` : `/search/${searchTerm}`;
     };
+
+    const goToSearch = (key) => {
+        navigate(getRoute(), { state: { filters: { lineType: key } } }, { replace: true }
+        );
+    }
 
     return (
         <Flex as="form" onSubmit={(e) => { e.preventDefault(); handleSearch(); }} align={'center'} justify={'center'} gap={3}>
@@ -38,6 +47,18 @@ export const SoftwareSearcherInput = () => {
                 _hover={{ color: 'gray.200', shadow: 'xl' }}
             >
                 Buscar
+            </Button>
+            <Button size={'sm'} onClick={() => goToSearch('solutions')}>
+                <Icon
+                    fontSize="16"
+                    as={FiTool}
+                />
+            </Button>
+            <Button size={'sm'} onClick={() => goToSearch('services')}>
+                <Icon
+                    fontSize="16"
+                    as={FiRepeat}
+                />
             </Button>
         </Flex>
     );

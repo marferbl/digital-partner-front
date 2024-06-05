@@ -7,14 +7,23 @@ import SectionMarketPlace from '../../marketplace/section-marketplace'
 import { FiAirplay } from 'react-icons/fi'
 import FiltersSection from '../../searcher/Filters'
 import { getAllSearch, getOptimizeSearch } from '../../../services/search'
+import { getFavorites } from '../../../services/favorite'
 
-const MarketplaceSection = ({ term, filters, isCollapsed }) => {
+const MarketplaceSection = ({ term, filters, isCollapsed, isFavorites }) => {
     const [solutions, setSolutions] = useState([])
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         if (!!term || filters) getSolutions()
     }, [term, filters]);
+
+    useEffect(() => {
+        if (isFavorites) {
+            getSolutions()
+        }
+    }, [isFavorites]);
+
+
 
     const getSolutions = () => {
         setLoading(true)
@@ -33,16 +42,28 @@ const MarketplaceSection = ({ term, filters, isCollapsed }) => {
         else {
             const completedFilters = filters;
             completedFilters.features = featuresToArray;
-            getAllSearch({ term: term, ...completedFilters }).then((res) => {
-                setLoading(false)
-                setSolutions(res.data.results);
+            if (isFavorites) {
+                getFavorites({ term: term, ...completedFilters }).then((res) => {
+                    setLoading(false)
+                    setSolutions(res.data.results);
+                }
+                ).catch((error) => {
+                    setLoading(false)
+                    console.log(error);
+                }
+                );
+            }
+            else {
+                getAllSearch({ term: term, ...completedFilters }).then((res) => {
+                    setLoading(false)
+                    setSolutions(res.data.results);
+                }).catch((error) => {
+                    setLoading(false)
+                    console.log(error);
+                }
+                );
+            }
 
-            }
-            ).catch((error) => {
-                setLoading(false)
-                console.log(error);
-            }
-            );
         }
 
     };
@@ -70,7 +91,7 @@ const MarketplaceSection = ({ term, filters, isCollapsed }) => {
                         <Text pt={6} color={COLORS.blue} fontSize='xl' textAlign='center'>No se encontraron resultados</Text>
                     </Center>
                     :
-                    <SectionMarketPlace list={solutions} />
+                    <SectionMarketPlace list={solutions} isFavorites={isFavorites} />
                 }
 
             </Box>

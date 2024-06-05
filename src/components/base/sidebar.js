@@ -1,4 +1,4 @@
-import React, { ReactNode, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import {
   IconButton,
   Box,
@@ -33,6 +33,7 @@ import { UserContext } from "../../context/userContext";
 import { FiGrid } from "react-icons/fi";
 import { COLORS } from "../../colors/colors";
 import { useState } from "react";
+import { getApplications } from "../../services/corporate";
 
 const LinkItems = [
   { name: "Inicio", icon: FiHome },
@@ -42,6 +43,7 @@ const LinkItems = [
 export default function SimpleSidebar({ children }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+
 
 
   return (
@@ -74,12 +76,42 @@ export default function SimpleSidebar({ children }) {
 }
 
 const SidebarContent = ({ onClose, isSidebarOpen, setIsSidebarOpen, ...rest }) => {
-  const { userView } = useContext(UserContext);
+  const { userView, me } = useContext(UserContext);
+  const [applications, setApplications] = useState([]);
+  const [filteredApplications, setFilteredApplications] = useState([]);
+  const APPLICATIONS = ['corporate', 'solutions', 'services', 'events', 'teamManagement', 'recruitment', 'licenses']
+
+  useEffect(() => {
+    if (me && me.corporate) {
+      getCompanyApplications();
+    }
+  }, [me])
+
+
+  useEffect(() => {
+    if (applications) {
+      const arrayTrue = Object.keys(applications).filter(key => applications[key]);
+      const array = APPLICATIONS.filter(app => arrayTrue.includes(app));
+      setFilteredApplications(array);
+    }
+
+  }, [applications]);
+
+  const getCompanyApplications = async () => {
+    if (!me.corporate) {
+      return;
+    }
+    const res = await getApplications(me.corporate._id);
+    if (res) {
+      setApplications(res.data.applications);
+    }
+  };
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
+  console.log('filteredApplications', filteredApplications)
 
   const userRoutes = [
     { name: "Perfil", icon: FiUser, to: "profile" },
@@ -90,14 +122,18 @@ const SidebarContent = ({ onClose, isSidebarOpen, setIsSidebarOpen, ...rest }) =
   ]
 
   const adminRoutes = [
-    { name: "Corporate", icon: FiDatabase, to: "corporate/profile" },
-    { name: "Soluciones", icon: FiTool, to: "corporate/solutions" },
-    { name: "Servicios", icon: FiRepeat, to: "corporate/service" },
-    { name: "Eventos", icon: FiCalendar, to: "corporate/users", soon: true },
-    { name: "Equipo", icon: FiUsers, to: "corporate/users", soon: true },
-    { name: "Licencias", icon: FiBookOpen, to: "corporate/users", soon: true },
-    { name: "Ofertas", icon: FiSearch, to: "corporate/users", soon: true },
+    { name: "Corporate", icon: FiDatabase, to: "corporate/profile", application: 'corporate' },
+    { name: "Soluciones", icon: FiTool, to: "corporate/solutions", application: 'solutions' },
+    { name: "Servicios", icon: FiRepeat, to: "corporate/service", application: 'services' },
+    { name: "Eventos", icon: FiCalendar, to: "corporate/users", soon: true, application: 'events' },
+    { name: "Equipo", icon: FiUsers, to: "corporate/users", soon: true, application: 'teamManagement' },
+    { name: "Licencias", icon: FiBookOpen, to: "corporate/users", soon: true, application: 'licenses' },
+    { name: "Ofertas", icon: FiSearch, to: "corporate/users", soon: true, application: 'recruitment' },
   ]
+
+  const adminRoutesFiltered = adminRoutes.filter((route) => filteredApplications.includes(route.application) || route.application === 'corporate')
+
+
   return (
     <Box
       bg={useColorModeValue("white", "gray.100")}
@@ -123,12 +159,12 @@ const SidebarContent = ({ onClose, isSidebarOpen, setIsSidebarOpen, ...rest }) =
       {isSidebarOpen &&
         <>
           <Flex mt={-10} mb={10} h="10" alignItems="center" ml={1} justifyContent="space-between">
-            <Link to="/digitalandoapp">
+            <Link to="/">
               <Image ml={3} src={"/logo-digitalando.png"} height={12} />
             </Link>
             <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
           </Flex>
-          {userView === 'corporate' ? (adminRoutes.map((link) => (
+          {userView === 'corporate' ? (adminRoutesFiltered.map((link) => (
             <NavItem key={link.name} icon={link.icon} to={link.to} soon={link.soon}>
               {link.name}
               {link.soon ? <Text fontSize={9} color="gray.400" ml="auto">Próximamente</Text> : null}

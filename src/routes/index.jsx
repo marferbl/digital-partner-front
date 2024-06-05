@@ -22,8 +22,7 @@ export const PageRoutes = () => {
   return (
     <Router>
       <Routes>
-        <Route path={"/"} element={<FalseLanding />} />
-        <Route path={"/digitalandoapp"} element={<LandingPage />} />
+        <Route path={"/"} element={<LandingPage />} />
         <Route path={"/initial-page-digit"} element={<App />} />
         <Route path={"/initial-page-digit/a"} element={<App />} />
         <Route path={"/marketplace"} element={<MarketplacePage />} />
