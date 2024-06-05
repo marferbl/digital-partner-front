@@ -17,6 +17,7 @@ import ServiceDetailsPage from "../pages/admin/service/service-details";
 import AboutPage from "../pages/landing/about";
 import FaqsPage from "../pages/landing/faqs";
 import FalseLanding from "../pages/landing/false-landing";
+import FavoritePage from "../pages/favorite/FavoritePage";
 
 export const PageRoutes = () => {
   return (
@@ -28,6 +29,7 @@ export const PageRoutes = () => {
         <Route path={"/marketplace"} element={<MarketplacePage />} />
         <Route path={"search/:term"} element={<SearcherPage />} />
         <Route path={"search"} element={<SearcherPage />} />
+        <Route path={"favorites"} element={<FavoritePage />} />
         <Route path={'solution/:id'} element={<SolutionDetailPage />} />
         <Route path={'service/:id'} element={<ServiceDetailsPage />} />
         <Route path={'about'} element={<AboutPage />} />
@@ -39,6 +41,7 @@ export const PageRoutes = () => {
           <Route path={"corporate/profile"} element={<ProfileCorporatePage />} />
           <Route path={"search/:term"} element={<SearcherPage />} />
           <Route path={"search"} element={<SearcherPage />} />
+          <Route path={"favorites"} element={<FavoritePage />} />
           <Route path={'corporate/solutions'} element={<SolutionsCorporatePage />} />
           <Route path={'freelance'} element={<FreelancePage />} />
           <Route path={'solution/:id'} element={<SolutionDetailPage />} />

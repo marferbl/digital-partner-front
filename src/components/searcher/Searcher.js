@@ -43,7 +43,7 @@ const Searcher = ({ filters, isFavorites }) => {
             </Center>
             <Grid templateColumns="repeat(6, 1fr)" w={'full'}>
                 <GridItem colSpan={1}>
-                    {!isFavorites && <Flex cursor={'pointer'} alignItems="center" onClick={() => setIsCollapsed(!isCollapsed)}>
+                    <Flex cursor={'pointer'} alignItems="center" onClick={() => setIsCollapsed(!isCollapsed)}>
                         <Text fontSize={14}> {isCollapsed ? 'Mostrar filtros' : 'Ocultar filtros'}</Text>
                         <Icon
                             as={!isCollapsed ? FiChevronLeft : FiChevronRight}
@@ -51,9 +51,9 @@ const Searcher = ({ filters, isFavorites }) => {
                             fontSize="20px"
                             color={COLORS.secondary}
                         />
-                    </Flex>}
+                    </Flex>
                     <div style={{ display: isCollapsed ? 'none' : 'block' }}>
-                        {!isFavorites && <FiltersSection filters={filters} setTermLabel={setTermLabel} onChangeFilters={(filters) => updateFilters(filters)} />}
+                        <FiltersSection filters={filters} setTermLabel={setTermLabel} onChangeFilters={(filters) => updateFilters(filters)} />
                     </div>
                 </GridItem>
                 <GridItem colSpan={isCollapsed ? 6 : 5}>

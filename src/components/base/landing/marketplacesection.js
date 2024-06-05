@@ -71,7 +71,7 @@ const MarketplaceSection = ({ term, filters, isCollapsed, isFavorites }) => {
 
     return (
         <Center w='full' flexDir={'column'} px={{ base: 2, lg: 5 }}>
-            <Box w='full' px={{ base: 8, md: 2 }}>
+            <Box w='full' px={{ base: 8, md: 2 }} h='full'>
                 {loading ? <Center w={isCollapsed ? '100%' : '80%'}> <Spinner
                     thickness='4px'
                     speed='0.65s'
@@ -79,7 +79,7 @@ const MarketplaceSection = ({ term, filters, isCollapsed, isFavorites }) => {
                     color='blue.500'
                     size='xl'
                 /></Center> : solutions && solutions.length === 0 ?
-                    <Center flexDir={'column'} w={isCollapsed ? '100%' : '80%'}>
+                    <Center flexDir={'column'} w={isCollapsed ? '100%' : '80%'} h='full' mt={10}>
                         <Icon
                             fontSize={60}
                             _groupHover={{

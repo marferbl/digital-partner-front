@@ -11,5 +11,7 @@ API.interceptors.request.use((req) => {
     return req;
 });
 
-export const getFavorites = () => API.get(`/favorite`);
+export const getFavorites = (queryParams) => {
+    return API.get(`/favorite`, { params: queryParams });
+};
 export const addFavorite = (entity) => API.post(`/favorite/add`, { entity });

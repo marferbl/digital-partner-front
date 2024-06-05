@@ -47,13 +47,13 @@ export const NavbarUser = () => {
     const isInPanel = () => {
         return window.location.pathname.includes('private');
     }
-    
+
     const goToSearch = () => {
         navigate(getRoute(), { state: { filters: {}, isFavorites: true } })
     }
 
     const getRoute = () => {
-        return isInPanel() ? `/private/search/${''}` : `/search/${''}`;
+        return isInPanel() ? `/private/favorites/${''}` : `/favorites/${''}`;
     };
 
     return (
