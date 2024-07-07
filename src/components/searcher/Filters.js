@@ -31,8 +31,8 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
     const lineTypeOptions = [
         { value: 'solutions', label: 'Soluciones' },
         { value: 'services', label: 'Servicios' },
-        { value: 'talent', label: 'Talento' },
-        { value: 'events', label: 'Eventos' },
+        // { value: 'talent', label: 'Talento', disabled: true },
+        //{ value: 'events', label: 'Eventos', disabled: true },
     ];
     const partnerTypeOptions = [
         { value: 'implant', label: 'Implantador' },

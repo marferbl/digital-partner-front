@@ -16,6 +16,7 @@ const Question = ({ title, options, nextQuestion, setLineType }) => {
     const question = {
         order: 0,
         title: '¿Qué buscas?',
+        subtitle:'Completa el test',
         options: [
             {
                 label: 'Soluciones',
@@ -28,11 +29,11 @@ const Question = ({ title, options, nextQuestion, setLineType }) => {
                 key: 'services',
                 icon: FiRepeat
             },
-            {
-                label: 'Talento',
-                key: 'talent',
-                icon: FiUsers
-            },
+            // {
+            //     label: 'Talento',
+            //     key: 'talent',
+            //     icon: FiUsers
+            // },
             {
                 label: 'Eventos',
                 key: 'events',
@@ -62,9 +63,12 @@ const Question = ({ title, options, nextQuestion, setLineType }) => {
 
     return (
         <Box w={'full'}>
-            <Center>
+            <Center flexDir={'column'}>
                 <Text fontSize={'3xl'} color={COLORS.primary} fontWeight={'bold'} px={5}>
                     {question.title}
+                </Text>
+                <Text fontSize={'xl'} color={'gray.500'} fontWeight={'bold'} px={5}>
+                    {question.subtitle}
                 </Text>
             </Center>
             <Box mt={2} rounded={'md'} py={10}>

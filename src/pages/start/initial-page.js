@@ -49,9 +49,9 @@ export default function InitialPage() {
           </Center>
           <Stack spacing={{ base: '2', md: '3' }} textAlign="center">
             <Heading size={{ base: 'xs', md: 'sm' }} mb={3} fontFamily={'Montserrat'}>{showLogin ? 'Inicia sesión' : 'Registrarse'}</Heading>
-            {/* <Text color="fg.muted">
+            <Text color="fg.muted">
               {showLogin && '¿No tienes cuenta?'} <Text as={'span'} fontWeight={'bold'} color={COLORS.secondary} cursor={'pointer'} _hover={{ textDecor: 'underline' }} onClick={() => setShowLogin(!showLogin)}>{showLogin ? 'Registrarse' : 'Volver a login'}</Text>
-            </Text> */}
+            </Text>
           </Stack>
         </Stack>
         <Box

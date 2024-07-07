@@ -74,9 +74,10 @@ export const SolutionDetailPage = () => {
                         <IoChevronBack size={20} />
                         <Text ml={2} pt={-4} fontSize={16} fontWeight={'bold'}>Volver</Text>
                     </Flex>
-                    <AddFavoriteButton entity={solution} />
+                    {isLoggedIn && <AddFavoriteButton entity={solution} />}
                 </Flex>
-                <Flex w='full' justify={'space-evenly'} mt={4} filter={isLoggedIn ? 'none' : 'grayscale(100)'} cursor={isLoggedIn ? 'pointer' : 'not-allowed'}
+                { }
+                <Flex w='full' justify={'space-evenly'} mt={4}
                     pb={5}
                 >
                     {LINKS.map(link => (
@@ -84,29 +85,27 @@ export const SolutionDetailPage = () => {
                             key={link.label}
                             textAlign='center'
                             borderWidth={1}
-                            w={200}
+                            w={180}
                             py={1}
                             px={2}
-                            fontSize={14}
+                            fontSize={13}
                             rounded='md'
                             bgColor={label === link.label ? COLORS.primary : 'white'}
-                            onClick={isLoggedIn ? () => renderComponent(link.label) : null}
+                            onClick={ () => renderComponent(link.label)}
                             color={label === link.label ? 'white' : 'black'}
-                            opacity={isLoggedIn ? 1 : 0.5} // Adjust opacity for disabled appearance
-                            pointerEvents={isLoggedIn ? 'auto' : 'none'} // Enable or disable pointer events
+                            cursor='pointer'
                         >
                             {link.label}
                         </Text>
                     ))}
                 </Flex>
-                {isLoggedIn ? <Box mt={4} px={14} flex={1}>
+                {isLoggedIn || label === 'Info' ? <Box mt={4} px={14} flex={1}>
                     {selectedComponent}
                 </Box> : <Flex w='full' justify={'center'} align={'center'} flexDir='column' mt={4} >
                     <Text mt={6} fontSize='xl' fontWeight='bold' color={'gray.400'}>Debes iniciar sesión para ver más detalles</Text>
                     <Link to={'/initial-page-digit'}>
                         <Text mt={2} fontSize='sm' fontWeight='bold' color={'blue.500'} _hover={{ color: 'blue.700' }}>Iniciar sesión</Text>
                     </Link>
-
                 </Flex>}
 
 

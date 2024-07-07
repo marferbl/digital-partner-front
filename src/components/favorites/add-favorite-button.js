@@ -1,16 +1,33 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Text, Flex, Button } from '@chakra-ui/react'
-import { FcLike } from 'react-icons/fc'
-import { addFavorite } from '../../services/favorite';
+import { FcLike, FcDislike } from 'react-icons/fc'
+import { addFavorite, getIsFavorite, removeFavorite } from '../../services/favorite';
+
 
 function AddFavoriteButton({ entity }) {
 
     const [isFavorite, setIsFavorite] = useState(false)
 
+    useEffect(() => {
+        entity?._id && getFavoriteBoolean(entity._id)
+    }, [entity])
+
+    const getFavoriteBoolean = async (id) => {
+        const response = await getIsFavorite(id)
+        setIsFavorite(response.data.isFavorite)
+    }
+
+    console.log(entity)
     const addFavoriteAction = async () => {
         const entityType = entity.lineType === 'solutions' ? 'Solution' : 'Service';
-        await addFavorite(entity)
-        setIsFavorite(true)
+        if (isFavorite) {
+            await removeFavorite(entity._id, entityType)
+            setIsFavorite(false)
+
+        } else {
+            await addFavorite(entity)
+            setIsFavorite(true)
+        }
     }
 
 
@@ -18,8 +35,8 @@ function AddFavoriteButton({ entity }) {
     return (
 
         <Flex gap={2} as={Button} variant={'ghost'} onClick={addFavoriteAction}>
-            <Text>{isFavorite ? 'Añadido a favoritos' : 'Añadir a favoritos'}</Text>
-            <FcLike size={20} />
+            <Text>{isFavorite ? 'Eliminar de favoritos' : 'Añadir a favoritos'}</Text>
+            {!isFavorite ? <FcLike size={20} /> : <FcDislike size={20} />}
         </Flex>
 
 

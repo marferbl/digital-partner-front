@@ -15,6 +15,7 @@ import CardTemplate from "../base/card-template";
 import { EmptyState } from "../base/empty-state";
 import GradientButton from "../base/GradientButton";
 import { Link } from "react-router-dom";
+import { dateToString } from "../../utils/methods";
 export const ProfileUser = ({ me }) => {
 
     const data = [
@@ -77,15 +78,10 @@ export const ProfileUser = ({ me }) => {
     return (
         <Box>
             <Grid templateColumns="repeat(3, 1fr)" gap={6} justifyItems={'center'}>
-                <GridItem colSpan={1} borderWidth={1} rounded={'md'} shadow={'xl'}>
+                <GridItem colSpan={1} rounded={'md'}>
                     <Flex pb={4} flexDir='column' align={'center'} pt={3}>
                         <Image rounded={"100%"} h={28} w={28} src={me?.avatar} />
-                        <Flex px={10} gap={1} flexDir='column' textAlign={'center'} >
-                            <Text mt={2} fontSize={20} fontWeight='bold'> {me?.name}</Text>
-                            <Text mt={2} fontStyle='italic'>{me?.email}</Text>
 
-
-                        </Flex>
                     </Flex>
                     <Box px={3}>
                         <Box rounded={'lg'} w={'full'} mb={3}>
@@ -96,8 +92,21 @@ export const ProfileUser = ({ me }) => {
                         </Box>
                     </Box>
                 </GridItem>
-                <GridItem colSpan={1} w='full'>
-                    <CardTemplate>
+                <GridItem colSpan={2} w='full'>
+                    <Flex gap={1} flexDir='column' >
+                        <Text mt={2} fontSize={20} fontWeight='bold'> {me?.name}</Text>
+                        <Text mt={2} fontStyle='italic'>{me?.email}</Text>
+                        <Text>
+                            Miembro desde {dateToString(me?.createdAt)}
+                        </Text>
+                        {/* <Text>
+                            {me?.corporate ? `Perteneces a la corporate ${me?.corporate?.name}` : 'No perteneces a ninguna corporate'}
+                        </Text> */}
+                    </Flex>
+
+
+
+                    {/* <CardTemplate>
                         <Text fontWeight="bold" mr={2} textAlign='center' borderBottomWidth={1}> Freelance</Text>
                         <EmptyState>
                             <Text mb={2} textAlign='center'> No tienes ninguna actividad de freelance</Text>
@@ -105,11 +114,11 @@ export const ProfileUser = ({ me }) => {
                                 <GradientButton label='Ir a freelance' type='red' size={'sm'} />
                             </Link>
                         </EmptyState>
-                    </CardTemplate>
+                    </CardTemplate> */}
                     <Box h={2}></Box>
 
                 </GridItem>
-                <GridItem w='full' colSpan={1} px={5}>
+                {/* <GridItem w='full' colSpan={1} px={5}>
                     <CardTemplate>
                         <Text fontWeight="bold" mr={2} textAlign='center' borderBottomWidth={1}> Selección</Text>
                         <EmptyState>
@@ -119,7 +128,7 @@ export const ProfileUser = ({ me }) => {
                             </Link>
                         </EmptyState>
                     </CardTemplate>
-                </GridItem>
+                </GridItem> */}
             </Grid>
 
         </Box >

@@ -13,6 +13,7 @@ const Searcher = ({ filters, isFavorites }) => {
     const [allFilters, setAllFilters] = useState(filters)
     const [isCollapsed, setIsCollapsed] = useState(false);
     const [termLabel, setTermLabel] = useState(term)
+    const [numberOfResults, setNumberOfResults] = useState(0)
 
     useEffect(() => {
         setTermLabel(term)
@@ -35,9 +36,12 @@ const Searcher = ({ filters, isFavorites }) => {
 
     return (
         <Box p={5} >
-            <Heading textAlign={'center'} fontFamily={'Montserrat'} fontSize={30}>
-                {isFavorites ? 'Tus Favoritos' : termLabel ? 'Mejores resultados sobre' : 'Resultados:'}
-            </Heading>
+            <Box>
+                <Heading textAlign={'center'} fontFamily={'Montserrat'} fontSize={30}>
+                    {isFavorites ? 'Tus Favoritos' : termLabel ? 'Mejores resultados sobre' : 'Resultados:'}
+                </Heading>
+                <Text textAlign={'right'} pr={{base:2, md:6}}>Mostrando {numberOfResults} resultados</Text>
+            </Box>
             <Center>
                 <Text fontSize={30} fontWeight={'bold'} color={'#00A3FF'}>{getLabelTerm()}</Text>
             </Center>
@@ -58,7 +62,7 @@ const Searcher = ({ filters, isFavorites }) => {
                 </GridItem>
                 <GridItem colSpan={isCollapsed ? 6 : 5}>
                     <Center pt={5} flexDir={'column'} w='100%'>
-                        <MarketplaceSection term={termLabel} filters={allFilters} isCollapsed={isCollapsed} isFavorites={isFavorites} />
+                        <MarketplaceSection term={termLabel} filters={allFilters} isCollapsed={isCollapsed} isFavorites={isFavorites} setNumberOfResults={setNumberOfResults} />
                     </Center>
                 </GridItem>
             </Grid>

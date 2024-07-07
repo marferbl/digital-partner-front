@@ -4,26 +4,17 @@ import { COLORS } from '../../colors/colors'
 import Question from './Question'
 import { useNavigate } from "react-router-dom";
 import {
-    FiHome,
-    FiTrendingUp,
     FiUsers,
-    FiStar,
-    FiDatabase,
-    FiUser,
-    FiMenu,
     FiTool,
     FiRepeat,
-    FiBookOpen,
     FiCalendar,
-    FiSearch
 } from "react-icons/fi";
-import { SPECIFY_FEATURES } from '../../utils/constants';
-import SearchSelectSpecifyFeatures from '../base/search-select-specify-features';
 import SolutionsQuiz from './SolutionsQuiz';
 import SearchSelectCountries from '../base/search-select-countries';
 import SearchSelectLanguage from '../base/search-select-language';
 import GradientButton from '../base/GradientButton';
 import LoadingSpinner from '../base/LoadingSpinner';
+import SearchSelect from '../base/search-select';
 
 
 const Quiz = () => {
@@ -65,6 +56,15 @@ const Quiz = () => {
     const [lineType, setLineType] = useState('solutions')
     const [loading, setLoading] = useState(false)
 
+
+    const serviceTypeOptions = [
+        { value: 'partner', label: 'Partner' },
+        { value: 'development', label: 'Desarrollo' },
+        { value: 'renting', label: 'Renting' },
+        { value: 'helps', label: 'Ayudas' },
+        { value: 'training', label: 'Training' },
+    ];
+
     useEffect(() => {
         setAnswers({ ...answers, lineType: lineType })
     }, [lineType])
@@ -85,8 +85,8 @@ const Quiz = () => {
         }, 2500)
     }
 
-    const setFiltersInAnswers = (value, key) => {
-        const array = typeof value === 'string' ? [value] : value
+    const setFiltersInAnswers = (value, key, avoidArray = false) => {
+        const array = typeof value === 'string' && !avoidArray ? [value] : value
         setAnswers({ ...answers, lineType: lineType, [key]: array })
     }
 
@@ -108,7 +108,15 @@ const Quiz = () => {
                 <Center pt={12} flexDir={'column'} px={{ base: 10, lg: 32 }}>
                     {order === 0 && <Question currentQuestion={questions[0]} setLineType={setLineType} nextQuestion={nextQuestion} goToSearch={goToSearch} />}
                     {(order > 0 && order < 3 && lineType === 'solutions') && <SolutionsQuiz order={order} nextQuestion={nextQuestion} setOrder={setOrder} updateConfig={updateConfig} />}
-                    {((order === 3 && lineType === 'solutions') || (order === 1 && lineType !== 'solutions')) && <Box>
+                    {order === 1 && lineType !== 'solutions' && <Box w={400}>
+                        <Text>¿Qué tipo de servicio buscas?</Text>
+                        <SearchSelect options={serviceTypeOptions} width={'100%'} label={'Tipo'} onChange={(value) => setFiltersInAnswers(value, 'serviceType', true)} value={answers.serviceType} />
+                        <Flex justify={'end'} mt={10} cursor='pointer'>
+                            <GradientButton label={'Siguiente'} type='green' size={'md'} onClick={nextQuestion} />
+
+                        </Flex>
+                    </Box>}
+                    {((order === 3 && lineType === 'solutions') || (order === 2 && lineType !== 'solutions')) && <Box>
                         <Text>¿En qué países quieres que esté disponible?</Text>
                         <SearchSelectCountries isMulti onChange={value => setFiltersInAnswers(value, 'countries')} />
                         <Text>¿En qué idiomas quieres que esté disponible? </Text>

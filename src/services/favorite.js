@@ -15,3 +15,5 @@ export const getFavorites = (queryParams) => {
     return API.get(`/favorite`, { params: queryParams });
 };
 export const addFavorite = (entity) => API.post(`/favorite/add`, { entity });
+export const getIsFavorite = (entityId) => API.get(`/favorite/isFavorite/${entityId}`,);
+export const removeFavorite = (entityId) => API.delete(`/favorite/remove/${entityId}`);

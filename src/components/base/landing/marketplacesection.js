@@ -9,7 +9,7 @@ import FiltersSection from '../../searcher/Filters'
 import { getAllSearch, getOptimizeSearch } from '../../../services/search'
 import { getFavorites } from '../../../services/favorite'
 
-const MarketplaceSection = ({ term, filters, isCollapsed, isFavorites }) => {
+const MarketplaceSection = ({ term, filters, isCollapsed, isFavorites, setNumberOfResults }) => {
     const [solutions, setSolutions] = useState([])
     const [loading, setLoading] = useState(false)
 
@@ -22,6 +22,10 @@ const MarketplaceSection = ({ term, filters, isCollapsed, isFavorites }) => {
             getSolutions()
         }
     }, [isFavorites]);
+
+    useEffect(() => {
+        setNumberOfResults(solutions.length)
+    }, [solutions]);
 
 
 
