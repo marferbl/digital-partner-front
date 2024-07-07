@@ -25,6 +25,7 @@ import {
   FiBookOpen,
   FiCalendar,
   FiSearch,
+  FiUserCheck
 } from "react-icons/fi";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 
@@ -111,10 +112,10 @@ const SidebarContent = ({ onClose, isSidebarOpen, setIsSidebarOpen, ...rest }) =
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-  console.log('filteredApplications', filteredApplications)
 
   const userRoutes = [
     { name: "Perfil", icon: FiUser, to: "profile" },
+    //{ name: "Digital Profile", icon: FiUserCheck, to: "/digital-profile", },
     { name: "Freelance", icon: FiTrendingUp, to: "freelance", soon: true },
     { name: "Empleo", icon: FiGrid, to: "dashboard", soon: true },
     { name: "Gurús", icon: FiStar, to: "dashboard", soon: true },
