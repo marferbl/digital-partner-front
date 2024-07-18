@@ -2,9 +2,9 @@ import { useContext, useState } from "react";
 import axios from "axios";
 import { useBackendUrlBuilder } from "../../hooks/useBackendUrlBuilder";
 import { UserContext } from "../../context/userContext";
-import { Button, Center, Text } from "@chakra-ui/react";
+import { Flex, Center, Spinner, Text } from "@chakra-ui/react";
 
-export const ImageUploadInput = ({ url, setLogo }) => {
+export const ImageUploadInput = ({ url, setLogo, hideConfirm }) => {
     const { getToken } = useContext(UserContext);
 
     const [file, setFile] = useState(null);
@@ -15,7 +15,6 @@ export const ImageUploadInput = ({ url, setLogo }) => {
         setFile(e.target.files[0]);
     };
     const updatePhotoURL = useBackendUrlBuilder(url);
-
     const handleUpload = async () => {
         const storedToken = getToken();
         try {
@@ -46,14 +45,17 @@ export const ImageUploadInput = ({ url, setLogo }) => {
                 multiple={false}
 
             />
-            {file && !confirmed && < Center > <Text cursor={'pointer'} bg={"cyan.300"} p={1} rounded={'md'} color={"black"} _hover={{ bg: 'gray.100' }} onClick={handleUpload}>Confirmar</Text> </Center>}
+            {file && !confirmed && !loading && < Center > <Text cursor={'pointer'} bg={"cyan.300"} p={1} rounded={'md'} color={"black"} _hover={{ bg: 'gray.100' }} onClick={handleUpload}>Subir foto</Text> </Center>}
 
             {
                 file && (
                     <>
-                        <button onClick={handleUpload} className="btn-green">
-                            {loading && "subiendo foto..."}
-                        </button>
+                        {!hideConfirm ? <button onClick={handleUpload} className="btn-green">
+                            {loading && <Flex>
+                                <Spinner size="xs" />
+                                <Text>Subiendo...</Text>
+                            </Flex>}
+                        </button> : ''}
                     </>
                 )
             }

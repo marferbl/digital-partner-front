@@ -9,15 +9,21 @@ import {
     ModalBody,
     ModalCloseButton,
     useDisclosure,
-    Select,
-    Checkbox
+    Image,
+    Checkbox,
+    Center
 } from '@chakra-ui/react'
 import { COLORS } from "../../../colors/colors";
 import { createSolution } from '../../../services/solution';
 import SearchSelect from '../../base/search-select';
 import { COUNTRIES, LANGUAGES } from '../../../utils/constants';
 import SearchSelectSpecifyFeatures from '../../base/search-select-specify-features';
+import { UploadImageGeneric } from '../../base/upload-image-generic';
+import axios from 'axios';
+import { UserContext } from '../../../context/userContext';
 import { ImageUploadInput } from '../../base/image-upload';
+
+
 
 
 
@@ -25,6 +31,8 @@ import { ImageUploadInput } from '../../base/image-upload';
 
 export const ButtonCreateSolution = ({ refreshSolutions, disabled }) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const { getToken } = useContext(UserContext);
+
 
     const [countries, setCountries] = useState([]);
     const [name, setName] = useState("");
@@ -37,6 +45,7 @@ export const ButtonCreateSolution = ({ refreshSolutions, disabled }) => {
     const [isSectorial, setisSectorial] = useState(false);
     const [isErp, setIsErp] = useState(false);
     const [specifyFeatures, setSpecifyFeatures] = useState([]);
+    const [logo, setLogo] = useState('');
 
 
     const countriesOptions = COUNTRIES
@@ -58,31 +67,35 @@ export const ButtonCreateSolution = ({ refreshSolutions, disabled }) => {
         { value: 'firstSector', label: 'Primer sector' },
 
     ];
-
     const create = async () => {
         const specifyFeaturesArray = typeof specifyFeatures === 'string' ? [specifyFeatures] : specifyFeatures;
-        createSolution({
-            name,
-            description,
-            website,
-            sectorType,
-            countries,
-            languages,
-            features: feature,
-            isErp,
-            isSectorial,
-            specifyFeatures: specifyFeaturesArray
-        }).then((res) => {
+
+        try {
+            const res = await createSolution({
+                name,
+                description,
+                website,
+                sectorType,
+                countries,
+                languages,
+                features: feature,
+                isErp,
+                isSectorial,
+                specifyFeatures: specifyFeaturesArray,
+                logo: logo,
+            });
+
             refreshSolutions();
             onClose();
+        } catch (error) {
+            console.error("Error creating solution:", error);
+            // Handle the error appropriately here, e.g., show a notification to the user
         }
-        )
     };
 
     const handleCheckboxChange = (event) => {
         setisSectorial(event.target.checked); // Update state based on checkbox's checked status
     };
-
     return (
         <>
             <Button bg={COLORS.primary} color={'white'} _hover={{ bg: 'blue.700' }} disabled={disabled} onClick={onOpen}>Crear solución digital</Button>
@@ -95,9 +108,14 @@ export const ButtonCreateSolution = ({ refreshSolutions, disabled }) => {
                     <ModalBody py={5}>
                         <Box fontSize={12} display={'flex'} alignItems={'start'} flexDir={'column'}>
 
+                            <Center w={'full'} flexDir={'column'} gap={5}>
+                                {logo && <Image src={logo} alt="Logo" w={32} h={32} objectFit='cover' />}
+                                <ImageUploadInput url={`image/upload`} setLogo={setLogo} />
+
+                            </Center>
 
 
-                            <Flex gap={2} w='full'>
+                            <Flex gap={2} pt={6} w='full'>
                                 <Box w='48%'>
                                     <Text fontWeight={"bold"}>Nombre: </Text>
                                     <Input value={name} onChange={(e) => setName(e.target.value)} placeholder={'Solución Nueva'} />

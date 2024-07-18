@@ -28,13 +28,12 @@ export const SolutionDetail = ({ solution }) => {
         return url;
     };
 
-
     return (
         <Box mt={6} p={5} rounded={"xl"} w={"100%"}>
             {solution && <Grid templateColumns="repeat(8, 1fr)" gap={6}>
                 <GridItem colSpan={3}>
                     <Box textAlign={'center'} mt={1} rounded={"xl"} bgColor={"white"} w={"100%"} px={10}>
-                        <Avatar size="2xl" name={solution.name} mb={5} />
+                        <Avatar size="2xl" src={solution.logo || null} name={solution.name} mb={5} />
                         <Text fontWeight={'bold'} fontSize={34}>{solution.name}</Text>
                         <Text fontSize={20} color={'blue.600'} _hover={{ textDecor: 'underline' }}>
                             <a href={ensureHTTPS(solution.website)} target='_blank' fontSize='sm'>{solution.website}</a>
