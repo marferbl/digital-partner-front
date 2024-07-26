@@ -6,8 +6,12 @@ import {
   Stack,
   Text,
   useColorModeValue,
+  Icon,
+  Flex
 } from "@chakra-ui/react";
+import { FaInstagram, FaLinkedin } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import CountryFlag from "../country-flag";
 
 
 const Logo = (props) => {
@@ -42,6 +46,25 @@ export default function FooterLanding() {
             <NavLink label='¿Quiénes somos?' link='about' />
             <NavLink label='Preguntas frecuentes' link='faqs' />
             <Text fontSize={"sm"}>© 2024 digitalando. All rights reserved</Text>
+          </Stack>
+          <Stack spacing={6}>
+            <Box h={8} />
+            <Flex align={'center'} gap={1}>
+              <Icon as={FaInstagram} />
+              <a href="https://www.instagram.com/digitalando_/">
+                <Text>Instagram</Text>
+              </a>
+            </Flex>
+            <Flex align={'center'} gap={1}>
+              <Icon as={FaLinkedin} />
+              <a href="https://www.linkedin.com/company/digital-ando">
+                <Text>LinkedIn</Text>
+              </a>
+            </Flex>
+          </Stack>
+          <Stack spacing={6}>
+            <Box h={8} />
+            <Text>Español <CountryFlag country='spain' />  </Text>
           </Stack>
         </SimpleGrid>
       </Container>

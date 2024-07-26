@@ -6,11 +6,13 @@ import {
   Text,
   SimpleGrid,
   Flex,
-  Button
+  Button,
+  Icon
 } from '@chakra-ui/react';
 import { Link } from "react-router-dom";
 import { COLORS } from '../../../colors/colors';
 import { useTranslation } from 'react-i18next';
+import { FaSearch, FaShoppingCart, FaUser } from 'react-icons/fa';
 
 
 
@@ -19,69 +21,20 @@ const features = [
   {
     heading: 'feature1Title',
     content: 'feature1Description',
-    icon: (
-      <svg
-        width={36}
-        height={36}
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
-        ></path>
-      </svg>
-    ),
+    icon: FaShoppingCart,
     button: 'featureButton1'
   },
   {
     heading: 'feature2Title',
     content: 'feature2Description',
-    icon: (
-      <svg
-        width={36}
-        height={36}
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
-        ></path>
-      </svg>
-    ),
+    icon: FaUser,
     button: 'featureButton2'
 
   },
   {
     heading: 'feature3Title',
     content: 'feature3Description',
-    icon: (
-      <svg
-        width={36}
-        height={36}
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        color="white" // Match the button's text color
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-        ></path>
-      </svg>
-    ),
+    icon: FaSearch,
     button: 'featureButton3'
 
   }
@@ -116,7 +69,7 @@ const Features = () => {
               top="-1.5rem"
               boxShadow="lg"
             >
-              {feature.icon}
+              <Icon as={feature.icon} w={8} h={8} />
             </Flex>
             <chakra.h3 fontWeight="semibold" fontSize="md" mt={6}>
               {t(feature.heading)}
