@@ -1,7 +1,7 @@
-import { Button } from "@chakra-ui/react";
+import { Button, Icon } from "@chakra-ui/react";
 import { COLORS } from "../../colors/colors";
 
-const GradientButton = ({ type, label, onClick, size, ...props }) => {
+const GradientButton = ({ type, label, onClick, size, icon, ...props }) => {
     // Define the gradients based on the type prop
     let bgGradient, hoverGradient, activeGradient;
 
@@ -24,6 +24,7 @@ const GradientButton = ({ type, label, onClick, size, ...props }) => {
             size={size || 'md'}
             {...props}
         >
+            {icon && <Icon as={icon} w={6} h={6} mr={2} />}
             {label}
         </Button>
     );

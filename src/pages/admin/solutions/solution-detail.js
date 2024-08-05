@@ -13,6 +13,7 @@ import Navbar from "../../../components/base/navbar";
 import { IoChevronBack } from "react-icons/io5";
 import { COLORS } from "../../../colors/colors";
 import AddFavoriteButton from "../../../components/favorites/add-favorite-button";
+import { isDemoSolutionId } from "../../../utils/methods";
 
 
 export const SolutionDetailPage = () => {
@@ -20,7 +21,16 @@ export const SolutionDetailPage = () => {
     const [solution, setSolution] = useState(null);
     const [selectedComponent, setSelectedComponent] = useState(null);
     const [label, setLabel] = useState(null);
+    const [isDemoSolution, setIsDemoSolution] = useState(false);
     const { id } = useParams();
+
+    useEffect(() => {
+        if (id) {
+            const isDemo = isDemoSolutionId(id)
+            setIsDemoSolution(isDemo);
+        }
+    }, [id])
+
 
     useEffect(() => {
         if (!selectedComponent && solution) {
@@ -33,12 +43,12 @@ export const SolutionDetailPage = () => {
 
 
     const LINKS = [
-        { label: 'Info', component: <SolutionDetail solution={solution} /> },
-        { label: 'Descubrir partners', component: <PartnerComponent /> },
-        { label: 'Pedir demo', component: <DemoComponent solution={solution} /> },
-        { label: 'Descargar manuales', component: <ManualComponent solution={solution} /> },
-        { label: 'Comprar referencias', component: <ReferencesComponent /> },
-        { label: 'Obtener certificaciones', component: <CertificationComponent solution={solution} /> },
+        { label: 'Info', component: <SolutionDetail solution={solution} isDemo={isDemoSolution} /> },
+        { label: 'Descubrir partners', component: <PartnerComponent isDemo={isDemoSolution} /> },
+        { label: 'Pedir demo', component: <DemoComponent solution={solution} isDemo={isDemoSolution} /> },
+        { label: 'Descargar manuales', component: <ManualComponent solution={solution} isDemo={isDemoSolution} /> },
+        { label: 'Comprar referencias', component: <ReferencesComponent isDemo={isDemoSolution} /> },
+        { label: 'Obtener certificaciones', component: <CertificationComponent solution={solution} isDemo={isDemoSolution} /> },
 
     ];
 
@@ -91,7 +101,7 @@ export const SolutionDetailPage = () => {
                             fontSize={13}
                             rounded='md'
                             bgColor={label === link.label ? COLORS.primary : 'white'}
-                            onClick={ () => renderComponent(link.label)}
+                            onClick={() => renderComponent(link.label)}
                             color={label === link.label ? 'white' : 'black'}
                             cursor='pointer'
                         >
@@ -99,7 +109,7 @@ export const SolutionDetailPage = () => {
                         </Text>
                     ))}
                 </Flex>
-                {isLoggedIn || label === 'Info' ? <Box mt={4} px={14} flex={1}>
+                {isLoggedIn || isDemoSolution || label === 'Info' ? <Box mt={4} px={14} flex={1}>
                     {selectedComponent}
                 </Box> : <Flex w='full' justify={'center'} align={'center'} flexDir='column' mt={4} >
                     <Text mt={6} fontSize='xl' fontWeight='bold' color={'gray.400'}>Debes iniciar sesión para ver más detalles</Text>

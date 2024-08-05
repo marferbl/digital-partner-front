@@ -9,6 +9,7 @@ import MarketplaceSection from "../../components/base/landing/marketplacesection
 import { PhotoFullScreen } from "../../components/base/landing/photo-fullscreen";
 import SoftwareSearcher from "../../components/base/landing/searcher-software";
 import Quiz from "../../components/quiz/Quiz";
+import DemoSection from "../../components/base/landing/demosection";
 
 const LandingPage = () => {
   return (
@@ -16,6 +17,7 @@ const LandingPage = () => {
       <Navbar />
       <Hero />
       <Quiz />
+      <DemoSection />
       <Features />
       <PhotoFullScreen />
       <FooterLanding />

@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { getServicesBySolution } from '../../../../services/service'
 import ServicesTable from "../../service/services-table"
 import { useParams } from "react-router-dom";
-import { Box, Text } from '@chakra-ui/react';
+import { Box, Center, Text } from '@chakra-ui/react';
 
-export const PartnerComponent = () => {
+export const PartnerComponent = ({ isDemo }) => {
     const { id } = useParams();
 
     const [partnerServices, setPartnerServices] = useState([])
@@ -24,7 +24,9 @@ export const PartnerComponent = () => {
 
     return (
         <Box>
-            {partnerServices.length ? <ServicesTable services={partnerServices} solutionView={true} /> : <Text>Sin servicios dados de alta</Text>}
+            <Box>
+                {partnerServices.length ? <ServicesTable services={partnerServices} solutionView={true} /> : <Text>Sin servicios dados de alta</Text>}
+            </Box>
         </Box>
 
     )

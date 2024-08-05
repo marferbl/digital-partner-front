@@ -19,6 +19,7 @@ import FaqsPage from "../pages/landing/faqs";
 import FalseLanding from "../pages/landing/false-landing";
 import FavoritePage from "../pages/favorite/FavoritePage";
 import DigitalProfilePage from "../pages/digital-profile/digital-profile";
+import { DemoPage } from "../pages/landing/demo";
 
 export const PageRoutes = () => {
   return (
@@ -35,6 +36,7 @@ export const PageRoutes = () => {
         <Route path={'service/:id'} element={<ServiceDetailsPage />} />
         <Route path={'about'} element={<AboutPage />} />
         <Route path={'faqs'} element={<FaqsPage />} />
+        <Route path={'demo'} element={<DemoPage />} />
         <Route path={'digital-profile'} element={<DigitalProfilePage />} />
 
         <Route path={"private"} element={<PrivateRoute />}>

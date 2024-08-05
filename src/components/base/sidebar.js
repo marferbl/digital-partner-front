@@ -115,7 +115,7 @@ const SidebarContent = ({ onClose, isSidebarOpen, setIsSidebarOpen, ...rest }) =
 
   const userRoutes = [
     { name: "Perfil", icon: FiUser, to: "profile" },
-    //{ name: "Digital Profile", icon: FiUserCheck, to: "/digital-profile", },
+    // { name: "Digital Profile", icon: FiUserCheck, to: "/digital-profile", },
     { name: "Freelance", icon: FiTrendingUp, to: "freelance", soon: true },
     { name: "Empleo", icon: FiGrid, to: "dashboard", soon: true },
     { name: "Gurús", icon: FiStar, to: "dashboard", soon: true },

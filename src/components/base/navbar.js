@@ -71,14 +71,14 @@ export default function Navbar() {
                   </Box>
                 ))}
               </HStack>
-              {/* <Flex gap={3} pr={3}>
+              <Flex gap={3} pr={3}>
                 <Button size={'small'} onClick={()=> i18n.changeLanguage('es')}>
                   <CountryFlag country={'spain'} />
                 </Button>
                 <Button size={'small'} onClick={()=> i18n.changeLanguage('en')}>
                   <CountryFlag country={'england'} />
                 </Button>
-              </Flex> */}
+              </Flex>
             </HStack>
           </Flex>
         </Flex>

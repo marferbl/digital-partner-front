@@ -41,20 +41,20 @@ export const SoftwareSearcherInput = () => {
             />
             <Button
                 type="submit"
-                size={'sm'}
+                size={{ base: 'xs', md: 'sm' }}
                 bg={COLORS.primary}
                 color='white'
                 _hover={{ color: 'gray.200', shadow: 'xl' }}
             >
                 Buscar
             </Button>
-            <Button size={'sm'} onClick={() => goToSearch('solutions')}>
+            <Button display={{ base: 'none', md: 'block' }} size={'sm'} onClick={() => goToSearch('solutions')}>
                 <Icon
                     fontSize="16"
                     as={FiTool}
                 />
             </Button>
-            <Button size={'sm'} onClick={() => goToSearch('services')}>
+            <Button display={{ base: 'none', md: 'block' }} size={'sm'} onClick={() => goToSearch('services')}>
                 <Icon
                     fontSize="16"
                     as={FiRepeat}

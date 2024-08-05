@@ -12,3 +12,7 @@ export const languageLabelFromValue = (value) => {
     return LANGUAGES.find(e => e.value === value)?.label
 }
 
+export const isDemoSolutionId = (solutionId) => {
+    return solutionId === '66a3929c47e86e3a9039dd29'
+}
+
