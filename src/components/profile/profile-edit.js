@@ -14,6 +14,7 @@ import { useBackendUrlBuilder } from "../../hooks/useBackendUrlBuilder";
 import axios from "axios";
 import { ImageUpload } from "./image-upload";
 import { UserContext } from "../../context/userContext";
+import EditPassword from "../Login/Edit-password";
 
 export const ProfileEdit = ({ me }) => {
     const toast = useToast()
@@ -70,10 +71,10 @@ export const ProfileEdit = ({ me }) => {
                 <Center w={"100%"} mb={10}>
                     <Image rounded={"xl"} h={100} src={me?.avatar} />
                 </Center>
-                <Center w={"100%"} mb={10}>
+                <Center w={"100%"} mb={3}>
                     <ImageUpload />
-
                 </Center>
+                <EditPassword />
                 <Text fontWeight={"bold"}>Nombre: </Text>
                 <Input value={name} w={300} onChange={(e) => setName(e.target.value)} />
                 <Text mt={3} fontWeight={"bold"}>

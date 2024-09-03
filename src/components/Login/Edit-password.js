@@ -15,17 +15,20 @@ import {
     ModalCloseButton,
     useDisclosure,
     Flex,
+    InputGroup,
+    InputRightElement
 } from "@chakra-ui/react";
 import { useToast } from "@chakra-ui/react";
 import axios from "axios";
 import { isEmpty } from "../../hooks/isEmpty";
-import { changePassword, login, signup } from "../../services/auth";
+import { changePassword, editPassword, login, signup } from "../../services/auth";
 import { UserContext } from "../../context/userContext";
-import { useNavigate } from "react-router-dom";
 import { COLORS } from "../../colors/colors";
+import { AiFillEye } from "react-icons/ai";
+import { AiFillEyeInvisible } from "react-icons/ai";
 
-const ChangePassword = () => {
-    const [email, setEmail] = useState("");
+const EditPassword = () => {
+    const [showPassword, setShowPassword] = useState(false);
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
 
@@ -44,24 +47,22 @@ const ChangePassword = () => {
     };
 
     const resetFields = () => {
-        setEmail("");
         setPassword("");
     };
 
     const handleSubmit = () => {
         setLoading(true);
-        if (isEmpty(email)) {
+        if (isEmpty(password)) {
             setEmptyFieldMessage(true);
         } else {
-            changePassword(email)
+            editPassword(password)
                 .then((res) => {
                     setLoading(false);
                     storeToken(res.data.token);
                     setEmptyFieldMessage(false);
-                    authenticateUser();
                     toast({
                         title: "OK",
-                        description: "Correo enviado",
+                        description: "Contraseña cambiada",
                         status: "success",
                         duration: 5000,
                         isClosable: true,
@@ -85,27 +86,40 @@ const ChangePassword = () => {
 
     return (
         <>
-            <Flex justify="end" w={'full'}>
-                <Text fontSize={14} mr={1} onClick={onOpen} colorScheme="blue" mt={2} cursor={'pointer'} _hover={{ textDecor: 'underline' }}>Contraseña olvidada</Text>
+            <Flex justify="center" w={'full'} pb={10}>
+                <Text fontSize={14} mr={1} onClick={onOpen} colorScheme="blue" mt={2} cursor={'pointer'} _hover={{ textDecor: 'underline' }}>Cambiar contraseña</Text>
             </Flex>
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent>
-                    <ModalHeader>Contraseña olvidada</ModalHeader>
+                    <ModalHeader>Cambiar Contraseña</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody>
                         <Box py={0} rounded={"xl"} bgColor={"white"}>
                             <FormControl isRequired my={5}>
-                                <FormLabel htmlFor="email">Correo electronico</FormLabel>
-                                <Input
-                                    id="email"
-                                    placeholder="email"
-                                    onChange={(e) => setEmail(e.target.value)}
-                                    value={email}
-                                    onKeyDown={handleKeyPress}
-                                />
+                                <FormLabel htmlFor="password">Nueva contraseña</FormLabel>
+                                <InputGroup>
+                                    <Input
+                                        id="password"
+                                        placeholder="Password"
+                                        type={showPassword ? 'text' : 'password'}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                        value={password}
+                                        onKeyDown={handleKeyPress}
+                                    />
+                                    <InputRightElement >
+                                        <Text
+                                            h="1.75rem"
+                                            size="sm"
+                                            cursor={"pointer"}
+                                            onClick={() => setShowPassword(!showPassword)}
+                                            marginTop={"35%"}
+                                        >
+                                            {!showPassword ? <AiFillEye /> : <AiFillEyeInvisible />}
+                                        </Text>
+                                    </InputRightElement></InputGroup>
+
                             </FormControl>
-                    
 
                             {emptyFieldMessage && (
                                 <Text my={2} color={"red"}>
@@ -124,7 +138,7 @@ const ChangePassword = () => {
                             onClick={handleSubmit}
                             isLoading={loading}
                         >
-                            Enviar correo de recuperación
+                            Cambiar contraseña
                         </Button>
                     </ModalFooter>
                 </ModalContent>
@@ -133,4 +147,4 @@ const ChangePassword = () => {
     );
 };
 
-export default ChangePassword;
+export default EditPassword;
