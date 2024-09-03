@@ -32,9 +32,12 @@ const RegisterForm = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordAux, setPasswordAux] = useState("");
+
   const [name, setName] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [rol, setRol] = useState('1')
+  const [error, setError] = useState({ message: null })
 
   const toast = useToast();
 
@@ -48,31 +51,43 @@ const RegisterForm = () => {
   const handleSubmit = () => {
     if (isEmpty(email) || isEmpty(password)) {
       setEmptyFieldMessage(true);
-    } else {
-      signup(email, password, name, rol)
-        .then((res) => {
-          setEmptyFieldMessage(false);
-          toast({
-            title: "CUENTA CREADA.",
-            description: "Cuenta creada correctamente",
-            status: "success",
-            duration: 5000,
-            isClosable: true,
-          });
-          navigate('/initial-page-digit')
-        })
-        .catch((err) => {
-          toast({
-            title: "ERROR",
-            description: err.response.data.message,
-            status: "error",
-            duration: 5000,
-            isClosable: true,
-          });
-        });
-
-      resetFields();
+      return
     }
+    setEmptyFieldMessage(false)
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    if (!emailRegex.test(email)) {
+      setError({ message: 'El formato de email no es correcto' })
+      return;
+    }
+
+    if (password.length < 8) {
+      setError({ message: 'La contraseña tiene que tener al menos 8 carácteres' })
+      return;
+    }
+
+    signup(email, password, name, rol)
+      .then((res) => {
+        setEmptyFieldMessage(false);
+        toast({
+          title: "CUENTA CREADA.",
+          description: "Cuenta creada correctamente",
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+        });
+        navigate('/initial-page-digit')
+      })
+      .catch((err) => {
+        toast({
+          title: "ERROR",
+          description: err.response.data.message,
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+        });
+      });
+
+    resetFields();
   };
   return (
     <Box py={0} rounded={"xl"} bgColor={"white"}>
@@ -132,6 +147,12 @@ const RegisterForm = () => {
       >
         Registrarse
       </Button>
+
+      {error.message && (
+        <Text my={2} color={"red"}>
+          {error.message}
+        </Text>
+      )}
 
       {emptyFieldMessage && (
         <Text my={2} color={"red"}>
