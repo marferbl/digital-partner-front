@@ -7,35 +7,35 @@ import {
     FiRepeat,
     FiCalendar,
 } from "react-icons/fi";
-import GradientButton from '../base/GradientButton'
-
+import { useTranslation } from 'react-i18next'; // Import useTranslation
 
 const Question = ({ title, options, nextQuestion, setLineType }) => {
     const [opacity, setOpacity] = useState(1);
     const [selected, setSelected] = useState();
+    const { t } = useTranslation('global');
+
     const question = {
         order: 0,
-        title: '¿Qué buscas?',
-        subtitle:'Completa el test',
+        title: t('whatAreYouLookingFor'),
+        subtitle: t('completeTest'),
         options: [
             {
-                label: 'Soluciones',
+                label: t('solutions'),
                 key: 'solutions',
                 icon: FiTool
-
             },
             {
-                label: 'Servicios',
+                label: t('services'),
                 key: 'services',
                 icon: FiRepeat
             },
-            // {
-            //     label: 'Talento',
-            //     key: 'talent',
-            //     icon: FiUsers
-            // },
             {
-                label: 'Eventos',
+                label: t('talent'),
+                key: 'talent',
+                icon: FiUsers
+            },
+            {
+                label: t('events'),
                 key: 'events',
                 icon: FiCalendar
             },
@@ -58,8 +58,6 @@ const Question = ({ title, options, nextQuestion, setLineType }) => {
             nextQuestion(selected)
         }, 500);
     };
-
-
 
     return (
         <Box w={'full'}>
@@ -105,18 +103,18 @@ const Question = ({ title, options, nextQuestion, setLineType }) => {
                                     {option.label}
                                 </Text>
                                 <Text fontSize={10} textAlign={'center'} color={COLORS.primary}>
-                                    {['events', 'talent'].includes(option.key) ? 'Próximamente' : ''}
+                                    {['events', 'talent'].includes(option.key) ? t('comingSoon') : ''}
                                 </Text>
                             </Box>
                         </Center>
                     ))}
                 </Flex>
                 {/* <Flex justify={'end'} mt={10} cursor='pointer'>
-                    <GradientButton label={'Siguiente'} type='green' size={'md'} disabled={!selected} onClick={() => nextQuestion(selected)} />
+                    <GradientButton label={t('next')} type='green' size={'md'} disabled={!selected} onClick={() => nextQuestion(selected)} />
                 </Flex> */}
             </Box>
         </Box>
     );
 };
 
-export default Question
+export default Question;

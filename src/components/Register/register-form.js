@@ -8,9 +8,6 @@ import {
   Button,
   InputRightElement,
   InputGroup,
-  Radio,
-  Flex,
-  RadioGroup,
   Stack
 } from "@chakra-ui/react";
 import axios from "axios";
@@ -22,12 +19,10 @@ import { AiFillEye } from "react-icons/ai";
 import { AiFillEyeInvisible } from "react-icons/ai";
 import { COLORS } from "../../colors/colors";
 import { useNavigate } from "react-router-dom";
-
-
-
+import { useTranslation } from 'react-i18next'; // Importa useTranslation
 
 const RegisterForm = () => {
-  // const [username, setUsername] = useState("");
+  const { t } = useTranslation("global"); // Inicializa la traducción
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
@@ -36,8 +31,8 @@ const RegisterForm = () => {
 
   const [name, setName] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [rol, setRol] = useState('1')
-  const [error, setError] = useState({ message: null })
+  const [rol, setRol] = useState('1');
+  const [error, setError] = useState({ message: null });
 
   const toast = useToast();
 
@@ -51,17 +46,17 @@ const RegisterForm = () => {
   const handleSubmit = () => {
     if (isEmpty(email) || isEmpty(password)) {
       setEmptyFieldMessage(true);
-      return
+      return;
     }
-    setEmptyFieldMessage(false)
+    setEmptyFieldMessage(false);
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
     if (!emailRegex.test(email)) {
-      setError({ message: 'El formato de email no es correcto' })
+      setError({ message: t("invalidEmailFormatMessage") });
       return;
     }
 
     if (password.length < 8) {
-      setError({ message: 'La contraseña tiene que tener al menos 8 carácteres' })
+      setError({ message: t("passwordTooShortMessage") });
       return;
     }
 
@@ -69,17 +64,17 @@ const RegisterForm = () => {
       .then((res) => {
         setEmptyFieldMessage(false);
         toast({
-          title: "CUENTA CREADA.",
-          description: "Cuenta creada correctamente",
+          title: t("accountCreatedTitle"),
+          description: t("accountCreatedMessage"),
           status: "success",
           duration: 5000,
           isClosable: true,
         });
-        navigate('/initial-page-digit')
+        navigate('/initial-page-digit');
       })
       .catch((err) => {
         toast({
-          title: "ERROR",
+          title: t("errorTitle"),
           description: err.response.data.message,
           status: "error",
           duration: 5000,
@@ -89,39 +84,40 @@ const RegisterForm = () => {
 
     resetFields();
   };
+
   return (
     <Box py={0} rounded={"xl"} bgColor={"white"}>
       <FormControl isRequired my={5}>
-        <FormLabel htmlFor="name">Nombre completo</FormLabel>
+        <FormLabel htmlFor="name">{t("nameLabel")}</FormLabel> {/* Traducción del texto */}
         <Input
           id="name"
-          placeholder="Nombre"
+          placeholder={t("namePlaceholder")}
           onChange={(e) => setName(e.target.value)}
           value={name}
         />
       </FormControl>
       <FormControl isRequired my={5}>
-        <FormLabel htmlFor="email">Correo electronico</FormLabel>
+        <FormLabel htmlFor="email">{t("emailLabel")}</FormLabel> {/* Traducción del texto */}
         <Input
           id="email"
-          placeholder="email"
+          placeholder={t("emailPlaceholder")}
           onChange={(e) => setEmail(e.target.value)}
           value={email}
         />
       </FormControl>
 
       <FormControl isRequired my={5}>
-        <FormLabel htmlFor="name">Contraseña</FormLabel>
+        <FormLabel htmlFor="password">{t("passwordLabel")}</FormLabel> {/* Traducción del texto */}
         <InputGroup size="md">
           <Input
             id="password"
-            placeholder="Contraseña"
+            placeholder={t("passwordPlaceholder")}
             pr="4.5rem"
             type={showPassword ? "text" : "password"}
             onChange={(e) => setPassword(e.target.value)}
             value={password}
           />
-          <InputRightElement >
+          <InputRightElement>
             <Text
               h="1.75rem"
               size="sm"
@@ -135,17 +131,15 @@ const RegisterForm = () => {
         </InputGroup>
       </FormControl>
 
-
       <Button
         mt={4}
         bg={COLORS.primary}
         type="submit"
         width={"100%"}
         color={'white'}
-        // disabled={isEmpty(email)}
         onClick={handleSubmit}
       >
-        Registrarse
+        {t("registerButton")} {/* Traducción del botón */}
       </Button>
 
       {error.message && (
@@ -156,7 +150,7 @@ const RegisterForm = () => {
 
       {emptyFieldMessage && (
         <Text my={2} color={"red"}>
-          Rellena todos los campos
+          {t("emptyFieldMessage")} {/* Traducción del mensaje */}
         </Text>
       )}
     </Box>

@@ -21,8 +21,10 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/userContext";
 import { COLORS } from "../../colors/colors";
 import { useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next'; // Importa useTranslation
 
 export default function InitialPage() {
+  const { t } = useTranslation("global"); // Inicializa la traducción
   const location = useLocation();
   const [showLogin, setShowLogin] = useState(true);
   const navigate = useNavigate();
@@ -30,14 +32,11 @@ export default function InitialPage() {
 
   useEffect(() => {
     setShowLogin(location.pathname === '/initial-page-digit');
-  }, [location.pathname])
-
-
+  }, [location.pathname]);
 
   useEffect(() => {
     const view = localStorage.getItem("userView");
     isLoggedIn && navigate(view === 'corporate' ? "/private/corporate/profile" : "/private/profile");
-
   }, [isLoggedIn]);
 
   return (
@@ -48,9 +47,14 @@ export default function InitialPage() {
             <Image src={'/logo-d.png'} height={16} w={16} />
           </Center>
           <Stack spacing={{ base: '2', md: '3' }} textAlign="center">
-            <Heading size={{ base: 'xs', md: 'sm' }} mb={3} fontFamily={'Montserrat'}>{showLogin ? 'Inicia sesión' : 'Registrarse'}</Heading>
+            <Heading size={{ base: 'xs', md: 'sm' }} mb={3} fontFamily={'Montserrat'}>
+              {showLogin ? t('login') : t('register')} {/* Traducción del texto */}
+            </Heading>
             <Text color="fg.muted">
-              {showLogin && '¿No tienes cuenta?'} <Text as={'span'} fontWeight={'bold'} color={COLORS.secondary} cursor={'pointer'} _hover={{ textDecor: 'underline' }} onClick={() => setShowLogin(!showLogin)}>{showLogin ? 'Registrarse' : 'Volver a login'}</Text>
+              {showLogin && t('noAccountPrompt')} {/* Traducción del texto */}
+              <Text as={'span'} fontWeight={'bold'} color={COLORS.secondary} cursor={'pointer'} _hover={{ textDecor: 'underline' }} onClick={() => setShowLogin(!showLogin)}>
+                {showLogin ? t('register') : t('backToLogin')} {/* Traducción del texto */}
+              </Text>
             </Text>
           </Stack>
         </Stack>

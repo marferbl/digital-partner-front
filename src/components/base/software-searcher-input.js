@@ -3,6 +3,7 @@ import { Flex, Input, Button, Icon } from '@chakra-ui/react';
 import { Link, useNavigate } from 'react-router-dom';
 import { COLORS } from '../../colors/colors.js'; // Assuming COLORS is imported from your constants file
 import { FiTool, FiRepeat } from "react-icons/fi";
+import { useTranslation } from 'react-i18next'; // Import useTranslation
 
 
 
@@ -10,6 +11,7 @@ import { FiTool, FiRepeat } from "react-icons/fi";
 export const SoftwareSearcherInput = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const navigate = useNavigate(); // Using useNavigate instead of useHistory
+    const { t } = useTranslation('global');
 
     const isInPanel = () => {
         return window.location.pathname.includes('private');
@@ -37,7 +39,7 @@ export const SoftwareSearcherInput = () => {
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 fontSize={{ base: 9, md: 12, lg: 14 }}
-                placeholder='¿Qué buscas? La IA te ayuda :)'
+                placeholder={t('iaHelpsYou')}
             />
             <Button
                 type="submit"
@@ -46,7 +48,7 @@ export const SoftwareSearcherInput = () => {
                 color='white'
                 _hover={{ color: 'gray.200', shadow: 'xl' }}
             >
-                Buscar
+                {t('search')}
             </Button>
             <Button display={{ base: 'none', md: 'block' }} size={'sm'} onClick={() => goToSearch('solutions')}>
                 <Icon

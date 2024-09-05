@@ -4,16 +4,16 @@ import { COLORS } from '../../colors/colors'
 import SearchSelectSpecifyFeatures from '../base/search-select-specify-features'
 import SearchSelectFeatures from '../base/search-select-features'
 import GradientButton from '../base/GradientButton'
-
+import { useTranslation } from 'react-i18next'; // Import useTranslation
 
 const SolutionsQuiz = ({ order, setOrder, updateConfig }) => {
+    const { t } = useTranslation('global'); // Use useTranslation hook
 
     const [config, setConfig] = useState({})
 
     useEffect(() => {
         updateConfig(config)
     }, [config])
-
 
     const handleToggle = (value, key) => {
         setConfig({ ...config, [value]: key })
@@ -29,19 +29,23 @@ const SolutionsQuiz = ({ order, setOrder, updateConfig }) => {
                 <Box>
                     <Center>
                         <Text fontSize={'3xl'} color={COLORS.primary} fontWeight={'bold'} px={5}>
-                            ¿A quién va dirigida la solución?
+                            {t('solutionTargetQuestion')} {/* Translated title */}
                         </Text>
                     </Center>
-                    <SearchSelectFeatures showLabel width={'100%'} isMulti={config.isErp} onChange={(value) => {
-                        const featureArray = typeof value === 'string' ? value.split(',') : value
-                        handleToggle('features', featureArray)
-                    }} />
+                    <SearchSelectFeatures
+                        showLabel
+                        width={'100%'}
+                        isMulti={config.isErp}
+                        onChange={(value) => {
+                            const featureArray = typeof value === 'string' ? value.split(',') : value
+                            handleToggle('features', featureArray)
+                        }}
+                    />
                     <Checkbox
                         mt={2}
-                        onChange={(e) => handleToggle('isErp', e.target.checked)
-                        }
+                        onChange={(e) => handleToggle('isErp', e.target.checked)}
                     >
-                        <Text fontSize={16}>¿Buscas un ERP?</Text>
+                        <Text fontSize={16}>{t('erpQuestion')}</Text> {/* Translated text */}
                     </Checkbox>
                 </Box>
             }
@@ -49,15 +53,22 @@ const SolutionsQuiz = ({ order, setOrder, updateConfig }) => {
                 <Box>
                     <Center>
                         <Text fontSize={'3xl'} color={COLORS.primary} fontWeight={'bold'} px={5}>
-                            ¿Qué funcionalidades específicas buscas?
+                            {t('specificFeaturesQuestion')} {/* Translated title */}
                         </Text>
                     </Center>
-                    <SearchSelectSpecifyFeatures feature={config.features} onChange={(value) => handleToggle('specifyFeatures', value)} />
+                    <SearchSelectSpecifyFeatures
+                        feature={config.features}
+                        onChange={(value) => handleToggle('specifyFeatures', value)}
+                    />
                 </Box>
             }
             <Flex justify={'end'} mt={10} cursor='pointer'>
-                <GradientButton label={'Siguiente'} type='green' size={'md'} onClick={nextQuestion} />
-
+                <GradientButton
+                    label={t('nextButton')}
+                    type='green'
+                    size={'md'}
+                    onClick={nextQuestion}
+                />
             </Flex>
         </Box>
     )

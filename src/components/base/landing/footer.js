@@ -12,7 +12,7 @@ import {
 import { FaInstagram, FaLinkedin } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import CountryFlag from "../country-flag";
-
+import { useTranslation } from 'react-i18next'; // Importa useTranslation
 
 const Logo = (props) => {
   return <Image src={"/logo-d.png"} h={10} ml={-2} />;
@@ -29,6 +29,7 @@ const NavLink = ({ label, link }) => {
 }
 
 export default function FooterLanding() {
+  const { t } = useTranslation('global');
   return (
     <Box
       bg={useColorModeValue("gray.50", "gray.900")}
@@ -36,15 +37,15 @@ export default function FooterLanding() {
     >
       <Container as={Stack} maxW={"6xl"} py={10}>
         <SimpleGrid
-          templateColumns={{ sm: "1fr 1fr", md: "2fr 1fr 1fr 1fr 1fr" }}
+          templateColumns={{ sm: "1fr 1fr", md: "2fr 1fr 2fr 1fr 1fr" }}
           spacing={8}
         >
           <Stack spacing={6}>
             <Box>
               <Logo color={useColorModeValue("gray.700", "white")} />
             </Box>
-            <NavLink label='¿Quiénes somos?' link='about' />
-            <NavLink label='Preguntas frecuentes' link='faqs' />
+            <NavLink label={t('whoWeAre')} link='about' />
+            <NavLink label={t('frequentlyAskedQuestions')} llink='faqs' />
             <Text fontSize={"sm"}>© 2024 digitalando. All rights reserved</Text>
           </Stack>
           <Stack spacing={6}>
@@ -64,7 +65,11 @@ export default function FooterLanding() {
           </Stack>
           <Stack spacing={6}>
             <Box h={8} />
-            <Text>Español <CountryFlag country='spain' />  </Text>
+            <Flex align={'center'} gap={2}>
+              <Text>{t('spanish')} <CountryFlag country='spain' />  </Text>
+              <Text>{t('english')} <CountryFlag country='england' />  </Text>
+            </Flex>
+
           </Stack>
         </SimpleGrid>
       </Container>

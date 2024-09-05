@@ -15,16 +15,17 @@ import { UserContext } from "../../context/userContext";
 import { useNavigate } from "react-router-dom";
 import { COLORS } from "../../colors/colors";
 import ChangePassword from "./Change-password";
+import { useTranslation } from 'react-i18next'; // Importa useTranslation
+
 const LoginForm = () => {
+  const { t } = useTranslation("global"); // Inicializa la traducción
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
   const toast = useToast();
-
   const [emptyFieldMessage, setEmptyFieldMessage] = useState(false);
-
   const { storeToken, authenticateUser } = useContext(UserContext);
   const buttonRef = useRef(null);
 
@@ -52,8 +53,8 @@ const LoginForm = () => {
           setEmptyFieldMessage(false);
           authenticateUser();
           toast({
-            title: "OK",
-            description: "Sesión Iniciada",
+            title: t("loginSuccessTitle"),
+            description: t("loginSuccessMessage"),
             status: "success",
             duration: 5000,
             isClosable: true,
@@ -64,8 +65,8 @@ const LoginForm = () => {
           console.log(err);
           setLoading(false);
           toast({
-            title: "ERROR",
-            description: err.response.data.message,
+            title: t("loginErrorTitle"),
+            description: err.response.data.message || t("loginErrorMessage"),
             status: "error",
             duration: 5000,
             isClosable: true,
@@ -74,23 +75,24 @@ const LoginForm = () => {
       resetFields();
     }
   };
+
   return (
     <Box py={0} rounded={"xl"} bgColor={"white"}>
       <FormControl isRequired my={5}>
-        <FormLabel htmlFor="surnames">Correo electronico</FormLabel>
+        <FormLabel htmlFor="email">{t("emailLabel")}</FormLabel> {/* Traducción del texto */}
         <Input
           id="email"
-          placeholder="email"
+          placeholder={t("emailPlaceholder")}
           onChange={(e) => setEmail(e.target.value)}
           value={email}
           onKeyDown={handleKeyPress}
         />
       </FormControl>
       <FormControl isRequired my={5}>
-        <FormLabel htmlFor="name">Contraseña</FormLabel>
+        <FormLabel htmlFor="password">{t("passwordLabel")}</FormLabel> {/* Traducción del texto */}
         <Input
           id="password"
-          placeholder="Password"
+          placeholder={t("passwordPlaceholder")}
           type="password"
           onChange={(e) => setPassword(e.target.value)}
           value={password}
@@ -107,18 +109,17 @@ const LoginForm = () => {
         width={"100%"}
         onClick={handleSubmit}
         isLoading={loading}
-      // disabled={isEmpty(email)}
       >
-        Entrar
+        {t("loginButton")} {/* Traducción del botón */}
       </Button>
 
       {emptyFieldMessage && (
         <Text my={2} color={"red"}>
-          Rellena todos los campos
+          {t("emptyFieldMessage")} {/* Traducción del mensaje */}
         </Text>
       )}
 
-      <ChangePassword/>
+      <ChangePassword />
     </Box>
   );
 };
