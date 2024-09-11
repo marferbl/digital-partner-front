@@ -9,7 +9,7 @@ import SearchSelect from '../../../../base/search-select'
 
 
 
-const PartnerModalCreate = ({ onChangeConfig, type }) => {
+const PartnerModalCreate = ({ onChangeConfig, type, initialConfig }) => {
     const [languages, setLanguages] = useState(null);
     const [countries, setCountries] = useState(null);
     const [description, setDescription] = useState(null);
@@ -17,6 +17,7 @@ const PartnerModalCreate = ({ onChangeConfig, type }) => {
     const [solutionId, setSolutionId] = useState(null);
     const [showOtherSolution, setShowOtherSolution] = useState(false);
     const [otherSolution, setOtherSolution] = useState(null);
+    const [title, setTitle] = useState('');
 
     const [web, setWeb] = useState('');
     const options = [
@@ -26,14 +27,37 @@ const PartnerModalCreate = ({ onChangeConfig, type }) => {
     ]
 
     useEffect(() => {
-        onChangeConfig({ languages, countries, description, partnerType, web, solutionId, otherSolution })
-    }, [languages, countries, description, partnerType, web, solutionId, otherSolution])
+        if (initialConfig) {
+            setLanguages(initialConfig.languages)
+            setCountries(initialConfig.countries)
+            setDescription(initialConfig.description)
+            setPartnerType(initialConfig.partnerType)
+            setSolutionId(initialConfig.solutionId)
+            setOtherSolution(initialConfig.otherSolution)
+            setTitle(initialConfig.title)
+            setWeb(initialConfig.web)
+        }
+    }, [initialConfig])
+
+
+    useEffect(() => {
+        onChangeConfig({ languages, countries, description, partnerType, web, solutionId, otherSolution, title })
+    }, [languages, countries, description, partnerType, web, solutionId, otherSolution, title])
+
+
 
 
     return (
         <Box>
             <Box>
+                <Text fontSize={14} mt={4} mb={1}>Nombre del servicio</Text>
+                <Input
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    placeholder="www.portfolio.com"
+                />
                 {type === 'partner' && < Box >
+
                     {!showOtherSolution && <Text fontSize={14} mb={1}>Selecciona de que solución eres implantador</Text>}
                     {!showOtherSolution && <SearchSelectSolutions onChange={(value) => setSolutionId(value)} />}
                     <Flex gap={3}>
@@ -43,11 +67,12 @@ const PartnerModalCreate = ({ onChangeConfig, type }) => {
                     {showOtherSolution && <Input placeholder="Nombre de la solución" onChange={(e) => setOtherSolution(e.target.value)} />}
 
                     <Text fontSize={14} mb={1} mt={2}>Selecciona uno o más tipos de servicio</Text>
-                    <SearchSelect options={options} isMulti onChange={(value) => setPartnerType(value)} />
+                    <SearchSelect value={partnerType} options={options} isMulti onChange={(value) => setPartnerType(value)} />
                 </Box>}
 
                 <Text fontSize={14} mt={4} mb={1}>Descripción</Text>
                 <Textarea
+                    value={description}
                     borderColor="gray.300"
                     _hover={{
                         borderRadius: "gray.300",
@@ -56,9 +81,9 @@ const PartnerModalCreate = ({ onChangeConfig, type }) => {
                     onChange={(e) => setDescription(e.target.value)}
                 />
                 <Text fontSize={14} mt={4} mb={1}>Lenguajes disponibles</Text>
-                <SearchSelectLanguage isMulti onChange={(value) => setLanguages(value)} mb={5} />
+                <SearchSelectLanguage defaultValue={languages} isMulti onChange={(value) => setLanguages(value)} mb={5} />
                 <Text fontSize={14} mt={4} mb={1}>Países disponibles</Text>
-                <SearchSelectCountries isMulti onChange={(value) => setCountries(value)} mb={5} />
+                <SearchSelectCountries defaultValue={countries} isMulti onChange={(value) => setCountries(value)} mb={5} />
                 <Text fontSize={14} mt={4} mb={1}>Web</Text>
                 <Input
                     value={web}

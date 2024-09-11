@@ -16,7 +16,7 @@ import { ImageUpload } from "./image-upload";
 import { UserContext } from "../../context/userContext";
 import EditPassword from "../Login/Edit-password";
 
-export const ProfileEdit = ({ me }) => {
+export const ProfileEdit = ({ me, refreshData }) => {
     const toast = useToast()
     const { getToken } = useContext(UserContext);
 
@@ -72,7 +72,7 @@ export const ProfileEdit = ({ me }) => {
                     <Image rounded={"xl"} h={100} src={me?.avatar} />
                 </Center>
                 <Center w={"100%"} mb={3}>
-                    <ImageUpload />
+                    <ImageUpload refreshData={refreshData} />
                 </Center>
                 <EditPassword />
                 <Text fontWeight={"bold"}>Nombre: </Text>

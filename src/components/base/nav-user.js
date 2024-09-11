@@ -64,7 +64,7 @@ export const NavbarUser = () => {
                     <MenuButton as={Button} rounded={'xl'} p={2} bg={'white'} w={150} justify={'space-between'} align={'center'}>
                         <Flex justifyContent={'space-between'} alignItems={'center'}>
                             <Text fontSize={14}>{userView === 'corporate' ? 'Corporate' : 'Personal'}</Text>
-                            <Image rounded={"100%"} h={6} src={loggedUser?.avatar} />
+                            <Image rounded={"100%"} h={6} w={6} src={me?.avatar} />
                         </Flex>
                     </MenuButton>
                     <MenuList width={20} p={0}>

@@ -18,17 +18,23 @@ import {
 import { COLORS } from "../../../colors/colors";
 import { createCorporate } from '../../../services/corporate';
 import PartnerModalCreate from './create-service/partner';
-import { createService } from '../../../services/service';
+import { createService, updateService } from '../../../services/service';
 
 
 
 
 
-export const ButtonCreateService = ({ refreshServices }) => {
+export const ButtonUpdateService = ({ refreshServices, item, children }) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     const [serviceType, setServiceType] = useState('');
     const [config, setConfig] = useState({});
+
+
+    useEffect(() => {
+        setConfig(item);
+    }, [item]);
+
 
     const closeModal = () => {
         onClose();
@@ -40,7 +46,11 @@ export const ButtonCreateService = ({ refreshServices }) => {
     }
 
     const create = async () => {
-        createService({ ...config, serviceType: serviceType }).then((res) => {
+        const body = {
+            ...config,
+            serviceType: serviceType
+        }
+        updateService(item._id, body).then((res) => {
             refreshServices();
             onClose();
         }
@@ -53,9 +63,8 @@ export const ButtonCreateService = ({ refreshServices }) => {
     return (
         <>
             <Menu>
-                <MenuButton rounded={'xl'} p={2} bg={'white'} justify={'space-between'} align={'center'}>
-                    <Button bg={COLORS.primary} color={'white'} _hover={{ bg: 'blue.700' }} onClick={onOpen}>Crear servicio</Button>
-                </MenuButton>
+                <Box _hover={{ bg: 'gray.100' }} onClick={onOpen}>{children}</Box>
+
                 <MenuList width={20} p={0}>
                     <MenuItem onClick={() => { openModal('partner') }} _hover={{ bg: 'gray.100' }} h={'full'} fontSize={14} textAlign={'center'} width={'full'} fontWeight={'bold'}>Partner</MenuItem>
                     <MenuItem onClick={() => { openModal('development') }} _hover={{ bg: 'gray.100' }} h={'full'} fontSize={14} textAlign={'center'} width={'full'} fontWeight={'bold'}>Desarrollo</MenuItem>
@@ -70,7 +79,7 @@ export const ButtonCreateService = ({ refreshServices }) => {
                     <ModalHeader>Crear Servicio</ModalHeader>
                     <ModalCloseButton onClick={closeModal} />
                     <ModalBody py={5}>
-                        <PartnerModalCreate type={serviceType} onChangeConfig={(value) => {
+                        <PartnerModalCreate initialConfig={item} type={serviceType} onChangeConfig={(value) => {
                             setConfig(value)
                         }} />
                     </ModalBody>

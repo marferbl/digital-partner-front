@@ -9,7 +9,7 @@ const SearchSelectCountries = ({ isMulti, onChange, showLabel, defaultValue, ...
     const [value, setValue] = useState(defaultValue || null)
 
     useEffect(() => {
-        if (!defaultValue) setValue(null)
+        setValue(defaultValue)
     }, [defaultValue])
 
 

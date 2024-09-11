@@ -38,6 +38,8 @@ const ServiceDetails = ({ service }) => {
             {service && <Grid templateColumns="repeat(8, 1fr)" gap={6} pb={20}>
                 <GridItem colSpan={5}>
                     <Box textAlign={'left'} mt={1} rounded={"xl"} bgColor={"white"} w={"100%"} px={10}>
+                        {service?.title ? <Text fontSize={22} mt={3} fontWeight='bold'>{capitalizeFirstLetter(service.title)}</Text> : ''}
+
                         <Text fontSize={14} mt={3} fontWeight='bold' textDecor={'underline'}>Corporate:</Text>
                         <Text fontSize={16}>{service?.corporate?.name} </Text>
                         <Text fontSize={14} mt={3} fontWeight='bold' textDecor={'underline'}>Tipo de servicio:</Text>

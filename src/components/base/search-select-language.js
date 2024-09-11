@@ -8,13 +8,14 @@ const SearchSelectLanguage = ({ isMulti, onChange, showLabel, defaultValue, ...p
 
     const [value, setValue] = useState(defaultValue)
 
+
     const changeValue = (value) => {
         setValue(value);
         onChange(value);
     }
 
     useEffect(() => {
-        if (!defaultValue) setValue(null)
+        setValue(defaultValue)
     }, [defaultValue])
 
     const languageOptions = LANGUAGES

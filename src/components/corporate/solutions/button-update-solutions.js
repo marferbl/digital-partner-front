@@ -55,7 +55,6 @@ export const ButtonUpdateSolution = ({ children, refreshSolutions, disabled, sol
 
     }, [solution])
 
-    console.log('solution', solution)
 
     const countriesOptions = COUNTRIES
     const languageOptions = LANGUAGES

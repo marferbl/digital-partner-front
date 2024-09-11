@@ -48,7 +48,7 @@ export const Profile = () => {
         <Text fontSize={22} >Perfil</Text>
         <Text cursor={'pointer'} onClick={() => setShowEdit(!showEdit)}>{showEdit ? 'Volver' : 'Editar'}</Text>
       </Flex>
-      {showEdit ? <ProfileEdit me={me} /> : <ProfileUser me={me} toggleShowEdit={toggleShowEdit} />}
+      {showEdit ? <ProfileEdit me={me} refreshData={getMe} /> : <ProfileUser me={me} toggleShowEdit={toggleShowEdit} />}
     </Box>
   );
 };
