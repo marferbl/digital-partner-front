@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { COLORS } from '../../colors/colors.js'; // Assuming COLORS is imported from your constants file
 import { FiTool, FiRepeat } from "react-icons/fi";
 import { useTranslation } from 'react-i18next'; // Import useTranslation
+import { Tooltip } from 'react-tooltip'
 
 
 
@@ -50,17 +51,27 @@ export const SoftwareSearcherInput = () => {
             >
                 {t('search')}
             </Button>
-            <Button display={{ base: 'none', md: 'block' }} size={'sm'} onClick={() => goToSearch('solutions')}>
+            <Button display={{ base: 'none', md: 'block' }} size={'sm'} onClick={() => goToSearch('solutions')}
+                className="solutions-tooltip"
+            >
                 <Icon
                     fontSize="16"
                     as={FiTool}
                 />
+                <Tooltip anchorSelect=".solutions-tooltip" place="bottom">
+                    Soluciones
+                </Tooltip>
             </Button>
-            <Button display={{ base: 'none', md: 'block' }} size={'sm'} onClick={() => goToSearch('services')}>
+            <Button display={{ base: 'none', md: 'block' }} size={'sm'} onClick={() => goToSearch('services')}
+                className="services-tooltip"
+            >
                 <Icon
                     fontSize="16"
                     as={FiRepeat}
                 />
+                <Tooltip anchorSelect=".services-tooltip" place="bottom">
+                    Servicios
+                </Tooltip>
             </Button>
         </Flex>
     );

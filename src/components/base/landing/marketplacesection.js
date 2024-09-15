@@ -8,13 +8,24 @@ import { FiAirplay } from 'react-icons/fi'
 import FiltersSection from '../../searcher/Filters'
 import { getAllSearch, getOptimizeSearch } from '../../../services/search'
 import { getFavorites } from '../../../services/favorite'
+import Pagination from '../../base/Paginate'
+
 
 const MarketplaceSection = ({ term, filters, isCollapsed, isFavorites, setNumberOfResults }) => {
     const [solutions, setSolutions] = useState([])
     const [loading, setLoading] = useState(false)
+    const [page, setPage] = useState(1)
 
     useEffect(() => {
-        if (!!term || filters) getSolutions()
+        getSolutions()
+    }, [page])
+
+
+    useEffect(() => {
+        if (!!term || filters) {
+            setPage(1)
+            getSolutions()
+        }
     }, [term, filters]);
 
     useEffect(() => {
@@ -76,14 +87,14 @@ const MarketplaceSection = ({ term, filters, isCollapsed, isFavorites, setNumber
     return (
         <Center w='full' flexDir={'column'} px={{ base: 2, lg: 5 }}>
             <Box w='full' px={{ base: 8, md: 2 }} h='full'>
-                {loading ? <Center w={isCollapsed ? '100%' : '80%'}> <Spinner
+                {loading ? <Center w={'100%'}> <Spinner
                     thickness='4px'
                     speed='0.65s'
                     emptyColor='gray.200'
                     color='blue.500'
                     size='xl'
                 /></Center> : solutions && solutions.length === 0 ?
-                    <Center flexDir={'column'} w={isCollapsed ? '100%' : '80%'} h='full' mt={10}>
+                    <Center flexDir={'column'} w={'100%'} h='full' mt={10}>
                         <Icon
                             fontSize={60}
                             _groupHover={{
@@ -97,6 +108,7 @@ const MarketplaceSection = ({ term, filters, isCollapsed, isFavorites, setNumber
                     :
                     <SectionMarketPlace list={solutions} isFavorites={isFavorites} />
                 }
+                {/* <Pagination currentPage={page} totalPages={10} setCurrentPage={setPage} /> */}
 
             </Box>
         </Center>

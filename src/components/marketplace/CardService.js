@@ -7,6 +7,8 @@ import { useContext } from 'react';
 import { UserContext } from '../../context/userContext';
 import { COLORS } from '../../colors/colors';
 import { FcLike } from 'react-icons/fc';
+import { FiRepeat } from 'react-icons/fi';
+import { Tooltip } from 'react-tooltip';
 
 const CardService = ({ item, isFavorites }) => {
     const { isLoggedIn } = useContext(UserContext);
@@ -27,25 +29,24 @@ const CardService = ({ item, isFavorites }) => {
     }
 
     return (
-        <Box w='full' borderWidth="1px" borderRadius="lg" overflow="hidden">
-            <Center bg={'blue.100'}>{'Servicio'}</Center>
+        <Box w='full' borderWidth="1px" borderRadius="lg" overflow="hidden" background={'rgba(255, 255, 255, 0.2)'} backdropBlur={'2xl'} boxShadow={'xl'}>
             {isFavorites && <Flex justifyContent="end" pr={1} alignItems="center" h={6} >
                 <FcLike size={20} color={COLORS.primary} />
             </Flex>}
-            <Center height={36} >
+            <Center height={20} >
                 <Link to={isLoggedIn ? `/private/service/${item._id}` : `/service/${item._id}`}>
-                    <Center h='full'><Avatar size="xl" name={item?.corporate?.name} /> </Center>
+                    <Center h='full'><Avatar size="md" name={item?.corporate?.name} /> </Center>
                 </Link>
             </Center>
             <Box p="1">
                 <Box d="flex" alignItems="baseline">
-                    <Heading as="p" size="sm" textAlign={'center'} _hover={{ textDecor: 'underline' }}>
+                    <Heading as="p" size="sm" textAlign={'center'} _hover={{ textDecor: 'underline' }} fontFamily='Montserrat' fontWeight={'bold'} h={10} display='flex' justifyContent={'center'} alignItems={'center'}>
                         <Link to={isLoggedIn ? `/private/service/${item._id}` : `/service/${item._id}`}>
                             {getLabelText(item.serviceType)}
                         </Link>
                     </Heading>
                 </Box>
-                <Flex h={14} mt={3} px={{ base: 3, md: 5, '2xl': 12 }} fontSize={12} mb={2}>
+                <Flex h={14} mt={3} px={{ base: 3, md: 5, '2xl': 12 }} fontSize={10} mb={4}>
                     <Box
                         h={14}
                         overflow="hidden"
@@ -61,6 +62,12 @@ const CardService = ({ item, isFavorites }) => {
                     >
                         {item.description}
                     </Box>
+                </Flex>
+                <Flex justify={'center'} p={2}>
+                    <FiRepeat className='service-tooltip' />
+                    <Tooltip anchorSelect=".service-tooltip" place="bottom">
+                        Servicio
+                    </Tooltip>
                 </Flex>
             </Box>
         </Box >

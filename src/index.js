@@ -9,6 +9,7 @@ import "@fontsource/montserrat/400.css";
 import theme from "./theme";
 import { I18nextProvider } from "react-i18next"
 import i18Next from "i18next"
+import 'react-tooltip/dist/react-tooltip.css'
 
 import global_es from "./translations/es/global.json"
 import global_en from "./translations/en/global.json"

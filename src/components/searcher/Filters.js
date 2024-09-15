@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Flex, Box, Icon, VStack, Heading, Text, Checkbox } from '@chakra-ui/react';
+import { Flex, Box, Grid, GridItem, VStack, Heading, Text, Checkbox } from '@chakra-ui/react';
 import SearchSelectCountries from '../base/search-select-countries';
 import SearchSelectLanguage from '../base/search-select-language';
 import SearchSelectFeatures from '../base/search-select-features';
@@ -58,38 +58,128 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
 
 
     return (
-        <Box borderRightWidth={1} h={'full'} >
+        <Box borderRightWidth={1} h={'full'} bg={'gray.50'} px={4} pb={4} shadow={'lg'}>
             <VStack align="left" spacing={4} pt={4}>
-                <Flex pr={5} gap={1} flexWrap={'wrap'} alignItems={'center'} flexDir='column'>
-                    <SearchSelect options={lineTypeOptions} width={'100%'} label={'Línea'} onChange={(value) => handleToggle('lineType', value)} value={filterValues.lineType} />
-                    {filterValues.lineType === 'solutions' && <Checkbox
-                        w={'full'}
-                        isChecked={filterValues.isErp}
-                        onChange={(e) => handleToggle('isErp', e.target.checked)}
-                        my={2}
-                    >
-                        <Text fontSize={13}>¿Solo ERPs?</Text>
-                    </Checkbox>}
-                    {filterValues.lineType === 'solutions' && <SearchSelectFeatures value={filterValues.features} showLabel width={'100%'} isMulti onChange={(value) => handleToggle('features', value)} />}
-                    {(filterValues.lineType === 'solutions' && filterValues.features?.length) ? <SearchSelectSpecifyFeatures value={filterValues.specifyFeatures} showLabel width={'100%'} label={'Funcionalidad especifica'} feature={filterValues.features} onChange={(value) => handleToggle('specifyFeatures', value)} /> : null}
-                    {filterValues.lineType === 'services' && <SearchSelect options={serviceTypeOptions} width={'100%'} label={'Tipo'} onChange={(value) => handleToggle('serviceType', value)} value={filterValues.serviceType} />}
-                    {filterValues.lineType === 'services' && filterValues.serviceType === 'partner' && <SearchSelect options={partnerTypeOptions} isMulti width={'100%'} label={'Servicio'} onChange={(value) => handleToggle('partnerType', value)} value={filterValues.partnerType} />}
-                    <SearchSelectCountries value={filterValues.countries} showLabel width={'100%'} isMulti onChange={(value) => {
-                        let arrayValue = typeof value === 'object' ? value : [value];
-                        handleToggle('countries', arrayValue)
-                    }} defaultValue={filterValues.countries} />
-                    <SearchSelectLanguage value={filterValues.languages} showLabel width={'100%'} isMulti onChange={(value) => {
-                        let arrayValue = typeof value === 'object' ? value : [value];
-                        handleToggle('languages', arrayValue)
-                    }} defaultValue={filterValues.languages} />
-                    {hasFilters && (
-                        <Box pt={4}>
-                            <GradientButton label='Limpiar filtros' type='red' size={'sm'} onClick={clearFilters} />
+                {/* Use Flex with wrap for dynamic layout */}
+                <Flex flexWrap="wrap" gap={4} w="full">
+
+                    {/* Always visible selects */}
+                    <Box minW="200px" pt={1}>
+                        <SearchSelect
+                            size="small"
+                            options={lineTypeOptions}
+                            width="100%"
+                            label="Línea"
+                            onChange={(value) => handleToggle('lineType', value)}
+                            value={filterValues.lineType}
+                        />
+                    </Box>
+
+                    {/* Conditionally rendered selects */}
+                    {filterValues.lineType === 'solutions' ? (
+                        <Box flexBasis="10%" minW="80px" h={'full'} mt={5}>
+                            <Checkbox
+                                w="full"
+                                isChecked={filterValues.isErp}
+                                onChange={(e) => handleToggle('isErp', e.target.checked)}
+                                my={2}
+                            >
+                                <Text fontSize={13}>¿Solo ERPs?</Text>
+                            </Checkbox>
                         </Box>
-                    )}
+                    ) : ''}
+                    {filterValues.lineType === 'solutions' ? (
+                        <Box flexBasis="20%" minW="200px">
+                            <SearchSelectFeatures
+                                value={filterValues.features}
+                                showLabel
+                                width="100%"
+                                isMulti
+                                onChange={(value) => handleToggle('features', value)}
+
+                            />
+                        </Box>
+                    ) : ''}
+                    {(filterValues.lineType === 'solutions' && filterValues.features?.length) ? (
+                        <Box flexBasis="10%" minW="200px">
+                            <SearchSelectSpecifyFeatures
+                                value={filterValues.specifyFeatures}
+                                showLabel
+                                width="100%"
+                                label="Funcionalidad especifica"
+                                feature={filterValues.features}
+                                onChange={(value) => handleToggle('specifyFeatures', value)}
+
+                            />
+                        </Box>
+                    ) : ''}
+                    {filterValues.lineType === 'services' ? (
+                        <Box flexBasis="10%" minW="200px" pt={1}>
+                            <SearchSelect
+                                options={serviceTypeOptions}
+                                width="100%"
+                                label="Tipo"
+                                onChange={(value) => handleToggle('serviceType', value)}
+                                value={filterValues.serviceType}
+
+                            />
+                        </Box>
+                    ) : ''}
+
+                    {filterValues.lineType === 'services' && filterValues.serviceType === 'partner' ? (
+                        <Box flexBasis="10%" minW="200px">
+                            <SearchSelect
+                                options={partnerTypeOptions}
+                                isMulti
+                                width="100%"
+                                label="Servicio"
+                                onChange={(value) => handleToggle('partnerType', value)}
+                                value={filterValues.partnerType}
+                                height="40px"
+                            />
+                        </Box>
+                    ) : ''}
+
+                    <Box flexBasis="10%" minW="200px">
+                        <SearchSelectCountries
+                            value={filterValues.countries}
+                            showLabel
+                            width="100%"
+                            isMulti
+                            onChange={(value) => {
+                                let arrayValue = typeof value === 'object' ? value : [value];
+                                handleToggle('countries', arrayValue);
+                            }}
+                            defaultValue={filterValues.countries}
+
+                        />
+                    </Box>
+
+                    <Box flexBasis="10%" minW="200px">
+                        <SearchSelectLanguage
+                            value={filterValues.languages}
+                            showLabel
+                            width="100%"
+                            isMulti
+                            onChange={(value) => {
+                                let arrayValue = typeof value === 'object' ? value : [value];
+                                handleToggle('languages', arrayValue);
+                            }}
+                            defaultValue={filterValues.languages}
+
+                        />
+                    </Box>
+
+                    {hasFilters ? (
+                        <Box flexBasis="30%" minW="200px" pt={7}>
+                            <GradientButton label="Limpiar filtros" type="red" size="xs" onClick={clearFilters} />
+                        </Box>
+                    ) : ''}
                 </Flex>
             </VStack>
-        </Box>
+        </Box >
+
+
     );
 };
 
