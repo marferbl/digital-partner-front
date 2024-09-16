@@ -45,7 +45,7 @@ export default function FooterLanding() {
               <Logo color={useColorModeValue("gray.700", "white")} />
             </Box>
             <NavLink label={t('whoWeAre')} link='about' />
-            <NavLink label={t('frequentlyAskedQuestions')} llink='faqs' />
+            <NavLink label={t('frequentlyAskedQuestions')} link='faqs' />
             <Text fontSize={"sm"}>© 2024 digitalando. All rights reserved</Text>
           </Stack>
           <Stack spacing={6}>

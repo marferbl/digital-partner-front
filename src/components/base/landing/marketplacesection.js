@@ -15,6 +15,7 @@ const MarketplaceSection = ({ term, filters, isCollapsed, isFavorites, setNumber
     const [solutions, setSolutions] = useState([])
     const [loading, setLoading] = useState(false)
     const [page, setPage] = useState(1)
+    const [meta, setMeta] = useState({})
 
     useEffect(() => {
         getSolutions()
@@ -34,9 +35,7 @@ const MarketplaceSection = ({ term, filters, isCollapsed, isFavorites, setNumber
         }
     }, [isFavorites]);
 
-    useEffect(() => {
-        setNumberOfResults(solutions.length)
-    }, [solutions]);
+
 
 
 
@@ -47,6 +46,7 @@ const MarketplaceSection = ({ term, filters, isCollapsed, isFavorites, setNumber
             getOptimizeSearch(term).then((res) => {
                 setLoading(false)
                 setSolutions(res.data.results);
+                setNumberOfResults(res.data.results?.length)
             }
             ).catch((error) => {
                 setLoading(false)
@@ -61,6 +61,8 @@ const MarketplaceSection = ({ term, filters, isCollapsed, isFavorites, setNumber
                 getFavorites({ term: term, ...completedFilters }).then((res) => {
                     setLoading(false)
                     setSolutions(res.data.results);
+                    setNumberOfResults(res.data.results?.length)
+
                 }
                 ).catch((error) => {
                     setLoading(false)
@@ -69,9 +71,11 @@ const MarketplaceSection = ({ term, filters, isCollapsed, isFavorites, setNumber
                 );
             }
             else {
-                getAllSearch({ term: term, ...completedFilters }).then((res) => {
+                getAllSearch({ term: term, ...completedFilters, page }).then((res) => {
                     setLoading(false)
                     setSolutions(res.data.results);
+                    setMeta(res.data.meta)
+                    setNumberOfResults(res.data.meta.totalResults)
                 }).catch((error) => {
                     setLoading(false)
                     console.log(error);
@@ -108,7 +112,7 @@ const MarketplaceSection = ({ term, filters, isCollapsed, isFavorites, setNumber
                     :
                     <SectionMarketPlace list={solutions} isFavorites={isFavorites} />
                 }
-                {/* <Pagination currentPage={page} totalPages={10} setCurrentPage={setPage} /> */}
+                {meta?.totalPages > 1 && !term && !isFavorites && <Pagination currentPage={page} totalPages={meta.totalPages} setCurrentPage={setPage} />}
 
             </Box>
         </Center>

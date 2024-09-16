@@ -26,6 +26,9 @@ const Pagination = ({ currentPage, setCurrentPage, totalPages }) => {
         }
     };
 
+    console.log('currentPage', currentPage);
+    console.log('totalPages', totalPages);
+
     return (
         <Flex justify="center" align="center" mt={4} gap={2}>
             {/* Previous Page Button */}
@@ -59,7 +62,7 @@ const Pagination = ({ currentPage, setCurrentPage, totalPages }) => {
             <IconButton
                 icon={<ChevronRightIcon />}
                 onClick={handleNextPage}
-                isDisabled={currentPage === totalPages}
+                isDisabled={currentPage >= totalPages}
                 aria-label="Siguiente"
                 size="sm"
             />

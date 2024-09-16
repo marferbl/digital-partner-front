@@ -36,18 +36,19 @@ const Searcher = ({ filters, isFavorites }) => {
 
     return (
         <Box p={5}>
-            <Box>
+            {/* <Box>
                 <Heading textAlign={'center'} fontFamily={'Montserrat'} fontSize={30}>
                     {isFavorites ? 'Tus Favoritos' : termLabel ? 'Mejores resultados sobre' : 'Resultados:'}
                 </Heading>
-                <Text textAlign={'right'} pr={{ base: 2, md: 6 }}>Mostrando {numberOfResults} resultados</Text>
-            </Box>
-            <Center>
+            </Box> */}
+            <Text textAlign={'right'} pr={{ base: 2, md: 6 }}>Mostrando {numberOfResults} resultados</Text>
+
+            {/* <Center>
                 <Text fontSize={30} fontWeight={'bold'} color={'#00A3FF'}>{getLabelTerm()}</Text>
-            </Center>
+            </Center> */}
 
             {/* Filters Section */}
-            <Box w={'full'} mt={5}>
+            <Box w={'full'} mt={5} px={6}>
                 <Flex cursor={'pointer'} alignItems="center" onClick={() => setIsCollapsed(!isCollapsed)}>
                     <Text fontSize={14}> {isCollapsed ? 'Mostrar filtros' : 'Ocultar filtros'}</Text>
                     <Icon
