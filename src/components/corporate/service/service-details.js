@@ -86,19 +86,13 @@ const ServiceDetails = ({ service }) => {
                         <Text>{service?.languages?.map(e => <Text>{languageLabelFromValue(e)}</Text>)}</Text>
                         {service?.countries?.length ? <Text fontSize={14} mt={3} fontWeight='bold' textDecor={'underline'}>Países disponibles para el servicio:</Text> : ''}
                         <Text fontSize={16}>{service?.countries?.map(e => <CountryFlag country={e} />)}</Text>
-                        <Text fontSize={14} mt={3} fontWeight='bold' mb={4} textAlign='center'>{service.serviceType === 'partner' ? 'Solución:' : ''} </Text>
-                        {service.serviceType === 'partner' ? <Box textAlign={'center'} mt={1} p={5} bgColor={"white"} w={"100%"} minH={300} px={10} rounded='xl' shadow={'xl'} mb={3}>
-                            <Text fontWeight={'bold'} fontSize={34}>{service.otherSolution || solution?.name}</Text>
+                        <Text fontSize={14} mt={3} fontWeight='bold' textDecor={'underline'}>{service.serviceType === 'partner' ? 'Solución:' : ''} </Text>
+                        {service.serviceType === 'partner' ? <Box mt={1} p={1} bgColor={"white"} w={"100%"} rounded='xl' mb={3}>
+                            <Text fontWeight={'bold'} fontSize={18}>{service.otherSolution || solution?.name}</Text>
                             <Text fontSize={16}>{solution?.website}</Text>
-                            {service.otherSolution ? <Text fontSize={14} mt={4}>Esta solución no está dada de alta</Text> : <Button
-                                mt={3}
-                                variant="solid"
-                                bg={COLORS.primary}
-                                color="white"
-                                _hover={{ bg: 'blue.700' }}
-                            >
-                                <Link to={isLoggedIn ? `/private/solution/${solution?._id}` : `/solution/${solution?._id}`}><Text fontWeight={'bold'} fontSize={14}>{'Ir a detalles'}</Text></Link>
-                            </Button>}
+                            {service.otherSolution ? <Text fontSize={14} mt={2}>Esta solución no está dada de alta</Text> :
+                                <Link to={isLoggedIn ? `/private/solution/${solution?._id}` : `/solution/${solution?._id}`}><Text fontWeight={'bold'} textDecor='underline' color={'blue.600'} fontSize={14}>{'Ir a detalles'}</Text></Link>
+                            }
                         </Box> : ''}
                     </Box>
                 </GridItem>
@@ -116,7 +110,7 @@ const ServiceDetails = ({ service }) => {
                             </AccordionButton>
                         </h2>
                         <AccordionPanel pb={4}>
-                            <ServicesTable services={services} smallView={true} />
+                            {services?.length ? <ServicesTable services={services} smallView={true} /> : 'No hay más servicios de esta corporate'}
                         </AccordionPanel>
                     </AccordionItem>
                 </Accordion>
