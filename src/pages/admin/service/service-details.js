@@ -19,6 +19,11 @@ const ServiceDetailsPage = () => {
         getMyService();
     }, []);
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+        getMyService();
+    }, [id])
+
     const getMyService = () => {
         getServiceById(id)
             .then((res) => {
@@ -29,11 +34,17 @@ const ServiceDetailsPage = () => {
             });
     };
 
+
+    const goBack = () => {
+        window.scrollTo(0, 0);
+        window.history.back();
+    }
+
     return (
         <Box>
             {!isLoggedIn ? <Navbar></Navbar> : null}
             <Box mt={6} p={5} rounded={"xl"} bgColor={"white"} w={"100%"} minH={400}>
-                <Flex h={8} align={'center'} pr={3} onClick={() => window.history.back()} cursor={'pointer'} _hover={{ borderBottomWidth: 1 }} w={'fit-content'}>
+                <Flex h={8} align={'center'} pr={3} onClick={() => goBack()} cursor={'pointer'} _hover={{ borderBottomWidth: 1 }} w={'fit-content'}>
                     <IoChevronBack size={20} />
                     <Text ml={2} pt={-4} fontSize={16} fontWeight={'bold'}>Volver</Text>
                 </Flex>

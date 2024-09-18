@@ -2,27 +2,29 @@ import React, { useState, useContext, useEffect } from "react";
 import { Box, Grid, GridItem, Text, Avatar, Button, Flex } from "@chakra-ui/react";
 import { capitalizeFirstLetter, languageLabelFromValue } from '../../../utils/methods'
 import CountryFlag from '../../base/country-flag'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { COLORS } from "../../../colors/colors"
 import { UserContext } from "../../../context/userContext";
 import GradientButton from "../../base/GradientButton";
 import { getServicesByCorporate } from "../../../services/service";
 import ServicesTable from "./services-table";
 import { Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon } from '@chakra-ui/react';
+import { get } from "mongoose";
 
 
 
 const ServiceDetails = ({ service }) => {
     const { isLoggedIn } = useContext(UserContext)
     const [services, setServices] = useState([])
-
     useEffect(() => {
         service && getServices()
     }, [service])
 
+
     const getServices = () => {
         getServicesByCorporate(service.corporate?._id).then((res) => {
-            setServices(res.data.services)
+            const filteredServices = res.data?.services?.filter((s) => s._id !== service._id)
+            setServices(filteredServices)
         }
         ).catch((error) => {
             console.log(error)
