@@ -25,7 +25,7 @@ import { ButtonUpdateService } from './button-update-service'
 
 
 
-const ServicesTable = ({ services, solutionView, refreshServices }) => {
+const ServicesTable = ({ services, solutionView, refreshServices, smallView = false }) => {
 
     const PARTNER_TYPE_KEYS = {
         'selling': 'Venta',
@@ -72,13 +72,13 @@ const ServicesTable = ({ services, solutionView, refreshServices }) => {
             <Table variant='simple'>
                 <Thead>
                     <Tr>
-                        <Th>Corporate</Th>
+                        {!smallView && <Th>Corporate</Th>}
                         <Th>Nombre</Th>
                         <Th>Tipo de servicio</Th>
                         <Th>Lenguajes</Th>
                         <Th>Países</Th>
                         <Th></Th>
-                        <Th></Th>
+                        {!smallView && <Th></Th>}
 
                     </Tr>
                 </Thead>
@@ -86,7 +86,7 @@ const ServicesTable = ({ services, solutionView, refreshServices }) => {
                     {services.map((service) => {
                         return (
                             <Tr key={service._id}>
-                                <Td>{service.corporate?.name}</Td>
+                                {!smallView && <Td>{service.corporate?.name}</Td>}
                                 <Td>{getLabelText(service)}</Td>
 
                                 <Td>{capitalizeFirstLetter(service.serviceType)} {service.serviceType === 'partner' && <Text as={'span'}> {'('} {arrayToSentence(service.partnerType)} {')'} </Text>}</Td>
@@ -97,17 +97,17 @@ const ServicesTable = ({ services, solutionView, refreshServices }) => {
                                         <GradientButton label={'Detalles'} type='red' size={'sm'} />
                                     </Link>
                                 </Td>
-                                <Td width={30}>
+                                {!smallView && <Td width={30}>
                                     <Menu>
                                         <MenuButton rounded={'xl'} p={2} bg={'white'} justify={'space-between'} align={'center'}>
                                             <FiMoreVertical size={20} pt={3} />
                                         </MenuButton>
                                         <MenuList width={20} p={0}>
-                                            <ButtonUpdateService  item={service} refreshServices={refreshServices}> <MenuItem hover={{ bg: 'gray.100' }} h={'full'} fontSize={12} textAlign={'center'} width={'full'} fontWeight={'bold'}> Editar</MenuItem></ButtonUpdateService>
+                                            <ButtonUpdateService item={service} refreshServices={refreshServices} serviceTypeDefault={service?.serviceType}> <MenuItem hover={{ bg: 'gray.100' }} h={'full'} fontSize={12} textAlign={'center'} width={'full'} fontWeight={'bold'}> Editar</MenuItem></ButtonUpdateService>
                                             <MenuItem onClick={() => deleteItem(service._id)} _hover={{ bg: 'gray.100' }} h={'full'} fontSize={12} textAlign={'center'} width={'full'} fontWeight={'bold'}>Eliminar</MenuItem>
                                         </MenuList>
                                     </Menu>
-                                </Td>
+                                </Td>}
                             </Tr>
                         )
                     })

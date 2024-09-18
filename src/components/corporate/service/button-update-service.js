@@ -24,7 +24,7 @@ import { createService, updateService } from '../../../services/service';
 
 
 
-export const ButtonUpdateService = ({ refreshServices, item, children }) => {
+export const ButtonUpdateService = ({ refreshServices, item, children, serviceTypeDefault }) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     const [serviceType, setServiceType] = useState('');
@@ -48,7 +48,7 @@ export const ButtonUpdateService = ({ refreshServices, item, children }) => {
     const create = async () => {
         const body = {
             ...config,
-            serviceType: serviceType
+            serviceType: serviceTypeDefault || serviceType
         }
         updateService(item._id, body).then((res) => {
             refreshServices();
@@ -71,6 +71,8 @@ export const ButtonUpdateService = ({ refreshServices, item, children }) => {
                     <MenuItem onClick={() => { openModal('renting') }} _hover={{ bg: 'gray.100' }} h={'full'} fontSize={14} textAlign={'center'} width={'full'} fontWeight={'bold'}>Renting</MenuItem>
                     <MenuItem onClick={() => { openModal('helps') }} _hover={{ bg: 'gray.100' }} h={'full'} fontSize={14} textAlign={'center'} width={'full'} fontWeight={'bold'}>Ayudas</MenuItem>
                     <MenuItem onClick={() => { openModal('training') }} _hover={{ bg: 'gray.100' }} h={'full'} fontSize={14} textAlign={'center'} width={'full'} fontWeight={'bold'}>Training</MenuItem>
+                    <MenuItem onClick={() => { openModal('growth') }} _hover={{ bg: 'gray.100' }} h={'full'} fontSize={14} textAlign={'center'} width={'full'} fontWeight={'bold'}>Growth</MenuItem>
+
                 </MenuList>
             </Menu>
             <Modal isOpen={isOpen} onClose={onClose}>

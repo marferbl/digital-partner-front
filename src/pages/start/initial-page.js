@@ -31,7 +31,7 @@ export default function InitialPage() {
   const { isLoggedIn } = useContext(UserContext);
 
   useEffect(() => {
-    setShowLogin(location.pathname === '/initial-page-digit');
+    setShowLogin(location.pathname === '/start');
   }, [location.pathname]);
 
   useEffect(() => {

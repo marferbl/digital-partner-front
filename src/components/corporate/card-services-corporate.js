@@ -24,6 +24,9 @@ export const CardServicesCorporate = () => {
     };
 
     const getLabelText = (serviceType, item) => {
+        if (item.title) {
+            return item.title;
+        }
         const label = {
             'partner': 'Partner de ' + item.solutionId?.name || item.otherSolution,
             'development': 'Desarrollo por ' + item.corporate?.name,

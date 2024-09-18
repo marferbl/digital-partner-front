@@ -113,7 +113,7 @@ export const SolutionDetailPage = () => {
                     {selectedComponent}
                 </Box> : <Flex w='full' justify={'center'} align={'center'} flexDir='column' mt={4} >
                     <Text mt={6} fontSize='xl' fontWeight='bold' color={'gray.400'}>Debes iniciar sesión para ver más detalles</Text>
-                    <Link to={'/initial-page-digit'}>
+                    <Link to={'/start'}>
                         <Text mt={2} fontSize='sm' fontWeight='bold' color={'blue.500'} _hover={{ color: 'blue.700' }}>Iniciar sesión</Text>
                     </Link>
                 </Flex>}

@@ -77,7 +77,7 @@ const Features = () => {
             <Text fontSize="xs" mt={4} h={16}>
               {t(feature.content)}
             </Text>
-            <Link to={{ pathname: '/initial-page-digit/a', state: { filter: 'register' } }} >
+            <Link to={{ pathname: '/start/a', state: { filter: 'register' } }} >
               <Button
                 mt={5}
                 bgGradient={`linear(to-r, ${COLORS.secondary}, #17a7c2)`} // Adjust gradient stops as needed

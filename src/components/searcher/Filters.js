@@ -46,6 +46,8 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
         { value: 'renting', label: 'Renting' },
         { value: 'helps', label: 'Ayudas' },
         { value: 'training', label: 'Training' },
+        { value: 'growth', label: 'Growth' },
+
     ];
 
 

@@ -70,7 +70,7 @@ const RegisterForm = () => {
           duration: 5000,
           isClosable: true,
         });
-        navigate('/initial-page-digit');
+        navigate('/start');
       })
       .catch((err) => {
         toast({

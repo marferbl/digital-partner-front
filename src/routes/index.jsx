@@ -27,8 +27,8 @@ export const PageRoutes = () => {
     <Router>
       <Routes>
         <Route path={"/"} element={<LandingPage />} />
-        <Route path={"/initial-page-digit"} element={<App />} />
-        <Route path={"/initial-page-digit/a"} element={<App />} />
+        <Route path={"/start"} element={<App />} />
+        <Route path={"/start/a"} element={<App />} />
         <Route path={"/marketplace"} element={<MarketplacePage />} />
         <Route path={"search/:term"} element={<SearcherPage />} />
         <Route path={"search"} element={<SearcherPage />} />

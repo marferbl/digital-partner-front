@@ -30,11 +30,11 @@ export default function Navbar() {
   const Links = [
     {
       label: isLoggedIn ? 'Ir al panel' : 'Iniciar sesión',
-      link: '/initial-page-digit'
+      link: '/start'
     },
     {
       label: 'Regístrate gratis',
-      link: '/initial-page-digit/a',
+      link: '/start/a',
       param: 'register',
       hide: true
     }];
@@ -72,10 +72,10 @@ export default function Navbar() {
                 ))}
               </HStack>
               <Flex gap={3} pr={3}>
-                <Button size={'small'} onClick={()=> i18n.changeLanguage('es')}>
+                <Button size={'small'} onClick={() => i18n.changeLanguage('es')}>
                   <CountryFlag country={'spain'} />
                 </Button>
-                <Button size={'small'} onClick={()=> i18n.changeLanguage('en')}>
+                <Button size={'small'} onClick={() => i18n.changeLanguage('en')}>
                   <CountryFlag country={'england'} />
                 </Button>
               </Flex>
