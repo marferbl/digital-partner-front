@@ -9,7 +9,6 @@ import GradientButton from "../../base/GradientButton";
 import { getServicesByCorporate } from "../../../services/service";
 import ServicesTable from "./services-table";
 import { Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon } from '@chakra-ui/react';
-import { get } from "mongoose";
 
 
 
