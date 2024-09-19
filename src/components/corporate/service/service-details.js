@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Box, Grid, GridItem, Text, Avatar, Button, Flex } from "@chakra-ui/react";
+import { Box, Grid, GridItem, Text, Avatar, Button, Flex, Image } from "@chakra-ui/react";
 import { capitalizeFirstLetter, languageLabelFromValue } from '../../../utils/methods'
 import CountryFlag from '../../base/country-flag'
 import { Link, useParams } from 'react-router-dom'
@@ -57,23 +57,28 @@ const ServiceDetails = ({ service }) => {
             {service && <Grid templateColumns="repeat(8, 1fr)" gap={6} pb={1}>
                 <GridItem colSpan={8}>
                     <Box textAlign={'left'} mt={1} rounded={"xl"} bgColor={"white"} w={"100%"} px={10}>
-                        {service?.title ? <Text fontSize={22} mt={3} fontWeight='bold'>{capitalizeFirstLetter(service.title)}</Text> : ''}
-
-                        <Flex align={'center'} justify='space-between' gap={4}>
-                            <Box>
-
-                                <Text fontSize={14} mt={3} fontWeight='bold' textDecor={'underline'}>Corporate:</Text>
-                                <Text fontSize={16}>{service?.corporate?.name} </Text>
-                            </Box>
+                        <Flex align={'center'} justify='space-between' gap={4} pb={3}>
+                            <Flex align={'center'} gap={4}>
+                                {service?.logo && <Image src={service.logo} alt={service?.title} height={28} width={28} objectFit={'contain'} rounded='100%' />}
+                                {service?.title ? <Text fontSize={22} mt={3} fontWeight='bold'>{capitalizeFirstLetter(service.title)}</Text> : ''}
+                            </Flex>
                             <Box pt={6}>
                                 {isLoggedIn ? <a href={`mailto:${service?.corporate?.superadmin?.email}`}>
-                                    <GradientButton type='green' label='Contactar' size={'sm'} />
+                                    <GradientButton type='green' label='Contactar' size={'md'} />
                                 </a> :
                                     <Box>
                                         <GradientButton type='green' label='Contactar' disabled size='sm' />
                                         <Text mt={1} fontSize={12}>Inicia sesión para contactar</Text>
                                     </Box>
                                 }
+                            </Box>
+                        </Flex>
+
+                        <Flex align={'center'} justify='space-between' gap={4}>
+                            <Box>
+
+                                <Text fontSize={14} mt={3} fontWeight='bold' textDecor={'underline'}>Corporate:</Text>
+                                <Text fontSize={16}>{service?.corporate?.name} </Text>
                             </Box>
                         </Flex>
                         {service?.serviceType && <Text fontSize={14} mt={3} fontWeight='bold' textDecor={'underline'}>Tipo de servicio:</Text>}

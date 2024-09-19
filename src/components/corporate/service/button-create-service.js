@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { Box, Button, Flex, Text, Input, GridItem, } from '@chakra-ui/react'
+import { Box, Button, Flex, Text, Input, Image, Center, } from '@chakra-ui/react'
 import {
     Modal,
     ModalOverlay,
@@ -19,6 +19,7 @@ import { COLORS } from "../../../colors/colors";
 import { createCorporate } from '../../../services/corporate';
 import PartnerModalCreate from './create-service/partner';
 import { createService } from '../../../services/service';
+import { ImageUploadInput } from '../../base/image-upload';
 
 
 
@@ -29,6 +30,7 @@ export const ButtonCreateService = ({ refreshServices }) => {
 
     const [serviceType, setServiceType] = useState('');
     const [config, setConfig] = useState({});
+    const [logo, setLogo] = useState('');
 
     const closeModal = () => {
         onClose();
@@ -40,7 +42,7 @@ export const ButtonCreateService = ({ refreshServices }) => {
     }
 
     const create = async () => {
-        createService({ ...config, serviceType: serviceType }).then((res) => {
+        createService({ ...config, serviceType: serviceType, logo: logo }).then((res) => {
             refreshServices();
             onClose();
         }
@@ -66,12 +68,16 @@ export const ButtonCreateService = ({ refreshServices }) => {
 
                 </MenuList>
             </Menu>
-            <Modal isOpen={isOpen} onClose={onClose}>
+            <Modal isOpen={isOpen} onClose={onClose} size='xl'>
                 <ModalOverlay />
                 <ModalContent>
                     <ModalHeader>Crear Servicio</ModalHeader>
                     <ModalCloseButton onClick={closeModal} />
                     <ModalBody py={5}>
+                        <Center w={'full'} flexDir={'column'} gap={5}>
+                            {logo && <Image src={logo} alt="Logo" w={32} h={32} objectFit='cover' rounded='lg' />}
+                            <ImageUploadInput url={`image/upload`} setLogo={setLogo} />
+                        </Center>
                         <PartnerModalCreate type={serviceType} onChangeConfig={(value) => {
                             setConfig(value)
                         }} />

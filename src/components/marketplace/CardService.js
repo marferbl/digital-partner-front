@@ -35,7 +35,7 @@ const CardService = ({ item, isFavorites }) => {
             </Flex>}
             <Center height={20} >
                 <Link to={isLoggedIn ? `/private/service/${item._id}` : `/service/${item._id}`}>
-                    <Center h='full'><Avatar size="md" name={item?.corporate?.name} /> </Center>
+                    <Center h='full'><Avatar src={item?.logo} size="md" name={item?.corporate?.name} /> </Center>
                 </Link>
             </Center>
             <Box p="1">
