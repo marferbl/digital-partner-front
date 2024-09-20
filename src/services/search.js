@@ -18,3 +18,7 @@ export const getAllSearch = (queryParams) => {
 export const getOptimizeSearch = (keyword) => {
   return API.get(`/search/optimize/${keyword}`);
 }
+
+export const compareSolutionsIA = (data) => {
+  return API.post(`/search/comparation`, data);
+}

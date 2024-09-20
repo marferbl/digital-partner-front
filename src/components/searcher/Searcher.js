@@ -6,6 +6,8 @@ import MarketplaceSection from '../base/landing/marketplacesection'
 import { useState, useEffect } from 'react'
 import { FiChevronUp, FiChevronDown } from "react-icons/fi";
 import { COLORS } from '../../colors/colors';
+import GradientButton from '../base/GradientButton'
+import { ButtonCompareIA } from '../marketplace/ButtonCompareIa'
 
 
 const Searcher = ({ filters, isFavorites }) => {
@@ -46,6 +48,9 @@ const Searcher = ({ filters, isFavorites }) => {
             {/* <Center>
                 <Text fontSize={30} fontWeight={'bold'} color={'#00A3FF'}>{getLabelTerm()}</Text>
             </Center> */}
+            <Flex justifyContent={'end'} alignItems={'center'} pr={6} pt={4}>
+                <ButtonCompareIA />
+            </Flex>
 
             {/* Filters Section */}
             <Box w={'full'} mt={5} px={6}>
