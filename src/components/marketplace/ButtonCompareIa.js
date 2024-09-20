@@ -35,7 +35,7 @@ export const ButtonCompareIA = ({ refreshSolutions, disabled }) => {
     const [loading, setLoading] = useState(false)
     const [text, setText] = useState('')
     const [error, setError] = useState('')
-    const [comparation, setComparation] = useState('asdasd')
+    const [comparation, setComparation] = useState('')
 
     const closeModal = () => {
         onClose()
