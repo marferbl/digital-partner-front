@@ -13,6 +13,7 @@ import { FaInstagram, FaLinkedin } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import CountryFlag from "../country-flag";
 import { useTranslation } from 'react-i18next'; // Importa useTranslation
+import conditionsPDF from '../../../pdf/conditions.pdf'
 
 const Logo = (props) => {
   return <Image src={"/logo-d.png"} h={10} ml={-2} />;
@@ -44,8 +45,12 @@ export default function FooterLanding() {
             <Box>
               <Logo color={useColorModeValue("gray.700", "white")} />
             </Box>
+
             <NavLink label={t('whoWeAre')} link='about' />
             <NavLink label={t('frequentlyAskedQuestions')} link='faqs' />
+            <a href={conditionsPDF} target="_blank" rel="noreferrer">
+              <Text _hover={{ textDecor: 'underline' }}>Condiciones Generales de usuario</Text>
+            </a>
             <Text fontSize={"sm"}>© 2024 digitalando. All rights reserved</Text>
           </Stack>
           <Stack spacing={6}>

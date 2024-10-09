@@ -15,10 +15,10 @@ import { Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIco
 const ServiceDetails = ({ service }) => {
     const { isLoggedIn } = useContext(UserContext)
     const [services, setServices] = useState([])
+
     useEffect(() => {
         service && getServices()
     }, [service])
-
 
     const getServices = () => {
         getServicesByCorporate(service.corporate?._id).then((res) => {
@@ -28,6 +28,10 @@ const ServiceDetails = ({ service }) => {
         ).catch((error) => {
             console.log(error)
         })
+    }
+
+    const isDigitalando = () => {
+        return service?.corporate?._id === '66e3fb74ded119079e6ec82e'
     }
 
 
@@ -75,11 +79,10 @@ const ServiceDetails = ({ service }) => {
                         </Flex>
 
                         <Flex align={'center'} justify='space-between' gap={4}>
-                            <Box>
-
+                            {!isDigitalando() && <Box>
                                 <Text fontSize={14} mt={3} fontWeight='bold' textDecor={'underline'}>Corporate:</Text>
                                 <Text fontSize={16}>{service?.corporate?.name} </Text>
-                            </Box>
+                            </Box>}
                         </Flex>
                         {service?.serviceType && <Text fontSize={14} mt={3} fontWeight='bold' textDecor={'underline'}>Tipo de servicio:</Text>}
                         <Text>{capitalizeFirstLetter(service.serviceType)} {service.serviceType === 'partner' && <Text as={'span'}> {'('} {arrayToSentence(service.partnerType)} {')'} </Text>}</Text>
@@ -103,7 +106,7 @@ const ServiceDetails = ({ service }) => {
                 </GridItem>
 
             </Grid>}
-            <Box px={6} mt={4}>
+            {!isDigitalando() && <Box px={6} mt={4}>
                 <Accordion allowToggle>
                     <AccordionItem>
                         <h2>
@@ -119,7 +122,7 @@ const ServiceDetails = ({ service }) => {
                         </AccordionPanel>
                     </AccordionItem>
                 </Accordion>
-            </Box>
+            </Box>}
 
         </Box >
     )
