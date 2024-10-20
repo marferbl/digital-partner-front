@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Flex, Input, Button, Icon } from '@chakra-ui/react';
 import { Link, useNavigate } from 'react-router-dom';
 import { COLORS } from '../../colors/colors.js'; // Assuming COLORS is imported from your constants file
-import { FiTool, FiRepeat } from "react-icons/fi";
+import { FiTool, FiRepeat, FiCalendar } from "react-icons/fi";
 import { useTranslation } from 'react-i18next'; // Import useTranslation
 import { Tooltip } from 'react-tooltip'
 
@@ -71,6 +71,17 @@ export const SoftwareSearcherInput = () => {
                 />
                 <Tooltip anchorSelect=".services-tooltip" place="bottom">
                     Todas las soluciones
+                </Tooltip>
+            </Button>
+            <Button display={{ base: 'none', md: 'block' }} size={'sm'} onClick={() => goToSearch('events')}
+                className="events-tooltip"
+            >
+                <Icon
+                    fontSize="16"
+                    as={FiCalendar}
+                />
+                <Tooltip anchorSelect=".events-tooltip" place="bottom">
+                    Todas los eventos
                 </Tooltip>
             </Button>
         </Flex>

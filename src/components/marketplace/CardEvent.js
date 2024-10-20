@@ -13,13 +13,26 @@ import { Tooltip } from 'react-tooltip';
 const CardEvent = ({ isFavorites, item }) => {
     const { isLoggedIn } = useContext(UserContext);
 
+    const keys = {
+        'remote': 'Remoto',
+        'presential': 'Presencial',
+    }
+
+    const getLabelType = (item) => {
+        if (item.type.length === 2) {
+            return 'Remoto y Presencial'
+        }
+        return keys[item.type[0]]
+    }
+
+
     return (
         <Box w='full' borderWidth="1px" borderRadius="lg" overflow="hidden" background={'rgba(255, 255, 255, 0.2)'} backdropBlur={'2xl'} boxShadow={'xl'}>
             {isFavorites && <Flex justifyContent="end" pr={1} alignItems="center" h={6} >
                 <FcLike size={20} color={COLORS.primary} />
             </Flex>}
-            <Box height={28} position="relative" bg="red" fontSize={10} color='white'>
-                <Image src={item.photo} h="full" objectFit="cover" w="full" />
+            <Box height={28} position="relative" fontSize={10} color='white'>
+                {<Image src={item.photo || '/logo-d.png'} h="full" objectFit={item.photo ? "cover" : "contain"} w="full" />}
 
                 <Text position="absolute" top={0} left={0} p={1} bg="rgba(0, 0, 0, 0.5)" borderRadius="lg">
                     {item.address}
@@ -28,11 +41,10 @@ const CardEvent = ({ isFavorites, item }) => {
                     {new Date(item.date).toLocaleDateString()}
                 </Text>
                 <Text position="absolute" bottom={0} right={0} p={1} bg="rgba(0, 0, 0, 0.5)" borderRadius="lg">
-                    {new Date(item.time).toLocaleTimeString()}
+                    {new Date(item.time).toLocaleTimeString({}, { hour: '2-digit', minute: '2-digit' })}
                 </Text>
                 <Text position="absolute" bottom={0} left={0} p={1} bg="rgba(0, 0, 0, 0.5)" borderRadius="lg">
-                    {'Remoto'}
-
+                    {getLabelType(item)}
                 </Text>
             </Box>
             <Box p="1">
@@ -46,7 +58,7 @@ const CardEvent = ({ isFavorites, item }) => {
                         {item.corporate?.name === 'Digitalando' ? '' : item.corporate?.name}
                     </Text>
                 </Box>
-                <Flex h={14} mt={1} px={{ base: 3, md: 5, '2xl': 12 }} fontSize={10} mb={0}>
+                <Flex h={14} mt={3} px={{ base: 3, md: 5, '2xl': 12 }} fontSize={10} mb={4}>
                     <Box
                         h={14}
                         overflow="hidden"
