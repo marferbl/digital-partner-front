@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import axios from "axios";
 import { useBackendUrlBuilder } from "../../hooks/useBackendUrlBuilder";
 import { UserContext } from "../../context/userContext";
-import { Flex, Center, Spinner, Text } from "@chakra-ui/react";
+import { Flex, Center, Spinner, Text, Button } from "@chakra-ui/react";
 
 export const ImageUploadInput = ({ url, setLogo, hideConfirm }) => {
     const { getToken } = useContext(UserContext);
@@ -12,6 +12,7 @@ export const ImageUploadInput = ({ url, setLogo, hideConfirm }) => {
     const [confirmed, setConfirmed] = useState(false);
     const [res, setRes] = useState({});
     const handleSelectFile = (e) => {
+        setConfirmed(false);
         setFile(e.target.files[0]);
     };
     const updatePhotoURL = useBackendUrlBuilder(url);
@@ -37,26 +38,57 @@ export const ImageUploadInput = ({ url, setLogo, hideConfirm }) => {
     };
 
     return (
-        <div className="App" style={{ display: 'flex', alignItems: 'center', padding: 3 }} >
+        <div className="App" style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', gap: '1rem', padding: '1rem' }}>
+            {/* File input */}
+
+            {file ? (
+                <Center>
+                    <Text>{file.name}</Text>
+                </Center>
+            ) : null}
             <input
                 id="file"
                 type="file"
                 onChange={handleSelectFile}
                 multiple={false}
-
+                style={{
+                    display: 'none',
+                }}
             />
-            {file && !confirmed && !loading && < Center > <Text cursor={'pointer'} bg={"cyan.300"} p={1} rounded={'md'} color={"black"} _hover={{ bg: 'gray.100' }} onClick={handleUpload}>Subir foto</Text> </Center>}
+            {(file && confirmed || !file) && < label htmlFor="file">
+                <Button
+                    as="span"
+                    cursor="pointer"
+                    bg="blue.400"
+                    color="white"
+                    px="4"
+                    py="2"
+                    rounded="md"
+                    _hover={{ bg: 'blue.500' }}
+                    size={file ? "xs" : "md"}
+                >
+                    {file ? "Cambiar la foto" : "Elegir foto"}
+                </Button>
+            </label>}
 
+            {/* Show confirm button only after a file is selected */}
             {
-                file && (
-                    <>
-                        {!hideConfirm ? <button onClick={handleUpload} className="btn-green">
-                            {loading && <Flex>
-                                <Spinner size="xs" />
-                                <Text>Subiendo...</Text>
-                            </Flex>}
-                        </button> : ''}
-                    </>
+                file && !confirmed && (
+                    <Button
+                        onClick={handleUpload}
+                        colorScheme="green"
+                        disabled={loading}
+                        _hover={{ bg: 'green.500' }}
+                    >
+                        {loading ? (
+                            <Flex align="center">
+                                <Spinner size="xs" mr={2} />
+                                <Text>Uploading...</Text>
+                            </Flex>
+                        ) : (
+                            'Confirmar foto'
+                        )}
+                    </Button>
                 )
             }
         </div >

@@ -79,7 +79,6 @@ const SolutionDetailDemo = () => {
                                 </Flex>
                             ))}
                         </Flex>
-                        <Text mt={4} fontSize={18} >({'No es ERP'})</Text>
 
                         <Text fontSize={14} mt={5} fontWeight='bold' textDecor={'underline'}>Funcionalidades específicas:</Text>
 

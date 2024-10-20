@@ -126,7 +126,7 @@ const SidebarContent = ({ onClose, isSidebarOpen, setIsSidebarOpen, ...rest }) =
     { name: "Corporate", icon: FiDatabase, to: "corporate/profile", application: 'corporate' },
     { name: "Soluciones", icon: FiTool, to: "corporate/solutions", application: 'solutions' },
     { name: "Servicios", icon: FiRepeat, to: "corporate/service", application: 'services' },
-    { name: "Eventos", icon: FiCalendar, to: "corporate/users", soon: true, application: 'events' },
+    { name: "Eventos", icon: FiCalendar, to: "corporate/events", application: 'events' },
     { name: "Equipo", icon: FiUsers, to: "corporate/users", soon: true, application: 'teamManagement' },
     { name: "Licencias", icon: FiBookOpen, to: "corporate/users", soon: true, application: 'licenses' },
     { name: "Ofertas", icon: FiSearch, to: "corporate/users", soon: true, application: 'recruitment' },

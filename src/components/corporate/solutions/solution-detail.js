@@ -62,7 +62,6 @@ export const SolutionDetail = ({ solution }) => {
                                 </Flex>
                             ))}
                         </Flex>
-                        <Text mt={4} fontSize={18} >({!solution.isErp ? 'No es ERP' : 'Es ERP'})</Text>
 
                         <Text fontSize={14} mt={5} fontWeight='bold' textDecor={'underline'}>Funcionalidades específicas:</Text>
 

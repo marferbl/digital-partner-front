@@ -9,12 +9,14 @@ import GradientButton from "../../base/GradientButton";
 import { getServicesByCorporate } from "../../../services/service";
 import ServicesTable from "./services-table";
 import { Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon } from '@chakra-ui/react';
+import { useTranslation } from 'react-i18next';
 
 
 
 const ServiceDetails = ({ service }) => {
     const { isLoggedIn } = useContext(UserContext)
     const [services, setServices] = useState([])
+    const { t } = useTranslation("global");
 
     useEffect(() => {
         service && getServices()
@@ -85,7 +87,7 @@ const ServiceDetails = ({ service }) => {
                             </Box>}
                         </Flex>
                         {service?.serviceType && <Text fontSize={14} mt={3} fontWeight='bold' textDecor={'underline'}>Tipo de servicio:</Text>}
-                        <Text>{capitalizeFirstLetter(service.serviceType)} {service.serviceType === 'partner' && <Text as={'span'}> {'('} {arrayToSentence(service.partnerType)} {')'} </Text>}</Text>
+                        <Text>{capitalizeFirstLetter(t(service.serviceType))} {service.serviceType === 'partner' && <Text as={'span'}> {'('} {arrayToSentence(service.partnerType)} {')'} </Text>}</Text>
 
                         <Text fontSize={14} mt={3} fontWeight='bold' textDecor={'underline'}>Descripción:</Text>
                         <Text>{service.description}</Text>

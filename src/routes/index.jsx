@@ -21,6 +21,9 @@ import FavoritePage from "../pages/favorite/FavoritePage";
 import DigitalProfilePage from "../pages/digital-profile/digital-profile";
 import { DemoPage } from "../pages/landing/demo";
 import ConfirmEmailPage from "../pages/start/confirm-email";
+import ConditionsUserPage from "../pages/landing/conditions-user";
+import { EventsPage } from "../pages/admin/event";
+import EventDetailsPage from "../pages/admin/event/event-details";
 
 export const PageRoutes = () => {
   return (
@@ -37,6 +40,7 @@ export const PageRoutes = () => {
         <Route path={'service/:id'} element={<ServiceDetailsPage />} />
         <Route path={'about'} element={<AboutPage />} />
         <Route path={'faqs'} element={<FaqsPage />} />
+        {/* <Route path={'conditions-user'} element={<ConditionsUserPage />} /> */}
         <Route path={'demo'} element={<DemoPage />} />
         <Route path={'digital-profile'} element={<DigitalProfilePage />} />
         <Route path={'confirm/email/:id'} element={<ConfirmEmailPage />} />
@@ -55,6 +59,11 @@ export const PageRoutes = () => {
           <Route path={'solution/:id'} element={<SolutionDetailPage />} />
           <Route path={'corporate/service'} element={<ServicePage />} />
           <Route path={'service/:id'} element={<ServiceDetailsPage />} />
+          <Route path={'corporate/events'} element={<EventsPage />} />
+          <Route path={'event/:id'} element={<EventDetailsPage />} />
+
+
+
         </Route>
       </Routes>
     </Router>

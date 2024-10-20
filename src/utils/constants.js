@@ -84,7 +84,7 @@ export const SPECIFY_FEATURES = {
         },
         {
             value: 'other',
-            label: 'Otros'
+            label: 'Otros (Finanzas)'
         }
     ],
     'sellmarketing': [
@@ -102,7 +102,7 @@ export const SPECIFY_FEATURES = {
         },
         {
             value: 'other',
-            label: 'Otros'
+            label: 'Otros (Ventas y Marketing)'
         }
     ],
     'rrhh': [
@@ -132,7 +132,7 @@ export const SPECIFY_FEATURES = {
         },
         {
             value: 'other',
-            label: 'Otros'
+            label: 'Otros (RRHH)'
         }
     ],
     'logistics': [
@@ -154,7 +154,7 @@ export const SPECIFY_FEATURES = {
         },
         {
             value: 'other',
-            label: 'Otros'
+            label: 'Otros (Logística)'
         }
     ],
     'it': [
@@ -184,7 +184,7 @@ export const SPECIFY_FEATURES = {
         },
         {
             value: 'other',
-            label: 'Otros'
+            label: 'Otros (IT)'
         },
     ],
     'data': [
@@ -206,7 +206,7 @@ export const SPECIFY_FEATURES = {
         },
         {
             value: 'other',
-            label: 'Otros'
+            label: 'Otros (Data)'
         }
     ],
     'law': [
@@ -262,7 +262,7 @@ export const SPECIFY_FEATURES = {
         },
         {
             value: 'other',
-            label: 'Otros'
+            label: 'Otros (Transversal)'
         },
     ],
 }

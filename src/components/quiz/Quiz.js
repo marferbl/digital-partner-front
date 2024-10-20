@@ -59,11 +59,12 @@ const Quiz = () => {
     const [loading, setLoading] = useState(false)
 
     const serviceTypeOptions = [
-        { value: 'partner', label: t('serviceTypeOptions.partner') },
-        { value: 'development', label: t('serviceTypeOptions.development') },
-        { value: 'renting', label: t('serviceTypeOptions.renting') },
-        { value: 'helps', label: t('serviceTypeOptions.helps') },
-        { value: 'training', label: t('serviceTypeOptions.training') },
+        { value: 'partner', label: t('partner') },
+        { value: 'development', label: t('development') },
+        { value: 'renting', label: t('renting') },
+        { value: 'helps', label: t('helps') },
+        { value: 'training', label: t('training') },
+        { value: 'growth', label: t('growth') },
     ];
 
     useEffect(() => {

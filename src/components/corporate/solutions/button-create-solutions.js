@@ -145,15 +145,18 @@ export const ButtonCreateSolution = ({ refreshSolutions, disabled }) => {
                                 size='sm'
                             />
                             <Flex mt={3} gap={2} w='full' align={'center'}>
-                                <Checkbox
+                                {/* <Checkbox
                                     w={'40%'}
                                     isChecked={isErp}
                                     onChange={(e) => setIsErp(e.target.checked)}
                                 >
                                     <Text fontSize={13}>¿Es un ERP?</Text>
-                                </Checkbox>
+                                </Checkbox> */}
                                 <Box flex={1}>
-                                    <SearchSelect options={featureOptions} value={feature} isMulti={isErp} onChange={(value) => {
+                                    <Text mt={5} fontWeight={"bold"}>
+                                        Funcionalidades:{" "}
+                                    </Text>
+                                    <SearchSelect options={featureOptions} value={feature} isMulti={true} onChange={(value) => {
                                         const array = typeof value === 'string' ? [value] : value;
                                         setFeature(array)
                                     }} />

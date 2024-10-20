@@ -22,10 +22,13 @@ import { Link } from 'react-router-dom'
 import { deleteService } from '../../../services/service'
 import { FiMoreVertical } from "react-icons/fi";
 import { ButtonUpdateService } from './button-update-service'
+import { useTranslation } from 'react-i18next'
 
 
 
 const ServicesTable = ({ services, solutionView, refreshServices, smallView = false }) => {
+
+    const { t } = useTranslation("global");
 
     const PARTNER_TYPE_KEYS = {
         'selling': 'Venta',
@@ -89,7 +92,7 @@ const ServicesTable = ({ services, solutionView, refreshServices, smallView = fa
                                 {!smallView && <Td>{service.corporate?.name}</Td>}
                                 <Td>{getLabelText(service)}</Td>
 
-                                <Td>{capitalizeFirstLetter(service.serviceType)} {service.serviceType === 'partner' && <Text as={'span'}> {'('} {arrayToSentence(service.partnerType)} {')'} </Text>}</Td>
+                                <Td>{capitalizeFirstLetter(t(service.serviceType))} {service.serviceType === 'partner' && <Text as={'span'}> {'('} {arrayToSentence(service.partnerType)} {')'} </Text>}</Td>
                                 <Td>{service?.languages?.map(e => <Text>{languageLabelFromValue(e)}</Text>)}</Td>
                                 <Td fontSize={16}>{service?.countries?.map(e => <CountryFlag country={e} />)}</Td>
                                 <Td>

@@ -32,7 +32,7 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
         { value: 'solutions', label: 'Soluciones' },
         { value: 'services', label: 'Servicios' },
         // { value: 'talent', label: 'Talento', disabled: true },
-        //{ value: 'events', label: 'Eventos', disabled: true },
+        { value: 'events', label: 'Eventos' },
     ];
     const partnerTypeOptions = [
         { value: 'implant', label: 'Implantador' },
@@ -77,19 +77,7 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
                         />
                     </Box>
 
-                    {/* Conditionally rendered selects */}
-                    {filterValues.lineType === 'solutions' ? (
-                        <Box flexBasis="10%" minW="80px" h={'full'} mt={5}>
-                            <Checkbox
-                                w="full"
-                                isChecked={filterValues.isErp}
-                                onChange={(e) => handleToggle('isErp', e.target.checked)}
-                                my={2}
-                            >
-                                <Text fontSize={13}>¿Solo ERPs?</Text>
-                            </Checkbox>
-                        </Box>
-                    ) : ''}
+
                     {filterValues.lineType === 'solutions' ? (
                         <Box flexBasis="20%" minW="200px">
                             <SearchSelectFeatures
@@ -142,7 +130,7 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
                         </Box>
                     ) : ''}
 
-                    <Box flexBasis="10%" minW="200px">
+                    {filterValues.lineType !== 'events' && (<> <Box flexBasis="10%" minW="200px">
                         <SearchSelectCountries
                             value={filterValues.countries}
                             showLabel
@@ -157,20 +145,20 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
                         />
                     </Box>
 
-                    <Box flexBasis="10%" minW="200px">
-                        <SearchSelectLanguage
-                            value={filterValues.languages}
-                            showLabel
-                            width="100%"
-                            isMulti
-                            onChange={(value) => {
-                                let arrayValue = typeof value === 'object' ? value : [value];
-                                handleToggle('languages', arrayValue);
-                            }}
-                            defaultValue={filterValues.languages}
+                        <Box flexBasis="10%" minW="200px">
+                            <SearchSelectLanguage
+                                value={filterValues.languages}
+                                showLabel
+                                width="100%"
+                                isMulti
+                                onChange={(value) => {
+                                    let arrayValue = typeof value === 'object' ? value : [value];
+                                    handleToggle('languages', arrayValue);
+                                }}
+                                defaultValue={filterValues.languages}
 
-                        />
-                    </Box>
+                            />
+                        </Box></>)}
 
                     {hasFilters ? (
                         <Box flexBasis="30%" minW="200px" pt={7}>
