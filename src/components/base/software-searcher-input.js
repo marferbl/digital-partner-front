@@ -59,7 +59,7 @@ export const SoftwareSearcherInput = () => {
                     as={FiTool}
                 />
                 <Tooltip anchorSelect=".solutions-tooltip" place="bottom">
-                    Todos los servicios
+                    Todas las soluciones
                 </Tooltip>
             </Button>
             <Button display={{ base: 'none', md: 'block' }} size={'sm'} onClick={() => goToSearch('services')}
@@ -70,7 +70,7 @@ export const SoftwareSearcherInput = () => {
                     as={FiRepeat}
                 />
                 <Tooltip anchorSelect=".services-tooltip" place="bottom">
-                    Todas las soluciones
+                    Todas los servicios
                 </Tooltip>
             </Button>
             <Button display={{ base: 'none', md: 'block' }} size={'sm'} onClick={() => goToSearch('events')}
