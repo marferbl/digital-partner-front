@@ -48,7 +48,7 @@ const MapSearcher = () => {
                 ref={inputRef}
                 mb={4}
             />
-            {/* <Center>
+            <Center>
                 <Box w={400} height={400}>
                     <APIProvider
                         apiKey={process.env.REACT_APP_GOOGLE_MAPS}
@@ -66,7 +66,7 @@ const MapSearcher = () => {
                         </Map>
                     </APIProvider>
                 </Box>
-            </Center> */}
+            </Center>
         </Box>
     );
 };

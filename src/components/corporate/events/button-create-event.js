@@ -26,6 +26,8 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { createEvent } from '../../../services/event';
 import { COLORS } from '../../../colors/colors';
 import MapSearcher from '../../base/map-searcher';
+import { APIProvider, Map, Marker } from '@vis.gl/react-google-maps';
+
 
 
 export const ButtonCreateEvent = ({ refreshEvents }) => {
@@ -205,12 +207,33 @@ export const ButtonCreateEvent = ({ refreshEvents }) => {
                                 </Checkbox>
 
                                 {types.includes('presential') && (
-                                    <Input
-                                        placeholder="Dirección del evento"
-                                        value={address}
-                                        onChange={(e) => setAddress(e.target.value)}
-                                        mb={4}
-                                    />
+                                    <>
+                                        <Input
+                                            placeholder="Dirección del evento"
+                                            value={address}
+                                            onChange={(e) => setAddress(e.target.value)}
+                                            mb={4}
+                                        />  
+                                        {/* <Center>
+                                            <Box h={200} w={200}>
+                                                <APIProvider
+                                                    apiKey={process.env.REACT_APP_GOOGLE_MAPS}
+                                                    libraries={['places']}  // Ensure the 'places' library is loaded
+                                                >
+                                                    <Map
+                                                        defaultZoom={13}
+                                                        defaultCenter={coordinates}
+                                                        onCameraChanged={(ev) =>
+                                                            console.log('camera changed:', ev.detail.center, 'zoom:', ev.detail.zoom)
+                                                        }
+                                                    >
+                                                        <Marker position={coordinates} />
+                                                    </Map>
+                                                </APIProvider>
+                                            </Box>
+                                        </Center> */}
+                                    </>
+
                                 )}
 
 
