@@ -11,11 +11,15 @@ export const ImageUploadInput = ({ url, setLogo, hideConfirm }) => {
     const [loading, setLoading] = useState(false);
     const [confirmed, setConfirmed] = useState(false);
     const [res, setRes] = useState({});
+
     const handleSelectFile = (e) => {
         setConfirmed(false);
         setFile(e.target.files[0]);
     };
+
     const updatePhotoURL = useBackendUrlBuilder(url);
+
+    
     const handleUpload = async () => {
         const storedToken = getToken();
         try {

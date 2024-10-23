@@ -4,6 +4,7 @@ import CountryFlag from "../../base/country-flag";
 import { languageLabelFromValue } from "../../../utils/methods";
 import { SPECIFY_FEATURES_LABELS } from "../../../utils/constants";
 import GradientButton from "../../base/GradientButton";
+import ImageGallerySlider from "../../base/GallerySlider";
 
 
 
@@ -103,6 +104,13 @@ export const SolutionDetail = ({ solution }) => {
                     </Box>
                 </GridItem>
             </Grid>}
+            {solution && solution?.gallery.length ?
+                <Box>
+                    <Text fontSize={20} mt={5} fontWeight='bold' textDecor={'underline'}>Galería de imagenes:</Text>
+                    <ImageGallerySlider images={solution.gallery} />
+                </Box>
+                : ''}
+
         </Box>
     )
 };
