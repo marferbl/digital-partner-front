@@ -1,0 +1,14 @@
+/* Custom arrow styles */
+.slick-prev,
+.slick-next {
+    z-index: 1;
+    color: #100e0d;
+    /* Example: Tomato color */
+}
+
+.slick-prev::before,
+.slick-next::before {
+    font-size: 30px;
+    color: #100e0d;
+    /* Change arrow color here */
+}

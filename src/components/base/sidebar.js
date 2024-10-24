@@ -11,6 +11,11 @@ import {
   Text,
   useDisclosure,
   Image,
+  Menu,
+  MenuButton,
+  MenuList,
+  Button,
+  MenuItem
 } from "@chakra-ui/react";
 import {
   FiHome,
@@ -35,6 +40,8 @@ import { FiGrid } from "react-icons/fi";
 import { COLORS } from "../../colors/colors";
 import { useState } from "react";
 import { getApplications } from "../../services/corporate";
+
+
 
 const LinkItems = [
   { name: "Inicio", icon: FiHome },
@@ -221,6 +228,16 @@ const NavItem = ({ icon, children, to, soon, ...rest }) => {
 };
 
 const MobileNav = ({ onOpen, ...rest }) => {
+  const { userView, me, changeUserView, logOutUser } = useContext(UserContext);
+
+  const LinkDropdown = ({ label, action }) => {
+    return (
+      <MenuItem onClick={action} _hover={{ bg: 'gray.100' }} fontSize={14} textAlign={'center'} fontWeight={'bold'}>
+        {label}
+      </MenuItem>
+    );
+  };
+
   return (
     <Flex
       ml={{ base: 0, md: 60 }}
@@ -240,9 +257,22 @@ const MobileNav = ({ onOpen, ...rest }) => {
         icon={<FiMenu />}
       />
 
-      <Text fontSize="2xl" ml="8" fontFamily="monospace" fontWeight="bold">
-        Logo
-      </Text>
+      <Flex w={'full'} justify={'end'}>
+        <Menu>
+          <MenuButton as={Button} rounded={'xl'} p={2} bg={'white'} w={150} justify={'space-between'} align={'center'}>
+            <Flex justifyContent={'space-between'} alignItems={'center'}>
+              <Text fontSize={14}>{userView === 'corporate' ? 'Corporate' : 'Personal'}</Text>
+              <Image rounded={"full"} h={6} w={6} src={me?.avatar} alt="User Avatar" />
+            </Flex>
+          </MenuButton>
+          <MenuList p={0} zIndex={1500}>
+            <LinkDropdown label={userView === 'corporate' ? 'Cambiar a personal' : 'Cambiar a corporate'} action={() => changeUserView()} />
+            <LinkDropdown label={'Cerrar sesión'} action={logOutUser} />
+          </MenuList>
+        </Menu>
+      </Flex>
     </Flex>
   );
 };
+
+

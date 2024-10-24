@@ -3,6 +3,7 @@ import Slider from 'react-slick';
 import { Box, Image } from '@chakra-ui/react';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";  // Import here
+import "../../css/base.css"
 
 const ImageGallerySlider = ({ images }) => {
     const settings = {
@@ -15,7 +16,7 @@ const ImageGallerySlider = ({ images }) => {
 
 
     return (
-        <Box h={600} w={600} mx="auto" mt={5}>
+        <Box h={{ base: 200, md: 400 }} w={{ base: 200, md: 400 }} mx="auto" mt={5}>
             <Slider {...settings}>
                 {images.map((url, index) => (
                     <Box key={index}>

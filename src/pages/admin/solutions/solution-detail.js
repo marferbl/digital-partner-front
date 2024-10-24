@@ -98,7 +98,7 @@ export const SolutionDetailPage = () => {
                             w={180}
                             py={1}
                             px={2}
-                            fontSize={13}
+                            fontSize={{base: 6, md: 13}}
                             rounded='md'
                             bgColor={label === link.label ? COLORS.primary : 'white'}
                             onClick={() => renderComponent(link.label)}
@@ -109,7 +109,7 @@ export const SolutionDetailPage = () => {
                         </Text>
                     ))}
                 </Flex>
-                {isLoggedIn || isDemoSolution || label === 'Info' ? <Box mt={4} px={14} flex={1}>
+                {isLoggedIn || isDemoSolution || label === 'Info' ? <Box mt={4} px={{base: 2, md: 14}} flex={1}>
                     {selectedComponent}
                 </Box> : <Flex w='full' justify={'center'} align={'center'} flexDir='column' mt={4} >
                     <Text mt={6} fontSize='xl' fontWeight='bold' color={'gray.400'}>Debes iniciar sesión para ver más detalles</Text>

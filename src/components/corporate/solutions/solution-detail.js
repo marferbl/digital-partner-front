@@ -30,83 +30,99 @@ export const SolutionDetail = ({ solution }) => {
     };
 
     return (
-        <Box mt={6} p={5} rounded={"xl"} w={"100%"}>
-            {solution && <Grid templateColumns="repeat(8, 1fr)" gap={6}>
-                <GridItem colSpan={3}>
-                    <Box textAlign={'center'} mt={1} rounded={"xl"} bgColor={"white"} w={"100%"} px={10}>
-                        <Avatar size="2xl" src={solution.logo || null} name={solution.name} mb={5} />
-                        <Text fontWeight={'bold'} fontSize={34}>{solution.name}</Text>
-                        <Text fontSize={20} color={'blue.600'} _hover={{ textDecor: 'underline' }}>
-                            <a href={ensureHTTPS(solution.website)} target='_blank' fontSize='sm'>{solution.website}</a>
-                        </Text>
-                        <GradientButton
-                            type='green'
-                            label={'Contactar'}
-                            onClick={() => window.open(`mailto:${solution?.corporate?.superadmin?.email}`)}
-                            mt={5}
-                        />
-                    </Box>
-                </GridItem>
-                <GridItem colSpan={5} pr={7}>
-                    <Box mt={1} p={5} bgColor={"white"} w={"100%"} minH={300} px={10} rounded='xl' shadow={'xl'} mb={3}>
-                        <Text fontSize={14} mt={3} fontWeight='bold' textDecor={'underline'}>Descripción:</Text>
-                        <Text fontSize={18} mt={0}>{solution.description}</Text>
-                        <Text fontSize={14} mt={5} fontWeight='bold' textDecor={'underline'}>Funcionalidad:</Text>
-                        <Flex align={'center'} gap={2} pt={2} flexWrap='wrap'>
-                            {solution?.features.map((feature, index) => (
-                                <Flex key={index} alignItems="center" gap={2}>
-                                    <Checkbox
-                                        isChecked={true}
-                                    />
-                                    <Text key={index} fontSize={18} >{KEYS_FEATURES[feature]} </Text>
+        <Box p={5} rounded={"xl"} w={"100%"}>
+            {solution &&
+                <>
+                    <Box mt={1} rounded={"xl"} bgColor={"white"} w={"100%"} >
+                        <Flex justify={'space-between'} align='center' mt={5} w='full'>
+                            <Flex align={'center'} mt={5} gap={2}>
+                                <Avatar size={{ base: 'md', md: 'lg' }} src={solution.logo || null} name={solution.name} />
+                                <Box>
+                                    <Text fontWeight={'bold'} fontSize={{ base: 14, md: 24 }} whiteSpace='nowrap'>{solution.name}</Text>
+                                    <Text fontSize={{ base: 8, md: 14 }} pl={1} color={'blue.600'} _hover={{ textDecor: 'underline' }}>
+                                        <a href={ensureHTTPS(solution.website)} target='_blank' fontSize='sm'>{'Ir a su web'}</a>
+                                    </Text>
+                                </Box>
+                            </Flex>
+                            <GradientButton
+                                type='green'
+                                size={{ base: 'xs', md: 'md' }}
+                                label={'Contactar'}
+                                onClick={() => window.open(`mailto:${solution?.corporate?.superadmin?.email}`)}
+                                mt={5}
+                            />
+                        </Flex>
 
+                    </Box>
+                    <Box mt={1} p={5} bgColor={"white"} w={"100%"} minH={300} px={2} mb={3}>
+                        <Text fontSize={{ base: 8, md: 14 }} mt={3} fontWeight='bold' textDecor={'underline'}>Descripción:</Text>
+                        <Text fontSize={{ base: 8, md: 18 }} mt={0}>{solution.description}</Text>
+                        <Flex align={'center'} gap={6} pt={2} flexWrap='wrap'>
+                            <Box>
+                                <Text fontSize={{ base: 8, md: 14 }} mt={5} fontWeight='bold' textDecor={'underline'}>Funcionalidad:</Text>
+                                <Flex align={'center'} gap={2} pt={2} flexWrap='wrap'>
+                                    {solution?.features.map((feature, index) => (
+                                        <Flex key={index} alignItems="center" gap={2}>
+                                            <Checkbox
+                                                isChecked={true}
+                                            />
+                                            <Text key={index} fontSize={{ base: 8, md: 18 }} >{KEYS_FEATURES[feature]} </Text>
+
+                                        </Flex>
+                                    ))}
                                 </Flex>
-                            ))}
-                        </Flex>
+                            </Box>
 
-                        <Text fontSize={14} mt={5} fontWeight='bold' textDecor={'underline'}>Funcionalidades específicas:</Text>
+                            <Box>
+                                <Text fontSize={{ base: 8, md: 14 }} mt={5} fontWeight='bold' textDecor={'underline'}>Funcionalidades específicas:</Text>
+                                <Flex align="center" gap={2} pt={2}>
+                                    <Grid templateColumns="repeat(2, 1fr)" gap={4}>
+                                        {/* First column */}
+                                        {solution?.specifyFeatures.slice(0, 4).map((feature, index) => (
+                                            <Flex key={index} alignItems="center">
+                                                <Checkbox
+                                                    isChecked={true}
+                                                />
+                                                <Text ml={1} fontSize={{ base: 8, md: 18 }}>{SPECIFY_FEATURES_LABELS[feature]}</Text>
+                                            </Flex>
+                                        ))}
 
-                        <Flex align="center" gap={2} pt={2}>
-                            <Grid templateColumns="repeat(2, 1fr)" gap={4}>
-                                {/* First column */}
-                                {solution?.specifyFeatures.slice(0, 4).map((feature, index) => (
-                                    <Flex key={index} alignItems="center">
-                                        <Checkbox
-                                            isChecked={true}
-                                        />
-                                        <Text ml={1} fontSize={18}>{SPECIFY_FEATURES_LABELS[feature]}</Text>
-                                    </Flex>
-                                ))}
-
-                                {/* Second column */}
-                                {solution?.specifyFeatures.slice(4, 8).map((feature, index) => (
-                                    <Flex key={index} alignItems="center">
-                                        <Checkbox
-                                            isChecked={true}
-                                        />
-                                        <Text ml={1} fontSize={18}>{SPECIFY_FEATURES_LABELS[feature]}</Text>
-                                    </Flex>
-                                ))}
-                            </Grid>
+                                        {/* Second column */}
+                                        {solution?.specifyFeatures.slice(4, 8).map((feature, index) => (
+                                            <Flex key={index} alignItems="center">
+                                                <Checkbox
+                                                    isChecked={true}
+                                                />
+                                                <Text ml={1} fontSize={{ base: 8, md: 18 }}>{SPECIFY_FEATURES_LABELS[feature]}</Text>
+                                            </Flex>
+                                        ))}
+                                    </Grid>
+                                </Flex>
+                            </Box>
                         </Flex>
-                        <Text fontSize={14} mt={5} fontWeight='bold' textDecor={'underline'}>Países:</Text>
-                        <Flex align={'center'} gap={2} pt={1} flexWrap='wrap'>
-                            {solution?.countries.map((country, index) => (
-                                <Text key={index} fontSize={18} >{<CountryFlag country={country} />}</Text>
-                            ))}
-                        </Flex>
-                        <Text fontSize={14} mt={5} fontWeight='bold' textDecor={'underline'}>Idiomas:</Text>
-                        <Flex align={'center'} gap={2} pt={1} flexWrap='wrap'>
-                            {solution?.languages?.map((language, index) => (
-                                <Text key={index} >{languageLabelFromValue(language)} </Text>
-                            ))}
+                        <Flex align={'center'} gap={10} pt={8}>
+                            <Box>
+                                <Text fontSize={{ base: 8, md: 14 }} fontWeight='bold' textDecor={'underline'}>Países:</Text>
+                                <Flex align={'center'} gap={2} pt={1} flexWrap='wrap'>
+                                    {solution?.countries.map((country, index) => (
+                                        <Text key={index} fontSize={{ base: 8, md: 18 }} >{<CountryFlag country={country} />}</Text>
+                                    ))}
+                                </Flex>
+                            </Box>
+                            <Box>
+                                <Text fontSize={{ base: 8, md: 14 }} fontWeight='bold' textDecor={'underline'}>Idiomas:</Text>
+                                <Flex align={'center'} gap={2} pt={1} flexWrap='wrap'>
+                                    {solution?.languages?.map((language, index) => (
+                                        <Text key={index} fontSize={{ base: 8, md: 18 }}>{languageLabelFromValue(language)} </Text>
+                                    ))}
+                                </Flex>
+                            </Box>
                         </Flex>
                     </Box>
-                </GridItem>
-            </Grid>}
-            {solution && solution?.gallery.length ?
+                </>
+            }
+            {solution && solution?.gallery && solution.gallery.length ?
                 <Box>
-                    <Text fontSize={20} mt={5} fontWeight='bold' textDecor={'underline'}>Galería de imagenes:</Text>
                     <ImageGallerySlider images={solution.gallery} />
                 </Box>
                 : ''}
