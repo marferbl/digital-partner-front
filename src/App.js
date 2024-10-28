@@ -1,9 +1,10 @@
 import { Flex } from "@chakra-ui/react";
 import InitialPage from "./pages/start/initial-page";
 import { PageRoutes } from "./routes";
+import "./index.css"
 
 function App() {
-  
+
   return (
     <Flex justify={"center"} align={"center"} minH={"100vh"} gap={5} bg={'#fcfdfe'}>
       <InitialPage />
