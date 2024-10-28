@@ -19,6 +19,7 @@ export const SolutionDetail = ({ solution }) => {
         data: 'Data',
         other: 'Otro',
         law: 'Legal',
+        transversal: 'Transversal'
     };
 
 
@@ -30,7 +31,7 @@ export const SolutionDetail = ({ solution }) => {
     };
 
     return (
-        <Box p={5} rounded={"xl"} w={"100%"}>
+        <Box px={5} rounded={"xl"} w={"100%"}>
             {solution &&
                 <>
                     <Box mt={1} rounded={"xl"} bgColor={"white"} w={"100%"} >
@@ -57,22 +58,21 @@ export const SolutionDetail = ({ solution }) => {
                     <Box mt={1} p={5} bgColor={"white"} w={"100%"} minH={300} px={2} mb={3}>
                         <Text fontSize={{ base: 8, md: 14 }} mt={3} fontWeight='bold' textDecor={'underline'}>Descripción:</Text>
                         <Text fontSize={{ base: 8, md: 18 }} mt={0}>{solution.description}</Text>
-                        <Flex align={'center'} gap={6} pt={2} flexWrap='wrap'>
-                            <Box>
-                                <Text fontSize={{ base: 8, md: 14 }} mt={5} fontWeight='bold' textDecor={'underline'}>Funcionalidad:</Text>
-                                <Flex align={'center'} gap={2} pt={2} flexWrap='wrap'>
-                                    {solution?.features.map((feature, index) => (
-                                        <Flex key={index} alignItems="center" gap={2}>
-                                            <Checkbox
-                                                isChecked={true}
-                                            />
-                                            <Text key={index} fontSize={{ base: 8, md: 18 }} >{KEYS_FEATURES[feature]} </Text>
+                        <Box>
+                            <Text fontSize={{ base: 8, md: 14 }} mt={5} fontWeight='bold' textDecor={'underline'}>Funcionalidad:</Text>
+                            <Flex align={'center'} gap={2} pt={2} flexWrap='wrap'>
+                                {solution?.features.map((feature, index) => (
+                                    <Flex key={index} alignItems="center" gap={2}>
+                                        <Checkbox
+                                            isChecked={true}
+                                        />
+                                        <Text key={index} fontSize={{ base: 8, md: 16 }} >{KEYS_FEATURES[feature]} </Text>
 
-                                        </Flex>
-                                    ))}
-                                </Flex>
-                            </Box>
-
+                                    </Flex>
+                                ))}
+                            </Flex>
+                        </Box>
+                        <Flex align={'center'} gap={6} flexWrap='wrap'>
                             <Box>
                                 <Text fontSize={{ base: 8, md: 14 }} mt={5} fontWeight='bold' textDecor={'underline'}>Funcionalidades específicas:</Text>
                                 <Flex align="center" gap={2} pt={2}>
@@ -83,7 +83,7 @@ export const SolutionDetail = ({ solution }) => {
                                                 <Checkbox
                                                     isChecked={true}
                                                 />
-                                                <Text ml={1} fontSize={{ base: 8, md: 18 }}>{SPECIFY_FEATURES_LABELS[feature]}</Text>
+                                                <Text ml={1} fontSize={{ base: 8, md: 16 }}>{SPECIFY_FEATURES_LABELS[feature]}</Text>
                                             </Flex>
                                         ))}
 
