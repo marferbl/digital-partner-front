@@ -10,6 +10,7 @@ import theme from "./theme";
 import { I18nextProvider } from "react-i18next"
 import i18Next from "i18next"
 import 'react-tooltip/dist/react-tooltip.css'
+import { Analytics } from "@vercel/analytics/react"
 
 import global_es from "./translations/es/global.json"
 import global_en from "./translations/en/global.json"
@@ -35,6 +36,7 @@ root.render(
   <I18nextProvider i18n={i18Next}>
     <AuthProviderWrapper>
       <ChakraProvider theme={theme}>
+        <Analytics />
         <PageRoutes />
       </ChakraProvider>
     </AuthProviderWrapper>
