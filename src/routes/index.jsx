@@ -24,6 +24,9 @@ import ConfirmEmailPage from "../pages/start/confirm-email";
 import ConditionsUserPage from "../pages/landing/conditions-user";
 import { EventsPage } from "../pages/admin/event";
 import EventDetailsPage from "../pages/admin/event/event-details";
+import BlogEditor from "../pages/blog/blog-editor";
+import BlogList from "../pages/blog/blog-list";
+import BlogDetail from "../pages/blog/blog-detail";
 
 export const PageRoutes = () => {
   return (
@@ -44,6 +47,10 @@ export const PageRoutes = () => {
         <Route path={'demo'} element={<DemoPage />} />
         <Route path={'digital-profile'} element={<DigitalProfilePage />} />
         <Route path={'confirm/email/:id'} element={<ConfirmEmailPage />} />
+        <Route path={'blog-creation'} element={<BlogEditor />} />
+        <Route path={'blog-list'} element={<BlogList />} />
+        <Route path={'blog/:id'} element={<BlogDetail />} />
+
 
 
 
