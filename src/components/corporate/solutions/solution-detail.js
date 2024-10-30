@@ -57,16 +57,17 @@ export const SolutionDetail = ({ solution }) => {
                     </Box>
                     <Box mt={1} p={5} bgColor={"white"} w={"100%"} minH={300} px={2} mb={3}>
                         <Text fontSize={{ base: 8, md: 14 }} mt={3} fontWeight='bold' textDecor={'underline'}>Descripción:</Text>
-                        <Text fontSize={{ base: 8, md: 18 }} mt={0}>{solution.description}</Text>
+                        <Text fontSize={{ base: 8, md: 16 }} mt={0}>{solution.description}</Text>
                         <Box>
                             <Text fontSize={{ base: 8, md: 14 }} mt={5} fontWeight='bold' textDecor={'underline'}>Funcionalidad:</Text>
-                            <Flex align={'center'} gap={2} pt={2} flexWrap='wrap'>
+                            <Flex align={'center'} gap={3} pt={2} flexWrap='wrap'>
                                 {solution?.features.map((feature, index) => (
-                                    <Flex key={index} alignItems="center" gap={2}>
+                                    <Flex key={index} alignItems="center" gap={1}>
                                         <Checkbox
                                             isChecked={true}
+                                            size={{base: 'sm', md: 'md'}}
                                         />
-                                        <Text key={index} fontSize={{ base: 8, md: 16 }} >{KEYS_FEATURES[feature]} </Text>
+                                        <Text key={index} fontSize={{ base: 6, md: 14 }} >{KEYS_FEATURES[feature]} </Text>
 
                                     </Flex>
                                 ))}
@@ -76,24 +77,44 @@ export const SolutionDetail = ({ solution }) => {
                             <Box>
                                 <Text fontSize={{ base: 8, md: 14 }} mt={5} fontWeight='bold' textDecor={'underline'}>Funcionalidades específicas:</Text>
                                 <Flex align="center" gap={2} pt={2}>
-                                    <Grid templateColumns="repeat(2, 1fr)" gap={4}>
+                                    <Grid templateColumns="repeat(4, 1fr)" gap={4}>
                                         {/* First column */}
-                                        {solution?.specifyFeatures.slice(0, 4).map((feature, index) => (
+                                        {solution?.specifyFeatures.slice(0, 5).map((feature, index) => (
                                             <Flex key={index} alignItems="center">
                                                 <Checkbox
                                                     isChecked={true}
+                                                    size={{base: 'sm', md: 'md'}}
                                                 />
-                                                <Text ml={1} fontSize={{ base: 8, md: 16 }}>{SPECIFY_FEATURES_LABELS[feature]}</Text>
+                                                <Text ml={1} fontSize={{ base: 6, md: 14 }}>{SPECIFY_FEATURES_LABELS[feature]}</Text>
                                             </Flex>
                                         ))}
 
                                         {/* Second column */}
-                                        {solution?.specifyFeatures.slice(4, 8).map((feature, index) => (
+                                        {solution?.specifyFeatures.slice(5, 10).map((feature, index) => (
                                             <Flex key={index} alignItems="center">
                                                 <Checkbox
                                                     isChecked={true}
+                                                    size={{base: 'sm', md: 'md'}}
                                                 />
-                                                <Text ml={1} fontSize={{ base: 8, md: 18 }}>{SPECIFY_FEATURES_LABELS[feature]}</Text>
+                                                <Text ml={1} fontSize={{ base:6, md: 14 }}>{SPECIFY_FEATURES_LABELS[feature]}</Text>
+                                            </Flex>
+                                        ))}
+                                        {solution?.specifyFeatures.slice(10, 15).map((feature, index) => (
+                                            <Flex key={index} alignItems="center">
+                                                <Checkbox
+                                                    isChecked={true}
+                                                    size={{base: 'sm', md: 'md'}}
+                                                />
+                                                <Text ml={1} fontSize={{ base: 6, md: 14 }}>{SPECIFY_FEATURES_LABELS[feature]}</Text>
+                                            </Flex>
+                                        ))}
+                                        {solution?.specifyFeatures.slice(15, 20).map((feature, index) => (
+                                            <Flex key={index} alignItems="center">
+                                                <Checkbox
+                                                    isChecked={true}
+                                                    size={{base: 'sm', md: 'md'}}
+                                                />
+                                                <Text ml={1} fontSize={{ base: 6, md: 14 }}>{SPECIFY_FEATURES_LABELS[feature]}</Text>
                                             </Flex>
                                         ))}
                                     </Grid>
@@ -113,7 +134,7 @@ export const SolutionDetail = ({ solution }) => {
                                 <Text fontSize={{ base: 8, md: 14 }} fontWeight='bold' textDecor={'underline'}>Idiomas:</Text>
                                 <Flex align={'center'} gap={2} pt={1} flexWrap='wrap'>
                                     {solution?.languages?.map((language, index) => (
-                                        <Text key={index} fontSize={{ base: 8, md: 18 }}>{languageLabelFromValue(language)} </Text>
+                                        <Text key={index} fontSize={{ base: 8, md: 16 }}>{languageLabelFromValue(language)} </Text>
                                     ))}
                                 </Flex>
                             </Box>
