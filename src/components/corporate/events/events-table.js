@@ -52,7 +52,7 @@ const EventsTable = ({ events, refreshEvents, smallView = false }) => {
                                 <Td>{event.name}</Td>
                                 <Td>
                                     {event.type?.map((type) => (
-                                        <Text key={type}>{type === 'virtual' ? 'Virtual' : type === 'presencial' ? 'Presencial' : 'Todos'}</Text>
+                                        <Text key={type}>{type === 'remote' ? 'Remoto' : 'Presencial'}</Text>
                                     ))}
                                 </Td>
                                 <Td>{new Date(event.date).toLocaleDateString()}</Td>

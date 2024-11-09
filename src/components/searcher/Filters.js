@@ -47,8 +47,22 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
         { value: 'helps', label: 'Ayudas' },
         { value: 'training', label: 'Training' },
         { value: 'growth', label: 'Growth' },
-
     ];
+
+    const prices = [
+        { value: 0, label: 'Gratis' },
+        { value: 10, label: '1 - 10€' },
+        { value: 50, label: '11 - 50€' },
+        { value: 100, label: '51 - 100€' },
+        { value: 5000, label: '+100€' },
+    ];
+
+    const eventTypes = [
+        { value: 'remote', label: 'Remoto' },
+        { value: 'presential', label: 'Presencial' },
+        { value: 'all', label: 'Ambos' },
+    ];
+
 
 
     const clearFilters = () => {
@@ -58,6 +72,30 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
 
     const hasFilters = Object.values(filterValues).some((value) => value !== '');
 
+    const handlePrice = (value) => {
+        handleToggle('price', value);
+        if (value === 0) {
+            handleToggle('min', 0);
+            handleToggle('max', 0);
+        }
+        if (value === 10) {
+            handleToggle('min', 1);
+            handleToggle('max', 10);
+        }
+        if (value === 50) {
+            handleToggle('min', 11);
+            handleToggle('max', 50);
+        }
+        if (value === 100) {
+            handleToggle('min', 51);
+            handleToggle('max', 100);
+        }
+        if (value === 5000) {
+            handleToggle('min', 101);
+            handleToggle('max', 5000);
+        }
+
+    };
 
     return (
         <Box borderRightWidth={1} h={'full'} bg={'gray.50'} px={4} pb={4} shadow={'lg'}>
@@ -159,6 +197,19 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
 
                             />
                         </Box></>)}
+
+                    {filterValues.lineType === 'events' && (
+                        <Flex align='center' gap={4}>
+
+                            <Box flexBasis="10%" minW="200px" pt={1}>
+                                <SearchSelect options={prices} width="100%" label="Precio" onChange={(value) => handlePrice(value)} value={filterValues.price} />
+                            </Box>
+                            <Box flexBasis="10%" minW="200px" pt={1}>
+                                <SearchSelect options={eventTypes} width="100%" label="Tipo" onChange={(value) => handleToggle('eventType', value)} value={filterValues.eventType} />
+                            </Box>
+                        </Flex>
+
+                    )}
 
                     {hasFilters ? (
                         <Box flexBasis="30%" minW="200px" pt={7}>

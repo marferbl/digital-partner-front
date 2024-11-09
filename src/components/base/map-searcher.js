@@ -1,73 +1,76 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Box, Input, Center } from '@chakra-ui/react';
 import { APIProvider, Map, Marker } from '@vis.gl/react-google-maps';
+import {
+    setKey,
+    setDefaults,
+    setLanguage,
+    setRegion,
+    fromAddress,
+    fromLatLng,
+    fromPlaceId,
+    setLocationType,
+    geocode,
+    RequestType,
+} from "react-geocode";
 
-const MapSearcher = () => {
-    const [address, setAddress] = useState('');
-    const [coordinates, setCoordinates] = useState({ lat: 40.416775, lng: -3.703790 });
-    const autocompleteRef = useRef(null);
-    const inputRef = useRef(null);
-
-    const handleApiLoad = () => {
-        // Check if the Places library is available
-        if (!window.google || !window.google.maps || !window.google.maps.places) {
-            console.error('Google Maps Places API is not available.');
-            return;
-        }
-
-        console.log('Google Places API loaded.');
-
-        // Initialize Google Places Autocomplete with restrictions
-        autocompleteRef.current = new window.google.maps.places.Autocomplete(inputRef.current);
-
-        // Listen for place selection
-        autocompleteRef.current.addListener('place_changed', () => {
-            const place = autocompleteRef.current.getPlace();
+const MapSearcher = ({ onlyMap, onChange, defaultAddress, onChangeAddress, defaultCoordinates, height }) => {
+    const [address, setAddress] = useState(defaultAddress || '');
+    const [coordinates, setCoordinates] = useState(defaultCoordinates || { lat: 40.416775, lng: -3.703790 });
 
 
-            // Check if the selected place has geometry
-            if (place.geometry) {
-                const lat = place.geometry.location.lat();
-                const lng = place.geometry.location.lng();
+    setDefaults({
+        key: process.env.REACT_APP_GOOGLE_MAPS, // Your API key here.
+        language: "es", // Default language for responses.
+        region: "es", // Default region for responses.
+    });
+    setLocationType("ROOFTOP");
+
+
+    const transformAddress = (address) => {
+        fromAddress(address)
+            .then(({ results }) => {
+                const { lat, lng } = results[0].geometry.location;
                 setCoordinates({ lat, lng });
-                setAddress(place.formatted_address);
-                console.log('Place selected:', place.formatted_address);
-            } else {
-                console.log('No geometry available for the selected place.');
-                alert('Selected place has no location information. Please select a valid address.');
-            }
-        });
-    };
+                onChange({ lat, lng })
+                onChangeAddress(address)
+            })
+            .catch(console.error);
+    }
 
     return (
-        <Box>
-            <Input
-                placeholder="Dirección del evento"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-                ref={inputRef}
-                mb={4}
-            />
-            <Center>
-                <Box w={400} height={400}>
-                    <APIProvider
-                        apiKey={process.env.REACT_APP_GOOGLE_MAPS}
-                        libraries={['places']}  // Ensure the 'places' library is loaded
-                        onLoad={handleApiLoad}  // Ensure we initialize autocomplete only after the API is loaded
+        <div className="flex flex-col items-center py-2">
+            {!onlyMap && <div className="flex items-center w-full max-w-md mb-4">
+                <input
+                    type="text"
+                    placeholder="Dirección del evento"
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
+                    className="flex-1 p-2 border border-gray-300 rounded-l focus:outline-none"
+                />
+                <button
+                    onClick={() => transformAddress(address)}
+                    className="p-2 bg-blue-500 text-white rounded-r hover:bg-blue-600"
+                >
+                    Buscar
+                </button>
+            </div>}
+
+            <div className="w-full max-w-md">
+                <APIProvider
+                    apiKey={process.env.REACT_APP_GOOGLE_MAPS}
+                    libraries={['places']}
+                >
+                    <Map
+                        center={coordinates}
+                        className={`w-full ${height || 'h-96'}`}
+                        defaultZoom={15}
                     >
-                        <Map
-                            defaultZoom={13}
-                            defaultCenter={coordinates}
-                            onCameraChanged={(ev) =>
-                                console.log('camera changed:', ev.detail.center, 'zoom:', ev.detail.zoom)
-                            }
-                        >
-                            <Marker position={coordinates} />
-                        </Map>
-                    </APIProvider>
-                </Box>
-            </Center>
-        </Box>
+                        <Marker position={coordinates} />
+                    </Map>
+                </APIProvider>
+            </div>
+        </div>
     );
 };
 

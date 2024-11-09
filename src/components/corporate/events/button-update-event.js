@@ -25,6 +25,7 @@ import { ImageUploadInput } from '../../base/image-upload';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { updateEvent } from '../../../services/event';
+import MapSearcher from '../../base/map-searcher';
 
 export const ButtonUpdateEvent = ({ children, item, refreshEvents }) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
@@ -42,6 +43,7 @@ export const ButtonUpdateEvent = ({ children, item, refreshEvents }) => {
     const [duration, setDuration] = useState('');
     const [address, setAddress] = useState(''); // Only visible if "presencial" is selected
     const [step, setStep] = useState(1); // Step control
+    const [coordinates, setCoordinates] = useState({ lat: '', lng: '' }); // Coordinates for map
 
     useEffect(() => {
         if (item) {
@@ -56,8 +58,10 @@ export const ButtonUpdateEvent = ({ children, item, refreshEvents }) => {
             setDuration(item.duration);
             setAddress(item.address);
             setLogo(item.logo);
+            setCoordinates(item.coordinates);
         }
     }, [item]);
+
 
     // Handle checkbox change for event types
     const handleTypeChange = (type) => {
@@ -68,21 +72,25 @@ export const ButtonUpdateEvent = ({ children, item, refreshEvents }) => {
         }
     };
 
+
     // Handle form submission
     const create = async () => {
         const id = item._id;
+        console.log(address, coordinates)
+
         const config = {
             name,
             description,
             link,
             type: types,
-            address: types.includes('presencial') ? address : null,
+            address: address,
             corporate,
             maximumCapacity,
             date,
             time,
             duration,
-            photo: logo
+            photo: logo,
+            coordinates
         };
         updateEvent(id, config)
             .then((res) => {
@@ -98,6 +106,8 @@ export const ButtonUpdateEvent = ({ children, item, refreshEvents }) => {
         onClose();
         setStep(1); // Reset step to 1 when modal is closed
     };
+
+    console.log(coordinates, address)
 
     return (
         <>
@@ -204,28 +214,24 @@ export const ButtonUpdateEvent = ({ children, item, refreshEvents }) => {
                                     Tipo de evento
                                 </Text>
                                 <Checkbox
-                                    isChecked={types.includes('virtual')}
-                                    onChange={() => handleTypeChange('virtual')}
+                                    isChecked={types.includes('remote')}
+                                    onChange={() => handleTypeChange('remote')}
                                     mb={2}
                                 >
-                                    Virtual
+                                    Remoto
                                 </Checkbox>
                                 <Checkbox
-                                    isChecked={types.includes('presencial')}
-                                    onChange={() => handleTypeChange('presencial')}
+                                    isChecked={types.includes('presential')}
+                                    onChange={() => handleTypeChange('presential')}
                                     mb={2}
                                     mx={2}
                                 >
                                     Presencial
                                 </Checkbox>
-                                {/* Show address input if 'presencial' is selected */}
-                                {types.includes('presencial') && (
-                                    <Input
-                                        placeholder="Dirección del evento"
-                                        value={address}
-                                        onChange={(e) => setAddress(e.target.value)}
-                                        mb={4}
-                                    />
+                                {types.includes('presential') && (
+                                    <>
+                                        <MapSearcher onChange={setCoordinates} onChangeAddress={setAddress} defaultAddress={address} defaultCoordinates={coordinates} />
+                                    </>
                                 )}
 
                             </>

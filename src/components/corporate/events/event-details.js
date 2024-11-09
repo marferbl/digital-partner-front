@@ -1,13 +1,11 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Box, Grid, GridItem, Text, Avatar, Button, Flex, Image, Checkbox } from "@chakra-ui/react";
-import { capitalizeFirstLetter, languageLabelFromValue } from '../../../utils/methods'
-import CountryFlag from '../../base/country-flag'
-import { Link, useParams } from 'react-router-dom'
+import { capitalizeFirstLetter } from '../../../utils/methods'
 import { UserContext } from "../../../context/userContext";
-import GradientButton from "../../base/GradientButton";
 import { getEventsByCorporate } from "../../../services/event";
 import { useTranslation } from 'react-i18next';
-import { APIProvider, Map, MapCameraChangedEvent } from '@vis.gl/react-google-maps';
+import MapSearcher from "../../base/map-searcher";
+
 
 const EventDetails = ({ event }) => {
     const { isLoggedIn } = useContext(UserContext)
@@ -46,7 +44,7 @@ const EventDetails = ({ event }) => {
     return (
         <Box mt={1} p={3} rounded={"xl"} bgColor={"white"} w={"100%"}>
             {event && <Grid templateColumns="repeat(8, 1fr)" gap={6} pb={1}>
-                <GridItem colSpan={7}>
+                <GridItem colSpan={5}>
                     <Box textAlign={'left'} mt={1} rounded={"xl"} bgColor={"white"} w={"100%"} px={10}>
                         <Flex align={'center'} justify='space-between' gap={4} pb={3}>
                             <Flex align={'center'} gap={4}>
@@ -55,7 +53,9 @@ const EventDetails = ({ event }) => {
                             </Flex>
 
                         </Flex>
-
+                        <Text mt={3} fontSize={14} color={'blue.600'} _hover={{ textDecor: 'underline' }}>
+                            <a href={ensureHTTPS(event.link)} target='_blank' fontSize='sm'>{event.link}</a>
+                        </Text>
                         <Text fontSize={14} mt={3} fontWeight='bold' textDecor={'underline'}>Corporate:</Text>
                         <Text fontSize={16}>{event?.corporate?.name} </Text>
 
@@ -72,32 +72,39 @@ const EventDetails = ({ event }) => {
                             ))}
                         </Flex>}
 
-                        <Text mt={3} fontSize={14} color={'blue.600'} _hover={{ textDecor: 'underline' }}>
-                            <a href={ensureHTTPS(event.link)} target='_blank' fontSize='sm'>{event.link}</a>
-                        </Text>
 
-                        <Text fontSize={14} mt={3} fontWeight='bold' textDecor={'underline'}>Duración</Text>
-                        <Text>{event.duration}H</Text>
+                        <Flex align={'center'} gap={4} mt={3}>
+                            <Box>
+                                <Text fontSize={14} mt={3} fontWeight='bold' textDecor={'underline'}>Duración</Text>
+                                <Text>{event.duration}H</Text>
+                            </Box>
+                            <Box>
+                                <Text fontSize={14} mt={3} fontWeight='bold' textDecor={'underline'}>Aforo máximo:</Text>
+                                <Text>{event.maximumCapacity}</Text>
+                            </Box>
+                            <Box>
+                                <Text fontSize={14} mt={3} fontWeight='bold' textDecor={'underline'}>Precio:</Text>
+                                <Text>{event.price === 0 ? 'GRATIS' : `${event.price} €`}</Text>
+                            </Box>
+                        </Flex>
 
-                        <Text fontSize={14} mt={3} fontWeight='bold' textDecor={'underline'}>Aforo máximo:</Text>
-                        <Text>{event.maximumCapacity}</Text>
+
+
                     </Box>
                 </GridItem>
 
-                {/* <GridItem colSpan={3}>
-                    <Box w={300} height={300}>
+                <GridItem colSpan={3}>
+                    <span>{event.address}</span>
 
-                        <APIProvider apiKey={process.env.REACT_APP_GOOGLE_MAPS} onLoad={() => console.log('Maps API has loaded.')}>
-                            <Map
-                                defaultZoom={13}
-                                defaultCenter={{ lat: 40.416775, lng: -3.703790 }}
-                                onCameraChanged={(ev) =>
-                                    console.log('camera changed:', ev.detail.center, 'zoom:', ev.detail.zoom)
-                                }>
-                            </Map>
-                        </APIProvider>
+                    <Box w={300} height={250}>
+
+                        {event.type?.includes('presential') && (
+                            <>
+                                <MapSearcher onlyMap defaultAddress={event.address} defaultCoordinates={event.coordinates} height='h-80' />
+                            </>
+                        )}
                     </Box>
-                </GridItem> */}
+                </GridItem>
 
             </Grid>}
 

@@ -46,6 +46,7 @@ export const ButtonCreateEvent = ({ refreshEvents }) => {
     const [duration, setDuration] = useState('');
     const [address, setAddress] = useState(''); // Only visible if "presencial" is selected
     const [step, setStep] = useState(1); // Step control
+    const [price, setPrice] = useState('');
 
     const [coordinates, setCoordinates] = useState({ lat: 40.416775, lng: -3.703790 });
     const autoCompleteRef = useRef(null);
@@ -66,13 +67,15 @@ export const ButtonCreateEvent = ({ refreshEvents }) => {
             description,
             link,
             type: types,
-            address: types.includes('presencial') ? address : null,
+            address: types.includes('presential') ? address : null,
             corporate,
             maximumCapacity,
             date,
             time,
             duration,
-            photo: logo
+            photo: logo,
+            coordinates: types.includes('presential') ? coordinates : null,
+            price
         };
         createEvent(config)
             .then((res) => {
@@ -87,7 +90,35 @@ export const ButtonCreateEvent = ({ refreshEvents }) => {
     const closeModal = () => {
         onClose();
         setStep(1); // Reset step to 1 when modal is closed
+        resetForm()
     };
+
+
+    const resetForm = () => {
+        setLogo('');
+        setName('');
+        setDescription('');
+        setLink('');
+        setTypes([]);
+        setCorporate(false);
+        setMaximumCapacity('');
+        setDate(new Date());
+        setTime(new Date());
+        setDuration('');
+        setAddress('');
+        setCoordinates({ lat: 40.416775, lng: -3.703790 });
+        setPrice('');
+    };
+
+    const formCompleted = () => {
+        if (step === 1) {
+            return !!name && !!description && !!link;
+        } else {
+            return types.length > 0 && (types.includes('remote') || !!address) && !!date && !!time
+        }
+    };
+
+
 
     return (
         <>
@@ -133,7 +164,7 @@ export const ButtonCreateEvent = ({ refreshEvents }) => {
                                 />
 
                                 <Flex w='full' gap={2}>
-                                    <Box w={'50%'}>
+                                    <Box w={'30%'}>
                                         <Text fontSize='12'>
                                             Aforo máximo
                                         </Text>
@@ -142,10 +173,10 @@ export const ButtonCreateEvent = ({ refreshEvents }) => {
                                             onChange={(valueString) => setMaximumCapacity(valueString)}
                                             mb={4}
                                         >
-                                            <NumberInputField placeholder="Capacidad máxima" />
+                                            <NumberInputField placeholder="Aforo" />
                                         </NumberInput>
                                     </Box>
-                                    <Box w={'50%'}>
+                                    <Box w={'30%'}>
                                         <Text fontSize='12'>
                                             Duración del evento
                                         </Text>
@@ -154,7 +185,19 @@ export const ButtonCreateEvent = ({ refreshEvents }) => {
                                             onChange={(valueString) => setDuration(valueString)}
                                             mb={4}
                                         >
-                                            <NumberInputField placeholder="Duración del evento (horas)" />
+                                            <NumberInputField placeholder="Duración (H)" />
+                                        </NumberInput>
+                                    </Box>
+                                    <Box w={'30%'}>
+                                        <Text fontSize='12'>
+                                            Precio
+                                        </Text>
+                                        <NumberInput
+                                            value={price}
+                                            onChange={(valueString) => setPrice(valueString)}
+                                            mb={4}
+                                        >
+                                            <NumberInputField placeholder="Precio" />
                                         </NumberInput>
                                     </Box>
                                 </Flex>
@@ -195,7 +238,7 @@ export const ButtonCreateEvent = ({ refreshEvents }) => {
                                     onChange={() => handleTypeChange('remote')}
                                     mb={2}
                                 >
-                                    Virtual
+                                    Remoto
                                 </Checkbox>
                                 <Checkbox
                                     isChecked={types.includes('presential')}
@@ -208,36 +251,15 @@ export const ButtonCreateEvent = ({ refreshEvents }) => {
 
                                 {types.includes('presential') && (
                                     <>
-                                        <Input
+                                        {/* <Input
                                             placeholder="Dirección del evento"
                                             value={address}
                                             onChange={(e) => setAddress(e.target.value)}
                                             mb={4}
-                                        />  
-                                        {/* <Center>
-                                            <Box h={200} w={200}>
-                                                <APIProvider
-                                                    apiKey={process.env.REACT_APP_GOOGLE_MAPS}
-                                                    libraries={['places']}  // Ensure the 'places' library is loaded
-                                                >
-                                                    <Map
-                                                        defaultZoom={13}
-                                                        defaultCenter={coordinates}
-                                                        onCameraChanged={(ev) =>
-                                                            console.log('camera changed:', ev.detail.center, 'zoom:', ev.detail.zoom)
-                                                        }
-                                                    >
-                                                        <Marker position={coordinates} />
-                                                    </Map>
-                                                </APIProvider>
-                                            </Box>
-                                        </Center> */}
+                                        />   */}
+                                        <MapSearcher onChange={setCoordinates} onChangeAddress={setAddress} />
                                     </>
-
                                 )}
-
-
-
                             </>
                         )}
                     </ModalBody>
@@ -248,14 +270,14 @@ export const ButtonCreateEvent = ({ refreshEvents }) => {
                                 <Button variant='ghost' mr={3} onClick={closeModal}>
                                     Cancelar
                                 </Button>
-                                <Button colorScheme='teal' onClick={() => setStep(2)}>Siguiente</Button>
+                                <Button colorScheme='teal' onClick={() => setStep(2)} disabled={!formCompleted()}>Siguiente</Button>
                             </>
                         ) : (
                             <>
-                                <Button variant='ghost' mr={3} onClick={() => setStep(1)}>
+                                <Button variant='ghost' mr={3} onClick={() => setStep(1)} >
                                     Volver
                                 </Button>
-                                <Button colorScheme='teal' onClick={create}>Confirmar</Button>
+                                <Button colorScheme='teal' onClick={create} disabled={!formCompleted()}>Confirmar</Button>
                             </>
                         )}
                     </ModalFooter>
