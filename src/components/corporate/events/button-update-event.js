@@ -179,8 +179,6 @@ export const ButtonUpdateEvent = ({ children, item, refreshEvents }) => {
                                         </NumberInput>
                                     </Box>
                                 </Flex>
-
-
                             </>
                         )}
                         {step === 2 && (
