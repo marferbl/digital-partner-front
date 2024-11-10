@@ -9,7 +9,7 @@ export const EmptyServiceEvent = ({ refreshEvents }) => {
     return (
         <Center flexDir={'column'} minH={'300'}>
             <FiRepeat size={70} color={COLORS.primary} />
-            <Text my={6} fontSize={24}>
+            <Text my={6} fontSize={{base: 18, md: 24}} textAlign='center'>
                 Todavia no tienes eventos dados de alta
             </Text>
             <ButtonCreateEvent refreshEvents={refreshEvents} />

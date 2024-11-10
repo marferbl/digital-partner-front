@@ -36,7 +36,7 @@ export const SoftwareSearcherInput = () => {
         <Flex as="form" onSubmit={(e) => { e.preventDefault(); handleSearch(); }} align={'center'} justify={'center'} gap={3}>
             <Input
                 bg={'white'}
-                w={{ base: 200, md: 250, lg: 400 }}
+                w={{ base: 240, lg: 400 }}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 fontSize={{ base: 9, md: 12, lg: 14 }}

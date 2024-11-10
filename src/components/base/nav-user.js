@@ -58,7 +58,10 @@ export const NavbarUser = () => {
 
     return (
         <Flex w={'full'} justify={'space-between'}>
-            <SoftwareSearcherInput />
+            <Box display={{ base: 'none', md: 'block' }} >
+
+                <SoftwareSearcherInput />
+            </Box>
             <Flex display={{ base: 'none', md: 'block' }}>
                 <Menu>
                     <MenuButton as={Button} rounded={'xl'} p={2} bg={'white'} w={150} justify={'space-between'} align={'center'}>

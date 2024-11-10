@@ -40,6 +40,9 @@ import { FiGrid } from "react-icons/fi";
 import { COLORS } from "../../colors/colors";
 import { useState } from "react";
 import { getApplications } from "../../services/corporate";
+import { SoftwareSearcherInput } from "./software-searcher-input";
+import { useLocation } from 'react-router-dom';
+
 
 
 
@@ -51,7 +54,22 @@ const LinkItems = [
 export default function SimpleSidebar({ children }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const location = useLocation();
 
+
+  const open = () => {
+    setIsSidebarOpen(true);
+    onOpen()
+  }
+
+
+  // Close the drawer when the route changes
+  useEffect(() => {
+    if (window.innerWidth < 768) {
+      setIsSidebarOpen(false);
+      onClose();
+    }
+  }, [location]);
 
 
   return (
@@ -75,7 +93,7 @@ export default function SimpleSidebar({ children }) {
         </DrawerContent>
       </Drawer>
       {/* mobilenav */}
-      <MobileNav display={{ base: "flex", md: "none" }} onOpen={onOpen} />
+      <MobileNav display={{ base: "flex", md: "none" }} onOpen={open} />
       <Box ml={{ base: 0, md: isSidebarOpen ? 60 : 10 }} p="6">
         {children}
       </Box>
@@ -88,12 +106,15 @@ const SidebarContent = ({ onClose, isSidebarOpen, setIsSidebarOpen, ...rest }) =
   const [applications, setApplications] = useState([]);
   const [filteredApplications, setFilteredApplications] = useState([]);
   const APPLICATIONS = ['corporate', 'solutions', 'services', 'events', 'teamManagement', 'recruitment', 'licenses']
+  const [selectedKey, setSelectedKey] = useState('profile');
 
   useEffect(() => {
     if (me && me.corporate) {
       getCompanyApplications();
     }
   }, [me])
+
+
 
 
   useEffect(() => {
@@ -119,6 +140,11 @@ const SidebarContent = ({ onClose, isSidebarOpen, setIsSidebarOpen, ...rest }) =
     setIsSidebarOpen(!isSidebarOpen);
   };
 
+  const closeSidebar = () => {
+    setIsSidebarOpen(false);
+    onClose();
+  };
+
 
   const userRoutes = [
     { name: "Perfil", icon: FiUser, to: "profile" },
@@ -130,10 +156,10 @@ const SidebarContent = ({ onClose, isSidebarOpen, setIsSidebarOpen, ...rest }) =
   ]
 
   const adminRoutes = [
-    { name: "Corporate", icon: FiDatabase, to: "corporate/profile", application: 'corporate' },
-    { name: "Soluciones", icon: FiTool, to: "corporate/solutions", application: 'solutions' },
-    { name: "Servicios", icon: FiRepeat, to: "corporate/service", application: 'services' },
-    { name: "Eventos", icon: FiCalendar, to: "corporate/events", application: 'events' },
+    { name: "Corporate", icon: FiDatabase, to: "corporate/profile", application: 'corporate', key: 'profile' },
+    { name: "Soluciones", icon: FiTool, to: "corporate/solutions", application: 'solutions', key: 'solutions' },
+    { name: "Servicios", icon: FiRepeat, to: "corporate/service", application: 'services', key: 'service' },
+    { name: "Eventos", icon: FiCalendar, to: "corporate/events", application: 'events', key: 'events' },
     { name: "Equipo", icon: FiUsers, to: "corporate/users", soon: true, application: 'teamManagement' },
     { name: "Licencias", icon: FiBookOpen, to: "corporate/users", soon: true, application: 'licenses' },
     { name: "Ofertas", icon: FiSearch, to: "corporate/users", soon: true, application: 'recruitment' },
@@ -157,7 +183,7 @@ const SidebarContent = ({ onClose, isSidebarOpen, setIsSidebarOpen, ...rest }) =
         <IconButton
           bg={'white'}
           variant="outline"
-          onClick={toggleSidebar}
+          onClick={isSidebarOpen ? closeSidebar : toggleSidebar}
           aria-label="open menu"
           icon={isSidebarOpen ? <FaAngleLeft /> : <FaAngleRight />}
           mt={4}
@@ -172,17 +198,19 @@ const SidebarContent = ({ onClose, isSidebarOpen, setIsSidebarOpen, ...rest }) =
             </Link>
             <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
           </Flex>
+          <Box display={{ base: 'block', md: 'none' }} pb={2}>
+            <SoftwareSearcherInput />
+          </Box>
+
           {userView === 'corporate' ? (adminRoutesFiltered.map((link) => (
-            <NavItem key={link.name} icon={link.icon} to={link.to} soon={link.soon}>
+            <NavItem keyLabel={link.key} icon={link.icon} to={link.to} soon={link.soon} selectedKey={selectedKey} setSelectedKey={setSelectedKey}>
               {link.name}
               {link.soon ? <Text fontSize={9} color="gray.400" ml="auto">Próximamente</Text> : null}
-
             </NavItem>
           ))) : (userRoutes.map((link) => (
-            <NavItem key={link.name} icon={link.icon} to={link.to} soon={link.soon}>
+            <NavItem keyLabel={link.key} icon={link.icon} to={link.to} soon={link.soon} selectedKey={selectedKey} setSelectedKey={setSelectedKey}>
               {link.name}
               {link.soon ? <Text fontSize={9} color="gray.400" ml="auto">Próximamente</Text> : null}
-
             </NavItem>
           )
           )
@@ -195,7 +223,12 @@ const SidebarContent = ({ onClose, isSidebarOpen, setIsSidebarOpen, ...rest }) =
 };
 
 
-const NavItem = ({ icon, children, to, soon, ...rest }) => {
+const NavItem = ({ icon, children, to, soon, keyLabel, selectedKey, setSelectedKey, ...rest }) => {
+
+
+  const isSelected = selectedKey === keyLabel;
+
+
   return (
     <Flex
       align="center"
@@ -208,6 +241,11 @@ const NavItem = ({ icon, children, to, soon, ...rest }) => {
       }}
       color={soon ? "gray.400" : COLORS.primary}
       {...rest}
+      onClick={() => {
+        if (!soon) {
+          setSelectedKey(keyLabel);
+        }
+      }}
     >
       <Link to={!soon ? to : null} style={{ width: '100%', padding: '12px', display: 'flex', alignItems: 'center', cursor: !soon ? 'pointer' : 'not-allowed' }}>
         {icon && (

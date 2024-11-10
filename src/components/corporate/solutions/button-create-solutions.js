@@ -105,7 +105,7 @@ export const ButtonCreateSolution = ({ refreshSolutions, disabled }) => {
 
     return (
         <>
-            <Button bg={COLORS.primary} color={'white'} _hover={{ bg: 'blue.700' }} disabled={disabled} onClick={onOpen}>Crear solución digital</Button>
+            <Button bg={COLORS.primary} color={'white'} _hover={{ bg: 'blue.700' }} fontSize={{base: 10, md: 16}} disabled={disabled} onClick={onOpen}>Crear solución digital</Button>
 
             <Modal isOpen={isOpen} onClose={closeAndReset} size='xl'>
                 <ModalOverlay />

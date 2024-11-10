@@ -56,7 +56,7 @@ export const ButtonCreateService = ({ refreshServices }) => {
         <>
             <Menu>
                 <MenuButton rounded={'xl'} p={2} bg={'white'} justify={'space-between'} align={'center'}>
-                    <Button bg={COLORS.primary} color={'white'} _hover={{ bg: 'blue.700' }} onClick={onOpen}>Crear servicio</Button>
+                    <Button bg={COLORS.primary} color={'white'} _hover={{ bg: 'blue.700' }} fontSize={{base: 12, md: 16}} onClick={onOpen}>Crear servicio</Button>
                 </MenuButton>
                 <MenuList width={20} p={0}>
                     <MenuItem onClick={() => { openModal('partner') }} _hover={{ bg: 'gray.100' }} h={'full'} fontSize={14} textAlign={'center'} width={'full'} fontWeight={'bold'}>Partner</MenuItem>

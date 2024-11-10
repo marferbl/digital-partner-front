@@ -13,7 +13,7 @@ export const CorporateProfile = ({ corporate }) => {
 
     return (
         <Box>
-            <Grid templateColumns="repeat(3, 1fr)" gap={6} justifyItems={'center'}>
+            <Grid templateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(3, 1fr)' }} gap={6} justifyItems={'center'}>
                 <GridItem colSpan={1} borderWidth={1} rounded={'md'} shadow={'xl'}>
                     <Flex pb={4} flexDir='column' align={'center'} pt={3}>
 

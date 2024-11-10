@@ -29,8 +29,8 @@ export const EventsPage = () => {
 
     return (
         <Box mt={6} p={5} rounded={"xl"} bgColor={"white"} w={"100%"} minH={400}>
-            <Flex align={'center'} w='full' justify={'space-between'} borderBottomWidth={1}>
-                <Text fontSize={22} mb={5} >Eventos</Text>
+            <Flex align={'center'} w='full' justify={'space-between'} borderBottomWidth={1} pb={3}>
+                <Text fontSize={{base: 18, md: 22}} >Eventos</Text>
                 <ButtonCreateEvent refreshEvents={getMyEvents} />
             </Flex>
 

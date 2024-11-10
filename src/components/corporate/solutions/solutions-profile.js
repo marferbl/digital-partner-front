@@ -16,7 +16,7 @@ export const SolutionsProfile = ({ solutions, refreshSolutions }) => {
         <div>
             <Flex flexDir={'column'} justify='end' mb={6} pb={4}>
                 <Flex align={'center'} w='full' justify={'space-between'} borderBottomWidth={1} pb={4}>
-                    <Text fontSize={22}>Soluciones digitales</Text>
+                    <Text fontSize={{base: 16, md:22}}>Soluciones</Text>
                     <ButtonCreateSolution refreshSolutions={refreshSolutions} />
                 </Flex>
                 <SolutionsTable solutions={solutions} refreshSolutions={refreshSolutions} />

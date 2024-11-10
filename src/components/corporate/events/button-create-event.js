@@ -122,7 +122,7 @@ export const ButtonCreateEvent = ({ refreshEvents }) => {
 
     return (
         <>
-            <Button onClick={onOpen} bg={COLORS.primary} color={'white'} _hover={{ bg: 'blue.700' }} mr={2}>Crear Evento</Button>
+            <Button onClick={onOpen} bg={COLORS.primary} color={'white'} _hover={{ bg: 'blue.700' }} fontSize={{ base: 12, md: 16 }} mr={2}>Crear Evento</Button>
             <Modal isOpen={isOpen} onClose={closeModal} size='xl'>
                 <ModalOverlay />
                 <ModalContent>
@@ -178,7 +178,7 @@ export const ButtonCreateEvent = ({ refreshEvents }) => {
                                     </Box>
                                     <Box w={'30%'}>
                                         <Text fontSize='12'>
-                                            Duración del evento
+                                            Duración (H)
                                         </Text>
                                         <NumberInput
                                             value={duration}
