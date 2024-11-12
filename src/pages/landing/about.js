@@ -12,7 +12,6 @@ const AboutPage = () => {
 
     return (
         <Box>
-            <Navbar />
 
             <Box pb={10}>
                 <Heading textAlign={'center'} fontFamily='Montserrat' fontWeight={'bold'} mt={10}>

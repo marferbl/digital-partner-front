@@ -1,27 +1,15 @@
 import React from 'react'
 import {
-    Table,
-    Thead,
-    Tbody,
-    Text,
-    Tr,
-    Th,
-    Td,
-    Button,
-    TableContainer,
-    Menu,
-    MenuButton,
-    MenuList,
-    MenuItem,
     useDisclosure,
 } from '@chakra-ui/react'
-import { capitalizeFirstLetter } from '../../../utils/methods'
-import CountryFlag from '../../base/country-flag'
-import GradientButton from '../../base/GradientButton'
 import { Link } from 'react-router-dom'
-import { FiMoreVertical } from "react-icons/fi";
+import { FiAlignRight, FiMoreVertical } from "react-icons/fi";
 import { deleteSolution } from '../../../services/solution'
+import { IoIosArrowRoundForward } from 'react-icons/io'
+import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { ButtonUpdateSolution } from './button-update-solutions'
+
+
 
 
 const SolutionsTable = ({ solutions, refreshSolutions }) => {
@@ -36,56 +24,70 @@ const SolutionsTable = ({ solutions, refreshSolutions }) => {
 
 
     return (
-        <TableContainer>
-            <Table variant='simple'>
-                <Thead>
-                    <Tr>
-                        <Th>Nombre</Th>
-                        <Th>Web</Th>
-                        <Th>ERP</Th>
-                        <Th></Th>
-                        <Th>Acciones</Th>
-                        <Th></Th>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 p-4">
+            {solutions.map((solution) => (
+                <div
+                    key={solution._id}
+                    className="bg-darkgray shadow-md rounded-lg overflow-hidden flex flex-col items-center p-4"
+                >
+                    {/* Replace with actual image if available */}
+                    <div className="h-48 w-full bg-gray-200 flex items-center justify-center">
+                        <img src={solution.logo || 'placeholder.png'} alt={solution.name} className="object-cover h-full w-full" />
+                    </div>
+                    <div className="mt-2 flex justify-between w-full items-center">
+                        <div className="flex gap-2">
+                            <div className="flex flex-col ">
+                                <h2 className="text-lg font-semibold text-white">{solution.name}</h2>
+                                <p className="text-sm text-neutral">{solution.website}</p>
+                            </div>
+                            <Link to={`/solution/${solution._id}`}>
+                                <button className="text-white font-semibold px-4 py-2 rounded hover:text-neutral">
+                                    <IoIosArrowRoundForward size={28} />
+                                </button>
+                            </Link>
+                        </div>
+                        <div className="flex justify-center">
 
+                            <div class='relative '>
+                                <Menu>
+                                    <MenuButton className="rounded-full p-2 hover:bg-gray-100 text-white">
+                                        <FiMoreVertical size={20} />
+                                    </MenuButton>
+                                    <MenuItems className="absolute right-0 mt-2 w-40 bg-white border border-gray-200 rounded-md shadow-lg focus:outline-none z-10 -translate-y-[calc(100%+50px)]">
+                                        <div className="p-1">
+                                            <MenuItem>
+                                                {({ active }) => (
+                                                    <ButtonUpdateSolution solution={solution} refreshSolutions={refreshSolutions} >
+                                                        <button
+                                                            className={`${active ? 'bg-gray-100' : ''
+                                                                } w-full text-left px-4 py-2 text-sm font-bold`}
+                                                        >
+                                                            Editar
+                                                        </button></ButtonUpdateSolution>
 
-                    </Tr>
-                </Thead>
-                <Tbody fontSize={12}>
-                    {solutions.map((solution) => {
-                        return (
-                            <Tr key={solution._id}>
-                                <Td>{solution.name}</Td>
-                                <Td>{solution.website}</Td>
-                                <Td>{solution.isErp ? 'SI' : 'NO'}</Td>
-                                <Td>
-                                    <Link to={`/private/solution/${solution._id}`}>
-                                        <GradientButton label={'Detalles'} type='red' size={'sm'} />
-                                    </Link>
-                                </Td>
-                                <Td width={30} textAlign='center'>
-                                    <Menu>
-                                        <MenuButton rounded={'xl'} p={2} justify={'space-between'} align={'center'} _hover={{ bg: 'gray.100' }}>
-                                            <FiMoreVertical size={20} pt={3} />
-                                        </MenuButton>
-                                        <MenuList width={20} p={0}>
-                                            <ButtonUpdateSolution solution={solution} refreshSolutions={refreshSolutions} > <MenuItem _hover={{ bg: 'gray.100' }} h={'full'} fontSize={12} textAlign={'center'} width={'full'} fontWeight={'bold'}>Editar </MenuItem></ButtonUpdateSolution>
-                                            <MenuItem onClick={() => deleteItem(solution._id)} _hover={{ bg: 'gray.100' }} h={'full'} fontSize={12} textAlign={'center'} width={'full'} fontWeight={'bold'} color={'red.300'}>Eliminar</MenuItem>
-                                        </MenuList>
-                                    </Menu>
+                                                )}
+                                            </MenuItem>
+                                            <MenuItem>
+                                                {({ active }) => (
+                                                    <button
+                                                        onClick={() => deleteItem(solution._id)}
+                                                        className={`${active ? 'bg-gray-100' : ''
+                                                            } w-full text-left px-4 py-2 text-sm font-bold text-red-500`}
+                                                    >
+                                                        Eliminar
+                                                    </button>
+                                                )}
+                                            </MenuItem>
+                                        </div>
+                                    </MenuItems>
+                                </Menu>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ))}
+        </div>
 
-                                </Td>
-                                <Td>
-
-                                </Td>
-
-                            </Tr>
-                        )
-                    })
-                    }
-                </Tbody>
-
-            </Table>
-        </TableContainer>
     )
 }
 

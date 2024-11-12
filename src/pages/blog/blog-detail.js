@@ -27,7 +27,6 @@ const BlogDetail = () => {
 
     return (
         <div>
-            <Navbar />
             <div className="p-8 max-w-7xl mx-auto ">
                 <TemplateOne config={blog} />
             </div>

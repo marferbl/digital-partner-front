@@ -63,7 +63,7 @@ const TopServices = () => {
                             <span className="text-neutral">{product.category}</span>
                         </div>
 
-                        <Link to={isLoggedIn ? `/private/solution/${product?._id}` : `/solution/${product?._id}`}>
+                        <Link to={`/solution/${product?._id}`}>
                             <button class="bg-white text-black px-6 py-1 rounded-xl">
                                 <IoIosArrowRoundForward size={20} />
                             </button>

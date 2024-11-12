@@ -90,7 +90,7 @@ export const HorizontalMenu = ({ onClose, isSidebarOpen, setIsSidebarOpen, ...re
   ];
 
   const adminRoutes = [
-    { name: "Corporate", icon: FiDatabase, to: "corporate/profile", application: 'corporate', key: 'profile' },
+    { name: "Mi Corporate", icon: FiDatabase, to: "corporate/profile", application: 'corporate', key: 'profile' },
     { name: "Soluciones", icon: FiTool, to: "corporate/solutions", application: 'solutions', key: 'solutions' },
     { name: "Servicios", icon: FiRepeat, to: "corporate/service", application: 'services', key: 'service' },
     { name: "Eventos", icon: FiCalendar, to: "corporate/events", application: 'events', key: 'events' },

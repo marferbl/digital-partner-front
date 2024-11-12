@@ -24,7 +24,7 @@ import { ImageUploadInput } from '../../base/image-upload';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { createEvent } from '../../../services/event';
-import { COLORS } from '../../../colors/colors';
+import { COLORS, DARK_COLORS } from '../../../colors/colors';
 import MapSearcher from '../../base/map-searcher';
 import { APIProvider, Map, Marker } from '@vis.gl/react-google-maps';
 
@@ -122,7 +122,7 @@ export const ButtonCreateEvent = ({ refreshEvents }) => {
 
     return (
         <>
-            <Button onClick={onOpen} bg={COLORS.primary} color={'white'} _hover={{ bg: 'blue.700' }} fontSize={{ base: 12, md: 16 }} mr={2}>Crear Evento</Button>
+            <Button onClick={onOpen} bg={DARK_COLORS.gridyellow} color={'black'} _hover={{ bg: 'blue.700' }} fontSize={{ base: 12, md: 16 }} mr={2}>Crear Evento</Button>
             <Modal isOpen={isOpen} onClose={closeModal} size='xl'>
                 <ModalOverlay />
                 <ModalContent>

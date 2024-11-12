@@ -48,7 +48,7 @@ export const CardServicesCorporate = () => {
                 </EmptyState> : services?.map((service) => {
                     return (
                         <Flex key={service._id} p={2} rounded={"xl"} bgColor={"white"} w={"100%"} justifyContent={"space-between"}>
-                            <Link to={`/private/service/${service?._id}`}>
+                            <Link to={`/service/${service?._id}`}>
                                 <Text fontWeight={'bold'} fontSize={14} _hover={{ textDecor: 'underline' }}>
                                     {getLabelText(service.serviceType, service)}
                                 </Text>

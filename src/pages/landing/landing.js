@@ -16,7 +16,6 @@ import FeaturesDigitalando from "../../components/base/landing/features-digitala
 const LandingPage = () => {
   return (
     <>
-      <Navbar />
       <Box overflowX={'hidden'} position='relative' bg='black'>
         <Hero />
         <SecondHero />

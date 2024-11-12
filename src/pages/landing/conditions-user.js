@@ -18,7 +18,6 @@ const ConditionsUserPage = () => {
 
     return (
         <Box>
-            <Navbar />
             <Heading textAlign="center" fontFamily="Montserrat" fontWeight="bold" mt={10}>
                 Condiciones Generales de Usuario
             </Heading>

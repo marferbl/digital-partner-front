@@ -59,7 +59,7 @@ const EventsTable = ({ events, refreshEvents, smallView = false }) => {
                                 <Td>{new Date(event.time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</Td>
                                 <Td>{event.maximumCapacity}</Td>
                                 <Td>
-                                    <Link to={`/private/event/${event._id}`}>
+                                    <Link to={`/event/${event._id}`}>
                                         <GradientButton label="Detalles" type="red" size="sm" />
                                     </Link>
                                 </Td>

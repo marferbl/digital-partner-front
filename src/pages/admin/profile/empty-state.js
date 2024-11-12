@@ -7,7 +7,7 @@ import { COLORS } from "../../../colors/colors";
 export const EmptyCorporateState = ({ refreshCorporate }) => {
     return (
         <Center flexDir={'column'} minH={'300'}>
-            <FiDatabase size={70} color={COLORS.primary} />
+            <FiDatabase size={70} color={'white'} />
             <Text my={6} fontSize={24}>
                 Todavia no tienes una corporate
             </Text>

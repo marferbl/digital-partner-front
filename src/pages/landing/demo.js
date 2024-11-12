@@ -7,7 +7,6 @@ import { DemoSolution } from '../../components/demo/demosolution'
 export const DemoPage = () => {
     return (
         <Box>
-            <Navbar />
             <DemoSolution />
         </Box>
     )

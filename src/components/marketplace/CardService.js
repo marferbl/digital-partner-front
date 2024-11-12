@@ -34,14 +34,14 @@ const CardService = ({ item, isFavorites }) => {
                 <FcLike size={20} color={COLORS.primary} />
             </Flex>}
             <Center height={20} >
-                <Link to={isLoggedIn ? `/private/service/${item._id}` : `/service/${item._id}`}>
+                <Link to={`/service/${item._id}`}>
                     <Center h='full'><Avatar src={item?.logo} size="md" name={item?.corporate?.name} /> </Center>
                 </Link>
             </Center>
             <Box p="1">
                 <Box d="flex" alignItems="baseline">
                     <Heading as="p" size="xs" textAlign={'center'} _hover={{ textDecor: 'underline' }} fontFamily='Montserrat' fontWeight={'bold'} h={10} display='flex' justifyContent={'center'} alignItems={'center'}>
-                        <Link to={isLoggedIn ? `/private/service/${item._id}` : `/service/${item._id}`}>
+                        <Link to={`/service/${item._id}`}>
                             {getLabelText(item.serviceType)}
                         </Link>
                     </Heading>

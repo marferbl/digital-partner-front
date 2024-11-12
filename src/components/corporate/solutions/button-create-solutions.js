@@ -13,7 +13,7 @@ import {
     Checkbox,
     Center
 } from '@chakra-ui/react'
-import { COLORS } from "../../../colors/colors";
+import { COLORS, DARK_COLORS } from "../../../colors/colors";
 import { createSolution } from '../../../services/solution';
 import SearchSelect from '../../base/search-select';
 import { COUNTRIES, LANGUAGES } from '../../../utils/constants';
@@ -105,7 +105,7 @@ export const ButtonCreateSolution = ({ refreshSolutions, disabled }) => {
 
     return (
         <>
-            <Button bg={COLORS.primary} color={'white'} _hover={{ bg: 'blue.700' }} fontSize={{base: 10, md: 16}} disabled={disabled} onClick={onOpen}>Crear solución digital</Button>
+            <Button bg={DARK_COLORS.gridyellow} color={'black'} _hover={{ bg: 'blue.700' }} fontSize={{base: 10, md: 16}} disabled={disabled} onClick={onOpen}>Crear solución digital</Button>
 
             <Modal isOpen={isOpen} onClose={closeAndReset} size='xl'>
                 <ModalOverlay />

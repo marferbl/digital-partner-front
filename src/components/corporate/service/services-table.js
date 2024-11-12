@@ -96,7 +96,7 @@ const ServicesTable = ({ services, solutionView, refreshServices, smallView = fa
                                 <Td>{service?.languages?.map(e => <Text>{languageLabelFromValue(e)}</Text>)}</Td>
                                 <Td fontSize={16}>{service?.countries?.map(e => <CountryFlag country={e} />)}</Td>
                                 <Td>
-                                    <Link to={`/private/service/${service._id}`}>
+                                    <Link to={`/service/${service._id}`}>
                                         <GradientButton label={'Detalles'} type='red' size={'sm'} />
                                     </Link>
                                 </Td>

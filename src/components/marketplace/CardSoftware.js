@@ -22,7 +22,7 @@ const CardSoftware = ({ _id, name, logo, description, lineType, isFavorites, ...
             </Flex>}
 
             <Center height={20} >
-                {lineType === 'solutions' && <Link to={isLoggedIn ? `/private/solution/${_id}` : `/solution/${_id}`}>
+                {lineType === 'solutions' && <Link to={`/solution/${_id}`}>
                     <Center h='full'><Avatar size="md" name={name} src={logo} /> </Center>
                     {/* } */}
                 </Link>}
@@ -30,7 +30,7 @@ const CardSoftware = ({ _id, name, logo, description, lineType, isFavorites, ...
             <Box p="1">
                 <Box d="flex" alignItems="baseline">
                     <Heading as="p" size="sm" textAlign={'center'} _hover={{ textDecor: 'underline' }} fontFamily='Montserrat' fontWeight={'bold'} h={10} display='flex' justifyContent={'center'} alignItems={'center'}>
-                        {lineType === 'solutions' && <Link to={isLoggedIn ? `/private/solution/${_id}` : `/solution/${_id}`}>
+                        {lineType === 'solutions' && <Link to={`/solution/${_id}`}>
                             {name}
                         </Link>}
                     </Heading>

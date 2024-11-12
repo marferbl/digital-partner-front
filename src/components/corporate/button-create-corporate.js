@@ -11,7 +11,7 @@ import {
     useDisclosure,
     Select
 } from '@chakra-ui/react'
-import { COLORS } from "../../colors/colors";
+import { COLORS, DARK_COLORS } from "../../colors/colors";
 import { createCorporate } from '../../services/corporate';
 import { PaymentForm } from '../stripe';
 import { FaInfoCircle } from "react-icons/fa";
@@ -59,7 +59,7 @@ export const ButtonCreateCorporate = ({ refreshCorporate }) => {
 
     return (
         <>
-            <Button bg={COLORS.primary} color={'white'} _hover={{ bg: 'blue.700' }} onClick={onOpen}>Crear corporate</Button>
+            <Button bg={DARK_COLORS.gridyellow} color={'black'} _hover={{ bg: 'blue.700' }} onClick={onOpen}>Crear corporate</Button>
 
             <Modal isOpen={isOpen} onClose={closeModal} size='xl'>
                 <ModalOverlay />

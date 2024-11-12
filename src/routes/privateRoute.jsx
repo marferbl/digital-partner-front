@@ -35,7 +35,7 @@ const PrivateRoute = () => {
       <Navbar />
       <div className="px-10 md:px-28">
         <h2 className="text-6xl md:text-10xl lg:text-12xl font-semibold text-white text-center ">MI PANEL</h2>
-        <img src='/profile-banners/profile-banner-1.png' className='w-full h-200' />
+        {/* <img src='/profile-banners/profile-banner-1.png' className='w-full h-200' /> */}
         <div className="flex justify-between items-center">
           <div className="flex items-center -mt-4">
             <img src={me?.avatar} className="w-40 h-40 rounded-full" />

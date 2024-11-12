@@ -77,7 +77,6 @@ export const SolutionDetailPage = () => {
 
     return (
         <Box>
-            {!isLoggedIn ? <Navbar></Navbar> : null}
             <Box mt={6} p={5} rounded={"xl"} bgColor={"white"} w={"100%"} minH={600}>
                 <Flex w='full' justify={'space-between'}>
                     <Flex h={8} align={'center'} pr={3} onClick={() => window.history.back()} cursor={'pointer'} _hover={{ borderBottomWidth: 1 }} w={'fit-content'}>

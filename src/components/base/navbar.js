@@ -35,7 +35,7 @@ export default function Navbar() {
   useEffect(() => {
     if (location) {
       let locationName = location.pathname
-      const text = locationName === '/search/' ? 'explore' : locationName === '/' ? 'home' : 'portal'
+      const text = locationName === '/' ? 'home' : locationName?.includes('private') ? 'portal' : 'explore'
       location && setSelectedRoute(text)
     }
 
@@ -48,12 +48,12 @@ export default function Navbar() {
       key: 'home'
     },
     {
-      label: 'Catalogo',
+      label: 'Explorar',
       link: '/search/',
       key: 'explore'
     },
     {
-      label: 'Mi portal',
+      label: 'Mi panel',
       link: '/start',
       key: 'portal',
       hide: !isLoggedIn

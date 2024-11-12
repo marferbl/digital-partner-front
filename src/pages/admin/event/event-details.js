@@ -43,7 +43,6 @@ const EventDetailsPage = () => {
 
     return (
         <Box>
-            {!isLoggedIn ? <Navbar></Navbar> : null}
             <Box mt={6} p={5} rounded={"xl"} bgColor={"white"} w={"100%"} minH={400}>
                 <Flex h={8} align={'center'} pr={3} onClick={() => goBack()} cursor={'pointer'} _hover={{ borderBottomWidth: 1 }} w={'fit-content'}>
                     <IoChevronBack size={20} />

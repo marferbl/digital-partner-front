@@ -26,7 +26,7 @@ export const SoftwareSearcherInput = () => {
     };
 
     const getRoute = () => {
-        return isInPanel() ? `/private/search/${searchTerm}` : `/search/${searchTerm}`;
+        return `/search/${searchTerm}`;
     };
 
     const goToSearch = (key) => {
