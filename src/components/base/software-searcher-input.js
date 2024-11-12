@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { Flex, Input, Button, Icon } from '@chakra-ui/react';
 import { Link, useNavigate } from 'react-router-dom';
-import { COLORS } from '../../colors/colors.js'; // Assuming COLORS is imported from your constants file
+import { COLORS, DARK_COLORS } from '../../colors/colors.js'; // Assuming COLORS is imported from your constants file
 import { FiTool, FiRepeat, FiCalendar } from "react-icons/fi";
 import { useTranslation } from 'react-i18next'; // Import useTranslation
 import { Tooltip } from 'react-tooltip'
+import { FiSearch } from "react-icons/fi";
+
 
 
 
@@ -33,57 +35,25 @@ export const SoftwareSearcherInput = () => {
     }
 
     return (
-        <Flex as="form" onSubmit={(e) => { e.preventDefault(); handleSearch(); }} align={'center'} justify={'center'} gap={3}>
-            <Input
-                bg={'white'}
-                w={{ base: 240, lg: 400 }}
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                fontSize={{ base: 9, md: 12, lg: 14 }}
-                placeholder={t('iaHelpsYou')}
-            />
-            <Button
-                type="submit"
-                size={{ base: 'xs', md: 'sm' }}
-                bg={COLORS.primary}
-                color='white'
-                _hover={{ color: 'gray.200', shadow: 'xl' }}
-            >
-                {t('search')}
-            </Button>
-            <Button display={{ base: 'none', md: 'block' }} size={'sm'} onClick={() => goToSearch('solutions')}
-                className="solutions-tooltip"
-            >
-                <Icon
-                    fontSize="16"
-                    as={FiTool}
+        <form onSubmit={(e) => { e.preventDefault(); handleSearch(); }} className="flex items-center justify-center">
+            <div className="relative w-60 lg:w-110">
+                <input
+                    className="bg-white bg-opacity-20 text-white backdrop-blur-md shadow-md text-sm lg:text-base w-full rounded-full px-4 py-3 pr-10 placeholder-gray-300 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    placeholder={t('iaHelpsYou')}
+                    type="text"
                 />
-                <Tooltip anchorSelect=".solutions-tooltip" place="bottom">
-                    Todas las soluciones
-                </Tooltip>
-            </Button>
-            <Button display={{ base: 'none', md: 'block' }} size={'sm'} onClick={() => goToSearch('services')}
-                className="services-tooltip"
-            >
-                <Icon
-                    fontSize="16"
-                    as={FiRepeat}
-                />
-                <Tooltip anchorSelect=".services-tooltip" place="bottom">
-                    Todas los servicios
-                </Tooltip>
-            </Button>
-            <Button display={{ base: 'none', md: 'block' }} size={'sm'} onClick={() => goToSearch('events')}
-                className="events-tooltip"
-            >
-                <Icon
-                    fontSize="16"
-                    as={FiCalendar}
-                />
-                <Tooltip anchorSelect=".events-tooltip" place="bottom">
-                    Todas los eventos
-                </Tooltip>
-            </Button>
-        </Flex>
+                <button
+                    type="submit"
+                    className="absolute inset-y-0 right-3 flex items-center text-blue-500 hover:text-blue-700 focus:outline-none"
+                    aria-label="Search"
+                >
+                    {/* Replace with your icon, for example Font Awesome's search icon */}
+                    <FiSearch color={DARK_COLORS.gridyellow} />
+                </button>
+            </div>
+        </form>
+
     );
 };

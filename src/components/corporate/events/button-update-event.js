@@ -76,7 +76,6 @@ export const ButtonUpdateEvent = ({ children, item, refreshEvents }) => {
     // Handle form submission
     const create = async () => {
         const id = item._id;
-        console.log(address, coordinates)
 
         const config = {
             name,
@@ -107,7 +106,6 @@ export const ButtonUpdateEvent = ({ children, item, refreshEvents }) => {
         setStep(1); // Reset step to 1 when modal is closed
     };
 
-    console.log(coordinates, address)
 
     return (
         <>

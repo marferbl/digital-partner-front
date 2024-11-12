@@ -5,6 +5,7 @@ import { Box } from "@chakra-ui/react";
 
 import { UserContext } from "../context/userContext";
 import { NavbarUser } from "../components/base/nav-user";
+import Navbar from "../components/base/navbar";
 
 const PrivateRoute = () => {
   const { isLoggedIn, isLoading, loggedUser } = useContext(UserContext);
@@ -27,12 +28,13 @@ const PrivateRoute = () => {
     return <Navigate to="/" />;
   }
 
-  return <SimpleSidebar>
-    <NavbarUser />
-    <Box>
+  return (
+    <Box >
+      <Navbar />
       <Outlet />
-    </Box>
-  </SimpleSidebar>
+    </Box >
+
+  )
 };
 
 export default PrivateRoute;

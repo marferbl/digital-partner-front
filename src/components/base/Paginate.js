@@ -26,9 +26,6 @@ const Pagination = ({ currentPage, setCurrentPage, totalPages }) => {
         }
     };
 
-    console.log('currentPage', currentPage);
-    console.log('totalPages', totalPages);
-
     return (
         <Flex justify="center" align="center" mt={4} gap={2}>
             {/* Previous Page Button */}

@@ -2,6 +2,7 @@ import { Flex } from "@chakra-ui/react";
 import InitialPage from "./pages/start/initial-page";
 import { PageRoutes } from "./routes";
 import "./index.css"
+import Navbar from "./components/base/navbar";
 
 function App() {
 
