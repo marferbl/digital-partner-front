@@ -9,10 +9,12 @@ import { COLORS } from '../../colors/colors';
 import { FcLike } from 'react-icons/fc';
 import { FiTool, FiRepeat } from "react-icons/fi";
 import { Tooltip } from 'react-tooltip';
+import ImageGallerySlider from '../base/GallerySlider';
 
 
 const CardSoftware = ({ _id, name, logo, description, lineType, isFavorites, ...rest }) => {
     const { isLoggedIn } = useContext(UserContext);
+    const { gallery } = rest;
 
     return (
         <Box w='full' borderWidth="1px" borderRadius="lg" overflow="hidden" background={'rgba(255, 255, 255, 0.2)'} backdropBlur={'2xl'} boxShadow={'xl'}>
@@ -21,20 +23,23 @@ const CardSoftware = ({ _id, name, logo, description, lineType, isFavorites, ...
                 <FcLike size={20} color={COLORS.primary} />
             </Flex>}
 
-            <Center height={20} >
+            <Flex px={4} align='center' gap={2} pt={2}>
                 {lineType === 'solutions' && <Link to={`/solution/${_id}`}>
-                    <Center h='full'><Avatar size="md" name={name} src={logo} /> </Center>
-                    {/* } */}
+                    <Center h='full'>
+                        {logo ? <img src={logo} alt={name} className="h-10 w-10 rounded-lg" /> :
+                            <Avatar size="md" rounded={'md'} name={name} src={logo} />}
+                    </Center>
                 </Link>}
-            </Center>
+                <Heading fontSize={12} as="p" size="sm" textAlign={'center'} _hover={{ textDecor: 'underline' }} fontFamily='Montserrat' fontWeight={'bold'} h={10} display='flex' justifyContent={'center'} alignItems={'center'}>
+                    {lineType === 'solutions' && <Link to={`/solution/${_id}`}>
+                        {name}
+                    </Link>}
+                </Heading>
+            </Flex>
+            <Box>
+                <ImageGallerySlider images={gallery} width={140} height={40} hideArrows />
+            </Box>
             <Box p="1">
-                <Box d="flex" alignItems="baseline">
-                    <Heading as="p" size="sm" textAlign={'center'} _hover={{ textDecor: 'underline' }} fontFamily='Montserrat' fontWeight={'bold'} h={10} display='flex' justifyContent={'center'} alignItems={'center'}>
-                        {lineType === 'solutions' && <Link to={`/solution/${_id}`}>
-                            {name}
-                        </Link>}
-                    </Heading>
-                </Box>
                 <Flex h={14} mt={3} px={{ base: 3, md: 5, '2xl': 12 }} fontSize={10} mb={4}>
                     <Box
                         h={14}

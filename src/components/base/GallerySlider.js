@@ -5,9 +5,10 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";  // Import here
 import "../../css/base.css"
 
-const ImageGallerySlider = ({ images }) => {
+const ImageGallerySlider = ({ images, width, height, hideArrows }) => {
     const settings = {
         dots: true,
+        arrows: !hideArrows,
         infinite: true,
         speed: 500,
         slidesToShow: 1,
@@ -16,7 +17,7 @@ const ImageGallerySlider = ({ images }) => {
 
 
     return (
-        <Box h={{ base: 200, md: 400 }} w={{ base: 200, md: 400 }} mx="auto" mt={5}>
+        <Box h={{ base: height || 200, md: height || 400 }} w={{ base: width || 200, md: width || 400 }} mx="auto" mt={5}>
             <Slider {...settings}>
                 {images.map((url, index) => (
                     <Box key={index}>

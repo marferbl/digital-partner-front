@@ -1,20 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { Flex, Box, Grid, GridItem, VStack, Heading, Text, Checkbox } from '@chakra-ui/react';
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import SearchSelectCountries from '../base/search-select-countries';
 import SearchSelectLanguage from '../base/search-select-language';
 import SearchSelectFeatures from '../base/search-select-features';
 import SearchSelect from '../base/search-select';
 import GradientButton from '../base/GradientButton';
-import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
-import { COLORS } from '../../colors/colors';
 import SearchSelectSpecifyFeatures from '../base/search-select-specify-features';
-
+import CustomCheckbox from '../base/custom-checkbox';
 
 const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
     const [filterValues, setFilterValues] = useState(filters);
 
     const handleToggle = (filterName, value) => {
-
         setFilterValues((prevValues) => ({
             ...prevValues,
             [filterName]: value,
@@ -22,48 +19,18 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
         onChangeFilters(filterValues);
     };
 
+    const handleLineType = (value, key) => {
+        if (value === true) {
+            handleToggle('lineType', key);
+        } else {
+            handleToggle('lineType', '');
+        }
+    }
+
     useEffect(() => {
-        // Call onChangeFilters whenever filterValues change
         setTermLabel('');
         onChangeFilters(filterValues);
     }, [filterValues]);
-
-    const lineTypeOptions = [
-        { value: 'solutions', label: 'Soluciones' },
-        { value: 'services', label: 'Servicios' },
-        // { value: 'talent', label: 'Talento', disabled: true },
-        { value: 'events', label: 'Eventos' },
-    ];
-    const partnerTypeOptions = [
-        { value: 'implant', label: 'Implantador' },
-        { value: 'selling', label: 'Venta' },
-        { value: 'training', label: 'Formación' },
-    ];
-
-    const serviceTypeOptions = [
-        { value: 'partner', label: 'Partner' },
-        { value: 'development', label: 'Desarrollo' },
-        { value: 'renting', label: 'Renting' },
-        { value: 'helps', label: 'Ayudas' },
-        { value: 'training', label: 'Training' },
-        { value: 'growth', label: 'Growth' },
-    ];
-
-    const prices = [
-        { value: 0, label: 'Gratis' },
-        { value: 10, label: '1 - 10€' },
-        { value: 50, label: '11 - 50€' },
-        { value: 100, label: '51 - 100€' },
-        { value: 5000, label: '+100€' },
-    ];
-
-    const eventTypes = [
-        { value: 'remote', label: 'Remoto' },
-        { value: 'presential', label: 'Presencial' },
-        { value: 'all', label: 'Ambos' },
-    ];
-
-
 
     const clearFilters = () => {
         setFilterValues({});
@@ -74,155 +41,133 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
 
     const handlePrice = (value) => {
         handleToggle('price', value);
-        if (value === 0) {
-            handleToggle('min', 0);
-            handleToggle('max', 0);
-        }
-        if (value === 10) {
-            handleToggle('min', 1);
-            handleToggle('max', 10);
-        }
-        if (value === 50) {
-            handleToggle('min', 11);
-            handleToggle('max', 50);
-        }
-        if (value === 100) {
-            handleToggle('min', 51);
-            handleToggle('max', 100);
-        }
-        if (value === 5000) {
-            handleToggle('min', 101);
-            handleToggle('max', 5000);
-        }
-
+        const priceRanges = { 0: [0, 0], 10: [1, 10], 50: [11, 50], 100: [51, 100], 5000: [101, 5000] };
+        const [min, max] = priceRanges[value] || [null, null];
+        handleToggle('min', min);
+        handleToggle('max', max);
     };
 
     return (
-        <Box borderRightWidth={1} h={'full'} bg={'gray.50'} px={4} pb={4} shadow={'lg'}>
-            <VStack align="left" spacing={4} pt={4}>
-                {/* Use Flex with wrap for dynamic layout */}
-                <Flex flexWrap="wrap" gap={4} w="full">
+        <div className="border-r h-fit-content bg-gray-50 p-4 shadow-2xl rounded-lg">
+            <span className="text-lg font-bold pt-5">Filtros</span>
+            <div className="flex flex-col space-y-4 mt-6">
+                {/* <div className="min-w-[200px] pt-1">
+                    <SearchSelect
+                        size="small"
+                        options={[{ value: 'solutions', label: 'Soluciones' }, { value: 'services', label: 'Servicios' }, { value: 'events', label: 'Eventos' }]}
+                        width="100%"
+                        label="Línea"
+                        onChange={(value) => handleToggle('lineType', value)}
+                        value={filterValues.lineType}
+                    />
+                </div> */}
+                {[{ value: 'solutions', label: 'Soluciones' }, { value: 'services', label: 'Servicios' }, { value: 'events', label: 'Eventos' }].map((item) => (
+                    <div className="min-w-[200px] pt-1 flex items-center gap-2">
+                        <span>{item.label}</span>
+                        <CustomCheckbox setValue={(value) => handleLineType(value, item.value)} />
+                    </div>
+                ))}
 
-                    {/* Always visible selects */}
-                    <Box minW="200px" pt={1}>
-                        <SearchSelect
-                            size="small"
-                            options={lineTypeOptions}
-                            width="100%"
-                            label="Línea"
-                            onChange={(value) => handleToggle('lineType', value)}
-                            value={filterValues.lineType}
-                        />
-                    </Box>
 
 
-                    {filterValues.lineType === 'solutions' ? (
-                        <Box flexBasis="20%" minW="200px">
+                {filterValues.lineType === 'solutions' && (
+                    <>
+                        <div className="min-w-[200px]">
                             <SearchSelectFeatures
                                 value={filterValues.features}
                                 showLabel
                                 width="100%"
                                 isMulti
                                 onChange={(value) => handleToggle('features', value)}
-
                             />
-                        </Box>
-                    ) : ''}
-                    {(filterValues.lineType === 'solutions' && filterValues.features?.length) ? (
-                        <Box flexBasis="10%" minW="200px">
-                            <SearchSelectSpecifyFeatures
-                                value={filterValues.specifyFeatures}
+                        </div>
+                        {filterValues.features?.length > 0 && (
+                            <div className="min-w-[200px]">
+                                <SearchSelectSpecifyFeatures
+                                    value={filterValues.specifyFeatures}
+                                    showLabel
+                                    width="100%"
+                                    label="Funcionalidad especifica"
+                                    feature={filterValues.features}
+                                    onChange={(value) => handleToggle('specifyFeatures', value)}
+                                />
+                            </div>
+                        )}
+                    </>
+                )}
+
+                {filterValues.lineType === 'services' && (
+                    <div className="min-w-[200px] pt-1">
+                        <SearchSelect
+                            options={[{ value: 'partner', label: 'Partner' }, { value: 'development', label: 'Desarrollo' }, { value: 'renting', label: 'Renting' }, { value: 'helps', label: 'Ayudas' }, { value: 'training', label: 'Training' }, { value: 'growth', label: 'Growth' }]}
+                            width="100%"
+                            label="Tipo"
+                            onChange={(value) => handleToggle('serviceType', value)}
+                            value={filterValues.serviceType}
+                        />
+                    </div>
+                )}
+
+                {filterValues.lineType === 'services' && filterValues.serviceType === 'partner' && (
+                    <div className="min-w-[200px]">
+                        <SearchSelect
+                            options={[{ value: 'implant', label: 'Implantador' }, { value: 'selling', label: 'Venta' }, { value: 'training', label: 'Formación' }]}
+                            isMulti
+                            width="100%"
+                            label="Servicio"
+                            onChange={(value) => handleToggle('partnerType', value)}
+                            value={filterValues.partnerType}
+                            height="40px"
+                        />
+                    </div>
+                )}
+
+                {filterValues.lineType !== 'events' && (
+                    <>
+                        <div className="min-w-[200px]">
+                            <SearchSelectCountries
+                                value={filterValues.countries}
                                 showLabel
                                 width="100%"
-                                label="Funcionalidad especifica"
-                                feature={filterValues.features}
-                                onChange={(value) => handleToggle('specifyFeatures', value)}
-
-                            />
-                        </Box>
-                    ) : ''}
-                    {filterValues.lineType === 'services' ? (
-                        <Box flexBasis="10%" minW="200px" pt={1}>
-                            <SearchSelect
-                                options={serviceTypeOptions}
-                                width="100%"
-                                label="Tipo"
-                                onChange={(value) => handleToggle('serviceType', value)}
-                                value={filterValues.serviceType}
-
-                            />
-                        </Box>
-                    ) : ''}
-
-                    {filterValues.lineType === 'services' && filterValues.serviceType === 'partner' ? (
-                        <Box flexBasis="10%" minW="200px">
-                            <SearchSelect
-                                options={partnerTypeOptions}
                                 isMulti
-                                width="100%"
-                                label="Servicio"
-                                onChange={(value) => handleToggle('partnerType', value)}
-                                value={filterValues.partnerType}
-                                height="40px"
+                                onChange={(value) => handleToggle('countries', Array.isArray(value) ? value : [value])}
+                                defaultValue={filterValues.countries}
                             />
-                        </Box>
-                    ) : ''}
-
-                    {filterValues.lineType !== 'events' && (<> <Box flexBasis="10%" minW="200px">
-                        <SearchSelectCountries
-                            value={filterValues.countries}
-                            showLabel
-                            width="100%"
-                            isMulti
-                            onChange={(value) => {
-                                let arrayValue = typeof value === 'object' ? value : [value];
-                                handleToggle('countries', arrayValue);
-                            }}
-                            defaultValue={filterValues.countries}
-
-                        />
-                    </Box>
-
-                        <Box flexBasis="10%" minW="200px">
+                        </div>
+                        <div className="min-w-[200px]">
                             <SearchSelectLanguage
                                 value={filterValues.languages}
                                 showLabel
                                 width="100%"
                                 isMulti
-                                onChange={(value) => {
-                                    let arrayValue = typeof value === 'object' ? value : [value];
-                                    handleToggle('languages', arrayValue);
-                                }}
+                                onChange={(value) => handleToggle('languages', Array.isArray(value) ? value : [value])}
                                 defaultValue={filterValues.languages}
-
                             />
-                        </Box></>)}
+                        </div>
+                    </>
+                )}
 
-                    {filterValues.lineType === 'events' && (
-                        <Flex align='center' gap={4}>
+                {filterValues.lineType === 'events' && (
+                    <div className="flex gap-4">
+                        <div className="min-w-[200px] pt-1">
+                            <SearchSelect options={[{ value: 0, label: 'Gratis' }, { value: 10, label: '1 - 10€' }, { value: 50, label: '11 - 50€' }, { value: 100, label: '51 - 100€' }, { value: 5000, label: '+100€' }]} width="100%" label="Precio" onChange={handlePrice} value={filterValues.price} />
+                        </div>
+                        <div className="min-w-[200px] pt-1">
+                            <SearchSelect options={[{ value: 'remote', label: 'Remoto' }, { value: 'presential', label: 'Presencial' }, { value: 'all', label: 'Ambos' }]} width="100%" label="Tipo" onChange={(value) => handleToggle('eventType', value)} value={filterValues.eventType} />
+                        </div>
+                    </div>
+                )}
 
-                            <Box flexBasis="10%" minW="200px" pt={1}>
-                                <SearchSelect options={prices} width="100%" label="Precio" onChange={(value) => handlePrice(value)} value={filterValues.price} />
-                            </Box>
-                            <Box flexBasis="10%" minW="200px" pt={1}>
-                                <SearchSelect options={eventTypes} width="100%" label="Tipo" onChange={(value) => handleToggle('eventType', value)} value={filterValues.eventType} />
-                            </Box>
-                        </Flex>
-
-                    )}
-
-                    {hasFilters ? (
-                        <Box flexBasis="30%" minW="200px" pt={7}>
-                            <GradientButton label="Limpiar filtros" type="red" size="xs" onClick={clearFilters} />
-                        </Box>
-                    ) : ''}
-                </Flex>
-            </VStack>
-        </Box >
-
-
+                {hasFilters && (
+                    <div className="min-w-[200px] pt-7">
+                        <button className="text-neutral" onClick={clearFilters}>
+                            Limpiar filtros
+                        </button>
+                    </div>
+                )}
+            </div>
+        </div>
     );
 };
-
 
 export default FiltersSection;

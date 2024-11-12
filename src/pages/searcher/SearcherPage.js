@@ -30,7 +30,7 @@ const SearcherPage = () => {
 
     return (
         <>
-            <Box mt={6} p={0} rounded={"xl"} bgColor={"white"} w={"100%"}>
+            <Box p={0} rounded={"xl"} bgColor={"gray.100"} w={"100%"}>
                 <Searcher filters={filters} isFavorites={isFavorites} />
             </Box>
         </>
