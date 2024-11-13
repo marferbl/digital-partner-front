@@ -104,7 +104,7 @@ export const ButtonCompareIA = ({ refreshSolutions, disabled }) => {
                         <Button variant='ghost' mr={3} onClick={onClose}>
                             cancelar
                         </Button>
-                        <Button onClick={compareSolutions} colorScheme='teal'>Comparar</Button>
+                        <Button onClick={compareSolutions} colorScheme='gray'>Comparar</Button>
                     </ModalFooter>
                 </ModalContent>
             </Modal>

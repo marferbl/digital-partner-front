@@ -9,16 +9,20 @@ import { Tooltip } from '@chakra-ui/react'
 export const EmptySolutionsState = ({ refreshSolutions }) => {
 
     const [corporate, setCorporate] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         getMyCorporate();
     }, [])
 
     const getMyCorporate = async () => {
+        setLoading(true);
         getCorporate().then((res) => {
             setCorporate(res.data.corporate);
+            setLoading(false);
         }).catch((err) => {
             console.log(err);
+            setLoading(false);
         });
     }
 
@@ -34,7 +38,7 @@ export const EmptySolutionsState = ({ refreshSolutions }) => {
             <Box mb={3}>
                 <ButtonCreateSolution refreshSolutions={refreshSolutions} disabled={!corporate} />
             </Box>
-            {!corporate && <Text fontSize={12} color={'white'}>Debes tener una corporate para crear soluciones</Text>}
+            {!corporate && !loading && <Text fontSize={12} color={'white'}>Debes tener una corporate para crear soluciones</Text>}
 
             {/* </Tooltip> */}
         </Center>

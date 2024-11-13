@@ -100,7 +100,7 @@ export const ButtonUpdateService = ({ refreshServices, item, children, serviceTy
                         <Button variant='ghost' mr={3} onClick={closeModal}>
                             cancelar
                         </Button>
-                        <Button colorScheme='teal' onClick={create}>Confirmar</Button>
+                        <Button colorScheme='gray' onClick={create}>Confirmar</Button>
                     </ModalFooter>
                 </ModalContent>
             </Modal>

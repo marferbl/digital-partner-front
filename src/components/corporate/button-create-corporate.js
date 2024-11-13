@@ -136,7 +136,7 @@ export const ButtonCreateCorporate = ({ refreshCorporate }) => {
                         <Button variant='ghost' mr={3} onClick={closeModal}>
                             cancelar
                         </Button>
-                        <Button onClick={() => { step < 2 ? setStep(step + 1) : create() }} colorScheme='teal'>{step < 2 ? 'Continuar' : 'Confirmar'}</Button>
+                        <Button onClick={() => { step < 2 ? setStep(step + 1) : create() }} colorScheme='gray'>{step < 2 ? 'Continuar' : 'Confirmar'}</Button>
                     </ModalFooter>
                 </ModalContent>
             </Modal>

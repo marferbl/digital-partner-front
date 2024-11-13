@@ -62,9 +62,9 @@ export default function Navbar() {
 
   return (
     <>
-      <Box bg='black' px={4} position='sticky' top={0} zIndex={99}>
+      <Box bg='black' px={41} position='sticky' top={0} zIndex={99}>
         <Flex h={'80px'} alignItems={"center"} justifyContent={"space-between"}>
-          <Box display={{ base: 'none', md: 'block' }}>
+          <Box display={{ base: 'none', md: 'block' }} w={200}>
             <Link to="/">
               <video src={logoVideo} autoPlay loop muted style={{ width: '100px', height: '100px' }} />
             </Link>
@@ -103,7 +103,7 @@ export default function Navbar() {
                 display={{ base: "none", md: "flex" }}
                 color={'black'}
               >
-                <Box p={3} minW={200} _hover={{ transform: "scale(1.02)" }} color='white' rounded={'lg'}>
+                <Box p={3} w={200} _hover={{ transform: "scale(1.02)" }} color='white' rounded={'lg'}>
                   {!isLoggedIn ? <Link key={'/start'} to={{ pathname: '/start' }} >{'Iniciar sesión'}</Link> : ''}
                 </Box>
               </HStack>

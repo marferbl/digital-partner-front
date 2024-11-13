@@ -240,14 +240,14 @@ export const ButtonUpdateEvent = ({ children, item, refreshEvents }) => {
                                 <Button variant='ghost' mr={3} onClick={closeModal}>
                                     Cancelar
                                 </Button>
-                                <Button colorScheme='teal' onClick={() => setStep(2)}>Siguiente</Button>
+                                <Button colorScheme='gray' onClick={() => setStep(2)}>Siguiente</Button>
                             </>
                         ) : (
                             <>
                                 <Button variant='ghost' mr={3} onClick={() => setStep(1)}>
                                     Volver
                                 </Button>
-                                <Button colorScheme='teal' onClick={create}>Confirmar</Button>
+                                <Button colorScheme='gray' onClick={create}>Confirmar</Button>
                             </>
                         )}
                     </ModalFooter>

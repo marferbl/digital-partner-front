@@ -48,7 +48,7 @@ const TopServices = () => {
 
     return (
         <div class='py-8'>
-            <span className="text-lg md:text-2xl pl-8 md:pl-14 pt-10 pb-6 text-white">
+            <span className="text-lg md:text-2xl pl-8 md:pl-14 pt-10 pb-6 text-white text-left">
                 SERVICIOS IMPRESCINDIBLES PARA STARTUPS
             </span>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-4 md:px-60">

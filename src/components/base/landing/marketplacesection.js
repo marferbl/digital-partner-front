@@ -90,7 +90,7 @@ const MarketplaceSection = ({ term, filters, isCollapsed, isFavorites, setNumber
 
     return (
         <Center w='full' flexDir={'column'} px={{ base: 2, lg: 5 }}>
-            <Box w='full' px={{ base: 8, md: 2 }} h='full'>
+            <Box w='full' px={{ base: 0, md: 2 }} h='full'>
                 {loading ? <Center w={'100%'}> <Spinner
                     thickness='4px'
                     speed='0.65s'

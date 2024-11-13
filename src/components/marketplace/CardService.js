@@ -53,7 +53,7 @@ const CardService = ({ item, isFavorites }) => {
                 <div className="h-14 mt-3 px-3 text-xxs mb-4 overflow-hidden text-ellipsis text-left">
                     <p className="line-clamp-3">{item.description}</p>
                 </div>
-                <LabelTag label={t(item.serviceType)} />
+                <LabelTag label={t(item.serviceType || 'Servicio')} />
             </div>
         </div>
     );
