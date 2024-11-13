@@ -17,11 +17,11 @@ const ImageGallerySlider = ({ images, width, height, hideArrows }) => {
 
 
     return (
-        <Box h={{ base: height || 200, md: height || 400 }} w={{ base: width || 200, md: width || 400 }} mx="auto" mt={5}>
+        <Box h={{ base: height || 200, md: height || 400 }} w={{ base: width || 200, md: width || 400 }} mx="auto" mt={5} bg='red'>
             <Slider {...settings}>
                 {images.map((url, index) => (
-                    <Box key={index}>
-                        <Image src={url} alt={`Gallery image ${index}`} w="100%" h="auto" objectFit="cover" />
+                    <Box key={index} w='full' bg='red'>
+                        <Image src={url} alt={`Gallery image ${index}`} w="100%" h="auto" objectFit="contain" />
                     </Box>
                 ))}
             </Slider>

@@ -103,7 +103,7 @@ export default function Navbar() {
                 display={{ base: "none", md: "flex" }}
                 color={'black'}
               >
-                <Box p={3} minW={200} _hover={{ transform: "scale(1.02)" }} rounded={'lg'}>
+                <Box p={3} minW={200} _hover={{ transform: "scale(1.02)" }} color='white' rounded={'lg'}>
                   {!isLoggedIn ? <Link key={'/start'} to={{ pathname: '/start' }} >{'Iniciar sesión'}</Link> : ''}
                 </Box>
               </HStack>

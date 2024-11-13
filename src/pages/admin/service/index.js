@@ -6,6 +6,7 @@ import { CorporateProfile } from "../../../components/corporate/corporate-profil
 import { getServiceByUserCorporate } from "../../../services/service";
 import ServicesTable from "../../../components/corporate/service/services-table";
 import { ButtonCreateService } from "../../../components/corporate/service/button-create-service";
+import ServiceListView from "../../../components/corporate/service/ServiceListView";
 
 export const ServicePage = () => {
     const [services, setServices] = useState([]);
@@ -31,7 +32,7 @@ export const ServicePage = () => {
                 <ButtonCreateService refreshServices={getMyServices} />
             </Flex>}
 
-            {services.length === 0 ? <EmptyServiceState refreshServices={getMyServices} /> : <ServicesTable services={services} refreshServices={getMyServices} />}
+            {services.length === 0 ? <EmptyServiceState refreshServices={getMyServices} /> : <ServiceListView services={services} refreshServices={getMyServices} />}
         </Box>
     )
 };

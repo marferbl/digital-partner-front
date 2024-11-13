@@ -8,7 +8,7 @@ export const EmptyCorporateState = ({ refreshCorporate }) => {
     return (
         <Center flexDir={'column'} minH={'300'}>
             <FiDatabase size={70} color={'white'} />
-            <Text my={6} fontSize={24}>
+            <Text my={6} fontSize={24} color='white'>
                 Todavia no tienes una corporate
             </Text>
             <ButtonCreateCorporate refreshCorporate={refreshCorporate} />

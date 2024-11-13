@@ -35,9 +35,9 @@ const MarketplaceSection = ({ term, filters, isCollapsed, isFavorites, setNumber
         }
     }, [isFavorites]);
 
-
-
-
+    const scrollTop = () => {
+        window.scrollTo({ top: 0 });
+    };
 
     const getSolutions = () => {
         setLoading(true)
@@ -112,7 +112,10 @@ const MarketplaceSection = ({ term, filters, isCollapsed, isFavorites, setNumber
                     :
                     <SectionMarketPlace list={solutions} isFavorites={isFavorites} />
                 }
-                {meta?.totalPages > 1 && !term && !isFavorites && <Pagination currentPage={page} totalPages={meta.totalPages} setCurrentPage={setPage} />}
+                {meta?.totalPages > 1 && !term && !isFavorites && <Pagination currentPage={page} totalPages={meta.totalPages} setCurrentPage={(value) => {
+                    setPage(value)
+                    scrollTop()
+                }} />}
 
             </Box>
         </Center>

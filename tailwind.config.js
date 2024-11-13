@@ -21,6 +21,8 @@ module.exports = {
   theme: {
     extend: {
       fontSize: {
+        '3xs': '0.5rem',
+        xxs: '0.625rem',
         sm: '0.8rem',
         base: '1rem',
         xl: '1.25rem',
@@ -44,7 +46,10 @@ module.exports = {
         100: '28rem',
         110: '32rem',
         120: '36rem',
-      }
+      },
+      borderWidth: {
+        '1': '1px', // This will create a `border-1` utility
+      },
     },
   },
   plugins: [],

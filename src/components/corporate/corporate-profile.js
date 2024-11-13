@@ -7,45 +7,52 @@ import { Link } from 'react-router-dom'
 import { EmptyState } from '../base/empty-state'
 import { CardSolutionsCorporate } from './card-solutions-corporate'
 import { CardServicesCorporate } from './card-services-corporate'
+import { DARK_COLORS } from '../../colors/colors'
 
 
 export const CorporateProfile = ({ corporate }) => {
 
+    const items = [
+        {
+            label: 'Soluciones',
+            number: 10,
+            color: ''
+        },
+        {
+            label: 'Servicios',
+            number: 5,
+            color: ''
+        },
+        {
+            label: 'Eventos',
+            number: 10,
+            color: ''
+        }
+    ]
+
     return (
         <Box>
-            <Grid templateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(3, 1fr)' }} gap={6} justifyItems={'center'}>
-                <GridItem colSpan={1} borderWidth={1} rounded={'md'} shadow={'xl'}>
-                    <Flex pb={4} flexDir='column' align={'center'} pt={3}>
-
-                        <Avatar name={corporate?.name} />
-                        <Flex px={10} gap={1} flexDir='column' textAlign={'center'} >
-                            <Text mt={2} fontSize={20} fontWeight='bold'> {corporate?.name}</Text>
-                            <Text mt={2} >{corporate?.cif}</Text>
-                            <Text mt={2} fontStyle='italic'>{corporate?.web}</Text>
-                        </Flex>
+            <Grid templateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(4, 1fr)' }} gap={6} justifyItems={'center'}>
+                <GridItem colSpan={{ base: 1, md: 1 }} borderWidth={1} borderColor='gray.700' rounded={'md'} w='full' p={3}>
+                    <Flex pb={4} flexDir='row' align={'center'} pt={3} gap={2}>
+                        <Avatar name={corporate?.name} rounded={'md'} />
+                        <div>
+                            <Text fontSize={16} color='white'> {corporate?.name}</Text>
+                            <Text fontSize={14} color={DARK_COLORS.neutral}> {corporate?.cif}</Text>
+                        </div>
                     </Flex>
-                    <Box px={3}>
-                        <Box rounded={'lg'} w={'full'} mb={3}>
-                            {/* <Box py={3} px={4}>
-                            <Text fontSize={14} mr={2}> No tienes corporate.</Text>
-                            <Text fontSize={14} mt={2} mr={2}> No tienes perfil de freelance.</Text>
-                        </Box> */}
-                        </Box>
-                    </Box>
+                    <div className="flex flex-wrap justify-between gap-1 p-1 bg-black shadow-md w-full">
+                        {items.map((item, index) => (
+                            <div key={index} className="flex flex-col items-center text-neutral justify-center w-full md:w-20 p-2 rounded-lg shadow-lg bg-darkgray">
+                                <h2 className="text-sm font-semibold">{item.label}</h2>
+                                <p className="text-xl font-semibold mt-1 text-white">{item.number}</p>
+                            </div>
+                        ))}
+                    </div>
                 </GridItem>
-                <GridItem colSpan={1} w='full'>
-                    <CardTemplate>
-                        <Text fontWeight="bold" mr={2} textAlign='center' borderBottomWidth={1}> Soluciones</Text>
-                        <CardSolutionsCorporate />
-                    </CardTemplate>
-                    <Box h={2}></Box>
+                <GridItem colSpan={{ base: 1, md: 3 }} w='full'>
 
-                </GridItem>
-                <GridItem w='full' colSpan={1} px={5}>
-                    <CardTemplate>
-                        <Text fontWeight="bold" mr={2} textAlign='center' borderBottomWidth={1}> Servicio</Text>
-                        <CardServicesCorporate />
-                    </CardTemplate>
+
                 </GridItem>
             </Grid>
 

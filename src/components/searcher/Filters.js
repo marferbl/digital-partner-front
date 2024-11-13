@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import SearchSelectCountries from '../base/search-select-countries';
 import SearchSelectLanguage from '../base/search-select-language';
 import SearchSelectFeatures from '../base/search-select-features';
 import SearchSelect from '../base/search-select';
-import GradientButton from '../base/GradientButton';
 import SearchSelectSpecifyFeatures from '../base/search-select-specify-features';
-import CustomCheckbox from '../base/custom-checkbox';
+import CustomRadioButtonGroup from '../base/radio-group';
 
 const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
     const [filterValues, setFilterValues] = useState(filters);
@@ -18,14 +16,6 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
         }));
         onChangeFilters(filterValues);
     };
-
-    const handleLineType = (value, key) => {
-        if (value === true) {
-            handleToggle('lineType', key);
-        } else {
-            handleToggle('lineType', '');
-        }
-    }
 
     useEffect(() => {
         setTermLabel('');
@@ -39,6 +29,8 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
 
     const hasFilters = Object.values(filterValues).some((value) => value !== '');
 
+    const OPTIONS_TYPE = [{ value: 'solutions', label: 'Soluciones' }, { value: 'services', label: 'Servicios' }, { value: 'events', label: 'Eventos' }]
+
     const handlePrice = (value) => {
         handleToggle('price', value);
         const priceRanges = { 0: [0, 0], 10: [1, 10], 50: [11, 50], 100: [51, 100], 5000: [101, 5000] };
@@ -51,7 +43,7 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
         <div className="border-r h-fit-content bg-gray-50 p-4 shadow-2xl rounded-lg">
             <span className="text-lg font-bold pt-5">Filtros</span>
             <div className="flex flex-col space-y-4 mt-6">
-                {/* <div className="min-w-[200px] pt-1">
+                {/* <div className="min-w-[140px] pt-1">
                     <SearchSelect
                         size="small"
                         options={[{ value: 'solutions', label: 'Soluciones' }, { value: 'services', label: 'Servicios' }, { value: 'events', label: 'Eventos' }]}
@@ -61,18 +53,12 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
                         value={filterValues.lineType}
                     />
                 </div> */}
-                {[{ value: 'solutions', label: 'Soluciones' }, { value: 'services', label: 'Servicios' }, { value: 'events', label: 'Eventos' }].map((item) => (
-                    <div className="min-w-[200px] pt-1 flex items-center gap-2">
-                        <span>{item.label}</span>
-                        <CustomCheckbox setValue={(value) => handleLineType(value, item.value)} />
-                    </div>
-                ))}
 
-
+                <CustomRadioButtonGroup options={OPTIONS_TYPE} onChange={(value) => handleToggle('lineType', value)} />
 
                 {filterValues.lineType === 'solutions' && (
                     <>
-                        <div className="min-w-[200px]">
+                        <div className="min-w-[140px]">
                             <SearchSelectFeatures
                                 value={filterValues.features}
                                 showLabel
@@ -82,7 +68,7 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
                             />
                         </div>
                         {filterValues.features?.length > 0 && (
-                            <div className="min-w-[200px]">
+                            <div className="min-w-[140px]">
                                 <SearchSelectSpecifyFeatures
                                     value={filterValues.specifyFeatures}
                                     showLabel
@@ -97,7 +83,7 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
                 )}
 
                 {filterValues.lineType === 'services' && (
-                    <div className="min-w-[200px] pt-1">
+                    <div className="min-w-[140px] pt-1">
                         <SearchSelect
                             options={[{ value: 'partner', label: 'Partner' }, { value: 'development', label: 'Desarrollo' }, { value: 'renting', label: 'Renting' }, { value: 'helps', label: 'Ayudas' }, { value: 'training', label: 'Training' }, { value: 'growth', label: 'Growth' }]}
                             width="100%"
@@ -109,7 +95,7 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
                 )}
 
                 {filterValues.lineType === 'services' && filterValues.serviceType === 'partner' && (
-                    <div className="min-w-[200px]">
+                    <div className="min-w-[140px]">
                         <SearchSelect
                             options={[{ value: 'implant', label: 'Implantador' }, { value: 'selling', label: 'Venta' }, { value: 'training', label: 'Formación' }]}
                             isMulti
@@ -124,7 +110,7 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
 
                 {filterValues.lineType !== 'events' && (
                     <>
-                        <div className="min-w-[200px]">
+                        <div className="min-w-[140px]">
                             <SearchSelectCountries
                                 value={filterValues.countries}
                                 showLabel
@@ -134,7 +120,7 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
                                 defaultValue={filterValues.countries}
                             />
                         </div>
-                        <div className="min-w-[200px]">
+                        <div className="min-w-[140px]">
                             <SearchSelectLanguage
                                 value={filterValues.languages}
                                 showLabel
@@ -148,18 +134,18 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
                 )}
 
                 {filterValues.lineType === 'events' && (
-                    <div className="flex gap-4">
-                        <div className="min-w-[200px] pt-1">
+                    <div className="flex flex-col gap-4">
+                        <div className="min-w-[140px] pt-1">
                             <SearchSelect options={[{ value: 0, label: 'Gratis' }, { value: 10, label: '1 - 10€' }, { value: 50, label: '11 - 50€' }, { value: 100, label: '51 - 100€' }, { value: 5000, label: '+100€' }]} width="100%" label="Precio" onChange={handlePrice} value={filterValues.price} />
                         </div>
-                        <div className="min-w-[200px] pt-1">
+                        <div className="min-w-[140px] pt-1">
                             <SearchSelect options={[{ value: 'remote', label: 'Remoto' }, { value: 'presential', label: 'Presencial' }, { value: 'all', label: 'Ambos' }]} width="100%" label="Tipo" onChange={(value) => handleToggle('eventType', value)} value={filterValues.eventType} />
                         </div>
                     </div>
                 )}
 
                 {hasFilters && (
-                    <div className="min-w-[200px] pt-7">
+                    <div className="min-w-[140px] pt-7">
                         <button className="text-neutral" onClick={clearFilters}>
                             Limpiar filtros
                         </button>
