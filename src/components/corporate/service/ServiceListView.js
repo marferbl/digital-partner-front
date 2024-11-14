@@ -4,10 +4,10 @@ import {
 } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 import { IoIosArrowRoundForward } from 'react-icons/io'
-import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { ButtonUpdateService } from './button-update-service'
 import { deleteService } from '../../../services/service'
 import { FiMoreVertical } from 'react-icons/fi'
+import { Menu, MenuButton, MenuList, MenuItem, Box } from "@chakra-ui/react";
 
 
 
@@ -48,46 +48,59 @@ const ServiceListView = ({ services, refreshServices }) => {
                             </Link>
                         </div>
                         <div className="flex justify-center">
-
-                            <div class='relative '>
-                                <Menu>
-                                    <MenuButton className="rounded-full p-2 hover:bg-gray-100 text-white">
+                            <div>
+                                <Menu placement='top'>
+                                    <MenuButton
+                                        as={Box}
+                                        variant="outline"
+                                        borderWidth={0}
+                                        rounded="lg"
+                                        p={2}
+                                        _hover={{ color: 'gray.400' }}
+                                        cursor="pointer"
+                                        color="white"
+                                    >
                                         <FiMoreVertical size={20} />
                                     </MenuButton>
-                                    <MenuItems className="absolute right-0 mt-2 w-40 bg-white border border-gray-200 rounded-md shadow-lg focus:outline-none z-10 -translate-y-[calc(100%+50px)]">
-                                        <div className="p-1">
-                                            <MenuItem>
-                                                {({ active }) => (
-                                                    <ButtonUpdateService service={service} refreshservices={refreshServices} serviceTypeDefault={service?.serviceType}>
-                                                        <button
-                                                            className={`${active ? 'bg-gray-100' : ''
-                                                                } w-full text-left px-4 py-2 text-sm font-bold`}
-                                                        >
-                                                            Editar
-                                                        </button></ButtonUpdateService>
+                                    <MenuList
+                                        position="absolute"
+                                        right={0}
+                                        w="full"
+                                        bg="white"
+                                        borderWidth={1}
+                                        borderColor="gray.200"
+                                        borderRadius="md"
+                                        boxShadow="lg"
+                                        zIndex="10"
+                                    >
 
-                                                )}
-                                            </MenuItem>
-                                            <MenuItem>
-                                                {({ active }) => (
-                                                    <button
-                                                        onClick={() => deleteItem(service._id)}
-                                                        className={`${active ? 'bg-gray-100' : ''
-                                                            } w-full text-left px-4 py-2 text-sm font-bold text-red-500`}
-                                                    >
-                                                        Eliminar
-                                                    </button>
-                                                )}
-                                            </MenuItem>
-                                        </div>
-                                    </MenuItems>
+                                        <MenuItem w="full">
+                                            <ButtonUpdateService item={service} refreshservices={refreshServices} serviceTypeDefault={service?.serviceType}>
+
+                                                <button
+                                                    className="w-48 h-8 text-left px-3 py-0 text-sm font-bold hover:bg-gray-100"
+                                                >
+                                                    Editar
+                                                </button>
+                                            </ButtonUpdateService>
+                                        </MenuItem>
+                                        <MenuItem w="full">
+                                            <button
+                                                onClick={() => deleteItem(service._id)}
+                                                className="w-48 h-8 text-left px-3 py-0 text-sm text-red-600 font-bold hover:bg-gray-100"
+                                            >
+                                                Eliminar
+                                            </button>
+                                        </MenuItem>
+                                    </MenuList>
                                 </Menu>
                             </div>
                         </div>
                     </div>
                 </div>
-            ))}
-        </div>
+            ))
+            }
+        </div >
 
     )
 }

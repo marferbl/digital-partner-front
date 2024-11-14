@@ -47,7 +47,7 @@ export default function InitialPage() {
             <Image src={'/logo-d.png'} height={16} w={16} />
           </Center>
           <Stack spacing={{ base: '2', md: '3' }} textAlign="center">
-            <Heading size={{ base: 'xs', md: 'sm' }} mb={3} fontFamily={'Montserrat'}>
+            <Heading size={{ base: 'xs', md: 'sm' }} mb={3} fontFamily={'Roobert'}>
               {showLogin ? t('login') : t('register')} {/* Traducción del texto */}
             </Heading>
             <Text color="fg.muted">

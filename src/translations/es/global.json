@@ -114,5 +114,13 @@
     "projectManagement": "Gestión de proyectos",
     "officeSuites": "Suites ofimáticas",
     "communicationAndDesign": "Diseño & comunicación",
-    "ia": "IA"
+    "ia": "IA",
+    "rrhh": "RRHH",
+    "sellmarketing": "Ventas y marketing",
+    "finance": "Finanzas",
+    "logistics": "Cadena de suministro",
+    "it": "IT",
+    "data": "Data",
+    "law": "Legal",
+    "transversal": "Transversal"
 }

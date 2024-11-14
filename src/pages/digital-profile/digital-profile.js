@@ -6,7 +6,7 @@ const DigitalProfilePage = () => {
     return (
         <Box>
             <Center pt={10} flexDir='column'>
-                <Heading fontFamily={'Montserrat'} pb={1}>
+                <Heading fontFamily={'Roobert'} pb={1}>
                     Vista previa de tu digital profile
                 </Heading>
                 <DigitalProfileDoc />

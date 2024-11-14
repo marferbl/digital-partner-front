@@ -98,7 +98,7 @@ const MarketplaceSection = ({ term, filters, isCollapsed, isFavorites, setNumber
                     color='blue.500'
                     size='xl'
                 /></Center> : solutions && solutions.length === 0 ?
-                    <Center flexDir={'column'} w={'100%'} h='full' mt={10}>
+                    <Center flexDir={'column'} w={'100%'} h='full' mt={20}>
                         <Icon
                             fontSize={60}
                             _groupHover={{
@@ -107,7 +107,7 @@ const MarketplaceSection = ({ term, filters, isCollapsed, isFavorites, setNumber
                             color={COLORS.primary}
                             as={FiAirplay}
                         />
-                        <Text pt={6} color={COLORS.blue} fontSize='xl' textAlign='center'>No se encontraron resultados</Text>
+                        <Text pt={6} color={COLORS.blue} fontSize='xl' textAlign='center'>Parece que no tenemos nada interesante para ti...</Text>
                     </Center>
                     :
                     <SectionMarketPlace list={solutions} isFavorites={isFavorites} />

@@ -138,7 +138,7 @@ const FaqsPage = () => {
 
     return (
         <Box>
-            <Heading textAlign={'center'} fontFamily='Montserrat' fontWeight={'bold'} mt={10}>
+            <Heading textAlign={'center'} fontFamily='Roobert' fontWeight={'bold'} mt={10}>
                 Preguntas frecuentes
             </Heading>
             <Box p={10}>

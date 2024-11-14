@@ -14,7 +14,7 @@ const AboutPage = () => {
         <Box>
 
             <Box pb={10}>
-                <Heading textAlign={'center'} fontFamily='Montserrat' fontWeight={'bold'} mt={10}>
+                <Heading textAlign={'center'} fontFamily='Roobert' fontWeight={'bold'} mt={10}>
                     ¿Quiénes somos?
                 </Heading>
                 {/* <Center>

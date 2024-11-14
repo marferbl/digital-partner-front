@@ -9,13 +9,14 @@ const ProfileActionsDropdown = ({ children }) => {
 
     const LinkDropdown = ({ label, action, color }) => {
         return (
-            <MenuItem onClick={action} _hover={{ bg: 'gray.600' }} py={2} color={color || 'white'} h={'full'} fontSize={12} textAlign={'center'} width={'full'} fontWeight={'bold'} rounded='md'>{label}</MenuItem>
+            <MenuItem _focus={{ bg: 'transparent' }} onClick={action} _hover={{ bg: 'gray.600' }} py={3} color={color || 'white'} h={'full'} fontSize={12} textAlign={'center'} width={'full'} fontWeight={'bold'} rounded='md'>{label}</MenuItem>
         )
     }
 
     return (
         <div>
-            <Menu>
+            <Menu _focus={{ boxShadow: 'none' }}  // Remove focus outline
+            >
                 <MenuButton rounded={'xl'} p={2} w={150} justify={'space-between'} align={'center'}>
                     {children}
                 </MenuButton>

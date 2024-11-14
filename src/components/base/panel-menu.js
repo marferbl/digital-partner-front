@@ -56,6 +56,18 @@ export const HorizontalMenu = ({ onClose, isSidebarOpen, setIsSidebarOpen, ...re
   const [filteredApplications, setFilteredApplications] = useState([]);
   const APPLICATIONS = ['corporate', 'solutions', 'services', 'events', 'teamManagement', 'recruitment', 'licenses']
   const [selectedKey, setSelectedKey] = useState('profile');
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname.includes('solutions')) {
+      setSelectedKey('solutions');
+    } else if (location.pathname.includes('service')) {
+      setSelectedKey('service');
+    } else if (location.pathname.includes('events')) {
+      setSelectedKey('events');
+
+    }
+  }, [location])
 
   useEffect(() => {
     if (me && me.corporate) {

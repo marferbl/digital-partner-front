@@ -50,6 +50,16 @@ module.exports = {
       borderWidth: {
         '1': '1px', // This will create a `border-1` utility
       },
+      fontFamily: {
+        sans: ['Roobert', 'sans-serif'], // Set Roobert as the primary font for sans
+      },
+      fontWeight: {
+        regular: 300, // Normal weight to align with 'Regular'
+        light: 100,   // Light weight
+        medium: 500,  // Medium weight
+        semibold: 600, // Semi-bold weight
+        bold: 700     // Bold weight
+      },
     },
   },
   plugins: [],

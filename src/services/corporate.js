@@ -16,3 +16,4 @@ export const createCorporate = (body) => API.post(`/corporate/create`, body);
 export const removeCorporate = (id) => API.get(`/corporate/owner` + id);
 export const updateCorporate = (body) => API.put(`/corporate/update`, body);
 export const getApplications = (id) => API.get(`/corporate/applications/${id}`);
+export const getEntitiesByCorporate = () => API.get(`/corporate/entities-by-corporate`);

@@ -11,7 +11,7 @@ import { FiSearch } from "react-icons/fi";
 
 
 
-export const SoftwareSearcherInput = () => {
+export const SoftwareSearcherInput = ({ onChange, defaultClass }) => {
     const [searchTerm, setSearchTerm] = useState('');
     const navigate = useNavigate(); // Using useNavigate instead of useHistory
     const { t } = useTranslation('global');
@@ -38,9 +38,11 @@ export const SoftwareSearcherInput = () => {
         <form onSubmit={(e) => { e.preventDefault(); handleSearch(); }} className="flex items-center justify-center">
             <div className="relative w-60 lg:w-110">
                 <input
-                    className="bg-white bg-opacity-20 text-white backdrop-blur-md shadow-md text-sm lg:text-base w-full rounded-full px-4 py-3 pr-10 placeholder-gray-300 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className={defaultClass || "bg-white bg-opacity-20 font-light text-white backdrop-blur-md shadow-md text-sm lg:text-base w-full rounded-full px-4 py-3 pr-10 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"}
                     value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
+                    onChange={(e) => {
+                        setSearchTerm(e.target.value)
+                    }}
                     placeholder={t('iaHelpsYou')}
                     type="text"
                 />
@@ -50,7 +52,7 @@ export const SoftwareSearcherInput = () => {
                     aria-label="Search"
                 >
                     {/* Replace with your icon, for example Font Awesome's search icon */}
-                    <FiSearch color={DARK_COLORS.gridyellow} />
+                    <FiSearch color={defaultClass ? DARK_COLORS.darkgray : DARK_COLORS.gridyellow} onClick={() => onChange(searchTerm)} />
                 </button>
             </div>
         </form>

@@ -1,21 +1,4 @@
-import { useState, useContext } from "react";
-import {
-    Box,
-    Button,
-    Center,
-    Flex,
-    Grid,
-    Image,
-    GridItem,
-    Text,
-    useToast,
-} from "@chakra-ui/react";
-import { EditIcon } from "@chakra-ui/icons";
-import CardTemplate from "../base/card-template";
-import { EmptyState } from "../base/empty-state";
-import GradientButton from "../base/GradientButton";
-import { Link } from "react-router-dom";
-import { dateToString } from "../../utils/methods";
+
 export const ProfileUser = ({ me }) => {
 
     const data = [
@@ -76,61 +59,11 @@ export const ProfileUser = ({ me }) => {
     ]
 
     return (
-        <Box>
-            <Grid templateColumns="repeat(3, 1fr)" gap={6} justifyItems={'center'}>
-                <GridItem colSpan={1} rounded={'md'}>
-                    <Flex pb={4} flexDir='column' align={'center'} pt={3}>
-                        <Image rounded={"100%"} h={28} w={28} src={me?.avatar} />
-
-                    </Flex>
-                    <Box px={3}>
-                        <Box rounded={'lg'} w={'full'} mb={3}>
-                            {/* <Box py={3} px={4}>
-                                <Text fontSize={14} mr={2}> No tienes corporate.</Text>
-                                <Text fontSize={14} mt={2} mr={2}> No tienes perfil de freelance.</Text>
-                            </Box> */}
-                        </Box>
-                    </Box>
-                </GridItem>
-                <GridItem colSpan={2} w='full'>
-                    <Flex gap={1} flexDir='column' >
-                        <Text mt={2} fontSize={20} fontWeight='bold'> {me?.name}</Text>
-                        <Text mt={2} fontStyle='italic'>{me?.email}</Text>
-                        <Text>
-                            Miembro desde {dateToString(me?.createdAt)}
-                        </Text>
-                        {/* <Text>
-                            {me?.corporate ? `Perteneces a la corporate ${me?.corporate?.name}` : 'No perteneces a ninguna corporate'}
-                        </Text> */}
-                    </Flex>
-
-
-
-                    {/* <CardTemplate>
-                        <Text fontWeight="bold" mr={2} textAlign='center' borderBottomWidth={1}> Freelance</Text>
-                        <EmptyState>
-                            <Text mb={2} textAlign='center'> No tienes ninguna actividad de freelance</Text>
-                            <Link to='/private/freelance'>
-                                <GradientButton label='Ir a freelance' type='red' size={'sm'} />
-                            </Link>
-                        </EmptyState>
-                    </CardTemplate> */}
-                    <Box h={2}></Box>
-
-                </GridItem>
-                {/* <GridItem w='full' colSpan={1} px={5}>
-                    <CardTemplate>
-                        <Text fontWeight="bold" mr={2} textAlign='center' borderBottomWidth={1}> Selección</Text>
-                        <EmptyState>
-                            <Text mb={2} textAlign='center'> No tienes ninguna actividad de selección</Text>
-                            <Link to='/private/freelance'>
-                                <GradientButton label='Ir a selección' type='red' size={'sm'} />
-                            </Link>
-                        </EmptyState>
-                    </CardTemplate>
-                </GridItem> */}
-            </Grid>
-
-        </Box >
+        <>
+            <div className="flex items-center justify-center w-full min-h-80 rounded-lg" >
+                <span className='text-center font-light text-neutral w-1/2'>Bienvenido a tu panel. Por ahora no hay mucho que hacer por aquí…
+                    Pero no te preocupes, te dejamos nuestro logo para entretenerte:</span>
+            </div >
+        </>
     );
 }

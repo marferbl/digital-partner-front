@@ -36,7 +36,7 @@ const CardService = ({ item, isFavorites }) => {
                     </div>
                 </Link>
                 <div className="flex flex-col gap-1 items-start">
-                    <h3 className="text-3xs font-bold font-montserrat text-center flex justify-center items-center hover:underline">
+                    <h3 className="text-xs font-bold font-montserrat text-center flex justify-center items-center hover:underline">
                         <Link to={`/service/${item._id}`}>
                             {item.title || item.serviceType}
                         </Link>
