@@ -22,6 +22,7 @@ import { UserContext } from "../../context/userContext";
 import { COLORS } from "../../colors/colors";
 import { useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next'; // Importa useTranslation
+import ContentSwitch from "./ToggleInitial";
 
 export default function InitialPage() {
   const { t } = useTranslation("global"); // Inicializa la traducción
@@ -40,36 +41,47 @@ export default function InitialPage() {
   }, [isLoggedIn]);
 
   return (
-    <Container maxW="lg" px={{ base: '0', sm: '8' }}>
-      <Stack spacing="0">
-        <Stack spacing="6">
-          <Center>
-            <Image src={'/logo-d.png'} height={16} w={16} />
-          </Center>
-          <Stack spacing={{ base: '2', md: '3' }} textAlign="center">
-            <Heading size={{ base: 'xs', md: 'sm' }} mb={3} fontFamily={'Roobert'}>
-              {showLogin ? t('login') : t('register')} {/* Traducción del texto */}
-            </Heading>
-            <Text color="fg.muted">
-              {showLogin && t('noAccountPrompt')} {/* Traducción del texto */}
-              <Text as={'span'} fontWeight={'bold'} color={COLORS.secondary} cursor={'pointer'} _hover={{ textDecor: 'underline' }} onClick={() => setShowLogin(!showLogin)}>
-                {showLogin ? t('register') : t('backToLogin')} {/* Traducción del texto */}
-              </Text>
-            </Text>
-          </Stack>
-        </Stack>
-        <Box
-          py={{ base: '0', sm: '4' }}
-          px={{ base: '4', sm: '3' }}
-          bg={{ base: 'transparent', sm: 'white' }}
-          boxShadow={{ base: 'none', sm: 'md' }}
-          borderRadius={{ base: 'none', sm: 'xl' }}
+    <div className="flex items-center justify-center min-h-screen w-full">
+<div className="relative w-160 h-110 shadow-md rounded-lg bg-white/10 backdrop-blur-md border border-white/10">
+        {/* Toggle Indicator */}
+        <div
+          className={`absolute top-1 ${!showLogin ? "left-1" : "left-[calc(50%-4px)]"
+            } w-[calc(50%-4px)] h-[calc(100%-8px)] bg-black rounded-lg transition-all duration-300`}
+        />
+
+        {/* Left Content */}
+        <div
+          className={`absolute inset-y-0 left-0 w-1/2 flex items-center justify-center cursor-pointer text-gray-600
+            transition-all duration-300`}
+          onClick={() => setShowLogin(false)}
         >
-          <Stack spacing="6">
-            {showLogin ? <LoginForm /> : <RegisterForm />}
-          </Stack>
-        </Box>
-      </Stack>
-    </Container>
+          <p className="text-sm font-medium text-center" onClick={() => setShowLogin(false)}>
+            {showLogin ? (
+              <span className="text-8xl w-40 break-words">
+                Registro
+              </span>
+            ) : (
+              <RegisterForm />
+            )}
+          </p>
+        </div>
+
+        {/* Right Content */}
+        <div
+          className={`absolute inset-y-0 right-0 w-1/2 flex items-center justify-center cursor-pointer ${showLogin ? "text-gray-600" : "text-gray-800"
+            } transition-all duration-300`}
+          onClick={() => setShowLogin(true)}
+        >
+          <p className="text-sm font-medium text-center" onClick={() => setShowLogin(true)}>
+            {showLogin ? (
+              <LoginForm />
+            ) : (
+              <span className="text-8xl max-w-full break-words">Login</span>
+            )}
+          </p>
+        </div>
+      </div>
+    </div>
   );
-}
+
+};

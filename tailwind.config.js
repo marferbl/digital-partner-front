@@ -46,6 +46,9 @@ module.exports = {
         100: '28rem',
         110: '32rem',
         120: '36rem',
+        150: '42rem',
+        160: '48rem',
+        170: '52rem',
       },
       borderWidth: {
         '1': '1px', // This will create a `border-1` utility
@@ -60,6 +63,11 @@ module.exports = {
         semibold: 600, // Semi-bold weight
         bold: 700     // Bold weight
       },
+      height: {
+        100: '28rem',
+        110: '32rem',
+        120: '36rem',
+      }
     },
   },
   plugins: [],

@@ -7,9 +7,22 @@ import Navbar from "./components/base/navbar";
 function App() {
 
   return (
-    <Flex justify={"center"} align={"center"} minH={"100vh"} gap={5} bg={'#fcfdfe'}>
+    <Flex
+      justify={"center"}
+      align={"center"}
+      minH={"100vh"}
+      gap={5}
+      bg={"black"}
+      style={{
+        backgroundImage: "url('/logos/logo-static-yellow.png')",
+        backgroundSize: "contain",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
       <InitialPage />
     </Flex>
+
   );
 }
 
