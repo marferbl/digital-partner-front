@@ -3,7 +3,7 @@ import { Flex, Text, Box } from '@chakra-ui/react'
 
 export const DemoComponent = ({ solution }) => {
     return (
-        <Flex mt={6} p={5} rounded={"xl"} bgColor={"white"} w={"100%"} flexDir='column'>
+        <Flex mt={6} p={5} rounded={"xl"} w={"100%"} flexDir='column' color='white'>
             <Box>
                 <Text w='full'>Puedes solicitar una demo de la solución a través del correo electrónico:</Text>
             </Box>

@@ -34,7 +34,7 @@ function AddFavoriteButton({ entity }) {
 
     return (
 
-        <Flex gap={2} as={Button} variant={'ghost'} onClick={addFavoriteAction}>
+        <Flex gap={2} as={Button} variant={'ghost'} bg={'gray.200'} onClick={addFavoriteAction}>
             <Text>{isFavorite ? 'Eliminar de favoritos' : 'Añadir a favoritos'}</Text>
             {!isFavorite ? <FcLike size={20} /> : <FcDislike size={20} />}
         </Flex>

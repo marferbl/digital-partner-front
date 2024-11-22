@@ -2,7 +2,7 @@ import React from 'react'
 
 const WhyDigitalando = () => {
     return (
-        <div className="bg-black flex flex-col  pb-10 md:pb-20 font-bold text-gridyellow bg-darkgray pt-20">
+        <div className="bg-black flex flex-col  pb-10 md:pb-20 font-bold text-gridyellow bg-darkgray pt-20 italic">
             <div className="flex justify-end">
                 <span className="text-5xl sm:text-7xl md:text-8xl lg:text-11xl leading-none">¿POR QUÉ</span>
             </div>

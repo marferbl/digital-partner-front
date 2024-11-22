@@ -1,4 +1,4 @@
-import { Box, Text, Flex } from "@chakra-ui/react";
+import { Box, Text, Flex, Avatar } from "@chakra-ui/react";
 import React, { useState, useEffect, useContext } from "react";
 import { SolutionDetail } from "../../../components/corporate/solutions/solution-detail";
 import { getSolutionById } from "../../../services/solution";
@@ -11,9 +11,11 @@ import { Link, useParams } from "react-router-dom";
 import { UserContext } from "../../../context/userContext";
 import Navbar from "../../../components/base/navbar";
 import { IoChevronBack } from "react-icons/io5";
-import { COLORS } from "../../../colors/colors";
+import { COLORS, DARK_COLORS } from "../../../colors/colors";
 import AddFavoriteButton from "../../../components/favorites/add-favorite-button";
 import { isDemoSolutionId } from "../../../utils/methods";
+import GradientButton from "../../../components/base/GradientButton";
+import CustomButton from "../../../components/base/CustomButton";
 
 
 export const SolutionDetailPage = () => {
@@ -38,7 +40,12 @@ export const SolutionDetailPage = () => {
         }
     }, [solution]);
 
-
+    const ensureHTTPS = (url) => {
+        if (!url.startsWith('http://') && !url.startsWith('https://')) {
+            return `https://${url}`;
+        }
+        return url;
+    };
 
 
 
@@ -77,38 +84,60 @@ export const SolutionDetailPage = () => {
 
     return (
         <Box>
-            <Box mt={6} p={5} rounded={"xl"} bgColor={"white"} w={"100%"} minH={600}>
+            <Box p={5} bgColor={"black"} w={"100%"} minH={'100vh'} px={{ base: 0, md: 20, lg: 40 }}>
                 <Flex w='full' justify={'space-between'}>
-                    <Flex h={8} align={'center'} pr={3} onClick={() => window.history.back()} cursor={'pointer'} _hover={{ borderBottomWidth: 1 }} w={'fit-content'}>
+                    <Flex h={8} align={'center'} color='white' pr={3} onClick={() => window.history.back()} cursor={'pointer'} w={'fit-content'}>
                         <IoChevronBack size={20} />
-                        <Text ml={2} pt={-4} fontSize={16} fontWeight={'bold'}>Volver</Text>
+                        <Text ml={2} pt={-1} fontSize={16} fontWeight={'bold'}>Volver</Text>
                     </Flex>
                     {isLoggedIn && <AddFavoriteButton entity={solution} />}
                 </Flex>
-                { }
-                <Flex w='full' justify={'space-evenly'} mt={4}
-                    pb={5}
-                >
+                <Box mt={1} rounded={"xl"} w={"100%"} >
+                    {solution && <Flex justify={'space-between'} align='center' mt={5} w='full'>
+                        <Flex align={'center'} mt={5} gap={2}>
+                            <div className="h-full flex justify-center items-center">
+                                {solution.logo ? (
+                                    <img src={solution.logo} alt={solution.name} className="h-20 w-20 rounded-lg" />
+                                ) : (
+                                    <div className="h-10 w-10 rounded-lg bg-gray-300 flex items-center justify-center text-white">
+                                        {solution.name[0]}
+                                    </div>
+                                )}
+                            </div>                            <Box>
+                                <Text fontSize={{ base: 14, md: 30 }} whiteSpace='nowrap' color='white' fontWeight={300}>{solution.name}</Text>
+                                <Text fontSize={{ base: 8, md: 14 }} pl={1} color={DARK_COLORS.neutral} _hover={{ textDecor: 'underline' }}>
+                                    <a href={ensureHTTPS(solution.website)} target='_blank' fontSize='sm'>{'Ir a su web'}</a>
+                                </Text>
+                            </Box>
+                        </Flex>
+                        <div>
+                            <CustomButton text='Contactar' disabled={!isLoggedIn} showIcon={true} onClick={() => window.open(`mailto:${solution?.corporate?.superadmin?.email}`)} />
+                            {!isLoggedIn && <span class='text-sm text-neutral pl-3'>Debes iniciar sesión</span>}
+                        </div>
+                    </Flex>}
+
+                </Box>
+                <Flex w='full' justify={'space-evenly'} mt={{ base: 4, lg: 20 }} pb={5} px={{ base: 0, md: 10, lg: 20 }}>
                     {LINKS.map(link => (
                         <Text
                             key={link.label}
                             textAlign='center'
-                            borderWidth={1}
+                            borderWidth={label === link.label ? 1 : 0}
                             w={180}
                             py={1}
                             px={2}
-                            fontSize={{base: 6, md: 13}}
-                            rounded='md'
-                            bgColor={label === link.label ? COLORS.primary : 'white'}
+                            rounded='xl'
+                            fontSize={{ base: 6, md: 13 }}
+                            bgColor={label === link.label ? 'white' : 'transparent'}
                             onClick={() => renderComponent(link.label)}
-                            color={label === link.label ? 'white' : 'black'}
+                            color={label === link.label ? 'black' : 'white'}
                             cursor='pointer'
                         >
                             {link.label}
                         </Text>
                     ))}
                 </Flex>
-                {isLoggedIn || isDemoSolution || label === 'Info' ? <Box mt={4} px={{base: 2, md: 14}} flex={1}>
+                {isLoggedIn || isDemoSolution || label === 'Info' ? <Box mt={4} px={{ base: 2, md: 14 }} flex={1}>
                     {selectedComponent}
                 </Box> : <Flex w='full' justify={'center'} align={'center'} flexDir='column' mt={4} >
                     <Text mt={6} fontSize='xl' fontWeight='bold' color={'gray.400'}>Debes iniciar sesión para ver más detalles</Text>

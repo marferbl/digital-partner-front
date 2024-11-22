@@ -81,23 +81,23 @@ const LoginForm = () => {
 
   return (
     <Box py={0} rounded={"xl"}>
-      <Text fontSize="4xl" fontWeight="light" textAlign="center" color='white'>
+      <Text fontSize="5xl" fontWeight="light" textAlign="center" color='white'>
         {t("¡Hola de nuevo!")}
       </Text>
       <Text fontWeight="light" textAlign="center" color={DARK_COLORS.neutral} mb={5}>
         {t("Introduce tus datos para acceder a cuenta")}
       </Text>
-      <FormControl isRequired my={5}>
-        <FormLabel color={'white'} htmlFor="email">{t("emailLabel")}</FormLabel> {/* Traducción del texto */}
+      <FormControl my={5}>
+        <FormLabel color={'white'} htmlFor="email">{t("Email")}</FormLabel> {/* Traducción del texto */}
         <Input
           id="email"
-          placeholder={t("emailPlaceholder")}
+          placeholder={t("nombre@digitalando.com")}
           onChange={(e) => setEmail(e.target.value)}
           value={email}
           onKeyDown={handleKeyPress}
         />
       </FormControl>
-      <FormControl isRequired my={5}>
+      <FormControl my={5}>
         <FormLabel color={'white'} htmlFor="password">{t("passwordLabel")}</FormLabel> {/* Traducción del texto */}
         <Input
           id="password"

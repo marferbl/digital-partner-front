@@ -1,14 +1,24 @@
-/* Custom arrow styles */
-.slick-prev,
-.slick-next {
-    z-index: 1;
-    color: #100e0d;
-    /* Example: Tomato color */
+/* Custom styles for slick dots */
+.slick-dots li button:before {
+    color: white;
+    /* Change dots color */
 }
 
-.slick-prev::before,
-.slick-next::before {
-    font-size: 30px;
-    color: #100e0d;
-    /* Change arrow color here */
+.slick-dots li.slick-active button:before {
+    color: white;
+    /* Change active dot color */
+}
+
+/* Custom styles for slick arrows */
+.slick-prev:before,
+.slick-next:before {
+    color: white;
+    /* Change arrows color */
+}
+
+/* Optional: Customize the arrows container to be more visible */
+.slick-prev,
+.slick-next {
+    z-index: 10;
+    /* Ensure they are above the images */
 }

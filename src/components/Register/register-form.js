@@ -88,13 +88,13 @@ const RegisterForm = () => {
 
   return (
     <Box py={0} rounded={"xl"} fontFamily='Roobert' fontWeight={'light'}>
-      <Text fontSize="4xl" fontWeight="light" textAlign="center" color='white'>
+      <Text fontSize="5xl" fontWeight="light" textAlign="center" color='white'>
         {t("¡Bienvenido!")}
       </Text>
       <Text fontWeight="light" textAlign="center" color={DARK_COLORS.neutral} mb={5}>
         {t("Introduce tus datos para crear la cuenta")}
       </Text>
-      <FormControl isRequired my={5}>
+      <FormControl my={5}>
         <FormLabel color='white' htmlFor="name">{t("nameLabel")}</FormLabel> {/* Traducción del texto */}
         <Input
           id="name"
@@ -103,17 +103,17 @@ const RegisterForm = () => {
           value={name}
         />
       </FormControl>
-      <FormControl isRequired my={5}>
-        <FormLabel color='white' htmlFor="email">{t("emailLabel")}</FormLabel> {/* Traducción del texto */}
+      <FormControl my={5}>
+        <FormLabel color='white' htmlFor="email">{t("Email")}</FormLabel> {/* Traducción del texto */}
         <Input
           id="email"
-          placeholder={t("emailPlaceholder")}
+          placeholder={t("nombre@digitalando.com")}
           onChange={(e) => setEmail(e.target.value)}
           value={email}
         />
       </FormControl>
 
-      <FormControl isRequired my={5}>
+      <FormControl my={5}>
         <FormLabel color='white' htmlFor="password">{t("passwordLabel")}</FormLabel> {/* Traducción del texto */}
         <InputGroup size="md">
           <Input

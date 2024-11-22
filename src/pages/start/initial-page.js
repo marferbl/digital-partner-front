@@ -1,19 +1,3 @@
-import {
-  Box,
-  Flex,
-  Stack,
-  Heading,
-  Text,
-  Container,
-  Image,
-  Button,
-  SimpleGrid,
-  Avatar,
-  AvatarGroup,
-  Center,
-  IconProps,
-  Icon,
-} from "@chakra-ui/react";
 import LoginForm from "../../components/Login/login-form";
 import { useContext, useEffect, useState } from "react";
 import RegisterForm from "../../components/Register/register-form";
@@ -23,6 +7,7 @@ import { COLORS } from "../../colors/colors";
 import { useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next'; // Importa useTranslation
 import ContentSwitch from "./ToggleInitial";
+import { IoIosArrowRoundForward } from "react-icons/io";
 
 export default function InitialPage() {
   const { t } = useTranslation("global"); // Inicializa la traducción
@@ -42,24 +27,29 @@ export default function InitialPage() {
 
   return (
     <div className="flex items-center justify-center min-h-screen w-full">
-<div className="relative w-160 h-110 shadow-md rounded-lg bg-white/10 backdrop-blur-md border border-white/10">
+      <div className="relative w-170 h-120 shadow-md rounded-2xl bg-white/10  backdrop-blur-xl border border-transparent">
         {/* Toggle Indicator */}
         <div
           className={`absolute top-1 ${!showLogin ? "left-1" : "left-[calc(50%-4px)]"
-            } w-[calc(50%-4px)] h-[calc(100%-8px)] bg-black rounded-lg transition-all duration-300`}
+            } w-[calc(50%-4px)] h-[calc(100%-8px)] bg-neutralblack rounded-xl transition-all duration-300`}
         />
 
         {/* Left Content */}
         <div
-          className={`absolute inset-y-0 left-0 w-1/2 flex items-center justify-center cursor-pointer text-gray-600
+          className={`absolute inset-y-0 left-0 w-1/2 flex ${showLogin ? 'items-end justify-start' : 'items-center justify-center'}  text-gray-600
             transition-all duration-300`}
-          onClick={() => setShowLogin(false)}
         >
-          <p className="text-sm font-medium text-center" onClick={() => setShowLogin(false)}>
+          <p className="text-sm font-medium text-center cursor-pointer " onClick={() => setShowLogin(false)}>
             {showLogin ? (
-              <span className="text-8xl w-40 break-words">
-                Registro
-              </span>
+              <div className="flex flex-col items-start p-8">
+                <span className="text-neutral">
+                  ¿No tienes cuenta?
+                </span>
+                <span className="text-xl text-white flex">
+                  Crea una ahora
+                  <IoIosArrowRoundForward size={30} />
+                </span>
+              </div>
             ) : (
               <RegisterForm />
             )}
@@ -68,15 +58,22 @@ export default function InitialPage() {
 
         {/* Right Content */}
         <div
-          className={`absolute inset-y-0 right-0 w-1/2 flex items-center justify-center cursor-pointer ${showLogin ? "text-gray-600" : "text-gray-800"
+          className={`absolute inset-y-0 right-0 w-1/2 flex ${!showLogin ? 'items-end justify-start' : 'items-center justify-center'}  ${showLogin ? "text-gray-600" : "text-gray-800"
             } transition-all duration-300`}
-          onClick={() => setShowLogin(true)}
         >
-          <p className="text-sm font-medium text-center" onClick={() => setShowLogin(true)}>
+          <p className="text-sm font-medium text-center cursor-pointer" onClick={() => setShowLogin(true)}>
             {showLogin ? (
               <LoginForm />
             ) : (
-              <span className="text-8xl max-w-full break-words">Login</span>
+              <div className="flex flex-col items-start p-8">
+                <span className="text-neutral">
+                  ¿Ya tienes cuenta?
+                </span>
+                <span className="text-xl text-white flex">
+                  Inicia sesión
+                  <IoIosArrowRoundForward size={30} />
+                </span>
+              </div>
             )}
           </p>
         </div>

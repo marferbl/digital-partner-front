@@ -25,7 +25,7 @@ export const PartnerComponent = ({ isDemo }) => {
     return (
         <Box>
             <Box>
-                {partnerServices.length ? <ServicesTable services={partnerServices} solutionView={true} /> : <Text>Sin servicios dados de alta</Text>}
+                {partnerServices.length ? <ServicesTable services={partnerServices} solutionView={true} /> : <Text color='white'>Sin servicios dados de alta</Text>}
             </Box>
         </Box>
 

@@ -40,7 +40,7 @@ export const CertificationComponent = ({ solution }) => {
 
     return (
         <Box>
-            <Flex justify='space-between' align='center'>
+            <Flex justify='space-between' align='center' color='white'>
                 <Text fontSize='xl' fontWeight='bold'>Certificaciones</Text>
                 {isAdminWatchingSolution() && <ButtonCreateCertification refreshCertifications={getCertifications} id={id} />}
             </Flex>
@@ -59,7 +59,7 @@ export const CertificationComponent = ({ solution }) => {
                         }
                         )
                     }
-                </Box> : <Text>Sin certificaciones dadas de alta</Text>}
+                </Box> : <Text color='white'>Sin certificaciones dadas de alta</Text>}
         </Box>
 
     )
