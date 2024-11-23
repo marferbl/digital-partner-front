@@ -10,6 +10,10 @@ import ImageGallerySlider from "../../base/GallerySlider";
 
 export const SolutionDetail = ({ solution }) => {
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     const KEYS_FEATURES = {
         rrhh: 'RRHH',
         sellmarketing: 'Ventas y marketing',

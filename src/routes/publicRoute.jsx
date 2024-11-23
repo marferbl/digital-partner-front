@@ -10,6 +10,8 @@ const PublicRoute = () => {
             <div>
                 <Outlet />
             </div>
+            <FooterLanding />
+
         </div>
     )
 }
