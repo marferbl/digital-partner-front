@@ -27,7 +27,6 @@ const FavoritePage = () => {
 
     return (
         <>
-            {!isInPanel() && <Navbar />}
             <Box mt={6} p={0} rounded={"xl"} bgColor={"white"} w={"100%"} minH='2xl'>
                 <Searcher filters={filters} isFavorites={true} />
             </Box>

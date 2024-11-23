@@ -16,6 +16,9 @@ import { useNavigate } from "react-router-dom";
 import { COLORS } from "../../colors/colors";
 import ChangePassword from "./Change-password";
 import { useTranslation } from 'react-i18next'; // Importa useTranslation
+import { DARK_COLORS } from "../../colors/colors";
+import { IoIosArrowRoundForward } from 'react-icons/io';
+
 
 const LoginForm = () => {
   const { t } = useTranslation("global"); // Inicializa la traducción
@@ -77,19 +80,25 @@ const LoginForm = () => {
   };
 
   return (
-    <Box py={0} rounded={"xl"} bgColor={"white"}>
-      <FormControl isRequired my={5}>
-        <FormLabel htmlFor="email">{t("emailLabel")}</FormLabel> {/* Traducción del texto */}
+    <Box py={0} rounded={"xl"}>
+      <Text fontSize="5xl" fontWeight="light" textAlign="center" color='white'>
+        {t("¡Hola de nuevo!")}
+      </Text>
+      <Text fontWeight="light" textAlign="center" color={DARK_COLORS.neutral} mb={5}>
+        {t("Introduce tus datos para acceder a cuenta")}
+      </Text>
+      <FormControl my={5}>
+        <FormLabel color={'white'} htmlFor="email">{t("Email")}</FormLabel> {/* Traducción del texto */}
         <Input
           id="email"
-          placeholder={t("emailPlaceholder")}
+          placeholder={t("nombre@digitalando.com")}
           onChange={(e) => setEmail(e.target.value)}
           value={email}
           onKeyDown={handleKeyPress}
         />
       </FormControl>
-      <FormControl isRequired my={5}>
-        <FormLabel htmlFor="password">{t("passwordLabel")}</FormLabel> {/* Traducción del texto */}
+      <FormControl my={5}>
+        <FormLabel color={'white'} htmlFor="password">{t("passwordLabel")}</FormLabel> {/* Traducción del texto */}
         <Input
           id="password"
           placeholder={t("passwordPlaceholder")}
@@ -103,14 +112,15 @@ const LoginForm = () => {
       <Button
         ref={buttonRef} // Assign a ref to the button
         mt={4}
-        bg={COLORS.primary}
-        color={'white'}
+        bg={DARK_COLORS.gridyellow}
+        color={'black'}
         type="submit"
         width={"100%"}
         onClick={handleSubmit}
         isLoading={loading}
       >
         {t("loginButton")} {/* Traducción del botón */}
+        <IoIosArrowRoundForward size={30} />
       </Button>
 
       {emptyFieldMessage && (

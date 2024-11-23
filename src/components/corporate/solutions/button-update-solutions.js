@@ -228,9 +228,9 @@ export const ButtonUpdateSolution = ({ children, refreshSolutions, disabled, sol
                             <Button variant='ghost' mr={3} onClick={handlePrevStep}>Anterior</Button>
                         )}
                         {currentStep === 1 ? (
-                            <Button onClick={handleNextStep} colorScheme='teal'>Siguiente</Button>
+                            <Button onClick={handleNextStep} colorScheme='gray'>Siguiente</Button>
                         ) : (
-                            <Button onClick={create} colorScheme='teal'>Confirmar</Button>
+                            <Button onClick={create} colorScheme='gray'>Confirmar</Button>
                         )}
                     </ModalFooter>
                 </ModalContent>

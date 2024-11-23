@@ -1,45 +1,27 @@
-'use client'
-
-import {
-  Box,
-  Heading,
-  Container,
-  Text,
-  Button,
-  Stack,
-  Icon,
-  useColorModeValue,
-  createIcon,
-  Center,
-} from '@chakra-ui/react'
-import { COLORS } from '../../../colors/colors'
 import { useTranslation } from 'react-i18next'
+import { SoftwareSearcherInput } from '../software-searcher-input'
+import backgroundVideo from '../../../videos/header-logo.mp4'
+
 
 export default function Hero() {
   const { t, i18n } = useTranslation("global")
 
-
   return (
-    <>
-      <Container maxW={'5xl'}>
-        <Stack
-          as={Box}
-          textAlign={'center'}
-          spacing={{ base: 8, md: 14 }}
-          pt={{ base: 20, md: 24 }}
-          pb={{ base: 8, md: 10 }}>
-          <Heading
-            fontWeight={'800'}
-            fontSize={{ base: '3xl', sm: '4xl', md: '6xl' }}
-            lineHeight={'110%'}
-          >
-            {t('discoverCompareTransform')} <br />
-            <Text as={'span'} fontSize={{ base: '2xl', sm: '3xl', md: '5xl' }} fonts color={COLORS.secondary}>
-              {t('welcomeToDigitalCommunity')}
-            </Text>
-          </Heading>
-        </Stack>
-      </Container>
-    </>
+    <div className="relative h-screen text-white overflow-hidden bg-black">
+      <div className="absolute inset-0">
+        <video
+          src={backgroundVideo}
+          autoPlay
+          loop
+          muted
+          className="object-cover object-center w-full h-1/2 md:h-5/6"
+        />
+        <div className="absolute inset-0 bg-black opacity-50"></div>
+      </div>
+
+      <div className="relative z-10 flex flex-col justify-center items-center h-full text-center mt-6">
+        <SoftwareSearcherInput />
+      </div>
+    </div>
   )
 }

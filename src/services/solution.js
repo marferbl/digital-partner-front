@@ -19,3 +19,4 @@ export const deleteSolution = (id) => API.delete(`/solution/delete/${id}`);
 export const getAllSolutions = (queryParams) => {
   return API.get(`/solution/all`, { params: queryParams });
 };
+export const getTopSolutions = () => API.get(`/solution/top-solutions`);

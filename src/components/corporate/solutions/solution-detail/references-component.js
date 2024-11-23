@@ -2,7 +2,7 @@ import React from 'react'
 
 export const ReferencesComponent = () => {
     return (
-        <div>Próximamente</div>
+        <div class='text-white'>Próximamente</div>
 
     )
 }

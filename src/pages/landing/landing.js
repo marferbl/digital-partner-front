@@ -1,26 +1,32 @@
 import React from "react";
-import Features from "../../components/base/landing/features";
-import FooterLanding from "../../components/base/landing/footer";
-import FormDemo from "../../components/base/landing/form";
+
 import Hero from "../../components/base/landing/hero";
-import Testimonials from "../../components/base/landing//testimonials";
 import Navbar from "../../components/base/navbar";
-import MarketplaceSection from "../../components/base/landing/marketplacesection";
-import { PhotoFullScreen } from "../../components/base/landing/photo-fullscreen";
-import SoftwareSearcher from "../../components/base/landing/searcher-software";
-import Quiz from "../../components/quiz/Quiz";
-import DemoSection from "../../components/base/landing/demosection";
+
+import SecondHero from "../../components/base/landing/second-hero";
+import WelcomePart from "../../components/base/landing/welcome-part";
+import DiscoverLanding from "../../components/base/landing/discover";
+import { Box } from "@chakra-ui/react";
+import BlogListLanding from "../../components/base/landing/blog-list-landing";
+import TopSolutions from "../../components/base/landing/top-solutions";
+import TopServices from "../../components/base/landing/top-services";
+import WhyDigitalando from "../../components/base/landing/why-digitalando";
+import FeaturesDigitalando from "../../components/base/landing/features-digitalando";
 
 const LandingPage = () => {
   return (
     <>
-      <Navbar />
-      <Hero />
-      <Quiz />
-      <DemoSection />
-      <Features />
-      <PhotoFullScreen />
-      <FooterLanding />
+      <Box overflowX={'hidden'} position='relative' bg='black'>
+        <Hero />
+        <SecondHero />
+        <WelcomePart />
+        <DiscoverLanding />
+        <BlogListLanding />
+        <TopSolutions />
+        <TopServices />
+        <WhyDigitalando />
+        <FeaturesDigitalando />
+      </Box>
     </>
   );
 };

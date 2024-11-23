@@ -34,7 +34,7 @@ export const CardSolutionsCorporate = () => {
                 </EmptyState> : solutions.map((solution) => {
                     return (
                         <Flex key={solution._id} p={2} rounded={"xl"} bgColor={"white"} w={"100%"} justifyContent={"space-between"}>
-                            <Link to={`/private/solution/${solution?._id}`}>
+                            <Link to={`/solution/${solution?._id}`}>
                                 <Text fontWeight={'bold'} fontSize={14} _hover={{textDecor:'underline'}}>
                                     {solution.name}
                                 </Text>

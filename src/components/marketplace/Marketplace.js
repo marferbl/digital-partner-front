@@ -13,7 +13,7 @@ export const Marketplace = () => {
   }, [])
 
   return <Box p={5} >
-    <Heading textAlign={'center'} fontFamily={'Montserrat'} fontSize={30}>
+    <Heading textAlign={'center'} fontFamily={'Roobert'} fontSize={30}>
       Marketplace
     </Heading>
     <Center>

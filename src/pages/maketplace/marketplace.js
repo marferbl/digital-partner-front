@@ -4,6 +4,5 @@ import { Marketplace } from "../../components/marketplace/Marketplace";
 
 export const MarketplacePage = () => {
   return <div>
-    <Navbar />
     <Marketplace /></div>;
 };

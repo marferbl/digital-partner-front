@@ -2,9 +2,10 @@ import { extendTheme } from "@chakra-ui/react";
 
 const theme = extendTheme({
   fonts: {
-    body: `'Montserrat', regular`,
+    body: `'Roobert', regular`,
+    heading: `'Roobert', bold`,
   },
-  
+
 });
 
 export default theme;

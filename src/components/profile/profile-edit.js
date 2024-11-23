@@ -15,6 +15,7 @@ import axios from "axios";
 import { ImageUpload } from "./image-upload";
 import { UserContext } from "../../context/userContext";
 import EditPassword from "../Login/Edit-password";
+import { DARK_COLORS } from "../../colors/colors";
 
 export const ProfileEdit = ({ me, refreshData }) => {
     const toast = useToast()
@@ -67,7 +68,7 @@ export const ProfileEdit = ({ me, refreshData }) => {
 
     return (
         <Box>
-            <Box display={'flex'} alignItems={'center'} flexDir={'column'}>
+            <Box display={'flex'} alignItems={'center'} flexDir={'column'} color={DARK_COLORS.neutral} p={4}>
                 <Center w={"100%"} mb={10}>
                     <Image rounded={"xl"} h={100} src={me?.avatar} />
                 </Center>

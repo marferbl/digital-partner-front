@@ -1,79 +1,61 @@
 // CardSoftware.jsx
 
 import React from 'react';
-import { Box, Image, Heading, Text, Button, Flex, Avatar, Center } from '@chakra-ui/react';
-import { Link } from 'react-router-dom'
-import { useContext } from 'react';
-import { UserContext } from '../../context/userContext';
-import { COLORS } from '../../colors/colors';
+import { Link } from 'react-router-dom';
 import { FcLike } from 'react-icons/fc';
-import { FiRepeat } from 'react-icons/fi';
-import { Tooltip } from 'react-tooltip';
+import GalleryPhotoCard from './gallery-photo-card';
+import LabelTag from '../base/label-tag';
+import { useTranslation } from 'react-i18next';
+
 
 const CardService = ({ item, isFavorites }) => {
-    const { isLoggedIn } = useContext(UserContext);
+
+    const { t } = useTranslation('global');
 
 
-    const getLabelText = (serviceType) => {
-        if (item.title) {
-            return item.title;
-        }
-        const label = {
-            'partner': 'Partner de ' + (item.solutionId?.name || item.otherSolution),
-            'development': 'Desarrollo por ' + item.corporate?.name,
-            'renting': 'Renting por ' + item.corporate?.name,
-            'training': 'Training por' + item.corporate?.name,
-            'helps': 'Ayudas por ' + item.corporate?.name,
-        }
-        return label[serviceType];
-    }
 
     return (
-        <Box w='full' borderWidth="1px" borderRadius="lg" overflow="hidden" background={'rgba(255, 255, 255, 0.2)'} backdropBlur={'2xl'} boxShadow={'xl'}>
-            {isFavorites && <Flex justifyContent="end" pr={1} alignItems="center" h={6} >
-                <FcLike size={20} color={COLORS.primary} />
-            </Flex>}
-            <Center height={20} >
-                <Link to={isLoggedIn ? `/private/service/${item._id}` : `/service/${item._id}`}>
-                    <Center h='full'><Avatar src={item?.logo} size="md" name={item?.corporate?.name} /> </Center>
+        <div className="w-full border border-gray-200 rounded-2xl overflow-hidden bg-white backdrop-blur-2xl shadow-xl p-2">
+
+            {isFavorites && (
+                <div className="flex justify-end pr-1 items-center h-6">
+                    <FcLike size={20} className="text-primary" />
+                </div>
+            )}
+
+            <div className="flex px-4 items-center gap-2 pt-2">
+                <Link to={`/service/${item._id}`}>
+                    <div className="h-full flex justify-center items-center">
+                        {item.logo ? (
+                            <img src={item.logo} alt={item.name} className="h-10 w-10 rounded-lg" />
+                        ) : (
+                            <div className="h-10 w-10 rounded-lg bg-gray-300 flex items-center justify-center text-white uppercase">
+                                {item.title ? [0] : item.serviceType[0]}
+                            </div>
+                        )}
+                    </div>
                 </Link>
-            </Center>
-            <Box p="1">
-                <Box d="flex" alignItems="baseline">
-                    <Heading as="p" size="xs" textAlign={'center'} _hover={{ textDecor: 'underline' }} fontFamily='Montserrat' fontWeight={'bold'} h={10} display='flex' justifyContent={'center'} alignItems={'center'}>
-                        <Link to={isLoggedIn ? `/private/service/${item._id}` : `/service/${item._id}`}>
-                            {getLabelText(item.serviceType)}
+                <div className="flex flex-col gap-1 items-start">
+                    <h3 className="text-xs font-bold font-montserrat text-center flex justify-center items-center hover:underline">
+                        <Link to={`/service/${item._id}`}>
+                            {item.title || item.serviceType}
                         </Link>
-                    </Heading>
-                    <Text textAlign={'center'} fontSize={10} h={6}>
-                        {item.corporate?.name === 'Digitalando' ? '' : item.corporate?.name}
-                    </Text>
-                </Box>
-                <Flex h={14} mt={3} px={{ base: 3, md: 5, '2xl': 12 }} fontSize={10} mb={4}>
-                    <Box
-                        h={14}
-                        overflow="hidden"
-                        textOverflow="ellipsis"
-                        width="100%" // You can adjust this width according to your layout
-                        textAlign="center"
-                        style={{
-                            display: '-webkit-box',
-                            WebkitBoxOrient: 'vertical',
-                            WebkitLineClamp: 3,
-                            whiteSpace: 'normal',
-                        }}
-                    >
-                        {item.description}
-                    </Box>
-                </Flex>
-                <Flex justify={'center'} p={2}>
-                    <FiRepeat className='service-tooltip' />
-                    <Tooltip anchorSelect=".service-tooltip" place="bottom">
-                        Servicio
-                    </Tooltip>
-                </Flex>
-            </Box>
-        </Box >
+                    </h3>
+                    <span className="text-xs text-darkgray text-center">Servicio</span>
+                </div>
+            </div>
+
+            <div className="w-full p-4 pb-1">
+                <GalleryPhotoCard gallery={item.gallery} />
+            </div>
+
+            <div className="p-1  text-neutral">
+                <div className="h-14 mt-3 px-3 text-xxs mb-4 overflow-hidden text-ellipsis text-left">
+                    <p className="line-clamp-3">{item.description}</p>
+                </div>
+                <LabelTag label={t(item.serviceType || 'Servicio')} />
+            </div>
+        </div>
     );
 };
 

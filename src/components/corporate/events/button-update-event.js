@@ -76,7 +76,6 @@ export const ButtonUpdateEvent = ({ children, item, refreshEvents }) => {
     // Handle form submission
     const create = async () => {
         const id = item._id;
-        console.log(address, coordinates)
 
         const config = {
             name,
@@ -107,7 +106,6 @@ export const ButtonUpdateEvent = ({ children, item, refreshEvents }) => {
         setStep(1); // Reset step to 1 when modal is closed
     };
 
-    console.log(coordinates, address)
 
     return (
         <>
@@ -242,14 +240,14 @@ export const ButtonUpdateEvent = ({ children, item, refreshEvents }) => {
                                 <Button variant='ghost' mr={3} onClick={closeModal}>
                                     Cancelar
                                 </Button>
-                                <Button colorScheme='teal' onClick={() => setStep(2)}>Siguiente</Button>
+                                <Button colorScheme='gray' onClick={() => setStep(2)}>Siguiente</Button>
                             </>
                         ) : (
                             <>
                                 <Button variant='ghost' mr={3} onClick={() => setStep(1)}>
                                     Volver
                                 </Button>
-                                <Button colorScheme='teal' onClick={create}>Confirmar</Button>
+                                <Button colorScheme='gray' onClick={create}>Confirmar</Button>
                             </>
                         )}
                     </ModalFooter>

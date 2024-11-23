@@ -21,8 +21,7 @@ export const ProfileCorporatePage = () => {
     };
 
     return (
-        <Box mt={6} p={5} rounded={"xl"} bgColor={"white"} w={"100%"} minH={400}>
-            <Text fontSize={22} mb={5} pb={3} borderBottomWidth={1}>Corporate</Text>
+        <Box mt={6} p={5} rounded={"xl"}  w={"100%"} minH={400}>
             {!corporate ? <EmptyCorporateState refreshCorporate={getMyCorporate} /> : <CorporateProfile corporate={corporate} />}
         </Box>
     )

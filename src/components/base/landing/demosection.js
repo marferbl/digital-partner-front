@@ -15,7 +15,7 @@ const DemoSection = () => {
             bg={'gray.100'}
             mb={{ base: 6, md: 16 }}
         >
-            <Text textAlign={'center'} as="h2" fontSize={{ base: 18, md: 36 }} mb="10" fontFamily={'Montserrat'} fontWeight="bold" w={{ base: 200, md: 680 }}>
+            <Text textAlign={'center'} as="h2" fontSize={{ base: 18, md: 36 }} mb="10" fontFamily={'Roobert'} fontWeight="bold" w={{ base: 200, md: 680 }}>
                 <Typewriter
                     words={[t('tryDigitalandoOffer'), t('letsGo')]} // Usando la instancia de traducción
                     loop={0}
