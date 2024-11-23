@@ -12,6 +12,7 @@ import TopSolutions from "../../components/base/landing/top-solutions";
 import TopServices from "../../components/base/landing/top-services";
 import WhyDigitalando from "../../components/base/landing/why-digitalando";
 import FeaturesDigitalando from "../../components/base/landing/features-digitalando";
+import FooterLanding from "../../components/base/landing/footer";
 
 const LandingPage = () => {
   return (
@@ -26,6 +27,8 @@ const LandingPage = () => {
         <TopServices />
         <WhyDigitalando />
         <FeaturesDigitalando />
+        <FooterLanding />
+
       </Box>
     </>
   );
