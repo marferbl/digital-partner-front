@@ -19,6 +19,10 @@ const ServiceDetails = ({ service }) => {
     const { t } = useTranslation("global");
 
     useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
+    useEffect(() => {
         service && getServices()
     }, [service])
 

@@ -27,7 +27,6 @@ const LandingPage = () => {
         <TopServices />
         <WhyDigitalando />
         <FeaturesDigitalando />
-        <FooterLanding />
 
       </Box>
     </>
