@@ -1,5 +1,6 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
+import FooterLanding from '../components/base/landing/footer'
 import Navbar from '../components/base/navbar'
 
 const PublicRoute = () => {
@@ -9,6 +10,7 @@ const PublicRoute = () => {
             <div>
                 <Outlet />
             </div>
+            <FooterLanding />
         </div>
     )
 }
