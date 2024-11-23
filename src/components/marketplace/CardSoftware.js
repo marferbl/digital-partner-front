@@ -1,65 +1,62 @@
 // CardSoftware.jsx
 
 import React from 'react';
-import { Box, Heading, Text, Button, Flex, Avatar, Center } from '@chakra-ui/react';
-import { Link } from 'react-router-dom'
-import { useContext } from 'react';
-import { UserContext } from '../../context/userContext';
-import { COLORS } from '../../colors/colors';
+import { Link } from 'react-router-dom';
 import { FcLike } from 'react-icons/fc';
-import { FiTool, FiRepeat } from "react-icons/fi";
+import { FiTool } from "react-icons/fi";
 import { Tooltip } from 'react-tooltip';
-
+import GalleryPhotoCard from './gallery-photo-card';
+import LabelTag from '../base/label-tag';
+import { useTranslation } from 'react-i18next';
+import TagList from './tags-list';
 
 const CardSoftware = ({ _id, name, logo, description, lineType, isFavorites, ...rest }) => {
-    const { isLoggedIn } = useContext(UserContext);
+    const { gallery, specifyFeatures } = rest;
+
+
 
     return (
-        <Box w='full' borderWidth="1px" borderRadius="lg" overflow="hidden" background={'rgba(255, 255, 255, 0.2)'} backdropBlur={'2xl'} boxShadow={'xl'}>
+        <div className="w-full border border-gray-200 rounded-2xl overflow-hidden bg-white backdrop-blur-2xl shadow-xl p-2">
 
-            {isFavorites && <Flex justifyContent="end" pr={1} alignItems="center" h={6} >
-                <FcLike size={20} color={COLORS.primary} />
-            </Flex>}
+            {isFavorites && (
+                <div className="flex justify-end pr-1 items-center h-6">
+                    <FcLike size={20} className="text-primary" />
+                </div>
+            )}
 
-            <Center height={20} >
-                {lineType === 'solutions' && <Link to={isLoggedIn ? `/private/solution/${_id}` : `/solution/${_id}`}>
-                    <Center h='full'><Avatar size="md" name={name} src={logo} /> </Center>
-                    {/* } */}
-                </Link>}
-            </Center>
-            <Box p="1">
-                <Box d="flex" alignItems="baseline">
-                    <Heading as="p" size="sm" textAlign={'center'} _hover={{ textDecor: 'underline' }} fontFamily='Montserrat' fontWeight={'bold'} h={10} display='flex' justifyContent={'center'} alignItems={'center'}>
-                        {lineType === 'solutions' && <Link to={isLoggedIn ? `/private/solution/${_id}` : `/solution/${_id}`}>
-                            {name}
-                        </Link>}
-                    </Heading>
-                </Box>
-                <Flex h={14} mt={3} px={{ base: 3, md: 5, '2xl': 12 }} fontSize={10} mb={4}>
-                    <Box
-                        h={14}
-                        overflow="hidden"
-                        textOverflow="ellipsis"
-                        width="100%" // You can adjust this width according to your layout
-                        textAlign="center"
-                        style={{
-                            display: '-webkit-box',
-                            WebkitBoxOrient: 'vertical',
-                            WebkitLineClamp: 3,
-                            whiteSpace: 'normal',
-                        }}
-                    >
-                        {description}
-                    </Box>
-                </Flex>
-                <Flex justify={'center'} p={2}>
-                    <FiTool className='solution-tooltip' />
-                    <Tooltip anchorSelect=".solution-tooltip" place="bottom">
-                        Solución
-                    </Tooltip>
-                </Flex>
-            </Box>
-        </Box >
+            <div className="flex px-4 items-center gap-2 pt-2">
+                {lineType === 'solutions' && (
+                    <Link to={`/solution/${_id}`}>
+                        <div className="h-full flex justify-center items-center">
+                            {logo ? (
+                                <img src={logo} alt={name} className="h-10 w-10 rounded-lg" />
+                            ) : (
+                                <div className="h-10 w-10 rounded-lg bg-gray-300 flex items-center justify-center text-white">
+                                    {name[0]}
+                                </div>
+                            )}
+                        </div>
+                    </Link>
+                )}
+                <div className="flex flex-col gap-1 items-start">
+                    <h3 className="text-sm font-semibold font-montserrat text-center flex justify-center items-center hover:underline">
+                        {lineType === 'solutions' && <Link to={`/solution/${_id}`}>{name}</Link>}
+                    </h3>
+                    <span className="text-xs text-darkgray text-center">Software</span>
+                </div>
+            </div>
+
+            <div className="w-full p-4 pb-1">
+                <GalleryPhotoCard gallery={gallery} />
+            </div>
+
+            <div className="p-1  text-neutral">
+                <div className="h-14 mt-3 px-3 text-xxs mb-4 overflow-hidden text-ellipsis text-left">
+                    <p className="line-clamp-3">{description}</p>
+                </div>
+                <TagList options={specifyFeatures} />
+            </div>
+        </div>
     );
 };
 

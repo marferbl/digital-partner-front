@@ -22,7 +22,7 @@ import { isEmpty } from "../../hooks/isEmpty";
 import { changePassword, login, signup } from "../../services/auth";
 import { UserContext } from "../../context/userContext";
 import { useNavigate } from "react-router-dom";
-import { COLORS } from "../../colors/colors";
+import { COLORS, DARK_COLORS } from "../../colors/colors";
 
 const ChangePassword = () => {
     const [email, setEmail] = useState("");
@@ -86,7 +86,7 @@ const ChangePassword = () => {
     return (
         <>
             <Flex justify="end" w={'full'}>
-                <Text fontSize={14} mr={1} onClick={onOpen} colorScheme="blue" mt={2} cursor={'pointer'} _hover={{ textDecor: 'underline' }}>Contraseña olvidada</Text>
+                <Text fontSize={14} color={DARK_COLORS.neutral} mr={1} onClick={onOpen} colorScheme="blue" mt={2} cursor={'pointer'} _hover={{ textDecor: 'underline' }}>Contraseña olvidada</Text>
             </Flex>
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
@@ -105,7 +105,7 @@ const ChangePassword = () => {
                                     onKeyDown={handleKeyPress}
                                 />
                             </FormControl>
-                    
+
 
                             {emptyFieldMessage && (
                                 <Text my={2} color={"red"}>

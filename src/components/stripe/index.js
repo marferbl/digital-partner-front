@@ -68,7 +68,7 @@ const CheckoutForm = () => {
         <form onSubmit={handleSubmit}>
             <PaymentElement />
             <Flex w='full' justify={'end'}>
-                {/* <button type="submit" disabled={!stripe || !elements} style={{ background: COLORS.secondary, color: 'white', fontFamily: 'Montserrat', fontWeight: 'bold', padding: '8px 15px', borderRadius: '6px', marginTop: 20 }}>
+                {/* <button type="submit" disabled={!stripe || !elements} style={{ background: COLORS.secondary, color: 'white', fontFamily: 'Roobert', fontWeight: 'bold', padding: '8px 15px', borderRadius: '6px', marginTop: 20 }}>
                     Confirmar
                 </button> */}
             </Flex>

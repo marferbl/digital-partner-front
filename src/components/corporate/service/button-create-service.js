@@ -15,7 +15,7 @@ import {
     MenuList,
     MenuItem,
 } from '@chakra-ui/react'
-import { COLORS } from "../../../colors/colors";
+import { COLORS, DARK_COLORS } from "../../../colors/colors";
 import { createCorporate } from '../../../services/corporate';
 import PartnerModalCreate from './create-service/partner';
 import { createService } from '../../../services/service';
@@ -55,8 +55,8 @@ export const ButtonCreateService = ({ refreshServices }) => {
     return (
         <>
             <Menu>
-                <MenuButton rounded={'xl'} p={2} bg={'white'} justify={'space-between'} align={'center'}>
-                    <Button bg={COLORS.primary} color={'white'} _hover={{ bg: 'blue.700' }} fontSize={{base: 12, md: 16}} onClick={onOpen}>Crear servicio</Button>
+                <MenuButton rounded={'xl'} justify={'space-between'} align={'center'}>
+                    <Button bg={DARK_COLORS.gridyellow} color={'black'} _hover={{ bg: 'gray.100' }} fontSize={{ base: 12, md: 16 }} onClick={onOpen}>Crear servicio</Button>
                 </MenuButton>
                 <MenuList width={20} p={0}>
                     <MenuItem onClick={() => { openModal('partner') }} _hover={{ bg: 'gray.100' }} h={'full'} fontSize={14} textAlign={'center'} width={'full'} fontWeight={'bold'}>Partner</MenuItem>
@@ -87,7 +87,7 @@ export const ButtonCreateService = ({ refreshServices }) => {
                         <Button variant='ghost' mr={3} onClick={closeModal}>
                             cancelar
                         </Button>
-                        <Button colorScheme='teal' onClick={create}>Confirmar</Button>
+                        <Button colorScheme='gray' onClick={create}>Confirmar</Button>
                     </ModalFooter>
                 </ModalContent>
             </Modal>

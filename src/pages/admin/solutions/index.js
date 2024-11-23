@@ -27,7 +27,7 @@ export const SolutionsCorporatePage = () => {
     }
 
     return (
-        <Box mt={6} p={5} rounded={"xl"} bgColor={"white"} w={"100%"} minH={400}>
+        <Box mt={6} p={5} rounded={"xl"} bgColor={"black"} w={"100%"} minH={400}>
             {solutions?.length === 0 ? <EmptySolutionsState refreshSolutions={getMySolutions} /> : <SolutionsProfile solutions={solutions} refreshSolutions={getMySolutions} />}
         </Box>
     )

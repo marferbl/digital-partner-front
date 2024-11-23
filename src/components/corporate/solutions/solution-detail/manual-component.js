@@ -30,7 +30,7 @@ export const ManualComponent = ({ solution }) => {
 
 
     return (
-        <Box>
+        <Box color='white'>
             Próximamente
             {/* <Flex w='full' justify={'flex-end'} my={8}>
                 {me?.corporateId === solution.corporate && <ButtonCreateManual refreshManuals={getManuals} />}

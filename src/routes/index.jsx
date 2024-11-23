@@ -27,32 +27,33 @@ import EventDetailsPage from "../pages/admin/event/event-details";
 import BlogEditor from "../pages/blog/blog-editor";
 import BlogList from "../pages/blog/blog-list";
 import BlogDetail from "../pages/blog/blog-detail";
+import PublicRoute from "./publicRoute";
 
 export const PageRoutes = () => {
   return (
     <Router>
       <Routes>
-        <Route path={"/"} element={<LandingPage />} />
-        <Route path={"/start"} element={<App />} />
-        <Route path={"/start/a"} element={<App />} />
-        <Route path={"/marketplace"} element={<MarketplacePage />} />
-        <Route path={"search/:term"} element={<SearcherPage />} />
-        <Route path={"search"} element={<SearcherPage />} />
-        <Route path={"favorites"} element={<FavoritePage />} />
-        <Route path={'solution/:id'} element={<SolutionDetailPage />} />
-        <Route path={'service/:id'} element={<ServiceDetailsPage />} />
-        <Route path={'about'} element={<AboutPage />} />
-        <Route path={'faqs'} element={<FaqsPage />} />
-        {/* <Route path={'conditions-user'} element={<ConditionsUserPage />} /> */}
-        <Route path={'demo'} element={<DemoPage />} />
-        <Route path={'digital-profile'} element={<DigitalProfilePage />} />
-        <Route path={'confirm/email/:id'} element={<ConfirmEmailPage />} />
-        <Route path={'blog-creation'} element={<BlogEditor />} />
-        <Route path={'blog-list'} element={<BlogList />} />
-        <Route path={'blog/:id'} element={<BlogDetail />} />
+        <Route path={"/"} element={<PublicRoute />}>
+          <Route path={"/"} element={<LandingPage />} />
+          <Route path={"/start"} element={<App />} />
+          <Route path={"/start/a"} element={<App />} />
+          <Route path={"/marketplace"} element={<MarketplacePage />} />
+          <Route path={"search/:term"} element={<SearcherPage />} />
+          <Route path={"search"} element={<SearcherPage />} />
+          <Route path={"favorites"} element={<FavoritePage />} />
+          <Route path={'solution/:id'} element={<SolutionDetailPage />} />
+          <Route path={'service/:id'} element={<ServiceDetailsPage />} />
+          <Route path={'event/:id'} element={<EventDetailsPage />} />
+          <Route path={'about'} element={<AboutPage />} />
+          <Route path={'faqs'} element={<FaqsPage />} />
+          <Route path={'demo'} element={<DemoPage />} />
+          <Route path={'digital-profile'} element={<DigitalProfilePage />} />
+          <Route path={'confirm/email/:id'} element={<ConfirmEmailPage />} />
+          <Route path={'blog-creation'} element={<BlogEditor />} />
+          <Route path={'blog-list'} element={<BlogList />} />
+          <Route path={'blog/:id'} element={<BlogDetail />} />
 
-
-
+        </Route>
 
         <Route path={"private"} element={<PrivateRoute />}>
           <Route path={"dashboard"} element={<Dashboard />} />

@@ -49,8 +49,8 @@ const CardEvent = ({ isFavorites, item }) => {
             </Box>
             <Box p="1">
                 <Box d="flex" alignItems="baseline">
-                    <Heading as="p" size="xs" textAlign={'center'} _hover={{ textDecor: 'underline' }} fontFamily='Montserrat' fontWeight={'bold'} h={10} display='flex' justifyContent={'center'} alignItems={'center'}>
-                        <Link to={isLoggedIn ? `/private/event/${item._id}` : `/service/${item._id}`}>
+                    <Heading as="p" size="xs" textAlign={'center'} _hover={{ textDecor: 'underline' }} fontFamily='Roobert' fontWeight={'bold'} h={10} display='flex' justifyContent={'center'} alignItems={'center'}>
+                        <Link to={`/event/${item._id}`}>
                             {item.name}
                         </Link>
                     </Heading>

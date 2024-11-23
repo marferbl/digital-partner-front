@@ -24,7 +24,7 @@ import { ImageUploadInput } from '../../base/image-upload';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { createEvent } from '../../../services/event';
-import { COLORS } from '../../../colors/colors';
+import { COLORS, DARK_COLORS } from '../../../colors/colors';
 import MapSearcher from '../../base/map-searcher';
 import { APIProvider, Map, Marker } from '@vis.gl/react-google-maps';
 
@@ -122,7 +122,7 @@ export const ButtonCreateEvent = ({ refreshEvents }) => {
 
     return (
         <>
-            <Button onClick={onOpen} bg={COLORS.primary} color={'white'} _hover={{ bg: 'blue.700' }} fontSize={{ base: 12, md: 16 }} mr={2}>Crear Evento</Button>
+            <Button onClick={onOpen} bg={DARK_COLORS.gridyellow} color={'black'} _hover={{ bg: 'gray.100' }} fontSize={{ base: 12, md: 16 }} mr={2}>Crear Evento</Button>
             <Modal isOpen={isOpen} onClose={closeModal} size='xl'>
                 <ModalOverlay />
                 <ModalContent>
@@ -270,14 +270,14 @@ export const ButtonCreateEvent = ({ refreshEvents }) => {
                                 <Button variant='ghost' mr={3} onClick={closeModal}>
                                     Cancelar
                                 </Button>
-                                <Button colorScheme='teal' onClick={() => setStep(2)} disabled={!formCompleted()}>Siguiente</Button>
+                                <Button colorScheme='gray' onClick={() => setStep(2)} disabled={!formCompleted()}>Siguiente</Button>
                             </>
                         ) : (
                             <>
                                 <Button variant='ghost' mr={3} onClick={() => setStep(1)} >
                                     Volver
                                 </Button>
-                                <Button colorScheme='teal' onClick={create} disabled={!formCompleted()}>Confirmar</Button>
+                                <Button colorScheme='gray' onClick={create} disabled={!formCompleted()}>Confirmar</Button>
                             </>
                         )}
                     </ModalFooter>

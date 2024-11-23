@@ -23,39 +23,13 @@ export const SolutionDetail = ({ solution }) => {
     };
 
 
-    const ensureHTTPS = (url) => {
-        if (!url.startsWith('http://') && !url.startsWith('https://')) {
-            return `https://${url}`;
-        }
-        return url;
-    };
+
 
     return (
-        <Box px={5} rounded={"xl"} w={"100%"}>
+        <Box px={5} rounded={"xl"} w={"100%"} minH={'100vh'}>
             {solution &&
                 <>
-                    <Box mt={1} rounded={"xl"} bgColor={"white"} w={"100%"} >
-                        <Flex justify={'space-between'} align='center' mt={5} w='full'>
-                            <Flex align={'center'} mt={5} gap={2}>
-                                <Avatar size={{ base: 'md', md: 'lg' }} src={solution.logo || null} name={solution.name} />
-                                <Box>
-                                    <Text fontWeight={'bold'} fontSize={{ base: 14, md: 24 }} whiteSpace='nowrap'>{solution.name}</Text>
-                                    <Text fontSize={{ base: 8, md: 14 }} pl={1} color={'blue.600'} _hover={{ textDecor: 'underline' }}>
-                                        <a href={ensureHTTPS(solution.website)} target='_blank' fontSize='sm'>{'Ir a su web'}</a>
-                                    </Text>
-                                </Box>
-                            </Flex>
-                            <GradientButton
-                                type='green'
-                                size={{ base: 'xs', md: 'md' }}
-                                label={'Contactar'}
-                                onClick={() => window.open(`mailto:${solution?.corporate?.superadmin?.email}`)}
-                                mt={5}
-                            />
-                        </Flex>
-
-                    </Box>
-                    <Box mt={1} p={5} bgColor={"white"} w={"100%"} minH={300} px={2} mb={3}>
+                    <Box mt={1} p={5} bgColor={"black"} w={"100%"} minH={300} px={2} mb={3} color='white'>
                         <Text fontSize={{ base: 8, md: 14 }} mt={3} fontWeight='bold' textDecor={'underline'}>Descripción:</Text>
                         <Text fontSize={{ base: 8, md: 16 }} mt={0}>{solution.description}</Text>
                         <Box>
@@ -65,7 +39,7 @@ export const SolutionDetail = ({ solution }) => {
                                     <Flex key={index} alignItems="center" gap={1}>
                                         <Checkbox
                                             isChecked={true}
-                                            size={{base: 'sm', md: 'md'}}
+                                            size={{ base: 'sm', md: 'md' }}
                                         />
                                         <Text key={index} fontSize={{ base: 6, md: 14 }} >{KEYS_FEATURES[feature]} </Text>
 
@@ -83,7 +57,7 @@ export const SolutionDetail = ({ solution }) => {
                                             <Flex key={index} alignItems="center">
                                                 <Checkbox
                                                     isChecked={true}
-                                                    size={{base: 'sm', md: 'md'}}
+                                                    size={{ base: 'sm', md: 'md' }}
                                                 />
                                                 <Text ml={1} fontSize={{ base: 6, md: 14 }}>{SPECIFY_FEATURES_LABELS[feature]}</Text>
                                             </Flex>
@@ -94,16 +68,16 @@ export const SolutionDetail = ({ solution }) => {
                                             <Flex key={index} alignItems="center">
                                                 <Checkbox
                                                     isChecked={true}
-                                                    size={{base: 'sm', md: 'md'}}
+                                                    size={{ base: 'sm', md: 'md' }}
                                                 />
-                                                <Text ml={1} fontSize={{ base:6, md: 14 }}>{SPECIFY_FEATURES_LABELS[feature]}</Text>
+                                                <Text ml={1} fontSize={{ base: 6, md: 14 }}>{SPECIFY_FEATURES_LABELS[feature]}</Text>
                                             </Flex>
                                         ))}
                                         {solution?.specifyFeatures.slice(10, 15).map((feature, index) => (
                                             <Flex key={index} alignItems="center">
                                                 <Checkbox
                                                     isChecked={true}
-                                                    size={{base: 'sm', md: 'md'}}
+                                                    size={{ base: 'sm', md: 'md' }}
                                                 />
                                                 <Text ml={1} fontSize={{ base: 6, md: 14 }}>{SPECIFY_FEATURES_LABELS[feature]}</Text>
                                             </Flex>
@@ -112,7 +86,7 @@ export const SolutionDetail = ({ solution }) => {
                                             <Flex key={index} alignItems="center">
                                                 <Checkbox
                                                     isChecked={true}
-                                                    size={{base: 'sm', md: 'md'}}
+                                                    size={{ base: 'sm', md: 'md' }}
                                                 />
                                                 <Text ml={1} fontSize={{ base: 6, md: 14 }}>{SPECIFY_FEATURES_LABELS[feature]}</Text>
                                             </Flex>

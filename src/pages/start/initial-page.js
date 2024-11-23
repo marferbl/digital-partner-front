@@ -1,19 +1,3 @@
-import {
-  Box,
-  Flex,
-  Stack,
-  Heading,
-  Text,
-  Container,
-  Image,
-  Button,
-  SimpleGrid,
-  Avatar,
-  AvatarGroup,
-  Center,
-  IconProps,
-  Icon,
-} from "@chakra-ui/react";
 import LoginForm from "../../components/Login/login-form";
 import { useContext, useEffect, useState } from "react";
 import RegisterForm from "../../components/Register/register-form";
@@ -22,6 +6,8 @@ import { UserContext } from "../../context/userContext";
 import { COLORS } from "../../colors/colors";
 import { useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next'; // Importa useTranslation
+import ContentSwitch from "./ToggleInitial";
+import { IoIosArrowRoundForward } from "react-icons/io";
 
 export default function InitialPage() {
   const { t } = useTranslation("global"); // Inicializa la traducción
@@ -40,36 +26,59 @@ export default function InitialPage() {
   }, [isLoggedIn]);
 
   return (
-    <Container maxW="lg" px={{ base: '0', sm: '8' }}>
-      <Stack spacing="0">
-        <Stack spacing="6">
-          <Center>
-            <Image src={'/logo-d.png'} height={16} w={16} />
-          </Center>
-          <Stack spacing={{ base: '2', md: '3' }} textAlign="center">
-            <Heading size={{ base: 'xs', md: 'sm' }} mb={3} fontFamily={'Montserrat'}>
-              {showLogin ? t('login') : t('register')} {/* Traducción del texto */}
-            </Heading>
-            <Text color="fg.muted">
-              {showLogin && t('noAccountPrompt')} {/* Traducción del texto */}
-              <Text as={'span'} fontWeight={'bold'} color={COLORS.secondary} cursor={'pointer'} _hover={{ textDecor: 'underline' }} onClick={() => setShowLogin(!showLogin)}>
-                {showLogin ? t('register') : t('backToLogin')} {/* Traducción del texto */}
-              </Text>
-            </Text>
-          </Stack>
-        </Stack>
-        <Box
-          py={{ base: '0', sm: '4' }}
-          px={{ base: '4', sm: '3' }}
-          bg={{ base: 'transparent', sm: 'white' }}
-          boxShadow={{ base: 'none', sm: 'md' }}
-          borderRadius={{ base: 'none', sm: 'xl' }}
+    <div className="flex items-center justify-center min-h-screen w-full">
+      <div className="relative w-170 h-120 shadow-md rounded-2xl bg-white/10  backdrop-blur-xl border border-transparent">
+        {/* Toggle Indicator */}
+        <div
+          className={`absolute top-1 ${!showLogin ? "left-1" : "left-[calc(50%-4px)]"
+            } w-[calc(50%-4px)] h-[calc(100%-8px)] bg-neutralblack rounded-xl transition-all duration-300`}
+        />
+
+        {/* Left Content */}
+        <div
+          className={`absolute inset-y-0 left-0 w-1/2 flex ${showLogin ? 'items-end justify-start' : 'items-center justify-center'}  text-gray-600
+            transition-all duration-300`}
         >
-          <Stack spacing="6">
-            {showLogin ? <LoginForm /> : <RegisterForm />}
-          </Stack>
-        </Box>
-      </Stack>
-    </Container>
+          <p className="text-sm font-medium text-center cursor-pointer " onClick={() => setShowLogin(false)}>
+            {showLogin ? (
+              <div className="flex flex-col items-start p-8">
+                <span className="text-neutral">
+                  ¿No tienes cuenta?
+                </span>
+                <span className="text-xl text-white flex">
+                  Crea una ahora
+                  <IoIosArrowRoundForward size={30} />
+                </span>
+              </div>
+            ) : (
+              <RegisterForm />
+            )}
+          </p>
+        </div>
+
+        {/* Right Content */}
+        <div
+          className={`absolute inset-y-0 right-0 w-1/2 flex ${!showLogin ? 'items-end justify-start' : 'items-center justify-center'}  ${showLogin ? "text-gray-600" : "text-gray-800"
+            } transition-all duration-300`}
+        >
+          <p className="text-sm font-medium text-center cursor-pointer" onClick={() => setShowLogin(true)}>
+            {showLogin ? (
+              <LoginForm />
+            ) : (
+              <div className="flex flex-col items-start p-8">
+                <span className="text-neutral">
+                  ¿Ya tienes cuenta?
+                </span>
+                <span className="text-xl text-white flex">
+                  Inicia sesión
+                  <IoIosArrowRoundForward size={30} />
+                </span>
+              </div>
+            )}
+          </p>
+        </div>
+      </div>
+    </div>
   );
-}
+
+};

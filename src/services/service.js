@@ -19,3 +19,5 @@ export const updateService = (id, body) => API.put(`/service/update/${id}`, body
 export const getServicesBySolution = (id) => API.get(`/service/by-solution/${id}`);
 export const deleteService = (id) => API.delete(`/service/delete/${id}`);
 export const getServicesByCorporate = (id) => API.get(`/service/services-by-corporate/${id}`);
+export const getTopServices = () => API.get(`/service/top/services`);
+

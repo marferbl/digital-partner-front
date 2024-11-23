@@ -22,7 +22,6 @@ const BlogListPage = () => {
     return (
         <div>
 
-            <Navbar />
             <div className="p-4 max-w-7xl mx-auto">
                 <h2 className="text-3xl font-bold mb-8 text-center">Blog de Digitalando</h2>
                 <BlogList blogs={blogs} />

@@ -35,9 +35,9 @@ const MarketplaceSection = ({ term, filters, isCollapsed, isFavorites, setNumber
         }
     }, [isFavorites]);
 
-
-
-
+    const scrollTop = () => {
+        window.scrollTo({ top: 0 });
+    };
 
     const getSolutions = () => {
         setLoading(true)
@@ -90,7 +90,7 @@ const MarketplaceSection = ({ term, filters, isCollapsed, isFavorites, setNumber
 
     return (
         <Center w='full' flexDir={'column'} px={{ base: 2, lg: 5 }}>
-            <Box w='full' px={{ base: 8, md: 2 }} h='full'>
+            <Box w='full' px={{ base: 0, md: 2 }} h='full'>
                 {loading ? <Center w={'100%'}> <Spinner
                     thickness='4px'
                     speed='0.65s'
@@ -98,7 +98,7 @@ const MarketplaceSection = ({ term, filters, isCollapsed, isFavorites, setNumber
                     color='blue.500'
                     size='xl'
                 /></Center> : solutions && solutions.length === 0 ?
-                    <Center flexDir={'column'} w={'100%'} h='full' mt={10}>
+                    <Center flexDir={'column'} w={'100%'} h='full' mt={20}>
                         <Icon
                             fontSize={60}
                             _groupHover={{
@@ -107,12 +107,15 @@ const MarketplaceSection = ({ term, filters, isCollapsed, isFavorites, setNumber
                             color={COLORS.primary}
                             as={FiAirplay}
                         />
-                        <Text pt={6} color={COLORS.blue} fontSize='xl' textAlign='center'>No se encontraron resultados</Text>
+                        <Text pt={6} color={COLORS.blue} fontSize='xl' textAlign='center'>Parece que no tenemos nada interesante para ti...</Text>
                     </Center>
                     :
                     <SectionMarketPlace list={solutions} isFavorites={isFavorites} />
                 }
-                {meta?.totalPages > 1 && !term && !isFavorites && <Pagination currentPage={page} totalPages={meta.totalPages} setCurrentPage={setPage} />}
+                {meta?.totalPages > 1 && !term && !isFavorites && <Pagination currentPage={page} totalPages={meta.totalPages} setCurrentPage={(value) => {
+                    setPage(value)
+                    scrollTop()
+                }} />}
 
             </Box>
         </Center>

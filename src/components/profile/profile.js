@@ -1,5 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../context/userContext";
+import logoVIdeo from '../../videos/logo-symbol.mp4'
+
 import {
   Box,
   Text,
@@ -43,12 +45,17 @@ export const Profile = () => {
 
 
   return (
-    <Box mt={6} p={5} rounded={"xl"} bgColor={"white"} minH={400}>
-      <Flex w='full' justify='space-between' mb={5} pb={3} borderBottomWidth={1}>
-        <Text fontSize={22} >Perfil</Text>
-        <Text cursor={'pointer'} onClick={() => setShowEdit(!showEdit)}>{showEdit ? 'Volver' : 'Editar'}</Text>
+    <Box mt={6} p={5} rounded={"xl"} bgColor={"black"} minH={400}>
+      <Flex w='full' justify='space-between' mb={5} pb={3}>
+        <Text fontSize={22} >''</Text>
+        <Text cursor={'pointer'} color='white' onClick={() => setShowEdit(!showEdit)}>{showEdit ? 'Volver' : 'Editar'}</Text>
       </Flex>
-      {showEdit ? <ProfileEdit me={me} refreshData={getMe} /> : <ProfileUser me={me} toggleShowEdit={toggleShowEdit} />}
-    </Box>
+      <Box borderWidth={1} rounded='2xl' >
+        {showEdit ? <ProfileEdit me={me} refreshData={getMe} /> : <ProfileUser me={me} toggleShowEdit={toggleShowEdit} />}ç
+      </Box>
+      <div class="flex items-center justify-center">
+        <video src={logoVIdeo} autoPlay loop muted style={{ width: '600px', height: '600px' }} />
+      </div>
+    </Box >
   );
 };

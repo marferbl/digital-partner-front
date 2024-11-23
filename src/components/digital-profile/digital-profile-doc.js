@@ -79,7 +79,7 @@ export const DigitalProfileDoc = () => {
                     </GridItem>
                     <GridItem colSpan={3} w='full' bg='gray.100'>
                         <Box bg={COLORS.secondary} h={150} pt={4} color='white' px={2}>
-                            <Heading fontFamily={'Montserrat'} fontWeight='bold'>
+                            <Heading fontFamily={'Roobert'} fontWeight='bold'>
                                 Marcos Fernandez
                             </Heading>
                             <Text fontSize={'2xl'} fontWeight='bold'>

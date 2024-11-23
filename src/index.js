@@ -14,6 +14,14 @@ import { Analytics } from "@vercel/analytics/react"
 
 import global_es from "./translations/es/global.json"
 import global_en from "./translations/en/global.json"
+import './fonts/RoobertTRIAL-Bold.ttf'
+import './fonts/RoobertTRIAL-Regular.ttf'
+import './fonts/RoobertTRIAL-Medium.ttf'
+import './fonts/RoobertTRIAL-Light.ttf'
+import './fonts/RoobertTRIAL-Heavy.ttf'
+import './fonts/RoobertTRIAL-SemiBold.ttf'
+
+
 
 i18Next.init({
   interpolation: {

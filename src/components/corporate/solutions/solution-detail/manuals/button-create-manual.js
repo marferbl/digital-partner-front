@@ -11,7 +11,7 @@ import {
     useDisclosure,
     Select
 } from '@chakra-ui/react'
-import { COLORS } from "../../../../../colors/colors"
+import { COLORS, DARK_COLORS } from "../../../../../colors/colors"
 import CreateManualForm from '../../../../base/uploadDocument';
 
 
@@ -23,7 +23,7 @@ export const ButtonCreateManual = ({ refreshManuals, disabled }) => {
 
     return (
         <>
-            <Button bg={COLORS.primary} color={'white'} _hover={{ bg: 'blue.700' }} disabled={disabled} onClick={onOpen}>Crear manual</Button>
+            <Button bg={DARK_COLORS.gridyellow} color={'white'} _hover={{ bg: 'blue.700' }} disabled={disabled} onClick={onOpen}>Crear manual</Button>
 
             <Modal isOpen={isOpen} onClose={onClose} size='xl'>
                 <ModalOverlay />

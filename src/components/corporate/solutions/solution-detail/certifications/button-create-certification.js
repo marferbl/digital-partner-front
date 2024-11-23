@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, Input, FormControl, FormLabel, useDisclosure } from '@chakra-ui/react';
 import { createCertification } from '../../../../../services/certification';
-import { COLORS } from "../../../../../colors/colors"
+import { COLORS, DARK_COLORS } from "../../../../../colors/colors"
 
 
 export const ButtonCreateCertification = ({ refreshCertifications, disabled, id }) => {
@@ -29,7 +29,7 @@ export const ButtonCreateCertification = ({ refreshCertifications, disabled, id 
 
     return (
         <>
-            <Button bg={COLORS.primary} color={'white'} _hover={{ bg: 'blue.700' }} disabled={disabled} onClick={onOpen}>Crear certificación</Button>
+            <Button bg={DARK_COLORS.gridyellow} color={'white'} _hover={{ bg: 'blue.700' }} disabled={disabled} onClick={onOpen}>Crear certificación</Button>
 
             <Modal isOpen={isOpen} onClose={onClose} size='md'>
                 <ModalOverlay />
