@@ -19,7 +19,6 @@ import { SoftwareSearcherInput } from "./software-searcher-input";
 import { useTranslation } from "react-i18next";
 import CountryFlag from "./country-flag";
 import { useLocation } from "react-router-dom";
-import logoVideo from '../../videos/logo-symbol.mp4'
 
 
 
@@ -66,7 +65,7 @@ export default function Navbar() {
         <Flex h={'80px'} alignItems={"center"} justifyContent={"space-between"}>
           <Box display={{ base: 'none', md: 'block' }} w={200}>
             <Link to="/">
-              <video src={logoVideo} autoPlay loop muted style={{ width: '100px', height: '100px' }} />
+              <video src={'/videos/logo-symbol.mp4'} autoPlay loop muted style={{ width: '100px', height: '100px' }} />
             </Link>
           </Box>
           <Box>

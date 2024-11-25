@@ -22,8 +22,8 @@ const TopSolutions = () => {
 
 
     return (
-        <div>
-            <span className="text-lg md:text-2xl pl-8 md:pl-14 pt-10 pb-6 text-white">
+        <div className='py-20'>
+            <span className="text-lg md:text-2xl pl-8 md:pl-14 text-white ">
                 TOP SOLUCIONES DEL MES
             </span>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-4 lg:px-60">

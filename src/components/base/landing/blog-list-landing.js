@@ -18,7 +18,7 @@ const BlogListLanding = () => {
     };
 
     return (
-        <div className="h-fit-content pb-10 md:pb-20 flex flex-col gap-10">
+        <div className="h-fit-content pb-10 md:pb-20 flex flex-col gap-10 py-10 lg:py-20">
             <div className="flex gap-4 items-center justify-between pr-1">
                 <span className="text-2xl md:text-7xl pl-10 pt-10 pb-6 text-white">
                     LAS ÚLTIMAS NOVEDADES

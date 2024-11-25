@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../context/userContext";
-import logoVIdeo from '../../videos/logo-symbol.mp4'
 
 import {
   Box,
@@ -54,7 +53,7 @@ export const Profile = () => {
         {showEdit ? <ProfileEdit me={me} refreshData={getMe} /> : <ProfileUser me={me} toggleShowEdit={toggleShowEdit} />}ç
       </Box>
       <div class="flex items-center justify-center">
-        <video src={logoVIdeo} autoPlay loop muted style={{ width: '600px', height: '600px' }} />
+        <video src={'/videos/logo-symbol.mp4'} autoPlay loop muted style={{ width: '600px', height: '600px' }} />
       </div>
     </Box >
   );
