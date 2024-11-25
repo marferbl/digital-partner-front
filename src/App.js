@@ -1,6 +1,5 @@
 import { Flex } from "@chakra-ui/react";
 import InitialPage from "./pages/start/initial-page";
-import backgroundVideo from './videos/login-video.mp4';
 import "./index.css";
 
 function App() {
@@ -30,7 +29,7 @@ function App() {
           opacity: 1, // Adjust for brightness
         }}
       >
-        <source src={backgroundVideo} type="video/mp4" />
+        <source src={'/videos/login-video.mp4'} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
 

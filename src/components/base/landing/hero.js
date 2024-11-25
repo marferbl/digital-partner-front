@@ -1,20 +1,19 @@
 import { useTranslation } from 'react-i18next'
 import { SoftwareSearcherInput } from '../software-searcher-input'
-import backgroundVideo from '../../../videos/header-logo.mp4'
 
 
 export default function Hero() {
   const { t, i18n } = useTranslation("global")
 
   return (
-    <div className="relative h-screen text-white overflow-hidden bg-black">
+    <div className="relative h-120 lg:h-screen text-white overflow-hidden bg-black">
       <div className="absolute inset-0">
         <video
-          src={backgroundVideo}
+          src={'/videos/header-logo.mp4'}
           autoPlay
           loop
           muted
-          className="object-cover object-center w-full h-1/2 md:h-5/6"
+          className="object-contain lg:object-cover w-full h-1/3 md:h-5/6"
         />
         <div className="absolute inset-0 bg-black opacity-50"></div>
       </div>

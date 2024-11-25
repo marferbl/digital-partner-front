@@ -15,7 +15,6 @@ import { Link } from "react-router-dom";
 import CountryFlag from "../country-flag";
 import { useTranslation } from "react-i18next";
 import conditionsPDF from "../../../pdf/digitalando-user-conditions.pdf";
-import videoUrl from "../../../videos/footer-split.mp4";
 import conditions from '../../../pdf/conditions.pdf'
 import cookies from '../../../pdf/cookies.pdf'
 import privacypolicy from '../../../pdf/privacypolicy.pdf'
@@ -39,8 +38,8 @@ export default function FooterLanding() {
   return (
     <Flex
       justify={"center"}
-      minH={"100vh"}
       position="relative"
+      h='90vh'
       overflow="hidden" // Ensure the video does not overflow the container
       fontFamily={'Roobert'}
     >
@@ -56,16 +55,16 @@ export default function FooterLanding() {
           width: "100%",
           height: "100%",
           objectFit: "cover", // Ensures the video covers the container
-          zIndex: -1,
+          zIndex: 1,
           opacity: 1, // Adjust for brightness
         }}
       >
-        <source src={videoUrl} type="video/mp4" />
+        <source src={'/videos/footer-split.mp4'} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
 
       {/* Content */}
-      <Container maxW={"6xl"} py={10}>
+      <Container maxW={"6xl"} py={10} zIndex={99}>
         <Grid
           templateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(3, 1fr)' }}  // Three columns layout
           gap={8}
