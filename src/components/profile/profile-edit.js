@@ -16,6 +16,9 @@ import { ImageUpload } from "./image-upload";
 import { UserContext } from "../../context/userContext";
 import EditPassword from "../Login/Edit-password";
 import { DARK_COLORS } from "../../colors/colors";
+import ModalDefaultPhoto from "../base/modal-default-photos";
+import { FiEdit } from "react-icons/fi";
+import { updateMe } from "../../services/auth";
 
 export const ProfileEdit = ({ me, refreshData }) => {
     const toast = useToast()
@@ -27,6 +30,7 @@ export const ProfileEdit = ({ me, refreshData }) => {
     const [age, setAge] = useState("");
     const [phone, setPhone] = useState("");
     const [job, setJob] = useState("");
+    const [logo, setLogo] = useState('');
 
     useEffect(() => {
         setEmail(me?.email);
@@ -34,6 +38,7 @@ export const ProfileEdit = ({ me, refreshData }) => {
         setAge(me?.age);
         setPhone(me?.phone);
         setJob(me?.job);
+        setLogo(me?.avatar);
     }, [])
 
 
@@ -44,7 +49,7 @@ export const ProfileEdit = ({ me, refreshData }) => {
         axios
             .put(
                 updateMeURL,
-                { email, name, age, phone, job },
+                { email, name, age, phone, job, avatar: logo || me?.avatar },
                 {
                     headers: {
                         authorization: `Bearer ${storedToken || ""}`,
@@ -66,15 +71,31 @@ export const ProfileEdit = ({ me, refreshData }) => {
             });
     };
 
+    const onSave = (logo) => {
+        updateMe({ email, name, age, phone, job, avatar: logo }).then((res) => {
+            setLogo(logo)
+        })
+    }
+
     return (
         <Box>
             <Box display={'flex'} alignItems={'center'} flexDir={'column'} color={DARK_COLORS.neutral} p={4}>
-                <Center w={"100%"} mb={10}>
-                    <Image rounded={"xl"} h={100} src={me?.avatar} />
-                </Center>
-                <Center w={"100%"} mb={3}>
-                    <ImageUpload refreshData={refreshData} />
-                </Center>
+                <ModalDefaultPhoto defaultImage={me?.avatar} setLogo={setLogo} onSave={onSave}>
+                    <div className="relative w-40 h-40 ml-0 md:ml-10">
+                        {/* Image */}
+                        <img
+                            src={logo || '/profile-photos/profile-photo-1.png'}
+                            alt="Profile Avatar"
+                            className="w-40 h-40 rounded-xl"
+                        />
+
+                        {/* Edit Icon */}
+                        <div className="absolute top-0 left-0 bg-neutral rounded-full p-1 shadow-md cursor-pointer">
+                            <FiEdit className="text-gray-600" size={20} />
+                        </div>
+                    </div>
+
+                </ModalDefaultPhoto>
                 <EditPassword />
                 <Text fontWeight={"bold"}>Nombre: </Text>
                 <Input value={name} w={300} onChange={(e) => setName(e.target.value)} />

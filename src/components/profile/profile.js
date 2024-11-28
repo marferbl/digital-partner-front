@@ -10,17 +10,33 @@ import { useBackendUrlBuilder } from "../../hooks/useBackendUrlBuilder";
 import axios from "axios";
 import { ProfileEdit } from "./profile-edit";
 import { ProfileUser } from "./profile-user";
+import AlertDigi from "../base/AlertDigi";
+import { getCorporate } from "../../services/corporate";
 
 export const Profile = () => {
-  const { getToken, userView } = useContext(UserContext);
+  const { getToken, changeUserView } = useContext(UserContext);
   const [me, setMe] = useState(null);
   const [showEdit, setShowEdit] = useState(false)
 
   const getMeURL = useBackendUrlBuilder("/user/me");
+  const [corporate, setCorporate] = useState(null);
+  const [hideTag, setHideTag] = useState(false);
+
+  useEffect(() => {
+    getMyCorporate();
+  }, []);
 
   const toggleShowEdit = () => {
     setShowEdit(!showEdit)
   }
+
+  const getMyCorporate = async () => {
+    getCorporate().then((res) => {
+      setCorporate(res.data.corporate);
+    }).catch((err) => {
+      console.log(err);
+    });
+  };
 
   useEffect(() => {
     getMe();
@@ -42,10 +58,20 @@ export const Profile = () => {
       });
   };
 
+  const hasCorporate = () => {
+    return corporate && corporate._id;
+  }
+
 
   return (
     <Box mt={6} p={5} rounded={"xl"} bgColor={"black"} minH={400}>
-      <Flex w='full' justify='space-between' mb={5} pb={3}>
+      {(!hasCorporate && !hideTag) && <AlertDigi text='¿Empresa? Crea ahora tu cuenta Corporate y descubre por qué la gente adora Digitalando'>
+        <div className="flex items-center gap-4">
+          <span onClick={changeUserView} className="py-2 px-6 rounded-lg bg-light text-white bg-black cursor-pointer">¡Crea tu cuenta!</span>
+          <span onClick={() => setHideTag(true)} className="py-2 px-6 rounded-lg bg-light text-black border-1 border-black cursor-pointer">Más tarde</span>
+        </div>
+      </AlertDigi>}
+      <Flex w='full' justify='space-between' mt={5} pb={3}>
         <Text fontSize={22} >''</Text>
         <Text cursor={'pointer'} color='white' onClick={() => setShowEdit(!showEdit)}>{showEdit ? 'Volver' : 'Editar'}</Text>
       </Flex>
