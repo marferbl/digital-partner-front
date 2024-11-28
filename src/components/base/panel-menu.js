@@ -65,9 +65,11 @@ export const HorizontalMenu = ({ onClose, isSidebarOpen, setIsSidebarOpen, ...re
       setSelectedKey('service');
     } else if (location.pathname.includes('events')) {
       setSelectedKey('events');
-
     }
   }, [location])
+
+  console.log(selectedKey)
+
 
   useEffect(() => {
     if (me && me.corporate) {
@@ -95,7 +97,7 @@ export const HorizontalMenu = ({ onClose, isSidebarOpen, setIsSidebarOpen, ...re
 
 
   const userRoutes = [
-    { name: "Perfil", icon: FiUser, to: "profile" },
+    { name: "Perfil", icon: FiUser, to: "profile", key: 'profile' },
     { name: "Freelance", icon: FiTrendingUp, to: "freelance", soon: true },
     { name: "Empleo", icon: FiGrid, to: "dashboard", soon: true },
     { name: "Gurús", icon: FiStar, to: "dashboard", soon: true },
@@ -126,8 +128,9 @@ export const HorizontalMenu = ({ onClose, isSidebarOpen, setIsSidebarOpen, ...re
       {...rest}
     >
       {userView === 'corporate' ? (
-        adminRoutesFiltered.map((link) => (
+        adminRoutesFiltered.map((link, index) => (
           <MenuButton
+            key={index}
             keyLabel={link.key}
             icon={link.icon}
             to={link.to}

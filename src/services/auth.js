@@ -23,6 +23,9 @@ export const editPassword = (password) =>
   API.post(`/user/change-password`, { password });
 export const verifyEmail = (id) =>
   API.put(`/user/verify-email`, { id });
+export const updateMe = (body) =>
+  API.put(`/user/update`, body);
+
 
 
 
