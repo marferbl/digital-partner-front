@@ -31,7 +31,7 @@ export const EmptySolutionsState = ({ refreshSolutions }) => {
     return (
         <Center flexDir={'column'} minH={'300'}>
             <FiTool size={70} color={'white'} />
-            <Text my={6} fontSize={24} color={DARK_COLORS.neutral}>
+            <Text my={6} fontSize={{ base: 18, md: 24 }} textAlign='center' color={DARK_COLORS.neutral}>
                 Todavia no tienes soluciones creadas
             </Text>
             {/* <Tooltip isDisabled={!!corporate} label={'Crea primero una corporate'}> */}

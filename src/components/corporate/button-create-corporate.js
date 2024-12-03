@@ -32,11 +32,14 @@ export const ButtonCreateCorporate = ({ refreshCorporate }) => {
     const [web, setWeb] = useState("");
     const [step, setStep] = useState(0);
     const [selectedPlan, setSelectedPlan] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const create = async () => {
+        setLoading(true);
         createCorporate({ name, cif, size: Number(size), country, web, plan: selectedPlan }).then((res) => {
             refreshCorporate();
             onClose();
+            setLoading(false);
             window.location.reload();
         }).catch((err) => {
             console.log(err);
@@ -61,13 +64,13 @@ export const ButtonCreateCorporate = ({ refreshCorporate }) => {
         <>
             <Button bg={DARK_COLORS.gridyellow} color={'black'} _hover={{ bg: 'blue.700' }} onClick={onOpen}>Crear corporate</Button>
 
-            <Modal isOpen={isOpen} onClose={closeModal} size='xl'>
+            <Modal isOpen={isOpen} onClose={closeModal} size={step === 1 ? '4xl' : 'xl'}>
                 <ModalOverlay />
-                <ModalContent>
-                    <ModalHeader>Crear Corporate</ModalHeader>
+                <ModalContent bg={'#1a1a1a'}>
+                    <ModalHeader color='white'>Crear Corporate</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody py={5}>
-                        {step === 0 ? <Box fontSize={12} display={'flex'} alignItems={'start'} flexDir={'column'}>
+                        {step === 0 ? <Box fontSize={12} display={'flex'} alignItems={'start'} flexDir={'column'} color='white'>
                             <Text fontWeight={"bold"}>Nombre: </Text>
                             <Input value={name} w={300} onChange={(e) => setName(e.target.value)} placeholder={'Corporate Nueva'} />
                             <Flex gap={2}>
@@ -111,12 +114,12 @@ export const ButtonCreateCorporate = ({ refreshCorporate }) => {
                             <PlansSelector setPlanSelected={handlePlanSelection} selectedPlan={selectedPlan} />
                         </Box> : <Box py={1}>
                             <Flex flexDir={'column'} pb={8} >
-                                <Flex align='baseline' justify={'start'}>
+                                <Flex align='baseline' justify={'start'} color='white'>
                                     <Text ml={2} fontSize={50} fontWeight={'extrabold'}> 0€</Text>
                                 </Flex>
                                 <Flex align='start' justify={'start'} ml={2}>
-                                    <FaInfoCircle size={20} />
-                                    <Text fontSize={12} ml={2}>
+                                    <FaInfoCircle size={20} color='white' />
+                                    <Text fontSize={12} ml={2} color='white'>
                                         El pago unico incluye la creación de la corporate y la publicación de una oferta de servicio o de solución.
                                     </Text>
                                 </Flex>
@@ -133,10 +136,10 @@ export const ButtonCreateCorporate = ({ refreshCorporate }) => {
                     </ModalBody>
 
                     <ModalFooter>
-                        <Button variant='ghost' mr={3} onClick={closeModal}>
+                        <Button bg={'gray.200'} mr={3} onClick={closeModal}>
                             cancelar
                         </Button>
-                        <Button onClick={() => { step < 2 ? setStep(step + 1) : create() }} colorScheme='gray'>{step < 2 ? 'Continuar' : 'Confirmar'}</Button>
+                        <Button disabled={loading} bg={DARK_COLORS.gridyellow} onClick={() => { step < 2 ? setStep(step + 1) : create() }} colorScheme='gray'>{loading ? 'Creando...' : step < 2 ? 'Continuar' : 'Confirmar'}</Button>
                     </ModalFooter>
                 </ModalContent>
             </Modal>

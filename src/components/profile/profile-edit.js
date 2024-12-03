@@ -81,12 +81,12 @@ export const ProfileEdit = ({ me, refreshData }) => {
         <Box>
             <Box display={'flex'} alignItems={'center'} flexDir={'column'} color={DARK_COLORS.neutral} p={4}>
                 <ModalDefaultPhoto defaultImage={me?.avatar} setLogo={setLogo} onSave={onSave}>
-                    <div className="relative w-40 h-40 ml-0 md:ml-10">
+                    <div className="relative w-20 h-20 md:w-40 md:h-40 ml-0 md:ml-10">
                         {/* Image */}
                         <img
                             src={logo || '/profile-photos/profile-photo-1.png'}
                             alt="Profile Avatar"
-                            className="w-40 h-40 rounded-xl"
+                            className="w-20 h-20 md:w-40 md:h-40 rounded-xl"
                         />
 
                         {/* Edit Icon */}

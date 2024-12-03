@@ -56,7 +56,25 @@ export default function Navbar() {
       link: '/start',
       key: 'portal',
       hide: !isLoggedIn
-    }
+    },
+  ];
+
+  const LinksMobile = [
+    {
+      label: 'Home',
+      link: '/',
+      key: 'home'
+    },
+    {
+      label: 'Explorar',
+      link: '/search/',
+      key: 'explore'
+    },
+    {
+      label: 'Mi panel',
+      link: '/start',
+      key: 'portal',
+    },
   ];
 
   return (
@@ -128,7 +146,7 @@ export default function Navbar() {
         {isOpen ? (
           <Box pb={4} display={{ md: "none" }}>
             <Stack as={"nav"} spacing={4}>
-              {Links.map((link) => (
+              {LinksMobile.map((link) => (
                 <Box color={DARK_COLORS.gridyellow} fontWeight='semibold'>
                   {!link.hide && <Link to={{ pathname: link.link, state: { filter: link.param } }} href="#Contact">{link.label}</Link>}
                 </Box>

@@ -56,7 +56,7 @@ const ModalDefaultPhoto = ({ setLogo, children, defaultImage, onSave }) => {
             </div>
 
             {/* Modal */}
-            <Modal isOpen={isOpen} onClose={onClose} size="3xl">
+            <Modal isOpen={isOpen} onClose={onClose} size={{base: 'xl', md: "2xl"}}>
                 <ModalOverlay />
                 <ModalContent bg="black" shadow={'xl'} borderWidth={1} borderColor='white' p={6} color='white'>
                     <ModalHeader as={Text}>
