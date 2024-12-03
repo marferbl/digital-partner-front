@@ -25,4 +25,5 @@ export const DARK_COLORS = {
     darkgray: '#383838',
     black: '#000000',
     pinkpulse: '#ff29e1',
+    neutralblack: "#0c0c0c"
 }

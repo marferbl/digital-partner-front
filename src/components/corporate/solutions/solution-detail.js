@@ -30,7 +30,7 @@ export const SolutionDetail = ({ solution }) => {
 
 
     return (
-        <Box px={5} rounded={"xl"} w={"100%"} minH={'100vh'}>
+        <Box px={10} rounded={"xl"} w={"100%"} minH={'100vh'}>
             {solution &&
                 <>
                     <Box mt={1} p={5} bgColor={"black"} w={"100%"} minH={300} px={2} mb={3} color='white'>
