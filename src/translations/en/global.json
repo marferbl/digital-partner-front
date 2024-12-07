@@ -113,6 +113,43 @@
     "productivity": "Productivity",
     "projectManagement": "Project Management",
     "officeSuites": "Office Suites",
+    "sellmarketing": "Marketing",
+    "finance": "Finance",
+    "logistics": "Logistics",
+    "it": "IT",
+    "data": "Data",
+    "law": "Law",
+    "rrhh": "HR",
+    "transversal": "Transversal",
     "communicationAndDesign": "Communication & Design",
-    "ai": "AI"
+    "ai": "AI",
+    "welcomeFirst": "Welcome to the ultimate digital community that connects you with everything you need to keep growing, advancing, and expanding in the digital world.",
+    "welcomeSecond": "Don't forget to take off your shoes before entering...",
+    "descub": "DISCO",
+    "cubre": "VER",
+    "lastPosts": "THE LATEST NEWS",
+    "blog": {
+        "top5": {
+            "title": "Top 5 'made in Spain' solutions",
+            "subtitle": "Are you looking for top-tier solutions?"
+        },
+        "perfectSolution": {
+            "title": "How to choose the perfect digital solution?",
+            "subtitle": "Follow these steps and get it right."
+        },
+        "inhouseOrOutsource": {
+            "title": "Develop in-house or outsource?",
+            "subtitle": "Discover the best option for your business."
+        },
+        "avoidMistakes": {
+            "title": "Mistakes to avoid when digitizing your business",
+            "subtitle": "Are you ready to avoid the chaos?"
+        }
+    },
+    "featuresDigitalando": {
+        "search": "We could tell you that we have a very smart search engine that understands everything you ask for and always shows you exactly what you need.",
+        "advertise": "Or we could tell you that if you offer digital solutions or services, advertising on the site where the right audience is looking for those things is awesome.",
+        "update": "Maybe we could mention that being on Digitalando is the easiest way to stay updated and digitize any process.",
+        "jobs": "We could even bring up the fact that if you're in the digital world and looking for job offers, we've got some pretty juicy ones here."
+    }
 }

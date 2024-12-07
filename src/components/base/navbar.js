@@ -83,7 +83,7 @@ export default function Navbar() {
         <Flex h={'80px'} alignItems={"center"} justifyContent={"space-between"}>
           <Box display={{ base: 'none', md: 'block' }} w={200}>
             <Link to="/">
-              <video src={'/videos/logo-symbol.mp4'} autoPlay loop muted style={{ width: '100px', height: '100px' }} />
+              <img src="/logos/navbar.png" className="h-16 w-16" />
             </Link>
           </Box>
           <Box>
@@ -124,14 +124,14 @@ export default function Navbar() {
                   {!isLoggedIn ? <Link key={'/start'} to={{ pathname: '/start' }} >{'Iniciar sesión'}</Link> : ''}
                 </Box>
               </HStack>
-              {/* <Flex gap={3} pr={3}>
-                <Button size={'small'} onClick={() => i18n.changeLanguage('es')}>
+              <Flex gap={3} pr={3}>
+                <Button size={'small'} p={1} rounded={'xl'} onClick={() => i18n.changeLanguage('es')}>
                   <CountryFlag country={'spain'} />
                 </Button>
-                <Button size={'small'} onClick={() => i18n.changeLanguage('en')}>
+                <Button size={'small'} p={1} rounded={'xl'} onClick={() => i18n.changeLanguage('en')}>
                   <CountryFlag country={'england'} />
                 </Button>
-              </Flex> */}
+              </Flex>
             </HStack>
           </Flex>
           <IconButton
