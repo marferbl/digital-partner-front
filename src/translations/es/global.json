@@ -68,7 +68,7 @@
     "copyright": "© 2024 digitalando. All rights reserved",
     "spanish": "Español",
     "english": "Inglés",
-    "iaHelpsYou": "¿Qué buscas? La IA te ayuda :)",
+    "iaHelpsYou": "Busco gestionar las nominas de mis empleados...",
     "search": "Buscar",
     "development": "Desarrollo a medida",
     "partner": "Partner",
@@ -122,5 +122,35 @@
     "it": "IT",
     "data": "Data",
     "law": "Legal",
-    "transversal": "Transversal"
+    "transversal": "Transversal",
+    "welcomeFirst": "Bienvenido a la comunidad digital definitiva que te conecta con lo que necesitas para seguir creciendo, avanzando y expandiéndote por el mundo digital.",
+    "welcomeSecond": "No olvides quitarte los zapatos antes de entrar...",
+    "descub": "DESCUBR",
+    "cubre": "CUBRE",
+    "lastPosts": "LAS ÚLTIMAS NOVEDADES",
+    "blog": {
+        "top5": {
+            "title": "Top 5 soluciones \"made in Spain\"",
+            "subtitle": "¿Estás buscando soluciones 5 jotas?"
+        },
+        "perfectSolution": {
+            "title": "¿Cómo elegir la solución digital perfecta?",
+            "subtitle": "Sigue estos pasos y acierta de una vez."
+        },
+        "inhouseOrOutsource": {
+            "title": "¿Desarrollar app in-house o subcontratar?",
+            "subtitle": "Descubre la mejor opción para tu negocio."
+        },
+        "avoidMistakes": {
+            "title": "Errores que debes evitar al digitalizar tu negocio",
+            "subtitle": "¿Estás preparado para evitar el caos?"
+        }
+    },
+    "featuresDigitalando": {
+        "search": "Podríamos decirte que tenemos un buscador muy listo que entiende todo lo que le pides y siempre te muestra justo lo que necesitas.",
+        "advertise": "O podríamos decirte que si ofreces soluciones o servicios digitales, anunciarte en el sitio donde está el tipo de gente que busca esas cosas es la caña.",
+        "update": "Quizás podríamos mencionar que estar en Digitalando es la forma más cómoda de mantenerse actualizado y digitalizar cualquier proceso.",
+        "jobs": "Incluso podríamos sacar el tema de que si te dedicas al mundo digital y estás buscando ofertas de curro, aquí tenemos unas cuantas bastante jugosas."
+    },
+    "featuresDigitalando.more": "¿Quieres saber por que Digitalando?"
 }

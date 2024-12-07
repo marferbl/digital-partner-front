@@ -2,15 +2,37 @@ import React from 'react';
 import { IoIosArrowRoundForward } from "react-icons/io";
 import { FaArrowDown } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const BlogListLanding = () => {
     const navigate = useNavigate();
+    const { t } = useTranslation("global");
 
     const blogs = [
-        { title: 'Top 5 soluciones "made in Spain"', subtitle: '¿Estás buscando soluciones 5 jotas?', image: 'https://static.vecteezy.com/system/resources/thumbnails/050/799/447/small/laptop-and-coffee-cup-on-black-table-in-office-workplace-concept-photo.jpeg', link: '/blog/673f5faf25363238ff713401' },
-        { title: '¿Cómo elegir la solución digital perfecta?', subtitle: 'Sigue estos pasos y acierta de una vez.', image: 'https://t4.ftcdn.net/jpg/07/14/09/81/360_F_714098125_aUmRxNTyegdNBF9QtcFKMouIJNaER9H7.jpg', link: '/blog/673f617b25363238ff713406' },
-        { title: '¿Desarrollar app in-house o subcontratar?', subtitle: 'Descubre la mejor opción para tu negocio.', image: 'https://pixelplex.io/next/images/ios-app-development/header/ios-app-development-background.jpg', link: '/blog/673f629b25363238ff71340b' },
-        { title: 'Errores que debes evitar al digitalizar tu negocio', subtitle: '¿Estás preparado para evitar el caos?', image: 'https://img.freepik.com/premium-photo/minimalistic-dark-office-desk-setup-with-computer-lamp-sleek-modern-workspace-professional_210545-14101.jpg', link: '/blog/673f645e25363238ff713412' },
+        {
+            title: t('blog.top5.title'),
+            subtitle: t('blog.top5.subtitle'),
+            image: 'https://static.vecteezy.com/system/resources/thumbnails/050/799/447/small/laptop-and-coffee-cup-on-black-table-in-office-workplace-concept-photo.jpeg',
+            link: '/blog/673f5faf25363238ff713401'
+        },
+        {
+            title: t('blog.perfectSolution.title'),
+            subtitle: t('blog.perfectSolution.subtitle'),
+            image: 'https://t4.ftcdn.net/jpg/07/14/09/81/360_F_714098125_aUmRxNTyegdNBF9QtcFKMouIJNaER9H7.jpg',
+            link: '/blog/673f617b25363238ff713406'
+        },
+        {
+            title: t('blog.inhouseOrOutsource.title'),
+            subtitle: t('blog.inhouseOrOutsource.subtitle'),
+            image: 'https://pixelplex.io/next/images/ios-app-development/header/ios-app-development-background.jpg',
+            link: '/blog/673f629b25363238ff71340b'
+        },
+        {
+            title: t('blog.avoidMistakes.title'),
+            subtitle: t('blog.avoidMistakes.subtitle'),
+            image: 'https://img.freepik.com/premium-photo/minimalistic-dark-office-desk-setup-with-computer-lamp-sleek-modern-workspace-professional_210545-14101.jpg',
+            link: '/blog/673f645e25363238ff713412'
+        },
     ];
 
     const goToBlog = (link) => {
@@ -21,7 +43,7 @@ const BlogListLanding = () => {
         <div className="h-fit-content pb-10 md:pb-20 flex flex-col gap-10 py-10 lg:py-20">
             <div className="flex gap-4 items-center justify-between pr-1">
                 <span className="text-2xl md:text-7xl pl-10 pt-10 pb-6 text-white">
-                    LAS ÚLTIMAS NOVEDADES
+                    {t('lastPosts')}
                 </span>
                 <div className="w-40 md:w-80 border-2 border-gridyellow text-4xl md:text-8xl text-gridyellow flex pl-3 md:pl-14 items-center rounded-full h-14 md:h-32">
                     <FaArrowDown className="transform rotate-45" />
