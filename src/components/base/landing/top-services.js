@@ -23,7 +23,7 @@ const TopServices = () => {
     return (
         <div>
             <span className="text-lg md:text-2xl pl-8 md:pl-14 pt-10 pb-6 text-white">
-                SERVICIOS IMPRESCINDIBLES PARA START UPS
+                {t('topServicesStartUps')}
             </span>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-4 lg:px-60">
                 {products?.map((product, index) => (

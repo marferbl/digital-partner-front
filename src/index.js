@@ -23,20 +23,20 @@ import './fonts/RoobertTRIAL-SemiBold.ttf'
 
 
 
+
+const userLocale = navigator.language || navigator.userLanguage; // e.g., "es-ES" or "en-US"
+const userLanguage = userLocale.startsWith('es') ? 'es' : 'en';
+
 i18Next.init({
   interpolation: {
-    escapeValue: false
+    escapeValue: false, // React already escapes values to prevent XSS
   },
-  lng: "es",
+  lng: userLanguage, // dynamically set language
   resources: {
-    es: {
-      global: global_es
-    },
-    en: {
-      global: global_en
-    }
-  }
-})
+    es: { global: global_es },
+    en: { global: global_en },
+  },
+});
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

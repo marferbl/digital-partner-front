@@ -3,9 +3,11 @@ import SearchSelect from './search-select.js';
 import { useState, useEffect } from 'react';
 import { Box } from '@chakra-ui/react';
 import { COUNTRIES } from '../../utils/constants';
+import { useTranslation } from "react-i18next";
+
 
 const SearchSelectCountries = ({ isMulti, onChange, showLabel, defaultValue, ...props }) => {
-
+    const { t, i18n } = useTranslation("global")
     const [value, setValue] = useState(defaultValue || null)
 
     useEffect(() => {
@@ -22,7 +24,7 @@ const SearchSelectCountries = ({ isMulti, onChange, showLabel, defaultValue, ...
 
     return (
         <Box my={1} {...props}>
-            <SearchSelect options={countriesOptions} value={value} isMulti={isMulti} label={showLabel ? 'País' : null} onChange={(value) => changeValue(value)} />
+            <SearchSelect options={countriesOptions} value={value} isMulti={isMulti} label={showLabel ? t('country') : null} onChange={(value) => changeValue(value)} />
         </Box>
     )
 }

@@ -9,6 +9,7 @@ import { COLORS } from '../../colors/colors';
 import GradientButton from '../base/GradientButton'
 import { ButtonCompareIA } from '../marketplace/ButtonCompareIa'
 import { SoftwareSearcherInput } from '../base/software-searcher-input'
+import { useTranslation } from 'react-i18next'
 
 
 const Searcher = ({ filters, isFavorites }) => {
@@ -17,6 +18,7 @@ const Searcher = ({ filters, isFavorites }) => {
     const [isCollapsed, setIsCollapsed] = useState(false);
     const [termLabel, setTermLabel] = useState(term)
     const [numberOfResults, setNumberOfResults] = useState(0)
+    const { t } = useTranslation('global')
 
     useEffect(() => {
         setTermLabel(term)
@@ -39,7 +41,7 @@ const Searcher = ({ filters, isFavorites }) => {
 
     return (
         <Box p={5}>
-            <Text textAlign={'right'} pr={{ base: 2, md: 6 }}>Mostrando {numberOfResults} resultados</Text>
+            <Text textAlign={'right'} pr={{ base: 2, md: 6 }}> {`${t('showing')} ${numberOfResults} ${t('results')}`}</Text>
             <Center py={3}>
                 <SoftwareSearcherInput onChange={setTermLabel} defaultClass='bg-white bg-opacity-40 backdrop-blur-md shadow-md text-sm lg:text-base w-full rounded-full px-4 py-3 pr-10 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500' />
             </Center>
