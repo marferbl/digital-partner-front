@@ -59,6 +59,7 @@
     "solutionTargetQuestion": "¿A quién va dirigida la solución?",
     "erpQuestion": "¿Buscas un ERP?",
     "specificFeaturesQuestion": "¿Qué funcionalidades específicas buscas?",
+    "specifyFeature":"Funcionalidad especifica",
     "nextButton": "Siguiente",
     "challengeAloneSucceedTogether": "Desafía solo, triunfad juntos. Esta es tu comunidad.",
     "formAnUnstoppableTeam": "Forma un equipo imparable rompiendo estándares.",
@@ -80,7 +81,7 @@
     "ticketing": "Ticketing",
     "accounting": "Contabilidad",
     "payment": "Facturación",
-    "tesoreria": "Tesorería",
+    "treasury": "Tesorería",
     "other": "Otros",
     "crm": "CRM",
     "marketingrelational": "Marketing relacional",
@@ -152,5 +153,25 @@
         "update": "Quizás podríamos mencionar que estar en Digitalando es la forma más cómoda de mantenerse actualizado y digitalizar cualquier proceso.",
         "jobs": "Incluso podríamos sacar el tema de que si te dedicas al mundo digital y estás buscando ofertas de curro, aquí tenemos unas cuantas bastante jugosas."
     },
-    "featuresDigitalando.more": "¿Quieres saber por que Digitalando?"
+    "featuresDigitalando.more": "¿Quieres saber por que Digitalando?",
+    "topSolutionsOfTheMonth": "TOP SOLUCIONES DEL MES",
+    "topServicesStartUps": "SERVICIOS IMPRESCINDIBLES PARA START UPS",
+    "home": "Home",
+    "explore": "Explorar",
+    "myPanel": "Mi panel",
+    "filters": "Filtros",
+    "clearFilters": "Limpiar filtros",
+    "country": "País",
+    "language": "Idioma",
+    "compareWithAI": "Comparar con IA",
+    "showing": "Mostrando",
+    "results": "resultados",
+    "feature": "Funcionalidad",
+    "why_digitalando": {
+        "why": "¿POR QUÉ",
+        "digitalando": "DIGITALAND",
+        "do": "DO?",
+        "reason": "BUENO, PORQUE MOLA..."
+      }
+
 }

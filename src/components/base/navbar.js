@@ -42,17 +42,17 @@ export default function Navbar() {
 
   const Links = [
     {
-      label: 'Home',
+      label: 'home',
       link: '/',
       key: 'home'
     },
     {
-      label: 'Explorar',
+      label: 'explore',
       link: '/search/',
       key: 'explore'
     },
     {
-      label: 'Mi panel',
+      label: 'myPanel',
       link: '/start',
       key: 'portal',
       hide: !isLoggedIn
@@ -61,17 +61,17 @@ export default function Navbar() {
 
   const LinksMobile = [
     {
-      label: 'Home',
+      label: 'home',
       link: '/',
       key: 'home'
     },
     {
-      label: 'Explorar',
+      label: 'explore',
       link: '/search/',
       key: 'explore'
     },
     {
-      label: 'Mi panel',
+      label: 'myPanel',
       link: '/start',
       key: 'portal',
     },
@@ -104,7 +104,7 @@ export default function Navbar() {
                   fontSize={12}
                   py={3}
                 >
-                  {!link.hide && <Link to={{ pathname: link.link, state: { filter: link.param } }}>{link.label}</Link>}
+                  {!link.hide && <Link to={{ pathname: link.link, state: { filter: link.param } }}>{t(link.label)}</Link>}
                 </Box>
               ))}
             </HStack>
@@ -121,14 +121,14 @@ export default function Navbar() {
                 color={'black'}
               >
                 <Box p={3} w={200} _hover={{ transform: "scale(1.02)" }} color='white' rounded={'lg'}>
-                  {!isLoggedIn ? <Link key={'/start'} to={{ pathname: '/start' }} >{'Iniciar sesión'}</Link> : ''}
+                  {!isLoggedIn ? <Link key={'/start'} to={{ pathname: '/start' }} >{t('login')}</Link> : ''}
                 </Box>
               </HStack>
               <Flex gap={3} pr={3}>
-                <Button size={'small'} p={1} rounded={'xl'} onClick={() => i18n.changeLanguage('es')}>
+                <Button size={'small'} p={1} rounded={'lg'} onClick={() => i18n.changeLanguage('es')}>
                   <CountryFlag country={'spain'} />
                 </Button>
-                <Button size={'small'} p={1} rounded={'xl'} onClick={() => i18n.changeLanguage('en')}>
+                <Button size={'small'} p={1} rounded={'lg'} onClick={() => i18n.changeLanguage('en')}>
                   <CountryFlag country={'england'} />
                 </Button>
               </Flex>

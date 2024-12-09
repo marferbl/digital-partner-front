@@ -65,7 +65,7 @@ export const ButtonCompareIA = ({ refreshSolutions, disabled }) => {
 
     return (
         <>
-            <GradientButton onClick={onOpen} label={'Comparar con IA'} type='green' size='sm' />
+            <GradientButton onClick={onOpen} label={t('compareWithAI')} type='green' size='sm' />
 
             <Modal isOpen={isOpen} onClose={closeModal} size='3xl'>
                 <ModalOverlay />

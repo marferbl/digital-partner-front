@@ -5,8 +5,11 @@ import SearchSelectFeatures from '../base/search-select-features';
 import SearchSelect from '../base/search-select';
 import SearchSelectSpecifyFeatures from '../base/search-select-specify-features';
 import CustomRadioButtonGroup from '../base/radio-group';
+import { useTranslation } from 'react-i18next';
 
 const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
+    const { t } = useTranslation("global");
+
     const [filterValues, setFilterValues] = useState(filters);
 
     const handleToggle = (filterName, value) => {
@@ -41,7 +44,7 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
 
     return (
         <div className="border-r h-fit-content bg-gray-50 p-4 shadow-2xl rounded-lg">
-            <span className="text-lg font-bold pt-5">Filtros</span>
+            <span className="text-lg font-bold pt-5">{t('filters')}</span>
             <div className="flex flex-col space-y-4 mt-6">
                 {/* <div className="min-w-[140px] pt-1">
                     <SearchSelect
@@ -73,7 +76,7 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
                                     value={filterValues.specifyFeatures}
                                     showLabel
                                     width="100%"
-                                    label="Funcionalidad especifica"
+                                    label={t('specifyFeature')}
                                     feature={filterValues.features}
                                     onChange={(value) => handleToggle('specifyFeatures', value)}
                                 />
@@ -87,7 +90,7 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
                         <SearchSelect
                             options={[{ value: 'partner', label: 'Partner' }, { value: 'development', label: 'Desarrollo' }, { value: 'renting', label: 'Renting' }, { value: 'helps', label: 'Ayudas' }, { value: 'training', label: 'Training' }, { value: 'growth', label: 'Growth' }]}
                             width="100%"
-                            label="Tipo"
+                            label={t('type')}
                             onChange={(value) => handleToggle('serviceType', value)}
                             value={filterValues.serviceType}
                         />
@@ -147,7 +150,7 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
                 {hasFilters && (
                     <div className="min-w-[140px] pt-7">
                         <button className="text-neutral" onClick={clearFilters}>
-                            Limpiar filtros
+                            {t('clearFilters')}
                         </button>
                     </div>
                 )}
