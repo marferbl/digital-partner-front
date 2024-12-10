@@ -10,7 +10,6 @@ import { MarketplacePage } from "../pages/maketplace/marketplace";
 import SearcherPage from "../pages/searcher/SearcherPage";
 import { ProfileCorporatePage } from "../pages/admin/profile/index";
 import { SolutionsCorporatePage } from "../pages/admin/solutions";
-import { FreelancePage } from "../pages/personal/freelance";
 import { SolutionDetailPage } from "../pages/admin/solutions/solution-detail";
 import { ServicePage } from "../pages/admin/service";
 import ServiceDetailsPage from "../pages/admin/service/service-details";
@@ -18,7 +17,7 @@ import AboutPage from "../pages/landing/about";
 import FaqsPage from "../pages/landing/faqs";
 import FalseLanding from "../pages/landing/false-landing";
 import FavoritePage from "../pages/favorite/FavoritePage";
-import DigitalProfilePage from "../pages/digital-profile/digital-profile";
+import DigitalProfilePage from "../pages/user/digital-profile.js"
 import { DemoPage } from "../pages/landing/demo";
 import ConfirmEmailPage from "../pages/start/confirm-email";
 import ConditionsUserPage from "../pages/landing/conditions-user";
@@ -63,7 +62,7 @@ export const PageRoutes = () => {
           <Route path={"search"} element={<SearcherPage />} />
           <Route path={"favorites"} element={<FavoritePage />} />
           <Route path={'corporate/solutions'} element={<SolutionsCorporatePage />} />
-          <Route path={'freelance'} element={<FreelancePage />} />
+          <Route path={'digital-profile'} element={<DigitalProfilePage />} />
           <Route path={'solution/:id'} element={<SolutionDetailPage />} />
           <Route path={'corporate/service'} element={<ServicePage />} />
           <Route path={'service/:id'} element={<ServiceDetailsPage />} />

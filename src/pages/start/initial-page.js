@@ -45,7 +45,7 @@ export default function InitialPage() {
         {/* Toggle Indicator */}
         <div
           className={`absolute top-1 ${!showLogin ? "left-1" : "left-[calc(50%-4px)]"
-            } w-[calc(50%-4px)] h-[calc(100%-8px)] bg-transparent md:bg-neutralblack rounded-xl transition-all duration-300`}
+            } w-[calc(50%-4px)] h-[calc(100%-8px)] bg-transparent md:bg-blacklogin rounded-xl transition-all duration-300`}
         />
 
         {/* Left Content */}
