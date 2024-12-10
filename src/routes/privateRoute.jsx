@@ -12,12 +12,24 @@ import { FiEdit } from "react-icons/fi";
 
 const PrivateRoute = () => {
   const { isLoggedIn, isLoading, setMe, me } = useContext(UserContext);
+  const [routeInHidden, setRouteInHidden] = useState(false);
+  const ROUTES_EXCEPTIONS = [
+    "/private/digital-profile"
+  ]
 
   useEffect(() => {
     if (isLoggedIn) {
       setMeData();
     }
   }, [isLoggedIn]);
+
+  // useEffect(() => {
+  //   if (ROUTES_EXCEPTIONS.includes(window.location.pathname)) {
+  //     setRouteInHidden(true);
+  //   } else {
+  //     setRouteInHidden(false);
+  //   }
+  // }, [window.location.pathname]);
 
   const setLogo = (logo) => {
     setMe({ ...me, avatar: logo });
@@ -47,7 +59,7 @@ const PrivateRoute = () => {
   return (
     <div className="bg-black pb-8" >
       <Navbar />
-      <div className="px-10 md:px-28">
+      {!routeInHidden && <div className="px-10 md:px-28">
         <h2 className="text-6xl md:text-10xl lg:text-12xl font-semibold text-white text-center ">MI PANEL</h2>
         <img src='/profile-banners/profile-banner-1.png' className='w-full h-200' />
         <div className="flex justify-between items-center">
@@ -77,7 +89,7 @@ const PrivateRoute = () => {
           </div>
         </div>
         <HorizontalMenu />
-      </div>
+      </div>}
       <div className="px-10 md:px-28">
         <Outlet />
       </div>

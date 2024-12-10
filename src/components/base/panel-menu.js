@@ -65,6 +65,8 @@ export const HorizontalMenu = ({ onClose, isSidebarOpen, setIsSidebarOpen, ...re
       setSelectedKey('service');
     } else if (location.pathname.includes('events')) {
       setSelectedKey('events');
+    } else if (location.pathname.includes('digital-profile')) {
+      setSelectedKey('digital-profile');
     }
   }, [location])
 
@@ -98,7 +100,7 @@ export const HorizontalMenu = ({ onClose, isSidebarOpen, setIsSidebarOpen, ...re
 
   const userRoutes = [
     { name: "Perfil", icon: FiUser, to: "profile", key: 'profile' },
-    { name: "Freelance", icon: FiTrendingUp, to: "freelance", soon: true },
+    { name: "Freelance", icon: FiTrendingUp, to: "digital-profile", key: 'digital-profile', soon: true },
     { name: "Empleo", icon: FiGrid, to: "dashboard", soon: true },
     { name: "Gurús", icon: FiStar, to: "dashboard", soon: true },
   ];
