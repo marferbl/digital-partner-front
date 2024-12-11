@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import ImageGallerySlider from '../base/GallerySlider';
 
 const DigitalProfileDetails = ({ item }) => {
 
@@ -77,7 +78,7 @@ const DigitalProfileDetails = ({ item }) => {
                     {item?.experience.map((study, index) => (
                         <div key={index} className="flex flex-col md:flex-row items-start md:items-center justify-between border-t border-gray-700 pt-4">
 
-                            <div className="text-white md:text-right">
+                            <div className="text-white lg:w-1/6">
                                 {study.start}- {study.end || "Presente"}
                             </div>
                             <div className='w-full lg:w-1/4'>
@@ -146,6 +147,11 @@ const DigitalProfileDetails = ({ item }) => {
                     </div>
                 </div>
             </section>
+            {item && item?.gallery && item.gallery.length ?
+                <div>
+                    <ImageGallerySlider images={item.gallery} height={300} width={300} />
+                </div>
+                : ''}
 
 
             {/* Actions */}

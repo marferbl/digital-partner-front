@@ -9,8 +9,12 @@ import { FiEdit } from 'react-icons/fi';
 import { updateMe } from '../../services/auth';
 import { Link } from 'react-router-dom';
 import ExperienceForm from './experience-form';
+import { ImageGalleryUpload } from '../base/image-gallery-upload';
+import { useToast } from '@chakra-ui/react';
 
 const DigitalProfileForm = ({ myFreelance }) => {
+
+    const toast = useToast();
 
     useEffect(() => {
         if (myFreelance) {
@@ -39,11 +43,9 @@ const DigitalProfileForm = ({ myFreelance }) => {
         openPrefferedWork: false,
         salary: 0,
         openSalary: false,
-        experience: []
+        experience: [],
+        gallery: []
     });
-
-    console.log(user)
-
 
     // Handle input changes
     const handleChange = (e) => {
@@ -66,6 +68,7 @@ const DigitalProfileForm = ({ myFreelance }) => {
             updateFreelance(user)
                 .then((res) => {
                     console.log(res);
+                    showToast()
                 }
                 )
                 .catch((err) => {
@@ -78,11 +81,24 @@ const DigitalProfileForm = ({ myFreelance }) => {
         createFreelance(user)
             .then((res) => {
                 console.log(res);
+                showToast()
             })
             .catch((err) => {
                 console.log(err);
             });
+
+
     };
+
+    const showToast = () => {
+        toast({
+            title: "OK",
+            description: "Cambios guardados",
+            status: "success",
+            duration: 4000,
+            isClosable: true,
+        });
+    }
 
 
     const onSave = (logo) => {
@@ -96,6 +112,14 @@ const DigitalProfileForm = ({ myFreelance }) => {
         })
     }
 
+    const setGalleryImages = (images) => {
+        setUser((prevUser) => ({
+            ...prevUser,
+            gallery: images
+        }));
+    }
+
+
 
     return (
         <div className="p-6 space-y-8 w-full">
@@ -103,7 +127,7 @@ const DigitalProfileForm = ({ myFreelance }) => {
             <div className="flex justify-end w-full gap-2">
                 <CustomButton text="Guardar cambios" onClick={saveFreelance} />
                 <Link to={`/talent/${user._id}`} className="text-white">
-                    <CustomButton text="Vista previa" onClick={saveFreelance} type='secondary' />
+                    <CustomButton text="Vista previa" type='secondary' />
                 </Link>
             </div>
             {/* Section 1: Digital Profile */}
@@ -388,6 +412,8 @@ const DigitalProfileForm = ({ myFreelance }) => {
                     placeholder="Linkedin, github, portfolio..."
                 />
             </div>
+            {user && user.gallery && <ImageGalleryUpload url={`image/upload`} setGalleryImages={setGalleryImages} defaultUrls={user?.gallery} />}
+
 
             <div className="flex justify-end w-full">
                 <CustomButton text="Guardar cambios" onClick={saveFreelance} />
