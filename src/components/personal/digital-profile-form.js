@@ -7,6 +7,8 @@ import TechnologyForm from './technologies-form';
 import ModalDefaultPhoto from '../base/modal-default-photos';
 import { FiEdit } from 'react-icons/fi';
 import { updateMe } from '../../services/auth';
+import { Link } from 'react-router-dom';
+import ExperienceForm from './experience-form';
 
 const DigitalProfileForm = ({ myFreelance }) => {
 
@@ -32,29 +34,24 @@ const DigitalProfileForm = ({ myFreelance }) => {
         technologies: [],
         aboutMe: '',
         languages: [],
-        user: {}
+        user: {},
+        prefferedWork: '',
+        openPrefferedWork: false,
+        salary: 0,
+        openSalary: false,
+        experience: []
     });
 
+    console.log(user)
 
 
     // Handle input changes
     const handleChange = (e) => {
-        const { id, value } = e.target;
+        const { id, value, type, checked } = e.target;
         setUser((prevUser) => ({
             ...prevUser,
-            [id]: value,
+            [id]: type === 'checkbox' ? checked : value,
         }));
-    };
-
-    // Handle photo upload (optional)
-    const handlePhotoChange = (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            setUser((prevUser) => ({
-                ...prevUser,
-                photo: URL.createObjectURL(file),
-            }));
-        }
     };
 
     const setDataOnUser = (data, key) => {
@@ -103,8 +100,11 @@ const DigitalProfileForm = ({ myFreelance }) => {
     return (
         <div className="p-6 space-y-8 w-full">
 
-            <div className="flex justify-end w-full">
-                <CustomButton text="Guardar" onClick={saveFreelance} />
+            <div className="flex justify-end w-full gap-2">
+                <CustomButton text="Guardar cambios" onClick={saveFreelance} />
+                <Link to={`/talent/${user._id}`} className="text-white">
+                    <CustomButton text="Vista previa" onClick={saveFreelance} type='secondary' />
+                </Link>
             </div>
             {/* Section 1: Digital Profile */}
             <div className="rounded-xl bg-neutralblack p-6">
@@ -239,31 +239,24 @@ const DigitalProfileForm = ({ myFreelance }) => {
                         <textarea
                             id="bio"
                             value={user.introducction || ''}
-                            onChange={(e) => setUser({ ...user, introducction: e.target.value })}
+                            onChange={(e) => {
+                                const value = e.target.value;
+                                if (value.length <= 350) {
+                                    setUser({ ...user, introducction: value });
+                                }
+                            }}
                             className="w-full p-3 rounded-lg bg-black text-white focus:outline-none focus:ring-2 focus:ring-neutraltext border-1 border-neutral"
                             placeholder="Tell us about yourself"
                             rows="4"
                         ></textarea>
+                        {/* Character Counter */}
+                        <div className="text-right text-white text-sm mt-2">
+                            {user.introducction?.length || 0} / 350 caracteres
+                        </div>
                     </div>
-
-                    {/* Example Input - LinkedIn */}
-                    {/* <div>
-                        <label htmlFor="linkedin" className="block text-white mb-1">
-                            Url personal
-                        </label>
-                        <input
-                            id="linkedin"
-                            type="url"
-                            value={user.web || ''}
-                            onChange={(e) => setUser({ ...user, web: e.target.value })}
-                            className="w-full p-3 rounded-lg bg-black text-white focus:outline-none focus:ring-2 focus:ring-neutraltext"
-                            placeholder="Enter your LinkedIn profile URL"
-                        />
-                    </div> */}
-
-                    {/* Add more fields as needed */}
                 </div>
             </div>
+
 
             <div className='h-12' />
             <div className="rounded-xl bg-neutralblack p-6">
@@ -277,6 +270,11 @@ const DigitalProfileForm = ({ myFreelance }) => {
             </div>
             <TechnologyForm onChange={(data) => setDataOnUser(data, 'technologies')} value={user.technologies} />
             <div className='h-12' />
+
+            <div className="rounded-xl bg-neutralblack p-6">
+                <span className="text-2xl font-semibold text-neutraltext block mb-6 text-white">Experiencia</span>
+            </div>
+            <ExperienceForm onChange={(data) => setDataOnUser(data, 'experience')} value={user.experience} />
 
             <div className="rounded-xl bg-neutralblack p-6">
                 <span className="text-2xl font-semibold text-neutraltext block mb-6 text-white">Sobre mí</span>
@@ -299,9 +297,101 @@ const DigitalProfileForm = ({ myFreelance }) => {
             <div className='h-12' />
 
             <div className="rounded-xl bg-neutralblack p-6">
-                <span className="text-2xl font-semibold text-neutraltext block mb-6 text-white">Lenguajes</span>
+                <span className="text-2xl font-semibold text-neutraltext block mb-6 text-white">Idiomas</span>
             </div>
             <LanguageForm onChange={(data) => setDataOnUser(data, 'languages')} value={user.languages} />
+
+            <div className='h-12' />
+
+            <div className="bg-black text-white space-y-6">
+                {/* Salary Section */}
+                <div className="p-4 rounded-lg bg-neutralblack">
+                    <h2 className="text-2xl font-semibold text-neutraltext block mb-6 text-white">Rango de Salario</h2>
+                    <label className="block mb-1">Cantidad anual mínima</label>
+
+                    <div className="flex items-center space-x-4">
+                        <div className='w-72'>
+                            <input
+                                id="salary"
+                                type="number"
+                                name="salary"
+                                value={user.salary}
+                                onChange={handleChange}
+                                placeholder="30000"
+                                className="w-full p-3 rounded-lg bg-black text-white focus:outline-none focus:ring-2 focus:ring-neutraltext border-1 border-neutral"
+                            />
+                        </div>
+                        <div className="flex items-center">
+                            <input
+                                id="openSalary"
+                                type="checkbox"
+                                name="openSalary"
+                                checked={user.openSalary}
+                                onChange={handleChange}
+                                className="appearance-none w-5 h-5 border border-gray-600 rounded-full bg-gray-400 checked:bg-gray-700 focus:ring-2 focus:ring-gray-600 focus:outline-none"
+                            />
+                            <label className="ml-2 text-sm">Abierto a recibir otras ofertas</label>
+                        </div>
+                    </div>
+                </div>
+
+
+                {/* Work Mode Section */}
+                <div className="p-4 rounded-lg bg-neutralblack">
+                    <h2 className="text-2xl font-semibold text-neutraltext block mb-6 text-white">Modalidad de trabajo</h2>
+                    <label className="block mb-1">Modalidad Preferida</label>
+
+                    <div className="flex items-center space-x-4">
+                        <div className='w-72'>
+                            <select
+                                id="prefferedWork"
+                                name="prefferedWork"
+                                value={user.prefferedWork}
+                                onChange={handleChange}
+                                className="w-full p-3 rounded-lg bg-black text-white focus:ring-2 focus:ring-neutral-700 border-1 border-neutral">
+                                <option value="" disabled>
+                                    Seleccionar
+                                </option>
+                                <option value="remote">Remoto</option>
+                                <option value="presential">Presencial</option>
+                                <option value="hybrid">Híbrido</option>
+
+                            </select>
+                        </div>
+                        <div className="flex items-center">
+                            <input
+                                id="openPrefferedWork"
+                                type="checkbox"
+                                name="openPrefferedWork"
+                                checked={user.openPrefferedWork}
+                                onChange={handleChange}
+                                className="appearance-none w-5 h-5 border border-gray-600 rounded-full bg-gray-400 checked:bg-gray-700 focus:ring-2 focus:ring-gray-600 focus:outline-none"
+                            />
+                            <label className="ml-2 text-sm">
+                                Abierto a recibir otro tipo de oferta
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div className="p-4 rounded-lg bg-neutralblack">
+                <label htmlFor="linkedin" className="block text-white mb-1 text-2xl font-semibold">
+                    Añadir enlace
+                </label>
+                <input
+                    id="linkedin"
+                    type="url"
+                    value={user.web || ''}
+                    onChange={(e) => setUser({ ...user, web: e.target.value })}
+                    className="w-full p-3 rounded-lg bg-black text-white focus:outline-none focus:ring-2 focus:ring-neutraltext"
+                    placeholder="Linkedin, github, portfolio..."
+                />
+            </div>
+
+            <div className="flex justify-end w-full">
+                <CustomButton text="Guardar cambios" onClick={saveFreelance} />
+            </div>
         </div>
     );
 };

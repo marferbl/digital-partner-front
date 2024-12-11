@@ -42,7 +42,7 @@ const MarketplaceSection = ({ term, filters, isCollapsed, isFavorites, setNumber
     const getSolutions = () => {
         setLoading(true)
         const featuresToArray = typeof filters.features === 'string' ? filters.features.split(',') : filters.features;
-        if (term) {
+        if (term && !filters.lineType) {
             getOptimizeSearch(term).then((res) => {
                 setLoading(false)
                 setSolutions(res.data.results);

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const EducationForm = ({ value = [], onChange }) => {
+const ExperienceForm = ({ value = [], onChange }) => {
     const [education, setEducation] = useState(value);
 
     useEffect(() => {
@@ -16,7 +16,7 @@ const EducationForm = ({ value = [], onChange }) => {
     };
 
     // Add new education entry
-    const addEducation = () => {
+    const addExperience = () => {
         const newEntry = {
             name: "",
             entity: "",
@@ -24,6 +24,8 @@ const EducationForm = ({ value = [], onChange }) => {
             end: null,
             description: "",
             isCurrent: false,
+            isRemote: false,
+            country: ''
         };
         const updatedEducation = [...education, newEntry];
         setEducation(updatedEducation);
@@ -60,7 +62,7 @@ const EducationForm = ({ value = [], onChange }) => {
                             {/* Name */}
                             <div className="mb-2">
                                 <label htmlFor={`name-${index}`} className="block mb-1">
-                                    Titulación
+                                    Puesto
                                 </label>
                                 <input
                                     id={`name-${index}`}
@@ -70,7 +72,7 @@ const EducationForm = ({ value = [], onChange }) => {
                                         handleInputChange(index, "name", e.target.value)
                                     }
                                     className="w-full p-2 rounded-lg bg-black text-white focus:ring-2 focus:ring-neutral-700 border-1 border-neutral"
-                                    placeholder="Grado en Administración y Dirección..."
+                                    placeholder="Gestor de sistemas"
                                 />
                             </div>
 
@@ -81,7 +83,7 @@ const EducationForm = ({ value = [], onChange }) => {
                                         htmlFor={`entity-${index}`}
                                         className="block mb-1"
                                     >
-                                        Entidad
+                                        Empresa
                                     </label>
                                     <input
                                         id={`entity-${index}`}
@@ -95,7 +97,7 @@ const EducationForm = ({ value = [], onChange }) => {
                                             )
                                         }
                                         className="w-full p-2 rounded-lg bg-black text-white focus:ring-2 focus:ring-neutral-700 border-1 border-neutral"
-                                        placeholder="Universidad Politécnica de..."
+                                        placeholder="Empresa"
                                     />
                                 </div>
 
@@ -182,6 +184,46 @@ const EducationForm = ({ value = [], onChange }) => {
                             </div>
                         </div>
                     </div>
+                    <div className="flex items-center gap-6">
+                        <div>
+                            <label htmlFor={`name-${index}`} className="block mb-1">
+                                País
+                            </label>
+                            <input
+                                id={`country-${index}`}
+                                type="text"
+                                value={entry.country}
+                                onChange={(e) =>
+                                    handleInputChange(index, "country", e.target.value)
+                                }
+                                className="w-72 p-2 rounded-lg bg-black text-white focus:ring-2 focus:ring-neutral-700 border-1 border-neutral"
+                                placeholder="Paises bajos"
+                            />
+                        </div>
+                        <div className="flex items-center gap-2 pt-6">
+                            <input
+                                id={`isRemote-${index}`}
+                                type="checkbox"
+                                checked={entry.isRemote}
+                                onChange={(e) =>
+                                    handleInputChange(
+                                        index,
+                                        "isRemote",
+                                        e.target.checked
+                                    )
+                                }
+                                className="rounded-md text-neutral-700 h-4 w-4"
+                            />
+                            <label
+                                htmlFor={`isRemote-${index}`}
+                                className="text-gray-400"
+                            >
+                                En remoto
+                            </label>
+                        </div>
+                    </div>
+
+
 
                 </div>
             ))}
@@ -189,13 +231,13 @@ const EducationForm = ({ value = [], onChange }) => {
             {/* Add Button */}
             <button
                 type="button"
-                onClick={addEducation}
+                onClick={addExperience}
                 className="flex items-center gap-2 hover:text-gray-400 text-white"
             >
-                + Añadir formación
+                + Añadir experiencia
             </button>
         </div>
     );
 };
 
-export default EducationForm;
+export default ExperienceForm;

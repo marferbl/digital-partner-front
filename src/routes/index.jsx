@@ -27,6 +27,7 @@ import BlogEditor from "../pages/blog/blog-editor";
 import BlogList from "../pages/blog/blog-list";
 import BlogDetail from "../pages/blog/blog-detail";
 import PublicRoute from "./publicRoute";
+import DigitalProfileDetailsPage from "../pages/digital-profile/digital-profile-details";
 
 export const PageRoutes = () => {
   return (
@@ -43,6 +44,7 @@ export const PageRoutes = () => {
           <Route path={'solution/:id'} element={<SolutionDetailPage />} />
           <Route path={'service/:id'} element={<ServiceDetailsPage />} />
           <Route path={'event/:id'} element={<EventDetailsPage />} />
+          <Route path={"talent/:id"} element={<DigitalProfileDetailsPage />} />
           <Route path={'about'} element={<AboutPage />} />
           <Route path={'faqs'} element={<FaqsPage />} />
           <Route path={'demo'} element={<DemoPage />} />
