@@ -32,7 +32,7 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
 
     const hasFilters = Object.values(filterValues).some((value) => value !== '');
 
-    const OPTIONS_TYPE = [{ value: 'solutions', label: 'Soluciones' }, { value: 'services', label: 'Servicios' }, { value: 'events', label: 'Eventos' }]
+    const OPTIONS_TYPE = [{ value: 'solutions', label: 'Soluciones' }, { value: 'services', label: 'Servicios' }, { value: 'events', label: 'Eventos' }, { value: 'freelance', label: 'Freelance' }]
 
     const handlePrice = (value) => {
         handleToggle('price', value);

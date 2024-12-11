@@ -172,7 +172,7 @@ const EducationForm = ({ value = [], onChange }) => {
                                         e.target.value
                                     )
                                 }
-                                rows="3"
+                                rows="4"
                                 maxLength={240}
                                 className="w-full p-2 rounded-lg bg-black text-white focus:ring-2 focus:ring-neutral-700 border-1 border-neutral"
                                 placeholder="Describe tu experiencia aquí..."

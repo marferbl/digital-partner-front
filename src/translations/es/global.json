@@ -59,7 +59,7 @@
     "solutionTargetQuestion": "¿A quién va dirigida la solución?",
     "erpQuestion": "¿Buscas un ERP?",
     "specificFeaturesQuestion": "¿Qué funcionalidades específicas buscas?",
-    "specifyFeature":"Funcionalidad especifica",
+    "specifyFeature": "Funcionalidad especifica",
     "nextButton": "Siguiente",
     "challengeAloneSucceedTogether": "Desafía solo, triunfad juntos. Esta es tu comunidad.",
     "formAnUnstoppableTeam": "Forma un equipo imparable rompiendo estándares.",
@@ -172,6 +172,9 @@
         "digitalando": "DIGITALAND",
         "do": "DO?",
         "reason": "BUENO, PORQUE MOLA..."
-      }
-
+    },
+    "advanced": "Avanzado",
+    "native": "Nativo",
+    "basic": "Básico",
+    "Medium": "Medio"
 }

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const LanguageForm = ({ value = [], onChange }) => {
+    const { t } = useTranslation('global');
     const [languages, setLanguages] = useState(value);
 
     useEffect(() => {
@@ -82,10 +84,10 @@ const LanguageForm = ({ value = [], onChange }) => {
                                 }
                                 className="w-full p-2 rounded-lg bg-black text-white focus:ring-2 focus:ring-neutral-700 border-1 border-neutral"
                             >
-                                <option value="Native">Nativo</option>
-                                <option value="Advanced">Avanzado</option>
-                                <option value="Medium">Medio</option>
-                                <option value="Basic">Básico</option>
+                                <option value="native">{t('native')}</option>
+                                <option value="advanced">{t('advanced')}</option>
+                                <option value="medium">{t('medium')}</option>
+                                <option value="basic">{t('basic')}</option>
                             </select>
                         </div>
                     </div>

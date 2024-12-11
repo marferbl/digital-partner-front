@@ -15,6 +15,11 @@ export const ImageGalleryUpload = ({ url, setGalleryImages, defaultUrls }) => {
     const [localDefaultUrls, setLocalDefaultUrls] = useState(defaultUrls || []); // Store URLs of uploaded images
     const [showUploadedTrue, setShowUploadedTrue] = useState(false);
 
+    useEffect(() => {
+        setUploadedUrls(defaultUrls);
+        setLocalDefaultUrls(defaultUrls);
+    }, [defaultUrls]);
+
 
     useEffect(() => {
         const alreadyUploaded = localDefaultUrls.map(url => {
@@ -25,7 +30,7 @@ export const ImageGalleryUpload = ({ url, setGalleryImages, defaultUrls }) => {
         });
 
         setParsedImages([...alreadyUploaded, ...files]);
-    }, [files])
+    }, [files, localDefaultUrls])
 
 
     // Handle file selection
@@ -105,12 +110,12 @@ export const ImageGalleryUpload = ({ url, setGalleryImages, defaultUrls }) => {
                     <Button
                         as="span"
                         cursor="pointer"
-                        bg="blue.400"
+                        bg="gray.600"
                         color="white"
                         px="4"
                         py="2"
                         rounded="md"
-                        _hover={{ bg: "blue.500" }}
+                        _hover={{ bg: "gray.800" }}
                     >
                         {defaultUrls?.length ? 'Elegir más' : 'Elegir imagenes'}
                     </Button>
