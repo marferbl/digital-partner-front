@@ -1,7 +1,7 @@
 import React from 'react'
 import { IoIosArrowRoundForward } from 'react-icons/io';
 
-const CustomButton = ({ text, onClick, showIcon, size, disabled }) => {
+const CustomButton = ({ text, onClick, showIcon, size, disabled, type }) => {
 
     const sizeToButtonResponsive = () => {
         const object = {
@@ -13,9 +13,18 @@ const CustomButton = ({ text, onClick, showIcon, size, disabled }) => {
         return object[size] || object['md']
     }
 
+    const styles = () => {
+        const object = {
+            primary: 'text-black bg-gridyellow',
+            secondary: 'text-white bg-neutralblack',
+        }
+
+        return object[type] || object['primary']
+    }
+
 
     return (
-        <button className={`text-black bg-gridyellow px-2 py-1 md:px-4 md:py-2 rounded hover:text-neutral flex items-center rounded-3xl ${disabled && 'cursor-not-allowed opacity-50'}`} disabled={disabled} onClick={onClick}>
+        <button className={`${styles()} px-2 py-1 md:px-4 md:py-2 rounded hover:text-neutral flex items-center rounded-3xl ${disabled && 'cursor-not-allowed opacity-50'}`} disabled={disabled} onClick={onClick}>
             {text}
             {showIcon && <IoIosArrowRoundForward size={size || 28} />}
         </button>

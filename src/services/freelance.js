@@ -15,3 +15,4 @@ export const getFreelance = () => API.get(`/freelance/me`);
 export const updateFreelance = (body) => API.put('/freelance/update', body);
 export const createFreelance = (body) => API.post(`/freelance/create`, body);
 export const removeCorporate = (id) => API.get(`/freelance/update` + id);
+export const getFreelanceById = (id) => API.get(`/freelance/details/${id}`);
