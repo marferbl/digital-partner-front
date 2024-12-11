@@ -39,7 +39,7 @@ const DigitalProfileDetails = ({ item }) => {
             {/* Main Content */}
             <div className="flex flex-col lg:flex-row items-center justify-center lg:items-start gap-8">
                 {/* Profile Image */}
-                <div className="flex items-center">
+                <div className="flex items-center gap-5 flex-wrap">
                     <img
                         src={item.user?.avatar}
                         alt={item.fullName}

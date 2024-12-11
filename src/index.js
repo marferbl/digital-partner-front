@@ -25,7 +25,9 @@ import './fonts/RoobertTRIAL-SemiBold.ttf'
 
 
 const userLocale = navigator.language || navigator.userLanguage; // e.g., "es-ES" or "en-US"
-const userLanguage = userLocale.startsWith('es') ? 'es' : 'en';
+// const userLanguage = userLocale.startsWith('es') ? 'es' : 'en';
+const userLanguage = 'es'
+
 
 i18Next.init({
   interpolation: {
