@@ -309,4 +309,47 @@ export const SPECIFY_FEATURES_LABELS = {
     ia: 'IA'
 }
 
+export const POSITIONS = [
+    { value: 'ceo', label: 'CEO' },
+    { value: 'front_end', label: 'Front End Developer' },
+    { value: 'back_end', label: 'Back End Developer' },
+    { value: 'full_stack', label: 'Full Stack Developer' },
+    { value: 'ui_ux', label: 'UI/UX Designer' },
+    { value: 'data_scientist', label: 'Data Scientist' },
+    { value: 'data_analyst', label: 'Data Analyst' },
+    { value: 'devops', label: 'DevOps Engineer' },
+    { value: 'cloud_architect', label: 'Cloud Architect' },
+    { value: 'product_manager', label: 'Product Manager' },
+    { value: 'project_manager', label: 'Project Manager' },
+    { value: 'qa_engineer', label: 'QA Engineer' },
+    { value: 'cybersecurity', label: 'Cybersecurity Specialist' },
+    { value: 'blockchain_developer', label: 'Blockchain Developer' },
+    { value: 'game_developer', label: 'Game Developer' },
+    { value: 'machine_learning', label: 'Machine Learning Engineer' },
+    { value: 'ai_specialist', label: 'AI Specialist' },
+    { value: 'business_analyst', label: 'Business Analyst' },
+    { value: 'digital_marketing', label: 'Digital Marketing Specialist' },
+    { value: 'seo_specialist', label: 'SEO Specialist' },
+    { value: 'social_media_manager', label: 'Social Media Manager' },
+    { value: 'content_creator', label: 'Content Creator' },
+    { value: 'technical_writer', label: 'Technical Writer' },
+    { value: 'mobile_app_developer', label: 'Mobile App Developer' },
+    { value: 'web_developer', label: 'Web Developer' },
+    { value: 'software_engineer', label: 'Software Engineer' },
+    { value: 'system_admin', label: 'System Administrator' },
+    { value: 'it_consultant', label: 'IT Consultant' },
+    { value: 'game_designer', label: 'Game Designer' },
+    { value: 'product_designer', label: 'Product Designer' },
+    { value: 'scrum_master', label: 'Scrum Master' },
+    { value: 'vr_developer', label: 'VR Developer' },
+    { value: 'ar_developer', label: 'AR Developer' },
+    { value: 'site_reliability_engineer', label: 'Site Reliability Engineer' },
+    { value: 'it_support', label: 'IT Support Specialist' },
+    { value: 'data_engineer', label: 'Data Engineer' },
+    { value: 'ecommerce_manager', label: 'E-commerce Manager' },
+    { value: 'growth_hacker', label: 'Growth Hacker' },
+    { value: 'crm_manager', label: 'CRM Manager' }
+];
+
+
 

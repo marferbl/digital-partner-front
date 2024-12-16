@@ -9,11 +9,14 @@ import GalleryPhotoCard from './gallery-photo-card';
 import LabelTag from '../base/label-tag';
 import { useTranslation } from 'react-i18next';
 import TagList from './tags-list';
+import { t } from 'react-i18next';
 
 const CardFreelance = ({ item, isFavorites }) => {
 
     const languagesArray = item.languages?.map(language => language.name)
     const avatar = item?.user?.avatar
+
+    const { t } = useTranslation('global');
 
 
     return (
@@ -41,7 +44,7 @@ const CardFreelance = ({ item, isFavorites }) => {
                     <h3 className="text-sm font-semibold font-montserrat text-center flex justify-center items-center hover:underline">
                         <Link to={`/talent/${item._id}`}>{item.fullName}</Link>
                     </h3>
-                    <span className="text-xs text-darkgray text-center">{item.job}</span>
+                    <span className="text-xs text-darkgray text-center">{t(item.job)}</span>
                 </div>
             </div>
 

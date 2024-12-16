@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 import ExperienceForm from './experience-form';
 import { ImageGalleryUpload } from '../base/image-gallery-upload';
 import { useToast } from '@chakra-ui/react';
+import SearchSelectPositions from '../base/search-select-positions';
 
 const DigitalProfileForm = ({ myFreelance }) => {
 
@@ -201,14 +202,7 @@ const DigitalProfileForm = ({ myFreelance }) => {
                             <label htmlFor="job" className="block text-white mb-1">
                                 Job
                             </label>
-                            <input
-                                id="job"
-                                type="text"
-                                value={user.job}
-                                onChange={handleChange}
-                                className="w-full p-3 rounded-lg bg-black text-white focus:outline-none focus:ring-2 focus:ring-neutraltext border-1 border-neutral"
-                                placeholder="Enter your job"
-                            />
+                            <SearchSelectPositions onChange={(data) => setDataOnUser(data, 'job')} defaultValue={user.job} />
                         </div>
 
                         {/* Email */}

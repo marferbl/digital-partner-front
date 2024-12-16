@@ -28,11 +28,12 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
     const clearFilters = () => {
         setFilterValues({});
         setTermLabel('');
+        handleToggle('lineType', 'solutions')
     };
 
     const hasFilters = Object.values(filterValues).some((value) => value !== '');
 
-    const OPTIONS_TYPE = [{ value: 'solutions', label: 'Soluciones' }, { value: 'services', label: 'Servicios' }, { value: 'events', label: 'Eventos' }, { value: 'freelance', label: 'Freelance' }]
+    const OPTIONS_TYPE = [{ value: 'solutions', label: 'Soluciones' }, { value: 'services', label: 'Servicios' }, { value: 'events', label: 'Eventos' }, { value: 'freelance', label: 'Talento', key: 'talent' }]
 
     const handlePrice = (value) => {
         handleToggle('price', value);
@@ -57,7 +58,7 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
                     />
                 </div> */}
 
-                <CustomRadioButtonGroup options={OPTIONS_TYPE} onChange={(value) => handleToggle('lineType', value)} />
+                <CustomRadioButtonGroup options={OPTIONS_TYPE} onChange={(value) => handleToggle('lineType', value)} defaultValue={filterValues.lineType} />
 
                 {filterValues.lineType === 'solutions' && (
                     <>
@@ -111,7 +112,7 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
                     </div>
                 )}
 
-                {filterValues.lineType !== 'events' && (
+                {!['events', 'freelance'].includes(filterValues.lineType) && (
                     <>
                         <div className="min-w-[140px]">
                             <SearchSelectCountries

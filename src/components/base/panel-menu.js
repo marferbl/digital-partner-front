@@ -100,9 +100,9 @@ export const HorizontalMenu = ({ onClose, isSidebarOpen, setIsSidebarOpen, ...re
 
   const userRoutes = [
     { name: "Perfil", icon: FiUser, to: "profile", key: 'profile' },
-    { name: "Freelance", icon: FiTrendingUp, to: "digital-profile", key: 'digital-profile', soon: true },
+    { name: "Digital Profile", icon: FiTrendingUp, to: "digital-profile", key: 'digital-profile', soon: false },
     { name: "Empleo", icon: FiGrid, to: "dashboard", soon: true },
-    { name: "Gurús", icon: FiStar, to: "dashboard", soon: true },
+   // { name: "Gurús", icon: FiStar, to: "dashboard", soon: true },
   ];
 
   const adminRoutes = [
