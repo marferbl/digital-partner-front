@@ -79,7 +79,10 @@ const DigitalProfileForm = ({ myFreelance }) => {
             return;
         }
 
-        createFreelance(user)
+        const parsedUser = { ...user };
+        delete parsedUser.user;
+
+        createFreelance(parsedUser)
             .then((res) => {
                 console.log(res);
                 showToast()
