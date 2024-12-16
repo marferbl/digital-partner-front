@@ -25,7 +25,7 @@ const DigitalProfileDetails = ({ item }) => {
             <div className="flex justify-between items-start mb-8 font-light">
                 <div>
                     <h1 className="text-xl  md:text-6xl font-bold  uppercase font-light">{item.fullName}</h1>
-                    <h2 className="text-lg  md:text-3xl text-neutral uppercase font-light">{item.job}</h2>
+                    <h2 className="text-lg  md:text-3xl text-neutral uppercase font-light">{t(item.job)}</h2>
                     <div className="flex gap-10 mt-8">
                         <span className="text-md">{labelWorkType(item.prefferedWork)}</span>
                         <span className="text-md">Mínimo: {item.salary}€</span>
@@ -109,7 +109,7 @@ const DigitalProfileDetails = ({ item }) => {
             </section>
 
             <section className="text-white p-8">
-                <h2 className="text-4xl lg:text-12xl pt-4 md:pt-20 font-light mb-8 text-left">Sobre mi</h2>
+                <h2 className="text-4xl lg:text-12xl pt-4 md:pt-20 font-light mb-8 text-left">Sobre mí</h2>
                 <span className='text-neutral'>{item.aboutMe}</span>
             </section>
 
@@ -149,7 +149,7 @@ const DigitalProfileDetails = ({ item }) => {
             </section>
             {item && item?.gallery && item.gallery.length ?
                 <div>
-                    <ImageGallerySlider images={item.gallery} height={300} width={300} />
+                    <ImageGallerySlider images={item.gallery} height={500} width={500} />
                 </div>
                 : ''}
 

@@ -1,9 +1,13 @@
 import { useTranslation } from 'react-i18next'; // Import useTranslation
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-function CustomRadioButtonGroup({ options, onChange }) {
-    const [selectedValue, setSelectedValue] = useState(null);
+function CustomRadioButtonGroup({ options, onChange, defaultValue }) {
+    const [selectedValue, setSelectedValue] = useState(defaultValue);
     const { t } = useTranslation('global')
+
+    useEffect(() => {
+        setSelectedValue(defaultValue);
+    }, [defaultValue]);
 
     const handleChange = (value) => {
         setSelectedValue(value);
@@ -14,7 +18,7 @@ function CustomRadioButtonGroup({ options, onChange }) {
         <div className="flex flex-col gap-2">
             {options.map((option, index) => (
                 <label key={index} className="flex items-center cursor-pointer gap-6">
-                    <span className="text-gray-700 w-40">{t(option.value)}</span>
+                    <span className="text-gray-700 w-40">{t(option.label || option.value)}</span>
                     <input
                         type="radio"
                         value={option.value}
