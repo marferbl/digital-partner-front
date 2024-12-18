@@ -18,7 +18,7 @@ const DigitalProfileDetails = ({ item }) => {
         return object[type];
     }
 
-
+    console.log(item)
     return (
         <div className="min-h-screen bg-black text-white flex flex-col py-6 lg:py-10 px-3 lg:px-20">
             {/* Header Section */}
@@ -132,7 +132,7 @@ const DigitalProfileDetails = ({ item }) => {
                                 <p className="text-sm text-neutral-400">{item.salary}</p>
                             </div>
                             <div className="flex justify-between items-center w-full font-light border-b-1 border-neutral py-2">
-                                <p className="text-sm text-neutral-400">{item.openSalary ? 'Abierto a escuchar ofertas' : ''}</p>
+                                <p className="text-sm text-neutral-400">{item.openSalary ? 'Abierto a escuchar ofertas' : 'Salario cerrado'}</p>
                             </div>
                         </div>
                         <div className="w-full  px-2 md:px-10 pr-10">
@@ -141,7 +141,7 @@ const DigitalProfileDetails = ({ item }) => {
                                 <p className="text-sm text-neutral-400">{t(item.prefferedWork)}</p>
                             </div>
                             <div className="flex justify-between items-center w-full font-light border-b-1 border-neutral py-2">
-                                <p className="text-sm text-neutral-400">{item.openSalary ? 'Abierto a escuchar ofertas con otras condiciones' : ''}</p>
+                                <p className="text-sm text-neutral-400">{item.openPrefferedWork ? 'Abierto a escuchar ofertas con otras condiciones' : 'Solo buscando trabajo de estas condiciones'}</p>
                             </div>
                         </div>
                     </div>

@@ -21,7 +21,7 @@ const LanguageForm = ({ value = [], onChange }) => {
     const addLanguage = () => {
         const newEntry = {
             name: "",
-            level: "Basic", // Default level
+            level: "native", // Default level
         };
         const updatedLanguages = [...languages, newEntry];
         setLanguages(updatedLanguages);
