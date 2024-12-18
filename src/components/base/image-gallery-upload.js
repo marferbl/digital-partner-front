@@ -15,21 +15,32 @@ export const ImageGalleryUpload = ({ url, setGalleryImages, defaultUrls }) => {
     const [localDefaultUrls, setLocalDefaultUrls] = useState(defaultUrls || []); // Store URLs of uploaded images
     const [showUploadedTrue, setShowUploadedTrue] = useState(false);
 
+
     useEffect(() => {
-        setUploadedUrls(defaultUrls);
-        setLocalDefaultUrls(defaultUrls);
+        if (defaultUrls) {
+            setUploadedUrls(defaultUrls);
+            setLocalDefaultUrls(defaultUrls);
+        }
     }, [defaultUrls]);
 
 
     useEffect(() => {
-        const alreadyUploaded = localDefaultUrls.map(url => {
-            return {
-                url: url,
-                isUploaded: true,
-            }
-        });
+        if (localDefaultUrls) {
+            const alreadyUploaded = localDefaultUrls.map(url => {
+                return {
+                    url: url,
+                    isUploaded: true,
+                }
+            });
 
-        setParsedImages([...alreadyUploaded, ...files]);
+            if (showUploadedTrue) {
+                setParsedImages(alreadyUploaded);
+                return;
+            }
+            const unique = [...alreadyUploaded, ...files]
+
+            setParsedImages(unique);
+        }
     }, [files, localDefaultUrls])
 
 
@@ -57,7 +68,8 @@ export const ImageGalleryUpload = ({ url, setGalleryImages, defaultUrls }) => {
 
         const updatedParsedImages = parsedImages.filter(item => item.url !== fileObj.url);
         setLocalDefaultUrls(updatedParsedImages.map(item => item.url));
-        setParsedImages(updatedParsedImages);
+        const unique = [...new Set([...updatedParsedImages])];
+        setParsedImages(unique);
         setGalleryImages(updatedParsedImages.map(item => item.url));
 
     };

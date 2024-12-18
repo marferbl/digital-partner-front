@@ -12,6 +12,7 @@ import ExperienceForm from './experience-form';
 import { ImageGalleryUpload } from '../base/image-gallery-upload';
 import { useToast } from '@chakra-ui/react';
 import SearchSelectPositions from '../base/search-select-positions';
+import SearchSelectCountries from '../base/search-select-countries';
 
 const DigitalProfileForm = ({ myFreelance }) => {
 
@@ -123,6 +124,16 @@ const DigitalProfileForm = ({ myFreelance }) => {
         }));
     }
 
+    const setLogo = (logo) => {
+        setUser((prevUser) => ({
+            ...prevUser,
+            user: {
+                ...prevUser.user,
+                avatar: logo
+            }
+        }));
+    }
+
 
 
     return (
@@ -160,14 +171,9 @@ const DigitalProfileForm = ({ myFreelance }) => {
                             <label htmlFor="country" className="block text-white mb-1">
                                 Country
                             </label>
-                            <input
-                                id="country"
-                                type="text"
-                                value={user.country}
-                                onChange={handleChange}
-                                className="w-full p-3 rounded-lg bg-black text-white focus:outline-none focus:ring-2 focus:ring-neutraltext border-1 border-neutral"
-                                placeholder="Enter your country"
-                            />
+
+                            <SearchSelectCountries onChange={(value) => setDataOnUser(value, 'country')} mb={5} defaultValue={user.country} theme='dark' />
+
                         </div>
 
                         {/* City */}
@@ -227,7 +233,7 @@ const DigitalProfileForm = ({ myFreelance }) => {
                     {/* Right Side - Photo */}
                     <div className="flex-1 flex flex-col items-center justify-center">
                         <div className="w-40 h-40 bg-black rounded-xl flex items-center justify-center overflow-hidden relative">
-                            <ModalDefaultPhoto defaultImage={user?.user?.avatar} onSave={onSave}>
+                            <ModalDefaultPhoto defaultImage={user?.user?.avatar} onSave={onSave} setLogo={setLogo}>
                                 <div className="relative w-20 h-20 md:w-40 md:h-40">
                                     {/* Image */}
                                     <img
