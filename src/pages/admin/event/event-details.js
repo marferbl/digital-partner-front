@@ -34,7 +34,6 @@ const EventDetailsPage = () => {
             });
     };
 
-    console.log("event", event)
 
     const goBack = () => {
         window.scrollTo(0, 0);

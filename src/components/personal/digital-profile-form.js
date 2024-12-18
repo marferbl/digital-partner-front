@@ -69,7 +69,6 @@ const DigitalProfileForm = ({ myFreelance }) => {
         if (user && user._id) {
             updateFreelance(user)
                 .then((res) => {
-                    console.log(res);
                     showToast()
                 }
                 )
@@ -85,7 +84,6 @@ const DigitalProfileForm = ({ myFreelance }) => {
 
         createFreelance(parsedUser)
             .then((res) => {
-                console.log(res);
                 showToast()
             })
             .catch((err) => {

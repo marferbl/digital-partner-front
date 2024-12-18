@@ -38,7 +38,6 @@ export const Profile = () => {
     });
   };
 
-  console.log(corporate, 'corporate')
 
   useEffect(() => {
     getMe();
