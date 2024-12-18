@@ -52,7 +52,6 @@ export const ButtonCompareIA = ({ refreshSolutions, disabled }) => {
         compareSolutionsIA({ solutionId1, solutionId2, text })
             .then((res) => {
                 setComparation(res.data.output)
-                console.log(comparation)
                 setLoading(false)
             })
             .catch((error) => {

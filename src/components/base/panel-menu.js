@@ -70,7 +70,6 @@ export const HorizontalMenu = ({ onClose, isSidebarOpen, setIsSidebarOpen, ...re
     }
   }, [location])
 
-  console.log(selectedKey)
 
 
   useEffect(() => {
