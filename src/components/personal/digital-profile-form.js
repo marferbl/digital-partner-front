@@ -86,8 +86,18 @@ const DigitalProfileForm = ({ myFreelance }) => {
             .then((res) => {
                 showToast()
             })
-            .catch((err) => {
-                console.log(err);
+            .catch((res) => {
+                let error = ''
+                Object.keys(res.response.data.error.errors).forEach((key) => {
+                    error = `${key} is required`
+                })
+                toast({
+                    title: "ERROR",
+                    description: error || "Error al guardar los cambios",
+                    status: "error",
+                    duration: 4000,
+                    isClosable: true,
+                });
             });
 
 
@@ -102,6 +112,7 @@ const DigitalProfileForm = ({ myFreelance }) => {
             isClosable: true,
         });
     }
+
 
 
     const onSave = (logo) => {
@@ -139,9 +150,9 @@ const DigitalProfileForm = ({ myFreelance }) => {
 
             <div className="flex justify-end w-full gap-2">
                 <CustomButton text="Guardar cambios" onClick={saveFreelance} />
-                <Link to={`/talent/${user._id}`} className="text-white">
+                {user?._id && <Link to={`/talent/${user._id}`} className="text-white">
                     <CustomButton text="Vista previa" type='secondary' />
-                </Link>
+                </Link>}
             </div>
             {/* Section 1: Digital Profile */}
             <div className="rounded-xl bg-neutralblack p-6">

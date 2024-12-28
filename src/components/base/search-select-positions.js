@@ -5,7 +5,7 @@ import { Box } from '@chakra-ui/react';
 import { POSITIONS } from '../../utils/constants.js';
 import { useTranslation } from 'react-i18next';
 
-const SearchSelectPositions = ({ isMulti, onChange, showLabel, defaultValue, ...props }) => {
+const SearchSelectPositions = ({ isMulti, onChange, showLabel, defaultValue, theme, ...props }) => {
     const { t, i18n } = useTranslation("global")
 
 
@@ -25,7 +25,7 @@ const SearchSelectPositions = ({ isMulti, onChange, showLabel, defaultValue, ...
 
     return (
         <Box my={1} {...props}>
-            <SearchSelect theme='dark' options={languageOptions} value={value} isMulti={isMulti} label={showLabel ? t('language') : null} onChange={(value) => changeValue(value)} />
+            <SearchSelect theme={theme || 'dark'} options={languageOptions} value={value} isMulti={isMulti} label={showLabel ? t('position') : null} onChange={(value) => changeValue(value)} />
         </Box>
     )
 }

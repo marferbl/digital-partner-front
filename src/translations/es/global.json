@@ -17,6 +17,7 @@
     "services": "Servicios",
     "talent": "Talento",
     "events": "Eventos",
+    "position": "Posición",
     "serviceTypeQuestion": "¿Qué tipo de servicio buscas?",
     "serviceTypeOptions": {
         "partner": "Partner",
