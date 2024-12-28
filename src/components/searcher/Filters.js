@@ -6,6 +6,7 @@ import SearchSelect from '../base/search-select';
 import SearchSelectSpecifyFeatures from '../base/search-select-specify-features';
 import CustomRadioButtonGroup from '../base/radio-group';
 import { useTranslation } from 'react-i18next';
+import SearchSelectPositions from '../base/search-select-positions';
 
 const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
     const { t } = useTranslation("global");
@@ -147,6 +148,34 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
                         </div>
                     </div>
                 )}
+
+                {filterValues.lineType === 'freelance' && (
+                    <>
+
+                        <div className="min-w-[140px] pt-1">
+                            <SearchSelectPositions showLabel onChange={(value) => handleToggle('job', value)} theme='light' />
+                            <span className="text-xs">Salario minimo y máximo</span>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 ">
+                                {/* Input 1 */}
+                                <input
+                                    type="number"
+                                    className="w-full px-2 py-2 border-1 border-neutral rounded"
+                                    value={filterValues.salaryMin}
+                                    placeholder={'30000'}
+                                    onChange={(e) => handleToggle('salaryMin', e.target.value)}
+                                />
+
+                                {/* Input 2 */}
+                                <input
+                                    type="number"
+                                    className="w-full px-2 py-2 border rounded  border-1 border-neutral"
+                                    value={filterValues.salaryMax}
+                                    placeholder={'50000'}
+                                    onChange={(e) => handleToggle('salaryMax', e.target.value)}
+                                />
+                            </div>
+                        </div>
+                    </>)}
 
                 {hasFilters && (
                     <div className="min-w-[140px] pt-7">
