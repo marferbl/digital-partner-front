@@ -28,6 +28,8 @@ import BlogList from "../pages/blog/blog-list";
 import BlogDetail from "../pages/blog/blog-detail";
 import PublicRoute from "./publicRoute";
 import DigitalProfileDetailsPage from "../pages/digital-profile/digital-profile-details";
+import ReferenceForm from "../pages/admin/references/referenceform";
+import ReferenceAdmin from "../pages/admin/references/reference-admin";
 
 export const PageRoutes = () => {
   return (
@@ -53,7 +55,7 @@ export const PageRoutes = () => {
           <Route path={'blog-creation'} element={<BlogEditor />} />
           <Route path={'blog-list'} element={<BlogList />} />
           <Route path={'blog/:id'} element={<BlogDetail />} />
-
+          <Route path={'reference-answer/:id'} element={<ReferenceForm />} />
         </Route>
 
         <Route path={"private"} element={<PrivateRoute />}>
@@ -70,6 +72,7 @@ export const PageRoutes = () => {
           <Route path={'service/:id'} element={<ServiceDetailsPage />} />
           <Route path={'corporate/events'} element={<EventsPage />} />
           <Route path={'event/:id'} element={<EventDetailsPage />} />
+          <Route path={'corporate/references'} element={<ReferenceAdmin />} />
 
 
 

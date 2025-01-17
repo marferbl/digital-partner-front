@@ -2,10 +2,10 @@ import { Center, Box, Text, Flex } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { COLORS } from '../../colors/colors'
-import { getAllSolutions } from '../../services/solution'
+import { getAllSolutions, getSolutionsByCorporate } from '../../services/solution'
 import SearchSelect from './search-select'
 
-const SearchSelectSolutions = ({ term, onChange }) => {
+const SearchSelectSolutions = ({ term, onChange, corporate }) => {
     const [solutions, setSolutions] = useState([])
     const [selected, setSelected] = useState(null)
 
@@ -18,6 +18,16 @@ const SearchSelectSolutions = ({ term, onChange }) => {
     }, [selected]);
 
     const getSolutions = () => {
+        if (corporate) {
+            getSolutionsByCorporate().then((res) => {
+                setSolutions(res.data.solutions);
+            }
+            ).catch((error) => {
+                console.log(error);
+            }
+            );
+            return;
+        }
         getAllSolutions(term).then((res) => {
             setSolutions(res.data.solutions);
         }
