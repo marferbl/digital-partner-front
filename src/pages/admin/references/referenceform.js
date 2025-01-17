@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { createReference } from "../../../services/reference";
 import { useParams, useSearchParams } from "react-router-dom";
+import { useToast } from "@chakra-ui/react";
 
 
 const questions = [
@@ -53,6 +54,7 @@ const ReferenceForm = () => {
 
     const entityType = searchParams.get("entityType");
     const email = searchParams.get("email");
+    const toast = useToast();
 
 
 
@@ -80,8 +82,16 @@ const ReferenceForm = () => {
 
         try {
             createReference(reference).then((response) => {
-                console.log(response);
+                toast({
+                    title: "OK",
+                    description: "Has enviado el correo electrónico",
+                    status: "success",
+                    duration: 4000,
+                    isClosable: true,
+                });
+                window.location.href = "/";
             });
+
         } catch (error) {
             console.log(error);
         }

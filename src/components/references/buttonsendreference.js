@@ -11,7 +11,8 @@ import {
     useDisclosure,
     Image,
     Checkbox,
-    Center
+    Center,
+    useToast
 } from '@chakra-ui/react'
 import GradientButton from '../base/GradientButton'
 import SearchSelectSolutions from '../base/search-select-solutions'
@@ -37,6 +38,7 @@ export const ButtonSendReference = ({ disabled }) => {
     const [error, setError] = useState('')
     const [comparation, setComparation] = useState('')
     const [email, setEmail] = useState('')
+    const toast = useToast()
 
     const closeModal = () => {
         onClose()
@@ -51,6 +53,14 @@ export const ButtonSendReference = ({ disabled }) => {
         setLoading(true)
         sendReference({ entityId: solutionId1, email, entityType: 'solution' }).then((res) => {
             setLoading(false)
+            closeModal()
+            toast({
+                title: "OK",
+                description: "Has enviado el correo electrónico",
+                status: "success",
+                duration: 4000,
+                isClosable: true,
+            });
             if (res.error) {
                 setError(res.error)
             } else {
