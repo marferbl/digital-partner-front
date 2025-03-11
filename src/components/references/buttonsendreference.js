@@ -40,8 +40,8 @@ export const ButtonSendReference = ({ disabled }) => {
     const [email, setEmail] = useState('')
     const toast = useToast()
 
+
     const closeModal = () => {
-        onClose()
         setsolutionId1('')
         setText('')
         setError('')
@@ -54,6 +54,7 @@ export const ButtonSendReference = ({ disabled }) => {
         sendReference({ entityId: solutionId1, email, entityType: 'solution' }).then((res) => {
             setLoading(false)
             closeModal()
+
             toast({
                 title: "OK",
                 description: "Has enviado el correo electrónico",
@@ -74,48 +75,24 @@ export const ButtonSendReference = ({ disabled }) => {
 
     return (
         <>
-            <CustomButton onClick={onOpen} text='Enviar Referencia' showIcon></CustomButton>
+            <div className='bg-neutralblack rounded-lg p-10 w-full mt-4' >
+                <span className='text-4xl text-white'>Solicitar referencia</span>
 
-            <Modal isOpen={isOpen} onClose={closeModal} size='lg'>
-                <ModalOverlay />
-                <ModalContent bg={'black'} color='white' borderWidth={1}>
-                    <ModalHeader>Enviar Referencia</ModalHeader>
-                    <ModalCloseButton />
-                    <ModalBody py={5} >
-                        <Text>Sobre que solucion quieres enviar?</Text>
+                <div className='flex items-center justify-between text-white gap-10 mt-6'>
+                    <div>
+                        <span className='pt-4'>Sobre que solución quieres enviar la referencia</span>
+                        <SearchSelectSolutions onChange={(value) => setsolutionId1(value)} corporate placeholder='Seleccionar solución' />
+                    </div>
+                    <div>
+                        <span>Escribe el correo de la persona a la que le quieres enviar la referencia</span>
+                        <input type="text" value={email} className={'border-1 border-gray-500 py-1.5 rounded-lg w-full text-white bg-black'} onChange={(e) => setEmail(e.target.value)} />
 
-                        <SearchSelectSolutions onChange={(value) => setsolutionId1(value)} corporate />
-                        <div className='pt-4'>
-                            <span className='pt-4'>Escribe el correo de la persona a la que le quieres enviar la referencia</span>
-                            <input type="text" value={email} className={'border-1 py-1 rounded-lg bg-gray-100 w-full text-black'} onChange={(e) => setEmail(e.target.value)} />
-
-                        </div>
-
-                        {loading && <Center minH={200} w='full' >
-                            <LoadingSpinner label={t('loadingLabel')} />
-                        </Center>}
-
-                        {!loading && comparation && (
-                            <Box p={5}>
-                                <Text mb={2}>La IA de digitalando ha hablado...</Text>
-                                <Box bg={'gray.50'} rounded={'lg'} p={2} fontSize={14}>
-                                    <Text lineHeight={1.8} >
-                                        {comparation}
-                                    </Text>
-                                </Box>
-                            </Box>
-                        )}
-                    </ModalBody>
+                    </div>
 
 
-                    <ModalFooter>
-                        <Button variant='ghost' mr={3} onClick={onClose}>
-                            cancelar
-                        </Button>
-                        <Button onClick={compareSolutions} colorScheme='gray'>Comparar</Button>
-                    </ModalFooter>
-                </ModalContent>
-            </Modal>
+                    <CustomButton text="Enviar referencia" onClick={compareSolutions} extraClass='mt-6' />
+                </div>
+            </div>
         </>
     )
 }
