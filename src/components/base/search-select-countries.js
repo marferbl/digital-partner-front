@@ -7,20 +7,30 @@ import { useTranslation } from "react-i18next";
 
 
 const SearchSelectCountries = ({ isMulti, onChange, showLabel, defaultValue, theme = 'light', ...props }) => {
-    const { t, i18n } = useTranslation("global")
+    const { t } = useTranslation("global")
     const [value, setValue] = useState(defaultValue || null)
+    const [countriesOptions, setCountriesOptions] = useState(COUNTRIES)
+
+    useEffect(() => {
+        const withLabels = COUNTRIES.map(country => {
+            return {
+                value: country.value,
+                label: t(country.value)
+            }
+        })
+        setCountriesOptions(withLabels)
+    }, [countriesOptions, COUNTRIES])
+
 
     useEffect(() => {
         setValue(defaultValue)
     }, [defaultValue])
 
-
-
     const changeValue = (value) => {
         setValue(value);
         onChange(value);
     }
-    const countriesOptions = COUNTRIES
+
 
     return (
         <Box my={1} {...props}>

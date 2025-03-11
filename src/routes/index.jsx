@@ -30,6 +30,7 @@ import PublicRoute from "./publicRoute";
 import DigitalProfileDetailsPage from "../pages/digital-profile/digital-profile-details";
 import ReferenceForm from "../pages/admin/references/referenceform";
 import ReferenceAdmin from "../pages/admin/references/reference-admin";
+import ReferenceAnswers from "../pages/admin/references/reference-answer";
 
 export const PageRoutes = () => {
   return (
@@ -73,8 +74,7 @@ export const PageRoutes = () => {
           <Route path={'corporate/events'} element={<EventsPage />} />
           <Route path={'event/:id'} element={<EventDetailsPage />} />
           <Route path={'corporate/references'} element={<ReferenceAdmin />} />
-
-
+          <Route path={'reference-answer'} element={<ReferenceAnswers />} />
 
         </Route>
       </Routes>

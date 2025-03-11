@@ -11,6 +11,7 @@ export default function SearchSelect({
     value,
     label,
     disabled,
+    placeholder,
     theme = 'light', // New prop for theme
     ...props
 }) {
@@ -84,7 +85,7 @@ export default function SearchSelect({
                 onChange={handleSelectChange}
                 options={options}
                 isMulti={isMulti}
-                placeholder={'Seleccionar'}
+                placeholder={placeholder || 'Seleccionar'}
                 isSearchable={searchable}
                 styles={customStyles}
                 isDisabled={disabled} // Fix prop name
