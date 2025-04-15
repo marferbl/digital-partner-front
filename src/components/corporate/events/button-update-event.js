@@ -122,7 +122,7 @@ export const ButtonUpdateEvent = ({ children, item, refreshEvents }) => {
                             <>
                                 <Center w={'full'} flexDir={'column'} gap={5} pb={5}>
                                     {logo && <Image src={logo} alt="Logo" w={32} h={32} objectFit='cover' rounded='lg' />}
-                                    <ImageUploadInput url={`image/upload`} setLogo={setLogo} />
+                                    <ImageUploadInput url={`image/upload`} big setLogo={setLogo} />
                                 </Center>
                                 <Text fontSize='12'>
                                     Nombre del evento

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { createReference } from "../../../services/reference";
+import { finishReference } from "../../../services/reference";
 import { useParams, useSearchParams } from "react-router-dom";
 import { useToast } from "@chakra-ui/react";
 
@@ -78,10 +78,11 @@ const ReferenceForm = () => {
             job,
             email,
             answers,
+            id
         };
 
         try {
-            createReference(reference).then((response) => {
+            finishReference(reference).then((response) => {
                 toast({
                     title: "OK",
                     description: "Has enviado el correo electrónico",
@@ -89,7 +90,7 @@ const ReferenceForm = () => {
                     duration: 4000,
                     isClosable: true,
                 });
-                window.location.href = "/";
+                // window.location.href = "/";
             });
 
         } catch (error) {

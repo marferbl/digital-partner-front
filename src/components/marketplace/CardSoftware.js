@@ -42,7 +42,7 @@ const CardSoftware = ({ _id, name, logo, description, lineType, isFavorites, ...
                     <h3 className="text-sm font-semibold font-montserrat text-center flex justify-center items-center hover:underline">
                         {lineType === 'solutions' && <Link to={`/solution/${_id}`}>{name}</Link>}
                     </h3>
-                    <span className="text-xs text-darkgray text-center">Software</span>
+                    <span className="text-xs text-darkgray text-center">Solución</span>
                 </div>
             </div>
 

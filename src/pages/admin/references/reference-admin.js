@@ -74,6 +74,7 @@ const ReferenceAdmin = () => {
                     <div key={reference._id} className="w-full flex my-4 items-center justify-between text-white p-4 border-b-1 border-neutralblack">
                         <span className='w-80'>{reference.email}</span>
                         <span className='w-80'>{reference.entityName}</span>
+                        <span className={`w-80 ${reference.finished ? 'text-green-200' : 'text-red-400'}`}>{reference.finished ? 'Contestada' : 'Pendiente'}</span>
                         <CustomButton onClick={() => { goToDetails(reference) }} text='Ver respuestas' showIcon></CustomButton>
                     </div>
                 ))}

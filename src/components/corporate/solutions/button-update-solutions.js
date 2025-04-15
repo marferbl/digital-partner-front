@@ -67,7 +67,7 @@ export const ButtonUpdateSolution = ({ children, refreshSolutions, disabled, sol
         { value: 'rrhh', label: 'RRHH' },
         { value: 'sellmarketing', label: 'Ventas y marketing' },
         { value: 'finance', label: 'Finanzas y contabilidad' },
-        { value: 'logistics', label: 'Cadena de suministro' },
+        { value: 'logistics', label: 'CSM' },
         { value: 'it', label: 'IT' },
         { value: 'data', label: 'Data' },
         { value: 'law', label: 'Legal' },
@@ -130,7 +130,7 @@ export const ButtonUpdateSolution = ({ children, refreshSolutions, disabled, sol
                             <Box fontSize={12} display={'flex'} alignItems={'start'} flexDir={'column'}>
                                 <Center w={'full'} flexDir={'column'} gap={5}>
                                     <Image rounded={'xl'} src={logo} alt={solution.name} w={100} h={100} />
-                                    <ImageUploadInput url={`solution/uploadImage/${solution._id}`} setLogo={setLogo} />
+                                    <ImageUploadInput url={`solution/uploadImage/${solution._id}`} big setLogo={setLogo} />
                                 </Center>
 
 

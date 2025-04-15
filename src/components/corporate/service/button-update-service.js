@@ -89,7 +89,7 @@ export const ButtonUpdateService = ({ refreshServices, item, children, serviceTy
                     <ModalBody py={5}>
                         <Center w={'full'} flexDir={'column'} gap={5}>
                             {logo && <Image src={logo} alt="Logo" w={32} h={32} rounded='lg' objectFit='cover' />}
-                            <ImageUploadInput url={`service/uploadImage/${item?._id}`} setLogo={setLogo} />
+                            <ImageUploadInput url={`service/uploadImage/${item?._id}`} big setLogo={setLogo} />
                         </Center>
                         <PartnerModalCreate initialConfig={item} type={serviceType} onChangeConfig={(value) => {
                             setConfig(value)

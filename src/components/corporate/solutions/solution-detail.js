@@ -18,7 +18,7 @@ export const SolutionDetail = ({ solution }) => {
         rrhh: 'RRHH',
         sellmarketing: 'Ventas y marketing',
         finance: 'Finanzas',
-        logistics: 'Cadena de suministro',
+        logistics: 'CSM',
         it: 'IT',
         data: 'Data',
         other: 'Otro',
@@ -30,10 +30,10 @@ export const SolutionDetail = ({ solution }) => {
 
 
     return (
-        <Box px={10} rounded={"xl"} w={"100%"} minH={'100vh'}>
+        <Box px={10} rounded={"xl"} w={"100%"}>
             {solution &&
                 <>
-                    <Box mt={1} p={5} bgColor={"black"} w={"100%"} minH={300} px={2} mb={3} color='white'>
+                    <Box mt={1} p={5} bgColor={"black"} w={"100%"} px={2} mb={3} color='white'>
                         <Text fontSize={{ base: 8, md: 14 }} mt={3} fontWeight='bold' textDecor={'underline'}>Descripción:</Text>
                         <Text fontSize={{ base: 8, md: 16 }} mt={0}>{solution.description}</Text>
                         <Box>
@@ -122,7 +122,7 @@ export const SolutionDetail = ({ solution }) => {
             }
             {solution && solution?.gallery && solution.gallery.length ?
                 <Box>
-                    <ImageGallerySlider images={solution.gallery} />
+                    <ImageGallerySlider width={'100wh'} images={solution.gallery} />
                 </Box>
                 : ''}
 
