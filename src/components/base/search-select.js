@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import { Text } from '@chakra-ui/react';
 import { COLORS } from '../../colors/colors';
+import { useTranslation } from 'react-i18next'; // Import useTranslation
 
 export default function SearchSelect({
     options,
@@ -16,6 +17,8 @@ export default function SearchSelect({
     ...props
 }) {
     const [selectedOption, setSelectedOption] = useState(null);
+    const { t } = useTranslation('global')
+
 
     useEffect(() => {
         if (value) {
@@ -85,7 +88,7 @@ export default function SearchSelect({
                 onChange={handleSelectChange}
                 options={options}
                 isMulti={isMulti}
-                placeholder={placeholder || 'Seleccionar'}
+                placeholder={placeholder || t('select')}
                 isSearchable={searchable}
                 styles={customStyles}
                 isDisabled={disabled} // Fix prop name
