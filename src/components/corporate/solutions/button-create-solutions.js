@@ -45,7 +45,7 @@ export const ButtonCreateSolution = ({ refreshSolutions, disabled }) => {
         { value: 'rrhh', label: 'RRHH' },
         { value: 'sellmarketing', label: 'Ventas y marketing' },
         { value: 'finance', label: 'Finanzas y contabilidad' },
-        { value: 'logistics', label: 'Cadena de suministro' },
+        { value: 'logistics', label: 'CSM' },
         { value: 'it', label: 'IT' },
         { value: 'data', label: 'Data' },
         { value: 'law', label: 'Legal' },
@@ -117,7 +117,7 @@ export const ButtonCreateSolution = ({ refreshSolutions, disabled }) => {
                             <Box fontSize={12} display={'flex'} alignItems={'start'} flexDir={'column'}>
                                 <Center w={'full'} flexDir={'column'} gap={5}>
                                     {logo && <Image src={logo} alt="Logo" w={32} h={32} objectFit='cover' />}
-                                    <ImageUploadInput url={`image/upload`} setLogo={setLogo} />
+                                    <ImageUploadInput url={`image/upload`} big setLogo={setLogo} />
                                 </Center>
 
                                 <Flex gap={2} pt={6} w='full'>

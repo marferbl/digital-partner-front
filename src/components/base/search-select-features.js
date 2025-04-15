@@ -10,13 +10,13 @@ const SearchSelectFeatures = ({ isMulti, onChange, defaultValue, showLabel, ...p
     const [value, setValue] = useState(null)
 
     const featureOptions = [
-        { value: 'rrhh', label: t('rrhh')},
-        { value: 'sellmarketing', label: t('sellmarketing') },
-        { value: 'finance', label: t('finance') },
-        { value: 'logistics', label: t('logistics') },
-        { value: 'it', label: t('it')},
         { value: 'data', label: t('data') },
+        { value: 'finance', label: t('finance') },
+        { value: 'it', label: t('it') },
         { value: 'law', label: t('law') },
+        { value: 'logistics', label: t('logistics') },
+        { value: 'rrhh', label: t('rrhh') },
+        { value: 'sellmarketing', label: t('sellmarketing') },
         { value: 'transversal', label: t('transversal') },
     ];
 

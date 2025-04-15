@@ -10,6 +10,17 @@ const SearchSelectLanguage = ({ isMulti, onChange, showLabel, defaultValue, ...p
 
 
     const [value, setValue] = useState(defaultValue)
+    const [languagesOptions, setLanguagesOptions] = useState(LANGUAGES)
+
+    useEffect(() => {
+        const withLabels = LANGUAGES.map(language => {
+            return {
+                value: language.value,
+                label: t(language.value)
+            }
+        })
+        setLanguagesOptions(withLabels)
+    }, [languagesOptions, LANGUAGES])
 
 
     const changeValue = (value) => {
@@ -21,11 +32,10 @@ const SearchSelectLanguage = ({ isMulti, onChange, showLabel, defaultValue, ...p
         setValue(defaultValue)
     }, [defaultValue])
 
-    const languageOptions = LANGUAGES
 
     return (
         <Box my={1} {...props}>
-            <SearchSelect options={languageOptions} value={value} isMulti={isMulti} label={showLabel ? t('language') : null} onChange={(value) => changeValue(value)} />
+            <SearchSelect options={languagesOptions} value={value} isMulti={isMulti} label={showLabel ? t('language') : null} onChange={(value) => changeValue(value)} />
         </Box>
     )
 }

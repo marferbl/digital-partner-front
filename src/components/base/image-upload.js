@@ -5,7 +5,7 @@ import { UserContext } from "../../context/userContext";
 import { Flex, Center, Spinner, Text, Button } from "@chakra-ui/react";
 import { DARK_COLORS } from "../../colors/colors";
 
-export const ImageUploadInput = ({ url, setLogo, hideConfirm, hideLink }) => {
+export const ImageUploadInput = ({ url, setLogo, hideConfirm, hideLink, big }) => {
     const { getToken } = useContext(UserContext);
 
     const [file, setFile] = useState(null);
@@ -31,6 +31,7 @@ export const ImageUploadInput = ({ url, setLogo, hideConfirm, hideLink }) => {
                 headers: {
                     authorization: `Bearer ${storedToken || ""}`,
                 },
+
             });
             setRes(res.data);
             setLogo(res.data.logo)

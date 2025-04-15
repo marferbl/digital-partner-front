@@ -14,3 +14,5 @@ API.interceptors.request.use((req) => {
 export const getReferences = (id) => API.get(`/reference/references/${id}`);
 export const createReference = (body) => API.post(`/reference/create`, body);
 export const sendReference = (body) => API.post(`/reference/send`, body);
+export const finishReference = (body) => API.post(`/reference/answer-reference`, body);
+export const getReferencesByEntityDetail = (params) => API.get(`/reference/references-by-entity`, { params });

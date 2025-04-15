@@ -83,8 +83,8 @@ export const SolutionDetailPage = () => {
 
 
     return (
-        <Box>
-            <Box p={5} bgColor={"black"} w={"100%"} minH={'100vh'} px={{ base: 6, md: 20, lg: 40 }}>
+        <Box bgColor={'black'}>
+            <Box p={5} bgColor={"black"} w={"100%"} minH={'100vh'} px={{ base: 6, md: 20, lg: 32 }}>
                 <Flex w='full' justify={'space-between'}>
                     <Flex h={8} align={'center'} color='white' pr={3} onClick={() => window.history.back()} cursor={'pointer'} w={'fit-content'}>
                         <IoChevronBack size={20} />
