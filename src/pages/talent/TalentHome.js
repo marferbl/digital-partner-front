@@ -11,12 +11,12 @@ import { Link } from 'react-router-dom';
 
 
 
-const SearcherPage = () => {
+const TalentHome = () => {
     const { isLoggedIn } = useContext(UserContext);
     const location = useLocation();
     const [filters, setFilters] = useState(location?.state?.filters || {})
     const [isFavorites, setIsFavorites] = useState(false)
-    const [selectedRoute, setSelectedRoute] = useState('explore')
+    const [selectedRoute, setSelectedRoute] = useState('talent')
     const { t } = useTranslation()
     const links = [
         {
@@ -77,11 +77,11 @@ const SearcherPage = () => {
 
                     </Box>
                 </div>
-                <Searcher filters={filters} isFavorites={isFavorites} />
+                Hola
             </Box>
         </>
 
     )
 }
 
-export default SearcherPage
+export default TalentHome
