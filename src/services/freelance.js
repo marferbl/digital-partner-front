@@ -16,3 +16,34 @@ export const updateFreelance = (body) => API.put('/freelance/update', body);
 export const createFreelance = (body) => API.post(`/freelance/create`, body);
 export const removeCorporate = (id) => API.get(`/freelance/update` + id);
 export const getFreelanceById = (id) => API.get(`/freelance/details/${id}`);
+export const getTalent = (id) => API.get(`/api/talents/${id}`);
+export const getUserTalent = (userId) => API.get(`/api/talents/user/${userId}`);
+export const createTalent = (body) => API.post(`/api/talents`, body);
+export const updateTalent = (id, body) => API.patch(`/api/talents/${id}`, body);
+export const getAllTalents = () => API.get(`/api/talents`);
+export const searchTalents = (params) => {
+  // Construir la URL con parámetros de búsqueda
+  let url = `/api/talents?`;
+  if (params.position) url += `position=${encodeURIComponent(params.position)}&`;
+  if (params.location) url += `location=${encodeURIComponent(params.location)}&`;
+  if (params.salary) url += `salary=${encodeURIComponent(params.salary)}&`;
+  if (params.technologies && params.technologies.length > 0) {
+    params.technologies.forEach(tech => {
+      url += `technologies=${encodeURIComponent(tech)}&`;
+    });
+  }
+  // Eliminar el último & si existe
+  url = url.endsWith('&') ? url.slice(0, -1) : url;
+  
+  return API.get(url);
+};
+
+// Searches
+export const createSearch = (body) => API.post(`/api/searches`, body);
+export const getUserSearches = (userId) => API.get(`/api/searches/user/${userId}`);
+
+// Saved Talents
+export const saveTalent = (body) => API.post(`/api/saved-talents`, body);
+export const getSavedTalents = (recruiterId) => API.get(`/api/saved-talents/recruiter/${recruiterId}`);
+export const removeSavedTalent = (recruiterId, talentId) => 
+  API.delete(`/api/saved-talents`, { data: { recruiterId, talentId } });
