@@ -1,20 +1,37 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SearchFilters from "../components/SearchFilters";
 import CardSwiper from "../components/CardSwiper";
 import TalentDetails from "../components/TalentDetails";
-import { useTalentSearch } from "../hooks/useTalentSearch";
 import { Loader2 } from "lucide-react";
+import { getAllTalents } from "../services/freelance";
 
 export default function RecruiterSearch() {
   const [selectedTalent, setSelectedTalent] = useState(null);
-  const { search, talents, isLoading, searchParams } = useTalentSearch();
+  const [talents, setTalents] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [searchParams, setSearchParams] = useState({})
+  
+  useEffect(() => {
+    fetchTalents({});
+  }, []);
+
+  const fetchTalents = async (params) => {
+    try {
+      setIsLoading(true);
+      const response = await getAllTalents(params);
+      setTalents(response.data);
+      setIsLoading(false);
+    } catch (error) {
+      console.error("Error fetching talents:", error);
+    }
+  };
 
   const handleSelectTalent = (talent) => {
     setSelectedTalent(talent);
   };
 
   const handleSearch = (params) => {
-    search(params);
+    fetchTalents(params);
   };
 
   return (

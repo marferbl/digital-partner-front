@@ -9,13 +9,16 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from ".
 import { Badge } from "./ui/badge";
 import { X, Plus, Search, SlidersHorizontal } from "lucide-react";
 import { Card, CardContent } from "./ui/card";
+import SearchSelectCountries from "./base/search-select-countries";
+import SearchSelectPositions from "./base/search-select-positions";
 
 // Define the form schema for validation
 const searchSchema = z.object({
-  position: z.string().optional(),
-  location: z.string().optional(),
+  job: z.string().optional(),
+  city: z.string().optional(),
   salary: z.string().optional(),
   technologies: z.array(z.string()).default([]),
+  country: z.string().optional(),
 });
 
 export default function SearchFilters({ onSearch, initialValues }) {
@@ -26,10 +29,11 @@ export default function SearchFilters({ onSearch, initialValues }) {
   const form = useForm({
     resolver: zodResolver(searchSchema),
     defaultValues: {
-      position: initialValues?.position || "",
-      location: initialValues?.location || "",
+      job: initialValues?.job || "",
+      city: initialValues?.city || "",
       salary: initialValues?.salary || "any",
       technologies: initialValues?.technologies || [],
+      country: initialValues?.country || "",
     },
   });
   
@@ -63,57 +67,15 @@ export default function SearchFilters({ onSearch, initialValues }) {
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             <div className="flex flex-wrap gap-4">
               <div className="flex-grow min-w-[250px]">
-                <FormField
-                  control={form.control}
-                  name="position"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-sm font-medium text-gray-700">Posición</FormLabel>
-                      <FormControl>
-                        <div className="relative">
-                          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <svg className="h-5 w-5 text-gray-400" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path d="M20 7H4C2.89543 7 2 7.89543 2 9V19C2 20.1046 2.89543 21 4 21H20C21.1046 21 22 20.1046 22 19V9C22 7.89543 21.1046 7 20 7Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                              <path d="M16 21V5C16 4.46957 15.7893 3.96086 15.4142 3.58579C15.0391 3.21071 14.5304 3 14 3H10C9.46957 3 8.96086 3.21071 8.58579 3.58579C8.21071 3.96086 8 4.46957 8 5V21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                            </svg>
-                          </div>
-                          <Input 
-                            placeholder="Desarrollador Frontend, UX Designer..." 
-                            className="pl-10" 
-                            {...field}
-                          />
-                        </div>
-                      </FormControl>
-                    </FormItem>
-                  )}
-                />
+              <SearchSelectPositions showLabel onChange={(value) => form.setValue('job', value)} theme='light' />    
               </div>
               
               <div className="w-full md:w-auto flex-grow-0 flex-shrink-0 min-w-[200px]">
-                <FormField
-                  control={form.control}
-                  name="location"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-sm font-medium text-gray-700">Ubicación</FormLabel>
-                      <FormControl>
-                        <div className="relative">
-                          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <svg className="h-5 w-5 text-gray-400" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path d="M21 10C21 17 12 23 12 23C12 23 3 17 3 10C3 7.61305 3.94821 5.32387 5.63604 3.63604C7.32387 1.94821 9.61305 1 12 1C14.3869 1 16.6761 1.94821 18.364 3.63604C20.0518 5.32387 21 7.61305 21 10Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                              <path d="M12 13C13.6569 13 15 11.6569 15 10C15 8.34315 13.6569 7 12 7C10.3431 7 9 8.34315 9 10C9 11.6569 10.3431 13 12 13Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                            </svg>
-                          </div>
-                          <Input 
-                            placeholder="País o ciudad" 
-                            className="pl-10" 
-                            {...field}
-                          />
-                        </div>
-                      </FormControl>
-                    </FormItem>
-                  )}
-                />
+              <SearchSelectCountries
+                                showLabel
+                                width="100%"
+                                onChange={(value) => {form.setValue('country', value);}}
+                            />
               </div>
               
               <div className="w-full md:w-auto">
