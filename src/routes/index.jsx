@@ -32,7 +32,6 @@ import ReferenceForm from "../pages/admin/references/referenceform";
 import ReferenceAdmin from "../pages/admin/references/reference-admin";
 import ReferenceAnswers from "../pages/admin/references/reference-answer";
 import TalentPage from "../pages/talent/TalentHome";
-import TalentForm from "../pages/TalentForm"
 import RecruiterSearch from "../pages/RecruiterSearch"
 
 export const PageRoutes = () => {
@@ -61,7 +60,6 @@ export const PageRoutes = () => {
           <Route path={'blog-list'} element={<BlogList />} />
           <Route path={'blog/:id'} element={<BlogDetail />} />
           <Route path={'reference-answer/:id'} element={<ReferenceForm />} />
-          <Route path="/talent-form" element={<TalentForm/>} />
         {/* <Route path="/recruiter" element={<RecruiterSearch/>} /> */}
         </Route>
 

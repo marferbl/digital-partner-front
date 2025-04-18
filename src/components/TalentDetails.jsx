@@ -171,11 +171,11 @@ export default function TalentDetails({ talent }) {
                       <div className="absolute left-0 top-0 mt-1 border-r-2 border-blue-200 h-full"></div>
                       <div className="absolute left-0 top-0 mt-1.5 w-3 h-3 rounded-full bg-blue-500"></div>
                       <div>
-                        <h4 className="font-medium text-gray-900">{exp.position}</h4>
-                        <div className="text-sm text-gray-500">{exp.company}</div>
+                        <h4 className="font-medium text-gray-900">{exp.name}</h4>
+                        <div className="text-sm text-gray-500">{exp.entity}</div>
                         <div className="text-xs text-gray-400 mt-1">
-                          {exp.startYear} - {exp.current ? 'Actual' : exp.endYear} 
-                          {!exp.current && exp.endYear && ` (${exp.endYear - exp.startYear} años)`}
+                          {exp.start} - {!exp.end ? 'Actual' : exp.end} 
+                          {!exp.end && exp.end && ` (${exp.end - exp.start} años)`}
                         </div>
                         <p className="mt-2 text-sm text-gray-600">
                           {exp.description}
@@ -209,7 +209,7 @@ export default function TalentDetails({ talent }) {
                         <h4 className="font-medium text-gray-900">{study.title}</h4>
                         <div className="text-sm text-gray-500">{study.institution}</div>
                         <div className="text-xs text-gray-400 mt-1">
-                          {study.startYear} - {study.endYear || 'Actual'}
+                          {study.start} - {study.end || 'Actual'}
                         </div>
                       </div>
                     </div>
@@ -319,12 +319,12 @@ export default function TalentDetails({ talent }) {
                 talent.experience.map((exp, i) => (
                   <div key={i} className="border-l-2 border-blue-500 pl-4 pb-8">
                     <div className="flex justify-between">
-                      <h4 className="font-medium text-gray-900">{exp.position}</h4>
+                      <h4 className="font-medium text-gray-900">{exp.name}</h4>
                       <span className="text-sm text-gray-500">
-                        {exp.startYear} - {exp.current ? 'Actual' : exp.endYear}
+                        {exp.start} - {!exp.end ? 'Actual' : exp.end}
                       </span>
                     </div>
-                    <p className="text-gray-700 mt-1">{exp.company}</p>
+                    <p className="text-gray-700 mt-1">{exp.entity}</p>
                     <p className="mt-3 text-gray-600">{exp.description}</p>
                     
                     {exp.technologies && exp.technologies.length > 0 && (
@@ -358,14 +358,14 @@ export default function TalentDetails({ talent }) {
                 talent.studies.map((study, i) => (
                   <div key={i} className="border-l-2 border-yellow-500 pl-4 pb-8">
                     <div className="flex justify-between">
-                      <h4 className="font-medium text-gray-900">{study.title}</h4>
+                      <h4 className="font-medium text-gray-900">{study.name}</h4>
                       <span className="text-sm text-gray-500">
-                        {study.startYear} - {study.endYear || 'Actual'}
+                        {study.start} - {study.end || 'Actual'}
                       </span>
                     </div>
-                    <p className="text-gray-700 mt-1">{study.institution}</p>
+                    <p className="text-gray-500 mt-1">{study.entity}</p>
                     {study.description && (
-                      <p className="mt-3 text-gray-600">{study.description}</p>
+                      <p className="mt-3 text-gray-500 text-sm">{study.description}</p>
                     )}
                   </div>
                 ))

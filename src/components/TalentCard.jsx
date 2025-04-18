@@ -1,3 +1,4 @@
+import { Avatar } from "@chakra-ui/react";
 import { Badge } from "./ui/badge";
 
 export default function TalentCard({ talent }) {
@@ -14,9 +15,7 @@ export default function TalentCard({ talent }) {
       <div className="relative">
         {/* Using a gradient background instead of an image for the profile header */}
         <div className="w-full h-52 bg-gradient-to-r from-blue-500 to-indigo-600 flex items-center justify-center">
-          <div className="h-24 w-24 rounded-full bg-white flex items-center justify-center text-3xl font-bold text-blue-600">
-            {talent.fullName.charAt(0)}
-          </div>
+        <Avatar name={talent?.fullName} src= {talent.user?.avatar} h={20} w={20} />
         </div>
         
         <div className="absolute top-4 right-4 flex space-x-2">
