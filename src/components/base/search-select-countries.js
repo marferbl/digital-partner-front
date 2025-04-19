@@ -19,7 +19,7 @@ const SearchSelectCountries = ({ isMulti, onChange, showLabel, defaultValue, the
             }
         })
         setCountriesOptions(withLabels)
-    }, [countriesOptions, COUNTRIES])
+    }, [COUNTRIES])
 
 
     useEffect(() => {

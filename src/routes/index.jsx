@@ -31,6 +31,8 @@ import DigitalProfileDetailsPage from "../pages/digital-profile/digital-profile-
 import ReferenceForm from "../pages/admin/references/referenceform";
 import ReferenceAdmin from "../pages/admin/references/reference-admin";
 import ReferenceAnswers from "../pages/admin/references/reference-answer";
+import TalentPage from "../pages/talent/TalentHome";
+import RecruiterSearch from "../pages/RecruiterSearch"
 
 export const PageRoutes = () => {
   return (
@@ -42,6 +44,7 @@ export const PageRoutes = () => {
           <Route path={"/start/a"} element={<App />} />
           <Route path={"/marketplace"} element={<MarketplacePage />} />
           <Route path={"search/:term"} element={<SearcherPage />} />
+          <Route path={"talent"} element={<RecruiterSearch />} />
           <Route path={"search"} element={<SearcherPage />} />
           <Route path={"favorites"} element={<FavoritePage />} />
           <Route path={'solution/:id'} element={<SolutionDetailPage />} />
@@ -57,6 +60,7 @@ export const PageRoutes = () => {
           <Route path={'blog-list'} element={<BlogList />} />
           <Route path={'blog/:id'} element={<BlogDetail />} />
           <Route path={'reference-answer/:id'} element={<ReferenceForm />} />
+        {/* <Route path="/recruiter" element={<RecruiterSearch/>} /> */}
         </Route>
 
         <Route path={"private"} element={<PrivateRoute />}>

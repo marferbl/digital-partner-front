@@ -1,5 +1,5 @@
 import React, { useParams } from 'react-router-dom'
-import { Box, Heading, Center, Text, GridItem, Grid, Icon, Flex } from '@chakra-ui/react'
+import { Box, HStack, Center, Text, GridItem, Grid, Icon, Flex } from '@chakra-ui/react'
 import { capitalizeFirstLetter } from '../../utils/methods'
 import FiltersSection from './Filters'
 import MarketplaceSection from '../base/landing/marketplacesection'
@@ -10,6 +10,7 @@ import GradientButton from '../base/GradientButton'
 import { ButtonCompareIA } from '../marketplace/ButtonCompareIa'
 import { SoftwareSearcherInput } from '../base/software-searcher-input'
 import { useTranslation } from 'react-i18next'
+
 
 
 const Searcher = ({ filters, isFavorites }) => {
@@ -51,19 +52,11 @@ const Searcher = ({ filters, isFavorites }) => {
 
             {/* Filters Section */}
             <div className="w-full px-6 mt-5">
-                {/* <div className="cursor-pointer flex items-center" onClick={() => setIsCollapsed(!isCollapsed)}>
-                    <button class="text-black px-6 py-1 rounded-2xl bg-gray-300">
-                        Filtros
-                    </button>
-                </div> */}
-                {/* Grid Layout for Filters and Marketplace */}
                 <div className="mt-5 w-full grid grid-cols-1 lg:grid-cols-5 gap-5">
-                    {/* Filters Column */}
                     <div className={`col-span-1 ${isCollapsed ? 'opacity-0' : 'opacity-1'}`}>
                         <FiltersSection filters={filters} setTermLabel={setTermLabel} onChangeFilters={updateFilters} />
                     </div>
 
-                    {/* Marketplace Column */}
                     <div className="col-span-1 lg:col-span-4 w-full">
                         <div className="flex flex-col items-center">
                             <MarketplaceSection term={termLabel} filters={allFilters} isCollapsed={isCollapsed} isFavorites={isFavorites} setNumberOfResults={setNumberOfResults} />
