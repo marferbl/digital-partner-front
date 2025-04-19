@@ -54,7 +54,7 @@ export const HorizontalMenu = ({ onClose, isSidebarOpen, setIsSidebarOpen, ...re
   const { userView, me } = useContext(UserContext);
   const [applications, setApplications] = useState([]);
   const [filteredApplications, setFilteredApplications] = useState([]);
-  const APPLICATIONS = ['corporate', 'solutions', 'services', 'events', 'teamManagement', 'recruitment', 'licenses']
+  const APPLICATIONS = ['corporate', 'solutions', 'services', 'events', 'teamManagement', 'recruitment', 'licenses', 'selection']
   const [selectedKey, setSelectedKey] = useState('profile');
   const location = useLocation();
 
@@ -67,6 +67,9 @@ export const HorizontalMenu = ({ onClose, isSidebarOpen, setIsSidebarOpen, ...re
       setSelectedKey('events');
     } else if (location.pathname.includes('digital-profile')) {
       setSelectedKey('digital-profile');
+    }
+    else if (location.pathname.includes('recruitment')) {
+      setSelectedKey('recruitment');
     }
   }, [location])
 
@@ -112,7 +115,7 @@ export const HorizontalMenu = ({ onClose, isSidebarOpen, setIsSidebarOpen, ...re
     { name: "Eventos", icon: FiCalendar, to: "corporate/events", application: 'events', key: 'events' },
     { name: "Equipo", icon: FiUsers, soon: true, application: 'teamManagement' },
     { name: "Licencias", icon: FiBookOpen, soon: true, application: 'licenses' },
-    { name: "Ofertas", icon: FiSearch, soon: true, application: 'recruitment' },
+    { name: "Selección", icon: FiSearch, application: 'recruitment', key: 'selection' },
   ];
 
   const adminRoutesFiltered = adminRoutes.filter((route) => filteredApplications.includes(route.application) || route.application === 'corporate');
@@ -185,6 +188,7 @@ const MenuButton = ({ icon, children, to, soon, keyLabel, selectedKey, setSelect
         rounded="2xl"
         onClick={() => {
           if (!soon) {
+            console.log(keyLabel)
             setSelectedKey(keyLabel);
           }
         }}
