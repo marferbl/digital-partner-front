@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { getReferencesByEntityDetail } from '../../../../services/reference'
+import CustomButton from '../../../../components/base/CustomButton.js'
+import ButtonReferenceAnswers from '../../../../components/corporate/references/button-reference-answers.js'
 
 export const ReferencesComponent = () => {
 
@@ -19,7 +21,6 @@ export const ReferencesComponent = () => {
         )
 
     }, [])
-    console.log(references)
     return (
         <div className='text-white'>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -29,9 +30,14 @@ export const ReferencesComponent = () => {
                         className={`bg-darkgray rounded-xl p-4 shadow-md flex flex-col justify-between border-b-4 ${reference.finished ? 'border-green-400' : 'border-red-400'
                             }`}
                     >
-                        <div className="mb-2">
-                            <div className="text-lg font-semibold">{reference.contactName}</div>
-                            <div className="text-sm text-gray-400">{reference.job} de {reference.companyName}</div>
+                        <div className="flex justify-between items-center mb-4">
+                            <div className="mb-2">
+                                <div className="text-lg font-semibold">{reference.contactName}</div>
+                                <div className="text-sm text-gray-400">{reference.job} de {reference.companyName}</div>
+                            </div>
+                            <ButtonReferenceAnswers reference={reference}>
+                                <CustomButton text="Ver" showIcon />
+                            </ButtonReferenceAnswers>
                         </div>
                         <div className="mt-4 text-sm">
                             <div className="mb-1">
