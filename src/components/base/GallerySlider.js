@@ -17,15 +17,28 @@ const ImageGallerySlider = ({ images, width, height, hideArrows }) => {
 
 
     return (
-        <Box h={{ base: height || 200, md: height || '100%' }} w={{ base: width || 200, md: width || '100%' }} mx="auto" mt={5} bg='transparent'>
+        <Box
+            h={height || '100%'}
+            w={width || '100%'}
+            mx="auto"
+            mt={5}
+            bg="transparent"
+        >
             <Slider {...settings}>
                 {images.map((url, index) => (
-                    <Box key={index} w='full' bg='transparent'>
-                        <Image src={url} alt={`Gallery image ${index}`} w="100%" h={'100%'} objectFit="contain" />
+                    <Box key={index} w="full" h="full" bg="transparent">
+                        <Image
+                            src={url}
+                            alt={`Gallery image ${index}`}
+                            w="100%"
+                            h="100%"
+                            objectFit="cover" // O usa 'contain' si prefieres que se vea toda la imagen sin recortar
+                        />
                     </Box>
                 ))}
             </Slider>
         </Box>
+
     );
 };
 

@@ -41,19 +41,27 @@ const questions = [
     "¿Qué tan satisfecho/a estás con la experiencia general de uso del software?",
 ];
 
-const ReferenceAnswers = () => {
+const ReferenceAnswers = ({ defaultReference, readOnly, maxH, hideInputs }) => {
     const location = useLocation();
     const { reference } = location.state || {};
 
     useEffect(() => {
+        if (defaultReference) {
+            setCompanyName(defaultReference.companyName);
+            setContactName(defaultReference.contactName);
+            setJob(defaultReference.job);
+            setAnswers(defaultReference.answers);
+            setEmail(defaultReference.email);
+            return;
+        }
         if (reference) {
-            setCompanyName(reference.entityName);
+            setCompanyName(reference.companyName);
             setContactName(reference.contactName);
             setJob(reference.job);
             setAnswers(reference.answers);
             setEmail(reference.email);
         }
-    }, [reference])
+    }, [reference, defaultReference])
 
 
     const [answers, setAnswers] = useState([]);
@@ -68,26 +76,26 @@ const ReferenceAnswers = () => {
 
 
     return (
-        <div className="p-6 bg-gray-100 flex items-center flex-col ">
+        <div className={`p-6 bg-gray-100 flex items-center flex-col ${maxH ? maxH + ' overflow-y-scroll' : ''}`}>
             <h1 className="text-2xl font-bold mb-6 text-gray-800">
                 Encuesta de Evaluación
             </h1>
-            <form className="space-y-4 w-full lg:w-1/2">
+            <form className="space-y-4 w-full lg:w-1/2 text-sm">
                 <>
-                    <div className="flex flex-col gap-4 pb-6">
+                    {!hideInputs && <div className="flex flex-col gap-4 pb-6">
                         <p className="text-gray-700 font-semibold">
                             ¿Cual es el nombre de tu empresa?
                         </p>
-                        <input type="text" className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-blue-400" value={companyName} />
+                        <input disabled={readOnly} value={companyName} type="text" className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-blue-400" />
                         <p className="text-gray-700 font-semibold">
                             Email
                         </p>
-                        <input type="text" className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-blue-400" value={email} />
+                        <input disabled={readOnly} type="text" className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-blue-400" value={email} />
                         <p className="text-gray-700 font-semibold">
                             ¿Cual es tu cargo?
                         </p>
-                        <input type="text" className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-blue-400" onChange={(e) => setJob(e.target.value)} />
-                    </div>
+                        <input disabled={readOnly} value={job} type="text" className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-blue-400" onChange={(e) => setJob(e.target.value)} />
+                    </div>}
                 </>
 
                 {
@@ -106,7 +114,7 @@ const ReferenceAnswers = () => {
                                                 name={`question-${index}`}
                                                 value={answers[index]?.answer}
                                                 checked={answers[index]?.answer === num}
-                                                className="w-4 h-4 text-blue-500 focus:ring-blue-400 cursor-pointer"
+                                                className={`w-4 h-4 text-blue-500 focus:ring-blue-400 cursor-pointer ${readOnly ? 'cursor-not-allowed' : ''}`}
                                             />
                                             <span className="sr-only">{num}</span>
                                         </label>

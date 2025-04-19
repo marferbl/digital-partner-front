@@ -122,7 +122,7 @@ export const SolutionDetail = ({ solution }) => {
             }
             {solution && solution?.gallery && solution.gallery.length ?
                 <Box>
-                    <ImageGallerySlider width={'100wh'} images={solution.gallery} />
+                    <ImageGallerySlider images={solution.gallery} />
                 </Box>
                 : ''}
 

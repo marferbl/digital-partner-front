@@ -22,3 +22,7 @@
     z-index: 10;
     /* Ensure they are above the images */
 }
+
+.chakra-modal__content-container {
+    overflow-y: hidden
+}

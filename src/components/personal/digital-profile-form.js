@@ -87,6 +87,7 @@ const DigitalProfileForm = ({ myFreelance }) => {
                 showToast()
             })
             .catch((res) => {
+                console.log(res)
                 let error = ''
                 Object.keys(res.response.data.error.errors).forEach((key) => {
                     error = `${key} is required`
