@@ -1,9 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, useMotionValue, useTransform, AnimatePresence } from "framer-motion";
 import TalentCard from "./TalentCard";
-import { Button } from "./ui/button";
-import { saveTalent } from "../services/freelance";
-import { useToast } from "../hooks/use-toast";
+import { Button } from "../ui/button";
+import { useToast } from "../../hooks/use-toast";
 
 export default function CardSwiper({ talents, onSelectTalent, currentSelected }) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -17,6 +16,11 @@ export default function CardSwiper({ talents, onSelectTalent, currentSelected })
       onSelectTalent(talents[0]);
     }
   }, [talents, currentSelected, onSelectTalent]);
+
+  useEffect(() => {
+  const resizeEvent = new Event('resize');
+  window.dispatchEvent(resizeEvent);
+}, [currentIndex]);
   
   // If we've gone through all cards, show a message
   const allCardsViewed = currentIndex >= talents.length;
@@ -79,9 +83,10 @@ export default function CardSwiper({ talents, onSelectTalent, currentSelected })
   const opacity = useTransform(x, [-150, -100, 0, 100, 150], [0, 1, 1, 1, 0]);
   
   const handleDragEnd = (info) => {
-    if (info.offset?.x > 100) {
+    if (info.offset.x > 100) {
       nextCard(true);
-    } else if (info.offset?.x < -100) {
+      
+    } else if (info.offset.x < -100) {
       nextCard(false);
     }
   };
@@ -104,7 +109,7 @@ export default function CardSwiper({ talents, onSelectTalent, currentSelected })
           </div>
         </div>
 
-        <div className="relative h-[550px]" ref={constraintsRef}>
+        <div className="relative h-[550px] min-h-[400px]" ref={constraintsRef}>
           {allCardsViewed ? (
             <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6 bg-white rounded-xl shadow border">
               <svg className="h-16 w-16 text-gray-400 mb-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -114,36 +119,37 @@ export default function CardSwiper({ talents, onSelectTalent, currentSelected })
               <p className="text-gray-600 mb-6">
                 No hay más candidatos que coincidan con tus criterios de búsqueda actuales.
               </p>
-              <Button onClick={resetCards}>
+              {/* <Button onClick={resetCards} className={'bg-pinkpulse text-white'}>
                 Volver a empezar
-              </Button>
+              </Button> */}
             </div>
           ) : (
             <AnimatePresence mode="wait">
-              {talents.length > 0 && currentIndex < talents.length && (
-                <motion.div
-                  key={currentIndex}
-                  initial={{ scale: 0.95, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  exit={
-                    exitDirection === "left"
-                      ? { x: -300, opacity: 0, rotate: -30 }
-                      : exitDirection === "right"
-                      ? { x: 300, opacity: 0, rotate: 30 }
-                      : { opacity: 0 }
-                  }
-                  transition={{ duration: 0.3 }}
-                  style={{ x, rotate, opacity }}
-                  drag="x"
-                  dragConstraints={constraintsRef}
-                  onDragEnd={handleDragEnd}
-                  dragElastic={0.7}
-                  className="absolute inset-0 cursor-grab active:cursor-grabbing"
-                >
-                  <TalentCard talent={talents[currentIndex]} />
-                </motion.div>
-              )}
-            </AnimatePresence>
+            {talents.length > 0 && currentIndex < talents.length && (
+              <motion.div
+                key={`${currentIndex}-${talents[currentIndex]?.id}`}
+                layout
+                initial={{ scale: 0.95, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={
+                  exitDirection === "left"
+                    ? { x: -300, opacity: 0, rotate: -0 }
+                    : exitDirection === "right"
+                    ? { x: 300, opacity: 0, rotate: 0 }
+                    : { opacity: 0 }
+                }
+                transition={{ duration: 0.1 }}
+                style={{ x, rotate, opacity }}
+                drag="x"
+                dragConstraints={constraintsRef}
+                onDragEnd={(_, info) => handleDragEnd(info)}
+                dragElastic={0.7}
+                className="absolute inset-0 cursor-grab active:cursor-grabbing will-change-transform"
+              >
+                <TalentCard talent={talents[currentIndex]} />
+              </motion.div>
+            )}
+          </AnimatePresence>
           )}
         </div>
 
