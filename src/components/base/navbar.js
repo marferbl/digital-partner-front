@@ -77,6 +77,8 @@ export default function Navbar() {
     },
   ];
 
+  console.log(selectedRoute, 'selectedRoute')
+
   return (
     <>
       <Box bg='black' px={41} position='sticky' top={0} zIndex={99}>
@@ -135,11 +137,16 @@ export default function Navbar() {
             </HStack>
           </Flex>
           <IconButton
-            size={'md'}
+            size="sm"
             icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-            aria-label={'Open Menu'}
+            aria-label="Open Menu"
             display={{ md: 'none' }}
             onClick={isOpen ? onClose : onOpen}
+            variant="outline"
+            color="yellow.400"         // icon color
+            borderColor="yellow.400"   // outline border color
+            _hover={{ bg: 'transparent', borderColor: DARK_COLORS.gridyellow, color: DARK_COLORS.gridyellow }}
+            _active={{ bg: 'transparent', borderColor: DARK_COLORS.gridyellow, color: DARK_COLORS.gridyellow }}
           />
         </Flex>
 
@@ -147,8 +154,8 @@ export default function Navbar() {
           <Box pb={4} display={{ md: "none" }}>
             <Stack as={"nav"} spacing={4}>
               {LinksMobile.map((link) => (
-                <Box color={DARK_COLORS.gridyellow} fontWeight='semibold'>
-                  {!link.hide && <Link to={{ pathname: link.link, state: { filter: link.param } }} href="#Contact">{link.label}</Link>}
+                <Box color={DARK_COLORS.gridyellow} fontWeight='light' textAlign={'right'} decoration={selectedRoute === link.key ? 'underline' : ''}>
+                  {!link.hide && <Link to={{ pathname: link.link, state: { filter: link.param } }} href="#Contact">{t(link.label)}</Link>}
                 </Box>
               ))}
             </Stack>
