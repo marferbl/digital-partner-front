@@ -32,7 +32,7 @@ import ReferenceForm from "../pages/admin/references/referenceform";
 import ReferenceAdmin from "../pages/admin/references/reference-admin";
 import ReferenceAnswers from "../pages/admin/references/reference-answer";
 import TalentPage from "../pages/talent/TalentHome";
-import RecruiterSearch from "../pages/RecruiterSearch"
+import SelectionPage from "../pages/selection/SelectionPage";
 
 export const PageRoutes = () => {
   return (
@@ -44,7 +44,6 @@ export const PageRoutes = () => {
           <Route path={"/start/a"} element={<App />} />
           <Route path={"/marketplace"} element={<MarketplacePage />} />
           <Route path={"search/:term"} element={<SearcherPage />} />
-          <Route path={"talent"} element={<RecruiterSearch />} />
           <Route path={"search"} element={<SearcherPage />} />
           <Route path={"favorites"} element={<FavoritePage />} />
           <Route path={'solution/:id'} element={<SolutionDetailPage />} />
@@ -71,6 +70,7 @@ export const PageRoutes = () => {
           <Route path={"search"} element={<SearcherPage />} />
           <Route path={"favorites"} element={<FavoritePage />} />
           <Route path={'corporate/solutions'} element={<SolutionsCorporatePage />} />
+          <Route path={'corporate/selection'} element={<SelectionPage />} />
           <Route path={'digital-profile'} element={<DigitalProfilePage />} />
           <Route path={'solution/:id'} element={<SolutionDetailPage />} />
           <Route path={'corporate/service'} element={<ServicePage />} />

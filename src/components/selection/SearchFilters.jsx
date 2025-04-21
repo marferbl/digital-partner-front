@@ -2,15 +2,15 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Form, FormControl, FormField, FormItem, FormLabel } from "./ui/form";
-import { Input } from "./ui/input";
-import { Button } from "./ui/button";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
-import { Badge } from "./ui/badge";
+import { Form, FormControl, FormField, FormItem, FormLabel } from "../ui/form";
+import { Input } from "../ui/input";
+import { Button } from "../ui/button";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
+import { Badge } from "../ui/badge";
 import { X, Plus, Search, SlidersHorizontal } from "lucide-react";
-import { Card, CardContent } from "./ui/card";
-import SearchSelectCountries from "./base/search-select-countries";
-import SearchSelectPositions from "./base/search-select-positions";
+import { Card, CardContent } from "../ui/card";
+import SearchSelectCountries from "../base/search-select-countries";
+import SearchSelectPositions from "../base/search-select-positions";
 
 // Define the form schema for validation
 const searchSchema = z.object({

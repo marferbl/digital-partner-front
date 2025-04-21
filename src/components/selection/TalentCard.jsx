@@ -1,7 +1,11 @@
 import { Avatar } from "@chakra-ui/react";
-import { Badge } from "./ui/badge";
+import { Badge } from "../ui/badge";
+import { useTranslation } from "react-i18next";
 
 export default function TalentCard({ talent }) {
+
+  console.log(talent, 'talent')
+  const { t } = useTranslation('global');
   // Generate a match percentage (this would be calculated based on the actual algorithm)
   const matchPercentage = Math.floor(Math.random() * 21) + 80; // Random between 80-100%
   
@@ -15,7 +19,7 @@ export default function TalentCard({ talent }) {
       <div className="relative">
         {/* Using a gradient background instead of an image for the profile header */}
         <div className="w-full h-52 bg-gradient-to-r from-blue-500 to-indigo-600 flex items-center justify-center">
-        <Avatar name={talent?.fullName} src= {talent.user?.avatar} h={20} w={20} />
+        <Avatar name={talent?.fullName} src= {talent.user?.avatar} h={20} w={20} filter='blur' />
         </div>
         
         <div className="absolute top-4 right-4 flex space-x-2">
@@ -25,8 +29,8 @@ export default function TalentCard({ talent }) {
         </div>
         
         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent text-white p-4">
-          <h3 className="text-xl font-bold">{talent.fullName}</h3>
-          <p className="text-sm">{talent.job}</p>
+          <h3 className="text-xl font-bold blur">{talent.fullName}</h3>
+          <p className="text-sm">{t(talent.job)}</p>
         </div>
       </div>
       
