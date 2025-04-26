@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { ResponsiveRadar } from '@nivo/radar';
+import classNames from 'classnames';
 
 export const MyResponsiveRadar = ({ answers }) => {
     const [chartData, setChartData] = useState([]);
@@ -15,9 +16,6 @@ export const MyResponsiveRadar = ({ answers }) => {
         { name: "Actualizaciones y mejoras", range: [28, 30], total: 30 },
         { name: "Seguridad", range: [31, 33], total: 30 },
         { name: "Satisfacción general y grado de recomendación", range: [34, 36], total: 30 },
-
-
-
     ];
 
     useEffect(() => {
@@ -38,8 +36,13 @@ export const MyResponsiveRadar = ({ answers }) => {
         setChartData(processedData);
     }, [answers]);
 
-    const topBlocks = [...chartData].sort((a, b) => b.resultado - a.resultado).slice(0, 3);
-    const worstBlocks = [...chartData].sort((a, b) => a.resultado - b.resultado).slice(0, 3);
+    const sortedBlocks = [...chartData].sort((a, b) => b.resultado - a.resultado);
+
+    const getBarColor = (value) => {
+        if (value >= 75) return 'bg-green-300';
+        if (value >= 50) return 'bg-yellow-300';
+        return 'bg-red-300';
+    };
 
     return (
         <div className="h-full w-full">
@@ -65,30 +68,34 @@ export const MyResponsiveRadar = ({ answers }) => {
             ) : (
                 <span>No hay resultados</span>
             )}
-            <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6 text-center pt-10">
-                <div>
-                    <h2 className="text-xl font-semibold mb-2">🔝 Top 3 bloques mejor valorados</h2>
-                    <ul className="space-y-1">
-                        {topBlocks.map((block, idx) => (
-                            <li key={idx}>
-                                {block.taste}: <span className="font-bold">{block.resultado}%</span>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
 
-                <div>
-                    <h2 className="text-xl font-semibold mb-2">⚠️ Top 3 bloques peor valorados</h2>
-                    <ul className="space-y-1">
-                        {worstBlocks.map((block, idx) => (
-                            <li key={idx}>
-                                {block.taste}: <span className="font-bold">{block.resultado}%</span>
-                            </li>
-                        ))}
-                    </ul>
+            <div className="w-full pt-10">
+                <h2 className="text-2xl font-bold mb-6 mt-3 text-center">Resultados por bloque</h2>
+                <div className="overflow-x-auto">
+                    <table className="min-w-full table-auto border-collapse">
+                      
+                        <tbody>
+                            {sortedBlocks.map((block, idx) => (
+                                <tr key={idx} className="border-b">
+                                    <td className="py-3 px-4">{block.taste}</td>
+                                    <td className="py-3 px-4 font-bold">{block.resultado}%</td>
+                                    <td className="py-3 px-4">
+                                        <div className="w-full bg-gray-200 rounded-full h-4 overflow-hidden">
+                                            <div
+                                                className={classNames(
+                                                    "h-4 rounded-full",
+                                                    getBarColor(block.resultado)
+                                                )}
+                                                style={{ width: `${block.resultado}%` }}
+                                            ></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
                 </div>
             </div>
-
         </div>
     );
 };

@@ -18,7 +18,7 @@ export default function RecruiterSearch({ vacancy }) {
       setSearchParams({
         salaryMin: vacancy.salaryMin,
         salaryMax: vacancy.salaryMax,
-       // job: vacancy.job,
+        job: vacancy.job,
         location: vacancy.location,
         languages: vacancy.languages,
       });

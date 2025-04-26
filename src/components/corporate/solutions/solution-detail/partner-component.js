@@ -25,7 +25,14 @@ export const PartnerComponent = ({ isDemo }) => {
     return (
         <Box>
             <Box>
-                {partnerServices.length ? <ServicesTable services={partnerServices} solutionView={true} /> : <Text color='white'>Sin servicios dados de alta</Text>}
+                {partnerServices.length ? <ServicesTable services={partnerServices} solutionView={true} /> : <div className='h-80 w-full flex items-center justify-center'>
+                    <div className='text-white flex flex-col items-center'>
+                        <span className="text-3xl font-bold">
+                            Nada por aqui...
+                        </span>
+                        <span color='white'> Está solución todavía no tiene partners dados de alta</span>
+                    </div>
+                </div>}
             </Box>
         </Box>
 
