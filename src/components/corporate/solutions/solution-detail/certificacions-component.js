@@ -26,7 +26,6 @@ export const CertificationComponent = ({ solution }) => {
     }
 
     const isAdminWatchingSolution = () => {
-        console.log(me, solution?.corporate)
         return solution?.corporate?.superadmin?._id === me?._id;
     }
 
@@ -41,7 +40,7 @@ export const CertificationComponent = ({ solution }) => {
     return (
         <Box>
             <Flex justify='space-between' align='center' color='white'>
-                <Text fontSize='xl' fontWeight='bold'>Certificaciones</Text>
+                <Text fontSize='xl' fontWeight='bold'></Text>
                 {isAdminWatchingSolution() && <ButtonCreateCertification refreshCertifications={getCertifications} id={id} />}
             </Flex>
             {certifications.length ?
@@ -59,7 +58,15 @@ export const CertificationComponent = ({ solution }) => {
                         }
                         )
                     }
-                </Box> : <Text color='white'>Sin certificaciones dadas de alta</Text>}
+                </Box> :
+                <div className='h-80 w-full flex items-center justify-center'>
+                    <div className='text-white flex flex-col items-center'>
+                        <span className="text-3xl font-bold">
+                            Nada por aqui...
+                        </span>
+                        <span color='white'> Está solución todavía no tiene certificaciones dadas de alta</span>
+                    </div>
+                </div>}
         </Box>
 
     )

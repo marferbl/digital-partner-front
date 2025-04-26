@@ -29,7 +29,7 @@ export const ButtonCreateCertification = ({ refreshCertifications, disabled, id 
 
     return (
         <>
-            <Button bg={DARK_COLORS.gridyellow} color={'white'} _hover={{ bg: 'blue.700' }} disabled={disabled} onClick={onOpen}>Crear certificación</Button>
+            <Button bg={DARK_COLORS.gridyellow} color={'black'} _hover={{ bg: 'blue.700' }} disabled={disabled} onClick={onOpen}>Crear certificación</Button>
 
             <Modal isOpen={isOpen} onClose={onClose} size='md'>
                 <ModalOverlay />

@@ -53,8 +53,8 @@ export const SolutionDetailPage = () => {
         { label: 'Info', component: <SolutionDetail solution={solution} isDemo={isDemoSolution} /> },
         { label: 'Descubrir partners', component: <PartnerComponent isDemo={isDemoSolution} /> },
         { label: 'Pedir demo', component: <DemoComponent solution={solution} isDemo={isDemoSolution} /> },
-        { label: 'Descargar manuales', component: <ManualComponent solution={solution} isDemo={isDemoSolution} /> },
-        { label: 'Comprar referencias', component: <ReferencesComponent isDemo={isDemoSolution} /> },
+        // { label: 'Descargar manuales', component: <ManualComponent solution={solution} isDemo={isDemoSolution} /> },
+        { label: 'Referencias', component: <ReferencesComponent isDemo={isDemoSolution} /> },
         { label: 'Obtener certificaciones', component: <CertificationComponent solution={solution} isDemo={isDemoSolution} /> },
 
     ];
