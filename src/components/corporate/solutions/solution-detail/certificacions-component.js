@@ -43,6 +43,7 @@ export const CertificationComponent = ({ solution }) => {
                 <Text fontSize='xl' fontWeight='bold'></Text>
                 {isAdminWatchingSolution() && <ButtonCreateCertification refreshCertifications={getCertifications} id={id} />}
             </Flex>
+
             {certifications.length ?
                 <Box mt={5}>
                     {
