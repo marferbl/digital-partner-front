@@ -38,7 +38,7 @@ export const SoftwareSearcherInput = ({ onChange, defaultClass }) => {
         <form onSubmit={(e) => { e.preventDefault(); handleSearch(); }} className="flex items-center justify-center">
             <div className="relative w-60 lg:w-110">
                 <input
-                    className={defaultClass || "bg-white bg-opacity-20 font-light text-white backdrop-blur-md shadow-md text-sm lg:text-base w-full rounded-full px-4 py-3 pr-10 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"}
+                    className={defaultClass || "bg-white bg-opacity-20 font-light text-white backdrop-blur-md shadow-md text-3xs lg:text-base w-full rounded-full px-4 py-3 pr-10 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"}
                     value={searchTerm}
                     onChange={(e) => {
                         setSearchTerm(e.target.value)
