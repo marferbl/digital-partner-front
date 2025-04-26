@@ -279,5 +279,11 @@
   "tagalog": "Tagalo",
   "malay": "Malayo",
   "select": "Seleccionar",
-  "answers": "Respuestas"
+  "answers": "Respuestas",
+  "salaryMin": "Salario mínimo",
+    "salaryMax": "Salario máximo",
+    "location" : "Ubicación",
+    "jobType": "Tipo de trabajo",
+    "job": "Puesto",
+    "languages": "Idiomas"
 }

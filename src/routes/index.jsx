@@ -31,6 +31,8 @@ import DigitalProfileDetailsPage from "../pages/digital-profile/digital-profile-
 import ReferenceForm from "../pages/admin/references/referenceform";
 import ReferenceAdmin from "../pages/admin/references/reference-admin";
 import ReferenceAnswers from "../pages/admin/references/reference-answer";
+import TalentPage from "../pages/talent/TalentHome";
+import SelectionPage from "../pages/selection/SelectionPage";
 
 export const PageRoutes = () => {
   return (
@@ -57,6 +59,7 @@ export const PageRoutes = () => {
           <Route path={'blog-list'} element={<BlogList />} />
           <Route path={'blog/:id'} element={<BlogDetail />} />
           <Route path={'reference-answer/:id'} element={<ReferenceForm />} />
+        {/* <Route path="/recruiter" element={<RecruiterSearch/>} /> */}
         </Route>
 
         <Route path={"private"} element={<PrivateRoute />}>
@@ -67,6 +70,7 @@ export const PageRoutes = () => {
           <Route path={"search"} element={<SearcherPage />} />
           <Route path={"favorites"} element={<FavoritePage />} />
           <Route path={'corporate/solutions'} element={<SolutionsCorporatePage />} />
+          <Route path={'corporate/selection'} element={<SelectionPage />} />
           <Route path={'digital-profile'} element={<DigitalProfilePage />} />
           <Route path={'solution/:id'} element={<SolutionDetailPage />} />
           <Route path={'corporate/service'} element={<ServicePage />} />

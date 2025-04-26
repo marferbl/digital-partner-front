@@ -11,12 +11,12 @@ import { Link } from 'react-router-dom';
 
 
 
-const SearcherPage = () => {
+const TalentHome = () => {
     const { isLoggedIn } = useContext(UserContext);
     const location = useLocation();
     const [filters, setFilters] = useState(location?.state?.filters || {})
     const [isFavorites, setIsFavorites] = useState(false)
-    const [selectedRoute, setSelectedRoute] = useState('explore')
+    const [selectedRoute, setSelectedRoute] = useState('talent')
     const { t } = useTranslation()
     const links = [
         {
@@ -51,13 +51,37 @@ const SearcherPage = () => {
         <>
             <Box p={0} rounded={"xl"} bgColor={"gray.100"} w={"100%"}>
                 <div className="flex justify-center w-full pt-5">
+                    <Box className='w-60'>
+                        <HStack as="nav" display={{ base: "none", md: "flex" }} color="black" spacing="0" bg={DARK_COLORS.darkgray} rounded='3xl'>
+                            {links.map((link) => (
+                                <Box
+                                    display={link.hide && !isLoggedIn ? 'none' : 'block'}
+                                    key={link.key}
+                                    as="button"
+                                    flex="1"
+                                    w={82}
+                                    p={2}
+                                    textAlign="center"
+                                    bg={selectedRoute === link.key ? DARK_COLORS.gridyellow : 'transparent'}
+                                    color={selectedRoute === link.key ? "black" : "white"}
+                                    _hover={{ shadow: 'xl' }}
+                                    rounded={selectedRoute === link.key ? '3xl' : 'none'}
+                                    fontSize={12}
+                                    py={3}
+                                >
+                                    {!link.hide && <Link to={{ pathname: link.link, state: { filter: link.param } }}>{t(link.label)}</Link>}
+                                </Box>
+                            ))}
+                        </HStack>
 
+
+                    </Box>
                 </div>
-                <Searcher filters={filters} isFavorites={isFavorites} />
+                Hola
             </Box>
         </>
 
     )
 }
 
-export default SearcherPage
+export default TalentHome
