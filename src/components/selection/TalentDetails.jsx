@@ -74,7 +74,7 @@ export default function TalentDetails({ talent }) {
       <div className="bg-blue-700 text-white p-6">
         <div className="flex items-start justify-between">
           <div>
-            <h2 className="text-2xl font-bold">{talent.fullName}</h2>
+            <h2 className="text-2xl font-bold blur">{talent.fullName}</h2>
             <p className="mt-1">{talent.job}</p>
             <div className="flex items-center mt-2 text-blue-100">
               <span className="material-icons text-sm mr-1">
@@ -206,8 +206,8 @@ export default function TalentDetails({ talent }) {
                     <div key={i} className="relative pl-8">
                       <div className="absolute left-0 top-0 mt-1.5 w-3 h-3 rounded-full bg-yellow-500"></div>
                       <div>
-                        <h4 className="font-medium text-gray-900">{study.title}</h4>
-                        <div className="text-sm text-gray-500">{study.institution}</div>
+                        <h4 className="font-medium text-gray-900">{study.name}</h4>
+                        <div className="text-sm text-gray-500">{study.entity}</div>
                         <div className="text-xs text-gray-400 mt-1">
                           {study.start} - {study.end || 'Actual'}
                         </div>
@@ -283,14 +283,14 @@ export default function TalentDetails({ talent }) {
                     <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
                     <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
                   </svg>
-                  <span className="text-gray-900">{talent.email}</span>
+                  <span className="text-gray-900 blur">{talent.email}</span>
                 </div>
                 {talent.telephone && (
                   <div className="flex items-center mt-3">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-400 mr-2" viewBox="0 0 20 20" fill="currentColor">
                       <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
                     </svg>
-                    <span className="text-gray-900">{talent.telephone}</span>
+                    <span className="text-gray-900 blur">{talent.telephone}</span>
                   </div>
                 )}
                 {talent.web && (
@@ -301,7 +301,7 @@ export default function TalentDetails({ talent }) {
                     <a href={talent.web.startsWith('http') ? talent.web : `https://${talent.web}`} 
                       target="_blank" 
                       rel="noopener noreferrer" 
-                      className="text-blue-600 hover:text-blue-800">
+                      className="text-blue-600 hover:text-blue-800 blur">
                       {talent.web}
                     </a>
                   </div>
@@ -324,7 +324,7 @@ export default function TalentDetails({ talent }) {
                         {exp.start} - {!exp.end ? 'Actual' : exp.end}
                       </span>
                     </div>
-                    <p className="text-gray-700 mt-1">{exp.entity}</p>
+                    <p className="text-gray-500 mt-1">{exp.entity}</p>
                     <p className="mt-3 text-gray-600">{exp.description}</p>
                     
                     {exp.technologies && exp.technologies.length > 0 && (
@@ -388,20 +388,7 @@ export default function TalentDetails({ talent }) {
                     <div key={i} className="bg-gray-50 rounded-lg p-4">
                       <div className="font-medium text-gray-900">{tech.name}</div>
                       <div className="flex items-center mt-1">
-                        <div className="w-full bg-gray-200 rounded h-2 mr-2">
-                          <div 
-                            className="bg-blue-600 h-2 rounded" 
-                            style={{ 
-                              width: `${
-                                tech.level === 'Experto' ? '90%' : 
-                                tech.level === 'Avanzado' ? '75%' : 
-                                tech.level === 'Intermedio' ? '50%' : 
-                                '25%'
-                              }`
-                            }}
-                          ></div>
-                        </div>
-                        <span className="text-xs text-gray-500">{tech.level}</span>
+                       
                       </div>
                     </div>
                   ))
