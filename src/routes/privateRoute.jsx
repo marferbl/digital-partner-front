@@ -59,18 +59,18 @@ const PrivateRoute = () => {
   return (
     <div className="bg-black pb-8" >
       <Navbar />
-      {!routeInHidden && <div className="px-10 md:px-28">
+      {!routeInHidden && <div className="px-4 md:px-28">
         <h2 className="text-6xl md:text-10xl lg:text-12xl font-semibold text-white text-center ">MI PANEL</h2>
         <img src='/profile-banners/profile-banner-1.png' className='w-full h-200' />
         <div className="flex justify-between items-center">
           <div className="flex items-center -mt-4">
             <ModalDefaultPhoto defaultImage={me?.avatar} setLogo={setLogo} onSave={onSave}>
-              <div className="relative w-40 h-40 ml-0 md:ml-10">
+              <div className="relative w-20 h-20 md:w-40 md:h-40  ml-0 md:ml-10">
                 {/* Image */}
                 <img
                   src={me?.avatar || '/profile-photos/profile-photo-1.png'}
                   alt="Profile Avatar"
-                  className="w-40 h-40 rounded-xl"
+                  className="w-20 h-20 md:w-40 md:h-40 rounded-xl"
                 />
 
                 {/* Edit Icon */}
@@ -90,7 +90,7 @@ const PrivateRoute = () => {
         </div>
         <HorizontalMenu />
       </div>}
-      <div className="px-10 md:px-28">
+      <div className="px-4 md:px-28">
         <Outlet />
       </div>
     </div >
