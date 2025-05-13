@@ -76,7 +76,7 @@ const ButtonReferenceAnswers = ({ children, reference }) => {
                                 </TabPanel>
 
                                 <TabPanel>
-                                    <div className='w-full flex justify-center'>
+                                    <div className='w-full flex justify-center max-h-[550px] overflow-y-auto'>
                                         {/* Contenido de "Estadísticas" */}
                                         <MyResponsiveRadar answers={reference.answers} />
                                     </div>

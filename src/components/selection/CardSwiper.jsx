@@ -4,7 +4,7 @@ import TalentCard from "./TalentCard";
 import { Button } from "../ui/button";
 import { useToast } from "../../hooks/use-toast";
 
-export default function CardSwiper({ talents, onSelectTalent, currentSelected }) {
+export default function CardSwiper({ talents, onSelectTalent, currentSelected, onTalentSelection }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [exitDirection, setExitDirection] = useState(null);
   const constraintsRef = useRef(null);
@@ -51,6 +51,8 @@ export default function CardSwiper({ talents, onSelectTalent, currentSelected })
   const nextCard = (liked) => {
     if (currentIndex < talents.length) {
       setExitDirection(liked ? "right" : "left");
+
+      onTalentSelection(talents[currentIndex], liked);
       
       // If card was liked, save it
      

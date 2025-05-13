@@ -5,6 +5,7 @@ import TalentDetails from "../../components/selection/TalentDetails";
 import { Loader2 } from "lucide-react";
 import { getAllTalents } from "../../services/freelance";
 import { useTranslation } from "react-i18next";
+import { selectCandidate, discardCandidate } from "../../services/vacancy-candidates";
 
 export default function RecruiterSearch({ vacancy }) {
   const [selectedTalent, setSelectedTalent] = useState(null);
@@ -44,7 +45,7 @@ export default function RecruiterSearch({ vacancy }) {
     }
   };
 
-  const handleSelectTalent = (talent) => {
+  const handleSelectTalent = async (talent) => {
     setSelectedTalent(talent);
   };
 
@@ -52,15 +53,28 @@ export default function RecruiterSearch({ vacancy }) {
     fetchTalents(params);
   };
 
+  const handleTalentSelection = async (talent, selected) => {
+    try {
+      if (selected) {
+        await selectCandidate(vacancy._id, talent._id);
+      } else {
+        await discardCandidate(vacancy._id, talent._id);
+      }
+    } catch (error) {
+      console.error("Error selecting talent:", error);
+    }
+  };
+
+
 
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-neutralblack">
       <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
         {/* Page header */}
         <div className="px-4 py-5 sm:px-6 mb-6">
-          <h1 className="text-2xl font-bold text-gray-900">Encuentra el talento perfecto</h1>
-          <p className="mt-1 max-w-2xl text-sm text-gray-500">
+          <h1 className="text-2xl font-bold text-white">Encuentra el talento perfecto</h1>
+          <p className="mt-1 max-w-2xl text-sm text-white">
             Desliza para encontrar los mejores candidatos para tu posición.
           </p>
         </div>
@@ -68,14 +82,14 @@ export default function RecruiterSearch({ vacancy }) {
         {/* Search filters */}
         {/* <SearchFilters onSearch={handleSearch} initialValues={searchParams} /> */}
         <div className="px-4 py-5 sm:px-6 mb-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-2">Filtros de búsqueda</h2>
+          <h2 className="text-lg font-semibold text-white mb-2">Filtros de búsqueda</h2>
           <div className="flex flex-wrap gap-2">
             {Object.entries(searchParams).map(([key, value]) => {
               const text = `${t(key)}: ${Array.isArray(value) ? value.join(", ") : value ? t(value) : "No especificado"}`;
               return (
                 <span
                   key={key}
-                  className="text-sm font-medium px-3 py-1 rounded-xl shadow-sm bg-gradient-to-r from-pink-100 via-pink-50 to-pink-100 text-pink-700 border border-pink-200"
+                  className="text-sm font-medium px-3 py-1 rounded-xl shadow-sm bg-pinkpulse text-black"
                 >
                   {text}
                 </span>
@@ -102,6 +116,7 @@ export default function RecruiterSearch({ vacancy }) {
               <CardSwiper
                 talents={talents}
                 onSelectTalent={handleSelectTalent}
+                onTalentSelection={handleTalentSelection}
                 currentSelected={selectedTalent}
               />
             </div>

@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 
 export default function TalentCard({ talent }) {
 
-  console.log(talent, 'talent')
   const { t } = useTranslation('global');
   // Generate a match percentage (this would be calculated based on the actual algorithm)
   const matchPercentage = Math.floor(Math.random() * 21) + 80; // Random between 80-100%

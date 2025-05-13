@@ -1,5 +1,6 @@
 import { Button } from '@chakra-ui/react'
 import { useState } from 'react'
+import ButtonCreateVacancy from '../../components/selection/ButtonCreateVacancy'
 import RecruiterSearch from './RecruiterSearch'
 
 const SelectionPage = () => {
@@ -31,6 +32,9 @@ const SelectionPage = () => {
     return (
         <div className='min-h-screen'>
             <h1 className='text-xl font-bold text-white mb-3'>Tus búsquedas</h1>
+            <div className="flex justify-end mb-4">
+                <ButtonCreateVacancy />
+            </div>
             {selected && (
                 <div onClick={() => setSelected(null)} className="text-white py-4">
                     <Button variant='outline' className='mb-4 hover:text-black'>

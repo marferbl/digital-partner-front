@@ -16,6 +16,7 @@ import AddFavoriteButton from "../../../components/favorites/add-favorite-button
 import { isDemoSolutionId } from "../../../utils/methods";
 import GradientButton from "../../../components/base/GradientButton";
 import CustomButton from "../../../components/base/CustomButton";
+import { PlansComponent } from "../../../components/corporate/solutions/solution-detail/plans-component";
 
 
 export const SolutionDetailPage = () => {
@@ -56,6 +57,7 @@ export const SolutionDetailPage = () => {
         // { label: 'Descargar manuales', component: <ManualComponent solution={solution} isDemo={isDemoSolution} /> },
         { label: 'Referencias', component: <ReferencesComponent isDemo={isDemoSolution} /> },
         { label: 'Obtener certificaciones', component: <CertificationComponent solution={solution} isDemo={isDemoSolution} /> },
+        { label: 'Planes', component: <PlansComponent entity={solution} isDemo={isDemoSolution} /> },
 
     ];
 
