@@ -285,5 +285,9 @@
     "location" : "Ubicación",
     "jobType": "Tipo de trabajo",
     "job": "Puesto",
-    "languages": "Idiomas"
+    "languages": "Idiomas",
+    "monthly": "Mensual",
+    "quarterly": "Trimestral",
+    "yearly": "Anual"
+    
 }

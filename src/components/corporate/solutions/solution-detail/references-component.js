@@ -23,7 +23,7 @@ export const ReferencesComponent = () => {
     }, [])
     return (
         <div className='text-white'>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {references?.length > 0 ? <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 {references?.map(reference => (
                     <div
                         key={reference._id}
@@ -55,7 +55,16 @@ export const ReferencesComponent = () => {
                         </div>
                     </div>
                 ))}
-            </div>
+            </div> :
+                <div className='h-80 w-full flex items-center justify-center'>
+                    <div className='text-white flex flex-col items-center'>
+                        <span className="text-3xl font-bold">
+                            Nada por aqui...
+                        </span>
+                        <span color='white'>Esta solución todavía no tiene referencias</span>
+                    </div>
+                </div>
+            }
         </div>
 
 

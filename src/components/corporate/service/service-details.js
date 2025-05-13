@@ -10,17 +10,14 @@ import { getServicesByCorporate } from "../../../services/service";
 import ServicesTable from "./services-table";
 import { Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
+import { PlansComponent } from "../solutions/solution-detail/plans-component";
+import { ReferencesComponent } from "../solutions/solution-detail/references-component";
+import CustomButton from "../../base/CustomButton";
 
-
-
-const ServiceDetails = ({ service }) => {
-    const { isLoggedIn } = useContext(UserContext)
-    const [services, setServices] = useState([])
+const ServiceInfoComponent = ({ service }) => {
     const { t } = useTranslation("global");
-
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, []);
+    const { isLoggedIn } = useContext(UserContext);
+    const [services, setServices] = useState([]);
 
     useEffect(() => {
         service && getServices()
@@ -39,9 +36,6 @@ const ServiceDetails = ({ service }) => {
     const isDigitalando = () => {
         return service?.corporate?._id === '66e3fb74ded119079e6ec82e'
     }
-
-
-
 
     const PARTNER_TYPE_KEYS = {
         'selling': 'Venta',
@@ -63,18 +57,15 @@ const ServiceDetails = ({ service }) => {
     }
 
     return (
-        <Box mt={1} p={3} rounded={"xl"} bgColor={"white"} w={"100%"}>
+        <Box mt={1} p={3} rounded={"xl"} bgColor={"black"} w={"100%"}>
             {service && <Grid templateColumns="repeat(8, 1fr)" gap={6} pb={1}>
                 <GridItem colSpan={8}>
-                    <Box textAlign={'left'} mt={1} rounded={"xl"} bgColor={"white"} w={"100%"} px={10}>
+                    <Box textAlign={'left'} mt={1} rounded={"xl"} bgColor={"black"} w={"100%"} px={10}>
                         <Flex align={'center'} justify='space-between' gap={4} pb={3}>
-                            <Flex align={'center'} gap={4}>
-                                {service?.logo && <Image src={service.logo} alt={service?.title} height={28} width={28} objectFit={'contain'} rounded='100%' />}
-                                {service?.title ? <Text fontSize={22} mt={3} fontWeight='bold'>{capitalizeFirstLetter(service.title)}</Text> : ''}
-                            </Flex>
+                            <Box></Box>
                             <Box pt={6}>
                                 {isLoggedIn ? <a href={`mailto:${service?.corporate?.superadmin?.email}`}>
-                                    <GradientButton type='green' label='Contactar' size={'md'} />
+                                    <CustomButton text='Contactar' disabled={!isLoggedIn} showIcon={true} onClick={() => window.open(`mailto:${service?.corporate?.superadmin?.email}`)} />
                                 </a> :
                                     <Box>
                                         <GradientButton type='green' label='Contactar' disabled size='sm' />
@@ -101,7 +92,7 @@ const ServiceDetails = ({ service }) => {
                         {service?.countries?.length ? <Text fontSize={14} mt={3} fontWeight='bold' textDecor={'underline'}>Países disponibles para el servicio:</Text> : ''}
                         <Text fontSize={16}>{service?.countries?.map(e => <CountryFlag country={e} />)}</Text>
                         <Text fontSize={14} mt={3} fontWeight='bold' textDecor={'underline'}>{service.serviceType === 'partner' ? 'Solución:' : ''} </Text>
-                        {service.serviceType === 'partner' ? <Box mt={1} p={1} bgColor={"white"} w={"100%"} rounded='xl' mb={3}>
+                        {service.serviceType === 'partner' ? <Box mt={1} p={1} bgColor={"black"} w={"100%"} rounded='xl' mb={3}>
                             <Text fontWeight={'bold'} fontSize={18}>{service.otherSolution || solution?.name}</Text>
                             <Text fontSize={16}>{solution?.website}</Text>
                             {service.otherSolution ? <Text fontSize={14} mt={2}>Esta solución no está dada de alta</Text> :
@@ -110,7 +101,6 @@ const ServiceDetails = ({ service }) => {
                         </Box> : ''}
                     </Box>
                 </GridItem>
-
             </Grid>}
             {!isDigitalando() && <Box px={6} mt={4}>
                 <Accordion allowToggle>
@@ -129,9 +119,67 @@ const ServiceDetails = ({ service }) => {
                     </AccordionItem>
                 </Accordion>
             </Box>}
-
-        </Box >
+        </Box>
     )
 }
 
-export default ServiceDetails
+const ServiceDetails = ({ service }) => {
+    const [selectedComponent, setSelectedComponent] = useState(null);
+    const [label, setLabel] = useState(null);
+    const { isLoggedIn } = useContext(UserContext);
+
+    useEffect(() => {
+        if (!selectedComponent && service) {
+            renderComponent('Info');
+        }
+    }, [service]);
+
+    const LINKS = [
+        { label: 'Info', component: <ServiceInfoComponent service={service} /> },
+        { label: 'Planes', component: <PlansComponent entity={service} /> },
+        { label: 'Referencias', component: <ReferencesComponent /> },
+    ];
+
+    const renderComponent = (label) => {
+        const selectedLink = LINKS.find(link => link.label === label);
+        setLabel(selectedLink.label);
+        setSelectedComponent(selectedLink ? selectedLink.component : null);
+    };
+
+    return (
+        <Box bgColor={'black'} color={'white'}>
+            <Box p={5} bgColor={"black"} w={"100%"} minH={'100vh'} px={{ base: 6, md: 20, lg: 32 }}>
+                <Flex w='full' justify={'space-evenly'} mt={{ base: 4, lg: 4 }} pb={5} px={{ base: 0, md: 10, lg: 20 }}>
+                    {LINKS.map(link => (
+                        <Text
+                            key={link.label}
+                            textAlign='center'
+                            borderWidth={label === link.label ? 1 : 0}
+                            w={180}
+                            py={1}
+                            px={2}
+                            rounded='xl'
+                            fontSize={{ base: 6, md: 13 }}
+                            bgColor={label === link.label ? 'white' : 'transparent'}
+                            onClick={() => renderComponent(link.label)}
+                            color={label === link.label ? 'black' : 'white'}
+                            cursor='pointer'
+                        >
+                            {link.label}
+                        </Text>
+                    ))}
+                </Flex>
+                {isLoggedIn ? <Box mt={4} px={{ base: 2, md: 14 }} flex={1}>
+                    {selectedComponent}
+                </Box> : <Flex w='full' justify={'center'} align={'center'} flexDir='column' mt={4} >
+                    <Text mt={6} fontSize='xl' fontWeight='bold' color={'gray.400'}>Debes iniciar sesión para ver más detalles</Text>
+                    <Link to={'/start'}>
+                        <Text mt={2} fontSize='sm' fontWeight='bold' color={'blue.500'} _hover={{ color: 'blue.700' }}>Iniciar sesión</Text>
+                    </Link>
+                </Flex>}
+            </Box>
+        </Box>
+    );
+};
+
+export default ServiceDetails;

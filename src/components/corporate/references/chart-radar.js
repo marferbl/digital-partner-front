@@ -47,7 +47,7 @@ export const MyResponsiveRadar = ({ answers }) => {
     return (
         <div className="h-full w-full">
             {chartData.length > 0 ? (
-                <div className='h-[400px]'>
+                <div className='h-[360px]'>
                     <ResponsiveRadar
                         data={chartData}
                         keys={['resultado']}
@@ -76,7 +76,7 @@ export const MyResponsiveRadar = ({ answers }) => {
                       
                         <tbody>
                             {sortedBlocks.map((block, idx) => (
-                                <tr key={idx} className="border-b">
+                                <tr key={idx} className="border-b text-sm">
                                     <td className="py-3 px-4">{block.taste}</td>
                                     <td className="py-3 px-4 font-bold">{block.resultado}%</td>
                                     <td className="py-3 px-4">
