@@ -7,6 +7,7 @@ import { UserContext } from "../../../context/userContext";
 import { useContext } from "react";
 import { IoChevronBack } from "react-icons/io5";
 import { capitalizeFirstLetter } from "../../../utils/methods";
+import CustomButton from "../../../components/base/CustomButton";
 
 
 const ServiceDetailsPage = () => {
@@ -47,10 +48,22 @@ const ServiceDetailsPage = () => {
                     <IoChevronBack size={20} />
                     <Text ml={2} pt={-4} fontSize={16} fontWeight={'bold'}>Volver</Text>
                 </Flex>
-                <Flex align={'center'} gap={4}>
-                    {service?.logo && <Image src={service.logo} alt={service?.title} height={28} width={28} objectFit={'contain'} rounded='100%' />}
-                    {service?.title ? <Text fontSize={22} mt={3} fontWeight='bold'>{capitalizeFirstLetter(service.title)}</Text> : ''}
-                </Flex>
+                <div className="flex justify-between">
+                    <Flex align={'center'} gap={4}>
+                        {service?.logo && <Image src={service.logo} alt={service?.title} height={28} width={28} objectFit={'contain'} rounded='100%' />}
+                        {service?.title ? <Text fontSize={22} mt={3} fontWeight='bold'>{capitalizeFirstLetter(service.title)}</Text> : ''}
+                    </Flex>
+                    <Box pt={6}>
+                        {isLoggedIn ? <a href={`mailto:${service?.corporate?.superadmin?.email}`}>
+                            <CustomButton text='Contactar' disabled={!isLoggedIn} showIcon={true} onClick={() => window.open(`mailto:${service?.corporate?.superadmin?.email}`)} />
+                        </a> :
+                            <Box>
+                                <CustomButton text='Contactar' disabled={true} showIcon={true} />
+                                <Text mt={1} fontSize={12}>Inicia sesión para contactar</Text>
+                            </Box>
+                        }
+                    </Box>
+                </div>
                 <ServiceDetails service={service} />
             </Box>
         </Box>
