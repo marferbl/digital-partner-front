@@ -19,14 +19,15 @@ import SearchSelect from '../../base/search-select';
 import { COUNTRIES, LANGUAGES } from '../../../utils/constants';
 import SearchSelectSpecifyFeatures from '../../base/search-select-specify-features';
 import { ImageUploadInput } from '../../base/image-upload';
-import { ImageGalleryUpload } from '../../base/image-gallery-upload';  // Import the new component
+import { ImageGalleryUpload } from '../../base/image-gallery-upload';
 import { UserContext } from '../../../context/userContext';
+import { PaymentForm } from '../../stripe';
 
 export const ButtonCreateSolution = ({ refreshSolutions, disabled }) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { getToken } = useContext(UserContext);
 
-    const [currentStep, setCurrentStep] = useState(1);  // Step tracker
+    const [currentStep, setCurrentStep] = useState(1);
     const [countries, setCountries] = useState([]);
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
@@ -37,7 +38,8 @@ export const ButtonCreateSolution = ({ refreshSolutions, disabled }) => {
     const [isSectorial, setisSectorial] = useState(false);
     const [specifyFeatures, setSpecifyFeatures] = useState([]);
     const [logo, setLogo] = useState('');
-    const [galleryImages, setGalleryImages] = useState([]);  // Store uploaded images
+    const [galleryImages, setGalleryImages] = useState([]);
+    const [paymentCompleted, setPaymentCompleted] = useState(false);
 
     const countriesOptions = COUNTRIES;
     const languageOptions = LANGUAGES;
@@ -72,7 +74,7 @@ export const ButtonCreateSolution = ({ refreshSolutions, disabled }) => {
                 isSectorial,
                 specifyFeatures: specifyFeaturesArray,
                 logo: logo,
-                gallery: galleryImages,  // Add the uploaded gallery images
+                gallery: galleryImages,
             });
 
             refreshSolutions();
@@ -82,8 +84,17 @@ export const ButtonCreateSolution = ({ refreshSolutions, disabled }) => {
         }
     };
 
-    const handleNextStep = () => setCurrentStep(2);  // Move to step 2
-    const handlePrevStep = () => setCurrentStep(1);  // Move to step 1
+    const handleNextStep = () => {
+        if (currentStep < 3) {
+            setCurrentStep(currentStep + 1);
+        }
+    };
+
+    const handlePrevStep = () => {
+        if (currentStep > 1) {
+            setCurrentStep(currentStep - 1);
+        }
+    };
 
     const closeAndReset = () => {
         onClose();
@@ -98,10 +109,14 @@ export const ButtonCreateSolution = ({ refreshSolutions, disabled }) => {
         setisSectorial(false);
         setSpecifyFeatures([]);
         setLogo('');
-        setGalleryImages([]);  // Reset the gallery images
+        setGalleryImages([]);
+        setPaymentCompleted(false);
     };
 
-
+    const handlePaymentSuccess = () => {
+        setPaymentCompleted(true);
+        create();
+    };
 
     return (
         <>
@@ -188,16 +203,32 @@ export const ButtonCreateSolution = ({ refreshSolutions, disabled }) => {
                                 <ImageGalleryUpload url={`image/upload`} setGalleryImages={setGalleryImages} />
                             </Box>
                         )}
+
+                        {currentStep === 3 && (
+                            <Box>
+                                <Text fontWeight="bold" mb={4}>Pago de la Solución</Text>
+                                <PaymentForm onPaymentSuccess={handlePaymentSuccess} />
+                            </Box>
+                        )}
                     </ModalBody>
 
                     <ModalFooter>
-                        {currentStep === 2 && (
+                        {currentStep > 1 && (
                             <Button variant='ghost' mr={3} onClick={handlePrevStep}>Anterior</Button>
                         )}
                         {currentStep === 1 ? (
                             <Button onClick={handleNextStep} colorScheme='gray'>Siguiente</Button>
+                        ) : currentStep === 2 ? (
+                            <Button onClick={handleNextStep} disabled={!name || !description} colorScheme='gray'>Siguiente</Button>
                         ) : (
-                            <Button onClick={create} colorScheme='gray'>Confirmar</Button>
+                            <></>
+                            // <Button
+                            //     onClick={create}
+                            //     colorScheme='gray'
+                            //     isDisabled={!paymentCompleted}
+                            // >
+                            //     Confirmar
+                            // </Button>
                         )}
                     </ModalFooter>
                 </ModalContent>

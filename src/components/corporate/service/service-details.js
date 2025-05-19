@@ -61,19 +61,7 @@ const ServiceInfoComponent = ({ service }) => {
             {service && <Grid templateColumns="repeat(8, 1fr)" gap={6} pb={1}>
                 <GridItem colSpan={8}>
                     <Box textAlign={'left'} mt={1} rounded={"xl"} bgColor={"black"} w={"100%"} px={10}>
-                        <Flex align={'center'} justify='space-between' gap={4} pb={3}>
-                            <Box></Box>
-                            <Box pt={6}>
-                                {isLoggedIn ? <a href={`mailto:${service?.corporate?.superadmin?.email}`}>
-                                    <CustomButton text='Contactar' disabled={!isLoggedIn} showIcon={true} onClick={() => window.open(`mailto:${service?.corporate?.superadmin?.email}`)} />
-                                </a> :
-                                    <Box>
-                                        <GradientButton type='green' label='Contactar' disabled size='sm' />
-                                        <Text mt={1} fontSize={12}>Inicia sesión para contactar</Text>
-                                    </Box>
-                                }
-                            </Box>
-                        </Flex>
+                       
 
                         <Flex align={'center'} justify='space-between' gap={4}>
                             {!isDigitalando() && <Box>

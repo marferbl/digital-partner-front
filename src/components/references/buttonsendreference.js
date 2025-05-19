@@ -21,7 +21,7 @@ import LoadingSpinner from '../base/LoadingSpinner'
 import { useTranslation } from 'react-i18next'
 import CustomButton from '../base/CustomButton'
 import { sendReference } from '../../services/reference'
-
+import SearchSelectServices from '../base/search-select-services'
 
 
 
@@ -32,26 +32,25 @@ export const ButtonSendReference = ({ disabled }) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { t } = useTranslation("global")
 
-    const [solutionId1, setsolutionId1] = useState('')
+    const [selectedEntityId, setSelectedEntityId] = useState('')
+    const [selectedEntityModel, setSelectedEntityModel] = useState('solution')
     const [loading, setLoading] = useState(false)
     const [text, setText] = useState('')
     const [error, setError] = useState('')
-    const [comparation, setComparation] = useState('')
     const [email, setEmail] = useState('')
     const toast = useToast()
 
 
     const closeModal = () => {
-        setsolutionId1('')
+        setSelectedEntityId('')
         setText('')
         setError('')
-        setComparation('')
     }
 
 
     const compareSolutions = () => {
         setLoading(true)
-        sendReference({ entityId: solutionId1, email, entityType: 'solution' }).then((res) => {
+        sendReference({ entityId: selectedEntityId, email, entityType: selectedEntityModel }).then((res) => {
             setLoading(false)
             closeModal()
 
@@ -81,7 +80,14 @@ export const ButtonSendReference = ({ disabled }) => {
                 <div className='flex items-center justify-between text-white gap-10 mt-6'>
                     <div>
                         <span className='pt-4'>Sobre que solución quieres enviar la referencia</span>
-                        <SearchSelectSolutions onChange={(value) => setsolutionId1(value)} corporate placeholder='Seleccionar solución' />
+                        <SearchSelectSolutions onChange={(value) => {
+                            setSelectedEntityId(value)
+                            setSelectedEntityModel('solution')
+                        }} corporate placeholder='Seleccionar solución' />
+                        <SearchSelectServices onChange={(value) => {
+                            setSelectedEntityId(value)
+                            setSelectedEntityModel('service')
+                        }} corporate placeholder='Seleccionar servicio' />
                     </div>
                     <div>
                         <span>Escribe el correo de la persona a la que le quieres enviar la referencia</span>

@@ -84,7 +84,7 @@ export const ButtonUpdateService = ({ refreshServices, item, children, serviceTy
             <Modal isOpen={isOpen} onClose={onClose} size='xl'>
                 <ModalOverlay />
                 <ModalContent>
-                    <ModalHeader>Crear Servicio</ModalHeader>
+                    <ModalHeader>Editar Servicio</ModalHeader>
                     <ModalCloseButton onClick={closeModal} />
                     <ModalBody py={5}>
                         <Center w={'full'} flexDir={'column'} gap={5}>

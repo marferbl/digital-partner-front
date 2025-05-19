@@ -20,20 +20,26 @@ import { createCorporate } from '../../../services/corporate';
 import PartnerModalCreate from './create-service/partner';
 import { createService } from '../../../services/service';
 import { ImageUploadInput } from '../../base/image-upload';
-
-
-
-
+import { PaymentForm } from '../../stripe';
+import { UserContext } from '../../../context/userContext';
 
 export const ButtonCreateService = ({ refreshServices }) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const { getToken } = useContext(UserContext);
 
+    const [currentStep, setCurrentStep] = useState(1);
     const [serviceType, setServiceType] = useState('');
     const [config, setConfig] = useState({});
     const [logo, setLogo] = useState('');
+    const [paymentCompleted, setPaymentCompleted] = useState(false);
 
     const closeModal = () => {
         onClose();
+        setCurrentStep(1);
+        setServiceType('');
+        setConfig({});
+        setLogo('');
+        setPaymentCompleted(false);
     }
 
     const openModal = (type) => {
@@ -42,14 +48,30 @@ export const ButtonCreateService = ({ refreshServices }) => {
     }
 
     const create = async () => {
-        createService({ ...config, serviceType: serviceType, logo: logo }).then((res) => {
+        try {
+            await createService({ ...config, serviceType: serviceType, logo: logo });
             refreshServices();
-            onClose();
-        }
-        ).catch((err) => {
+            closeModal();
+        } catch (err) {
             console.log(err);
         }
-        );
+    };
+
+    const handleNextStep = () => {
+        if (currentStep < 2) {
+            setCurrentStep(currentStep + 1);
+        }
+    };
+
+    const handlePrevStep = () => {
+        if (currentStep > 1) {
+            setCurrentStep(currentStep - 1);
+        }
+    };
+
+    const handlePaymentSuccess = () => {
+        setPaymentCompleted(true);
+        create();
     };
 
     return (
@@ -65,32 +87,43 @@ export const ButtonCreateService = ({ refreshServices }) => {
                     <MenuItem onClick={() => { openModal('helps') }} _hover={{ bg: 'gray.100' }} h={'full'} fontSize={14} textAlign={'center'} width={'full'} fontWeight={'bold'}>Ayudas</MenuItem>
                     <MenuItem onClick={() => { openModal('training') }} _hover={{ bg: 'gray.100' }} h={'full'} fontSize={14} textAlign={'center'} width={'full'} fontWeight={'bold'}>Training</MenuItem>
                     <MenuItem onClick={() => { openModal('growth') }} _hover={{ bg: 'gray.100' }} h={'full'} fontSize={14} textAlign={'center'} width={'full'} fontWeight={'bold'}>Growth</MenuItem>
-
                 </MenuList>
             </Menu>
-            <Modal isOpen={isOpen} onClose={onClose} size='xl'>
+            <Modal isOpen={isOpen} onClose={closeModal} size='xl'>
                 <ModalOverlay />
                 <ModalContent>
                     <ModalHeader>Crear Servicio</ModalHeader>
                     <ModalCloseButton onClick={closeModal} />
                     <ModalBody py={5}>
-                        <Center w={'full'} flexDir={'column'} gap={5}>
-                            {logo && <Image src={logo} alt="Logo" w={32} h={32} objectFit='cover' rounded='lg' />}
-                            <ImageUploadInput url={`image/upload`} big setLogo={setLogo} />
-                        </Center>
-                        <PartnerModalCreate type={serviceType} onChangeConfig={(value) => {
-                            setConfig(value)
-                        }} />
+                        {currentStep === 1 && (
+                            <Box w={'full'} flexDir={'column'} gap={5} w='100%' px={{ base: 2, md: 10 }}>
+                                {logo && <Image src={logo} alt="Logo" w={32} h={32} objectFit='cover' rounded='lg' />}
+                                <ImageUploadInput url={`image/upload`} big setLogo={setLogo} />
+                                <PartnerModalCreate type={serviceType} onChangeConfig={(value) => {
+                                    setConfig(value)
+                                }} />
+                            </Box>
+                        )}
+
+                        {currentStep === 2 && (
+                            <Box>
+                                <Text fontWeight="bold" mb={4}>Pago del Servicio</Text>
+                                <PaymentForm onPaymentSuccess={handlePaymentSuccess} />
+                            </Box>
+                        )}
                     </ModalBody>
 
                     <ModalFooter>
-                        <Button variant='ghost' mr={3} onClick={closeModal}>
-                            cancelar
-                        </Button>
-                        <Button colorScheme='gray' onClick={create}>Confirmar</Button>
+                        {currentStep > 1 && (
+                            <Button variant='ghost' mr={3} onClick={handlePrevStep}>Anterior</Button>
+                        )}
+                        {currentStep === 1 && (
+                            <Button onClick={handleNextStep} disabled={!config.title || !config.description || !config.languages || !config.countries || !config.web} colorScheme='gray'>Siguiente</Button>
+                        )}
                     </ModalFooter>
                 </ModalContent>
             </Modal>
         </>
     )
 }
+
