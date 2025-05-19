@@ -120,18 +120,18 @@ export const ButtonCreateCorporate = ({ refreshCorporate }) => {
                                 <Flex align='start' justify={'start'} ml={2}>
                                     <FaInfoCircle size={20} color='white' />
                                     <Text fontSize={12} ml={2} color='white'>
-                                        El pago unico incluye la creación de la corporate y la publicación de una oferta de servicio o de solución.
+                                        La creacion de la corporate es gratuita.
                                     </Text>
                                 </Flex>
                             </Flex>
-                            <Box position='relative' minH={52} >
+                            {/* <Box position='relative' minH={52} >
                                 <Text align={'center'} position={'absolute'} left={'%'} top={'40%'} zIndex={99} bg={'gray.100'} rounded='xl' p={2}>
                                     Para pagos de 0 euros no es necesario introducir datos de pago.
                                 </Text>
                                 <Box opacity={0.15}>
                                     <PaymentForm />
                                 </Box>
-                            </Box>
+                            </Box> */}
                         </Box>}
                     </ModalBody>
 
