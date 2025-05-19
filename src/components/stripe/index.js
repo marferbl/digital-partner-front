@@ -101,7 +101,10 @@ const CheckoutForm = ({ onPaymentSuccess }) => {
     return (
         <form onSubmit={handleSubmit}>
             <PaymentElement />
-            <Flex w='full' justify={'end'} mt={4}>
+            <Flex w='full' justify={'space-between'} align={'center'} mt={4}>
+                <span className='text-3xl font-bold'>
+                    300€
+                </span>
                 <button
                     type="submit"
                     disabled={!stripe || !elements || isProcessing}
