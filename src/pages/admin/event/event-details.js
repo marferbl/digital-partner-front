@@ -42,10 +42,10 @@ const EventDetailsPage = () => {
 
     return (
         <Box>
-            <Box mt={6} p={5} rounded={"xl"} bgColor={"white"} w={"100%"} minH={400}>
+            <Box p={5} bgColor={"black"} w={"100%"} minH={'100vh'} px={{ base: 6, md: 20, lg: 32 }}>
                 <Flex h={8} align={'center'} pr={3} onClick={() => goBack()} cursor={'pointer'} _hover={{ borderBottomWidth: 1 }} w={'fit-content'}>
-                    <IoChevronBack size={20} />
-                    <Text ml={2} pt={-4} fontSize={16} fontWeight={'bold'}>Volver</Text>
+                    <IoChevronBack size={20} color={'white'} />
+                    <Text ml={2} pt={-4} fontSize={16} color={'white'} fontWeight={'bold'}>Volver</Text>
                 </Flex>
                 <EventDetails event={event} />
             </Box>
