@@ -153,7 +153,7 @@ const EventDetails = ({ event }) => {
                                     <Icon as={FaEuroSign} color="yellow.400" />
                                     <Text fontSize="lg" fontWeight='bold' color="white">Precio</Text>
                                 </HStack>
-                                <Text color="gray.300">{event.price === 0 ? 'GRATIS' : `${event.price} €`}</Text>
+                                <Text color="gray.300">{event.price === 0 || event.price === null ? 'GRATIS' : `${event.price} €`}</Text>
                             </VStack>
                         </Grid>
                     </VStack>
