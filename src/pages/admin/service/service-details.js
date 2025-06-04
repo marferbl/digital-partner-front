@@ -1,19 +1,17 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import ServiceDetails from "../../../components/corporate/service/service-details";
+import { Box, Text, Flex, Image, VStack, HStack, Icon } from "@chakra-ui/react";
+import React, { useState, useEffect, useContext } from "react";
 import { getServiceById } from "../../../services/service";
-import { Box, Flex, Text, Image } from "@chakra-ui/react";
+import { Link, useParams } from "react-router-dom";
 import { UserContext } from "../../../context/userContext";
-import { useContext } from "react";
 import { IoChevronBack } from "react-icons/io5";
+import { FaGlobe, FaEnvelope } from "react-icons/fa";
 import { capitalizeFirstLetter } from "../../../utils/methods";
 import CustomButton from "../../../components/base/CustomButton";
-
+import ServiceDetails from "../../../components/corporate/service/service-details";
 
 const ServiceDetailsPage = () => {
     const [service, setService] = useState(null);
     const { isLoggedIn } = useContext(UserContext)
-
     const { id } = useParams();
 
     useEffect(() => {
@@ -35,40 +33,103 @@ const ServiceDetailsPage = () => {
             });
     };
 
-
     const goBack = () => {
         window.scrollTo(0, 0);
         window.history.back();
     }
 
     return (
-        <Box>
-            <Box py={5} px={{ base: 6, md: 20, lg: 32 }} bgColor={"black"} w={"100%"} minH={400} color={'white'}>
-                <Flex h={8} align={'center'} pr={3} onClick={() => goBack()} cursor={'pointer'} _hover={{ borderBottomWidth: 1 }} w={'fit-content'}>
+        <Box bgColor="black">
+            <Box
+                py={5}
+                px={{ base: 6, md: 20, lg: 32 }}
+                bgColor={"black"}
+                w={"100%"}
+                minH={400}
+                color={'white'}
+            >
+                <Flex
+                    h={8}
+                    align={'center'}
+                    pr={3}
+                    onClick={goBack}
+                    cursor={'pointer'}
+                    w={'fit-content'}
+                    _hover={{ color: 'yellow.400' }}
+                    transition="all 0.3s ease"
+                >
                     <IoChevronBack size={20} />
                     <Text ml={2} pt={-4} fontSize={16} fontWeight={'bold'}>Volver</Text>
                 </Flex>
-                <div className="flex justify-between">
-                    <Flex align={'center'} gap={4}>
-                        {service?.logo && <Image src={service.logo} alt={service?.title} height={28} width={28} objectFit={'contain'} rounded='100%' />}
-                        {service?.title ? <Text fontSize={22} mt={3} fontWeight='bold'>{capitalizeFirstLetter(service.title)}</Text> : ''}
+
+                <Box
+                    mt={4}
+                    transition="all 0.3s ease"
+                    _hover={{ transform: 'translateY(-2px)', boxShadow: 'lg' }}
+                >
+                    <Flex justify="space-between" align="center">
+                        <Flex align={'center'} gap={4}>
+                            {service?.logo && (
+                                <Image
+                                    src={service.logo}
+                                    alt={service?.title}
+                                    height={40}
+                                    width={40}
+                                    objectFit={'cover'}
+                                    rounded='full'
+                                    border="2px solid"
+                                    borderColor="yellow.400"
+                                />
+                            )}
+                            <VStack align="start" spacing={1}>
+                                {service?.title && (
+                                    <Text fontSize={28} fontWeight='bold' color="white">
+                                        {capitalizeFirstLetter(service.title)}
+                                    </Text>
+                                )}
+                                {service?.website && (
+                                    <HStack>
+                                        <Icon as={FaGlobe} color="yellow.400" />
+                                        <Text
+                                            fontSize="sm"
+                                            color="gray.300"
+                                            _hover={{ color: 'yellow.400' }}
+                                        >
+                                            <a href={service.website} target="_blank" rel="noopener noreferrer">
+                                                Ir a su web
+                                            </a>
+                                        </Text>
+                                    </HStack>
+                                )}
+                            </VStack>
+                        </Flex>
+
+                        <Box>
+                            {isLoggedIn ? (
+                                <HStack spacing={2}>
+                                    <Icon as={FaEnvelope} color="yellow.400" />
+                                    <CustomButton
+                                        text='Contactar'
+                                        showIcon={true}
+                                        onClick={() => window.open(`mailto:${service?.corporate?.superadmin?.email}`)}
+                                    />
+                                </HStack>
+                            ) : (
+                                <VStack align="start" spacing={1}>
+                                    <CustomButton text='Contactar' disabled={true} showIcon={true} />
+                                    <Text fontSize="sm" color="gray.400">
+                                        Inicia sesión para contactar
+                                    </Text>
+                                </VStack>
+                            )}
+                        </Box>
                     </Flex>
-                    <Box pt={6}>
-                        {isLoggedIn ? <a href={`mailto:${service?.corporate?.superadmin?.email}`}>
-                            <CustomButton text='Contactar' disabled={!isLoggedIn} showIcon={true} onClick={() => window.open(`mailto:${service?.corporate?.superadmin?.email}`)} />
-                        </a> :
-                            <Box>
-                                <CustomButton text='Contactar' disabled={true} showIcon={true} />
-                                <Text mt={1} fontSize={12}>Inicia sesión para contactar</Text>
-                            </Box>
-                        }
-                    </Box>
-                </div>
+                </Box>
+
                 <ServiceDetails service={service} />
             </Box>
         </Box>
-
     )
 }
 
-export default ServiceDetailsPage
+export default ServiceDetailsPage;

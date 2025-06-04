@@ -1,11 +1,11 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Box, Grid, GridItem, Text, Avatar, Button, Flex, Image, Checkbox } from "@chakra-ui/react";
+import { Box, Grid, GridItem, Text, Avatar, Button, Flex, Image, Checkbox, VStack, HStack, Badge, Icon } from "@chakra-ui/react";
 import { capitalizeFirstLetter } from '../../../utils/methods'
 import { UserContext } from "../../../context/userContext";
 import { getEventsByCorporate } from "../../../services/event";
 import { useTranslation } from 'react-i18next';
 import MapSearcher from "../../base/map-searcher";
-
+import { FaCalendarAlt, FaClock, FaUsers, FaEuroSign, FaMapMarkerAlt } from 'react-icons/fa';
 
 const EventDetails = ({ event }) => {
     const { isLoggedIn } = useContext(UserContext)
@@ -42,73 +42,153 @@ const EventDetails = ({ event }) => {
     const solution = event?.solutionId
 
     return (
-        <Box mt={1} p={3} rounded={"xl"} bgColor={"white"} w={"100%"}>
-            {event && <Grid templateColumns="repeat(8, 1fr)" gap={6} pb={1}>
+        <Box
+            mt={1}
+            p={6}
+            bgColor={"black"}
+            w={"100%"}
+            transition="all 0.3s ease"
+            _hover={{ transform: 'translateY(-2px)', boxShadow: 'lg' }}
+        >
+            {event && <Grid templateColumns="repeat(8, 1fr)" gap={8} pb={1}>
                 <GridItem colSpan={5}>
-                    <Box textAlign={'left'} mt={1} rounded={"xl"} bgColor={"white"} w={"100%"} px={10}>
-                        <Flex align={'center'} justify='space-between' gap={4} pb={3}>
+                    <VStack spacing={6} align="stretch">
+                        <Flex align={'center'} justify='space-between' gap={4}>
                             <Flex align={'center'} gap={4}>
-                                {event?.photo && <Image src={event.photo} alt={event?.name} height={28} width={28} objectFit={'contain'} rounded='100%' />}
-                                {event?.name ? <Text fontSize={22} mt={3} fontWeight='bold'>{capitalizeFirstLetter(event.name)}</Text> : ''}
+                                {event?.photo && (
+                                    <Image
+                                        src={event.photo}
+                                        alt={event?.name}
+                                        height={40}
+                                        width={40}
+                                        objectFit={'cover'}
+                                        rounded='full'
+                                        border="2px solid"
+                                        borderColor="yellow.400"
+                                    />
+                                )}
+                                <VStack align="start" spacing={1}>
+                                    {event?.name && (
+                                        <Text fontSize={28} fontWeight='bold' color="white">
+                                            {capitalizeFirstLetter(event.name)}
+                                        </Text>
+                                    )}
+                                    <Text color="yellow.300" fontSize="sm">
+                                        <a href={ensureHTTPS(event.link)} target='_blank' rel="noopener noreferrer">
+                                            {event.link}
+                                        </a>
+                                    </Text>
+                                </VStack>
                             </Flex>
-
-                        </Flex>
-                        <Text mt={3} fontSize={14} color={'blue.600'} _hover={{ textDecor: 'underline' }}>
-                            <a href={ensureHTTPS(event.link)} target='_blank' fontSize='sm'>{event.link}</a>
-                        </Text>
-                        <Text fontSize={14} mt={3} fontWeight='bold' textDecor={'underline'}>Corporate:</Text>
-                        <Text fontSize={16}>{event?.corporate?.name} </Text>
-
-
-                        <Text fontSize={14} mt={3} fontWeight='bold' textDecor={'underline'}>Descripción:</Text>
-                        <Text>{event.description}</Text>
-
-                        <Text fontSize={14} mt={3} fontWeight='bold' textDecor={'underline'}>Cuando es:</Text>
-                        <Text>{new Date(event.date).toLocaleDateString()} a las {new Date(event.time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</Text>
-
-                        {event && <Flex align={'center'} gap={2} mt={3}>
-                            {eventTypes.map(eventType => (
-                                <Checkbox key={eventType.label} isChecked={event.type.includes(eventType.value)}>{capitalizeFirstLetter(eventType.label)}</Checkbox>
-                            ))}
-                        </Flex>}
-
-
-                        <Flex align={'center'} gap={4} mt={3}>
-                            <Box>
-                                <Text fontSize={14} mt={3} fontWeight='bold' textDecor={'underline'}>Duración</Text>
-                                <Text>{event.duration}H</Text>
-                            </Box>
-                            <Box>
-                                <Text fontSize={14} mt={3} fontWeight='bold' textDecor={'underline'}>Aforo máximo:</Text>
-                                <Text>{event.maximumCapacity}</Text>
-                            </Box>
-                            <Box>
-                                <Text fontSize={14} mt={3} fontWeight='bold' textDecor={'underline'}>Precio:</Text>
-                                <Text>{event.price === 0 ? 'GRATIS' : `${event.price} €`}</Text>
-                            </Box>
                         </Flex>
 
+                        <Box>
+                            <Text fontSize="lg" fontWeight='bold' color="white" mb={2}>Corporate</Text>
+                            <Text fontSize="md" color="gray.300">{event?.corporate?.name}</Text>
+                        </Box>
 
+                        <Box>
+                            <Text fontSize="lg" fontWeight='bold' color="white" mb={2}>Descripción</Text>
+                            <Text color="gray.300" lineHeight="tall">{event.description}</Text>
+                        </Box>
 
-                    </Box>
+                        <HStack spacing={8} wrap="wrap">
+                            <VStack align="start" spacing={1}>
+                                <HStack>
+                                    <Icon as={FaCalendarAlt} color="yellow.400" />
+                                    <Text fontSize="lg" fontWeight='bold' color="white">Fecha</Text>
+                                </HStack>
+                                <Text color="gray.300">
+                                    {new Date(event.date).toLocaleDateString()}
+                                </Text>
+                            </VStack>
+
+                            <VStack align="start" spacing={1}>
+                                <HStack>
+                                    <Icon as={FaClock} color="yellow.400" />
+                                    <Text fontSize="lg" fontWeight='bold' color="white">Hora</Text>
+                                </HStack>
+                                <Text color="gray.300">
+                                    {new Date(event.time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                                </Text>
+                            </VStack>
+                        </HStack>
+
+                        <Box>
+                            <Text fontSize="lg" fontWeight='bold' color="white" mb={2}>Tipo de Evento</Text>
+                            <HStack spacing={4}>
+                                {eventTypes.map(eventType => (
+                                    <Badge
+                                        key={eventType.label}
+                                        colorScheme={event.type.includes(eventType.value) ? "yellow" : "gray"}
+                                        px={3}
+                                        py={1}
+                                        borderRadius="full"
+                                    >
+                                        {capitalizeFirstLetter(eventType.label)}
+                                    </Badge>
+                                ))}
+                            </HStack>
+                        </Box>
+
+                        <Grid templateColumns="repeat(3, 1fr)" gap={6}>
+                            <VStack align="start" spacing={1}>
+                                <HStack>
+                                    <Icon as={FaClock} color="yellow.400" />
+                                    <Text fontSize="lg" fontWeight='bold' color="white">Duración</Text>
+                                </HStack>
+                                <Text color="gray.300">{event.duration}H</Text>
+                            </VStack>
+
+                            <VStack align="start" spacing={1}>
+                                <HStack>
+                                    <Icon as={FaUsers} color="yellow.400" />
+                                    <Text fontSize="lg" fontWeight='bold' color="white">Aforo</Text>
+                                </HStack>
+                                <Text color="gray.300">{event.maximumCapacity} personas</Text>
+                            </VStack>
+
+                            <VStack align="start" spacing={1}>
+                                <HStack>
+                                    <Icon as={FaEuroSign} color="yellow.400" />
+                                    <Text fontSize="lg" fontWeight='bold' color="white">Precio</Text>
+                                </HStack>
+                                <Text color="gray.300">{event.price === 0 ? 'GRATIS' : `${event.price} €`}</Text>
+                            </VStack>
+                        </Grid>
+                    </VStack>
                 </GridItem>
 
                 <GridItem colSpan={3}>
-                    <span>{event.address}</span>
-
-                    <Box w={300} height={250}>
+                    <VStack spacing={4} align="stretch">
+                        <Box>
+                            <HStack mb={2}>
+                                <Icon as={FaMapMarkerAlt} color="yellow.400" />
+                                <Text fontSize="lg" fontWeight='bold' color="white">Ubicación</Text>
+                            </HStack>
+                            <Text color="gray.300">{event.address}</Text>
+                        </Box>
 
                         {event.type?.includes('presential') && (
-                            <>
-                                <MapSearcher onlyMap defaultAddress={event.address} defaultCoordinates={event.coordinates} height='h-80' />
-                            </>
+                            <Box
+                                w="100%"
+                                height={300}
+                                borderRadius="lg"
+                                overflow="hidden"
+                                boxShadow="lg"
+                            >
+                                <MapSearcher
+                                    onlyMap
+                                    defaultAddress={event.address}
+                                    defaultCoordinates={event.coordinates}
+                                    height='h-80'
+                                />
+                            </Box>
                         )}
-                    </Box>
+                    </VStack>
                 </GridItem>
-
             </Grid>}
-
-        </Box >
+        </Box>
     )
 }
 
