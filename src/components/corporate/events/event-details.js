@@ -84,7 +84,7 @@ const EventDetails = ({ event }) => {
                             </Box>
                             <Box>
                                 <Text fontSize={14} mt={3} fontWeight='bold' textDecor={'underline'}>Precio:</Text>
-                                <Text>{event.price === 0 ? 'GRATIS' : `${event.price} €`}</Text>
+                                <Text>{event.price === 0 || event.price === null ? 'GRATIS' : `${event.price} €`}</Text>
                             </Box>
                         </Flex>
 
