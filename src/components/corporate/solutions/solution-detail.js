@@ -1,4 +1,4 @@
-import { Box, Text, Flex, Grid, GridItem, Avatar, Checkbox } from "@chakra-ui/react";
+import { Box, Text, Flex, Grid, GridItem, Avatar, Checkbox, Button } from "@chakra-ui/react";
 import React, { useState, useContext, useEffect } from "react";
 import CountryFlag from "../../base/country-flag";
 import { languageLabelFromValue } from "../../../utils/methods";
@@ -9,6 +9,7 @@ import FeedGallery from "../../base/FeedGallery";
 
 
 export const SolutionDetail = ({ solution }) => {
+    const [showAllCountries, setShowAllCountries] = useState(false);
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -26,6 +27,7 @@ export const SolutionDetail = ({ solution }) => {
         transversal: 'Transversal'
     };
 
+    const displayedCountries = showAllCountries ? solution?.countries : solution?.countries?.slice(0, 4);
 
 
 
@@ -103,9 +105,22 @@ export const SolutionDetail = ({ solution }) => {
                             <Box>
                                 <Text fontSize={{ base: 8, md: 14 }} fontWeight='bold' textDecor={'underline'}>Países:</Text>
                                 <Flex align={'center'} gap={2} pt={1} flexWrap='wrap'>
-                                    {solution?.countries.map((country, index) => (
-                                        <Text key={index} fontSize={{ base: 8, md: 18 }} >{<CountryFlag country={country} />}</Text>
+                                    {displayedCountries.map((country, index) => (
+                                        <Text key={index} fontSize={{ base: 8, md: 18 }}><CountryFlag country={country} /></Text>
                                     ))}
+                                    {/* "Ver más" button to reveal all countries */}
+                                    {!showAllCountries && solution?.countries?.length > 4 && (
+                                        <Button
+                                            onClick={() => setShowAllCountries(true)}
+                                            fontSize={{ base: 8, md: 14 }}
+                                            variant="link"
+                                            color="white"
+                                            textDecoration="underline"
+                                            pl={2}
+                                        >
+                                            Ver más...
+                                        </Button>
+                                    )}
                                 </Flex>
                             </Box>
                             <Box>
