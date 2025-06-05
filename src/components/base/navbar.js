@@ -85,7 +85,7 @@ export default function Navbar() {
         <Flex h={'80px'} alignItems={"center"} justifyContent={"space-between"}>
           <Box display={{ base: 'none', md: 'block' }} w={200}>
             <Link to="/">
-              <img src="/logos/navbar.png" className="h-16 w-16" />
+              <img src="/logos/navbar.png" className="h-16 w-16" alt="Digitalando navbar logo" />
             </Link>
           </Box>
           <Box>
