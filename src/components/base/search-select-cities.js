@@ -51,6 +51,7 @@ const SearchSelectCities = ({ term, value, onChange, placeholder, emitFullObject
             value={selected}
             onChange={(value) => setSelected(value)}
             searchable
+            label={'Ciudad'}
             placeholder={placeholder || "Selecciona una ciudad"}
             isClearable
         />
