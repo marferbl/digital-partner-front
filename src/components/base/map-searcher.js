@@ -18,7 +18,6 @@ const MapSearcher = ({ onlyMap, onChange, defaultAddress, onChangeAddress, defau
     const [address, setAddress] = useState(defaultAddress || '');
     const [coordinates, setCoordinates] = useState(defaultCoordinates || { lat: 40.416775, lng: -3.703790 });
 
-
     setDefaults({
         key: process.env.REACT_APP_GOOGLE_MAPS, // Your API key here.
         language: "es", // Default language for responses.
@@ -26,14 +25,25 @@ const MapSearcher = ({ onlyMap, onChange, defaultAddress, onChangeAddress, defau
     });
     setLocationType("ROOFTOP");
 
-
     const transformAddress = (address) => {
         fromAddress(address)
             .then(({ results }) => {
                 const { lat, lng } = results[0].geometry.location;
                 setCoordinates({ lat, lng });
-                onChange({ lat, lng })
-                onChangeAddress(address)
+
+                // Extract address components
+                const addressComponents = results[0].address_components;
+                let city = '';
+
+                // Find the city component
+                for (const component of addressComponents) {
+                    if (component.types.includes('locality')) {
+                        city = component.long_name;
+                        break;
+                    }
+                }
+                onChange({ lat, lng, city });
+                onChangeAddress(address);
             })
             .catch(console.error);
     }

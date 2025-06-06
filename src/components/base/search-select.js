@@ -31,10 +31,10 @@ export default function SearchSelect({
         }
     }, [value, isMulti, options]);
 
-    const handleSelectChange = (selectedOption) => {
-        setSelectedOption(selectedOption);
+    const handleSelectChange = (selectedReceived) => {
+        setSelectedOption(selectedReceived);
         if (onChange) {
-            onChange(isMulti ? selectedOption.map(option => option.value) : selectedOption.value);
+            onChange(isMulti ? selectedReceived.map(option => option.value) : selectedReceived.value);
         }
     };
 

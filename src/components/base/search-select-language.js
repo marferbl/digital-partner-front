@@ -8,7 +8,6 @@ import { useTranslation } from 'react-i18next';
 const SearchSelectLanguage = ({ isMulti, onChange, showLabel, defaultValue, ...props }) => {
     const { t, i18n } = useTranslation("global")
 
-
     const [value, setValue] = useState(defaultValue)
     const [languagesOptions, setLanguagesOptions] = useState(LANGUAGES)
 
@@ -20,8 +19,7 @@ const SearchSelectLanguage = ({ isMulti, onChange, showLabel, defaultValue, ...p
             }
         })
         setLanguagesOptions(withLabels)
-    }, [languagesOptions, LANGUAGES])
-
+    }, [t])
 
     const changeValue = (value) => {
         setValue(value);
@@ -31,7 +29,6 @@ const SearchSelectLanguage = ({ isMulti, onChange, showLabel, defaultValue, ...p
     useEffect(() => {
         setValue(defaultValue)
     }, [defaultValue])
-
 
     return (
         <Box my={1} {...props}>

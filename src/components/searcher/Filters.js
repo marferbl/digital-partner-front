@@ -7,7 +7,7 @@ import SearchSelectSpecifyFeatures from '../base/search-select-specify-features'
 import CustomRadioButtonGroup from '../base/radio-group';
 import { useTranslation } from 'react-i18next';
 import SearchSelectPositions from '../base/search-select-positions';
-
+import SearchSelectCities from '../base/search-select-cities';
 const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
     const { t } = useTranslation("global");
 
@@ -21,15 +21,18 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
         onChangeFilters(filterValues);
     };
 
+
     useEffect(() => {
         setTermLabel('');
         onChangeFilters(filterValues);
     }, [filterValues]);
 
     const clearFilters = () => {
+        const currentLineType = filterValues.lineType;
         setFilterValues({});
+        setFilterValues({ lineType: currentLineType });
         setTermLabel('');
-        handleToggle('lineType', 'solutions')
+        //handleToggle('lineType', 'solutions')
     };
 
     const hasFilters = Object.values(filterValues).some((value) => value !== '');
@@ -65,6 +68,11 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
         handleToggle('min', min);
         handleToggle('max', max);
     };
+
+    const handleCityChange = (city) => {
+        handleToggle('city', city);
+    };
+
 
     return (
         <div className="border-r h-fit-content bg-gray-50 p-4 shadow-2xl rounded-lg">
@@ -202,6 +210,15 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
                                 />
                             </div>
                         )}
+
+                        <div className="min-w-[140px] pt-1">
+                            <SearchSelectCities
+                                value={filterValues.city}
+                                onChange={handleCityChange}
+                                placeholder="Buscar ciudad..."
+                                emitFullObject={true}
+                            />
+                        </div>
 
                         <div className="min-w-[140px] pt-1">
                             <SearchSelect
