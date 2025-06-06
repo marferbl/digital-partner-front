@@ -77,7 +77,6 @@ export default function Navbar() {
     },
   ];
 
-  console.log(selectedRoute, 'selectedRoute')
 
   return (
     <>

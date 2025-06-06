@@ -17,4 +17,5 @@ export const updateEvent = (id, body) => API.put(`/event/update/${id}`, body);
 export const deleteEvent = (id) => API.delete(`/event/delete/${id}`);
 export const getEvent = (id) => API.get(`/event/${id}`);
 export const getEventsByCorporate = () => API.get(`/event/events-by-corporate`);
+export const getDistinctCities = () => API.get(`/event/cities/events`);
 

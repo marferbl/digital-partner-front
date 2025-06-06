@@ -47,6 +47,7 @@ export const ButtonCreateEvent = ({ refreshEvents }) => {
     const [address, setAddress] = useState(''); // Only visible if "presencial" is selected
     const [step, setStep] = useState(1); // Step control
     const [price, setPrice] = useState('');
+    const [city, setCity] = useState('');
 
     const [coordinates, setCoordinates] = useState({ lat: 40.416775, lng: -3.703790 });
     const autoCompleteRef = useRef(null);
@@ -57,6 +58,14 @@ export const ButtonCreateEvent = ({ refreshEvents }) => {
             setTypes(types.filter((t) => t !== type));
         } else {
             setTypes([...types, type]);
+        }
+    };
+
+    // Handle coordinates change from MapSearcher
+    const handleCoordinatesChange = (data) => {
+        setCoordinates({ lat: data.lat, lng: data.lng });
+        if (data.city) {
+            setCity(data.city);
         }
     };
 
@@ -75,7 +84,8 @@ export const ButtonCreateEvent = ({ refreshEvents }) => {
             duration,
             photo: logo,
             coordinates: types.includes('presential') ? coordinates : null,
-            price
+            price,
+            city: types.includes('presential') ? city : null
         };
         createEvent(config)
             .then((res) => {
@@ -108,6 +118,7 @@ export const ButtonCreateEvent = ({ refreshEvents }) => {
         setAddress('');
         setCoordinates({ lat: 40.416775, lng: -3.703790 });
         setPrice('');
+        setCity('');
     };
 
     const formCompleted = () => {
@@ -251,13 +262,15 @@ export const ButtonCreateEvent = ({ refreshEvents }) => {
 
                                 {types.includes('presential') && (
                                     <>
-                                        {/* <Input
-                                            placeholder="Dirección del evento"
-                                            value={address}
-                                            onChange={(e) => setAddress(e.target.value)}
-                                            mb={4}
-                                        />   */}
-                                        <MapSearcher onChange={setCoordinates} onChangeAddress={setAddress} />
+                                        {city && (
+                                            <Text fontSize="sm" color="gray.500" mb={2}>
+                                                Ciudad: {city}
+                                            </Text>
+                                        )}
+                                        <MapSearcher
+                                            onChange={handleCoordinatesChange}
+                                            onChangeAddress={setAddress}
+                                        />
                                     </>
                                 )}
                             </>
