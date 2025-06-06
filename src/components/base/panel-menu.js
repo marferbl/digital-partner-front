@@ -115,7 +115,7 @@ export const HorizontalMenu = ({ onClose, isSidebarOpen, setIsSidebarOpen, ...re
     { name: "Eventos", icon: FiCalendar, to: "corporate/events", application: 'events', key: 'events' },
     { name: "Equipo", icon: FiUsers, soon: true, application: 'teamManagement' },
     { name: "Licencias", icon: FiBookOpen, soon: true, application: 'licenses' },
-    { name: "Selección", icon: FiSearch, to: 'corporate/selection', application: 'recruitment', key: 'selection' },
+    { name: "Selección", icon: FiSearch, soon: true, to: 'corporate/selection', application: 'recruitment', key: 'selection' },
   ];
 
   const adminRoutesFiltered = adminRoutes.filter((route) => filteredApplications.includes(route.application) || route.application === 'corporate');
