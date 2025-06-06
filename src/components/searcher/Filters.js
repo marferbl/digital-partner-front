@@ -34,11 +34,33 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
 
     const hasFilters = Object.values(filterValues).some((value) => value !== '');
 
-    const OPTIONS_TYPE = [{ value: 'solutions', label: 'solutions' }, { value: 'services', label: 'services' }, { value: 'events', label: 'events' }, { value: 'freelance', label: 'talent', key: 'talent' }]
+    const OPTIONS_TYPE = [
+        { value: 'solutions', label: 'solutions' },
+        { value: 'services', label: 'services' },
+        { value: 'events', label: 'events' },
+        { value: 'freelance', label: 'talent', key: 'talent' }
+    ];
 
-    const handlePrice = (value) => {
+    const handlePriceCategory = (value) => {
+        handleToggle('priceCategory', value);
+        if (value === 'free') {
+            handleToggle('min', 0);
+            handleToggle('max', 0);
+            handleToggle('price', null);
+        } else {
+            handleToggle('min', 1);
+            handleToggle('max', null);
+        }
+    };
+
+    const handlePriceRange = (value) => {
         handleToggle('price', value);
-        const priceRanges = { 0: [0, 0], 10: [1, 10], 50: [11, 50], 100: [51, 100], 5000: [101, 5000] };
+        const priceRanges = {
+            10: [1, 10],
+            50: [11, 50],
+            100: [51, 100],
+            5000: [101, 5000],
+        };
         const [min, max] = priceRanges[value] || [null, null];
         handleToggle('min', min);
         handleToggle('max', max);
@@ -90,7 +112,14 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
                 {filterValues.lineType === 'services' && (
                     <div className="min-w-[140px] pt-1">
                         <SearchSelect
-                            options={[{ value: 'partner', label: 'Partner' }, { value: 'development', label: 'Desarrollo' }, { value: 'renting', label: 'Renting' }, { value: 'helps', label: 'Ayudas' }, { value: 'training', label: 'Training' }, { value: 'growth', label: 'Growth' }]}
+                            options={[
+                                { value: 'partner', label: 'Partner' },
+                                { value: 'development', label: 'Desarrollo' },
+                                { value: 'renting', label: 'Renting' },
+                                { value: 'helps', label: 'Ayudas' },
+                                { value: 'training', label: 'Training' },
+                                { value: 'growth', label: 'Growth' }
+                            ]}
                             width="100%"
                             label={t('type')}
                             onChange={(value) => handleToggle('serviceType', value)}
@@ -102,7 +131,11 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
                 {filterValues.lineType === 'services' && filterValues.serviceType === 'partner' && (
                     <div className="min-w-[140px]">
                         <SearchSelect
-                            options={[{ value: 'implant', label: 'Implantador' }, { value: 'selling', label: 'Venta' }, { value: 'training', label: 'Formación' }]}
+                            options={[
+                                { value: 'implant', label: 'Implantador' },
+                                { value: 'selling', label: 'Venta' },
+                                { value: 'training', label: 'Formación' }
+                            ]}
                             isMulti
                             width="100%"
                             label="Servicio"
@@ -141,10 +174,47 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
                 {filterValues.lineType === 'events' && (
                     <div className="flex flex-col gap-4">
                         <div className="min-w-[140px] pt-1">
-                            <SearchSelect options={[{ value: 0, label: 'Gratis' }, { value: 10, label: '1 - 10€' }, { value: 50, label: '11 - 50€' }, { value: 100, label: '51 - 100€' }, { value: 5000, label: '+100€' }]} width="100%" label="Precio" onChange={handlePrice} value={filterValues.price} />
+                            <SearchSelect
+                                options={[
+                                    { value: 'free', label: 'Gratis' },
+                                    { value: 'paid', label: 'De pago' }
+                                ]}
+                                width="100%"
+                                label="Precio"
+                                onChange={handlePriceCategory}
+                                value={filterValues.priceCategory}
+                            />
                         </div>
+
+                        {filterValues.priceCategory === 'paid' && (
+                            <div className="min-w-[140px] pt-1">
+                                <SearchSelect
+                                    options={[
+                                        { value: 10, label: '1 - 10€' },
+                                        { value: 50, label: '11 - 50€' },
+                                        { value: 100, label: '51 - 100€' },
+                                        { value: 5000, label: '>100€' }
+                                    ]}
+                                    width="100%"
+                                    label="Rango de precios"
+                                    onChange={handlePriceRange}
+                                    value={filterValues.price}
+                                />
+                            </div>
+                        )}
+
                         <div className="min-w-[140px] pt-1">
-                            <SearchSelect options={[{ value: 'remote', label: 'Remoto' }, { value: 'presential', label: 'Presencial' }, { value: 'all', label: 'Ambos' }]} width="100%" label="Tipo" onChange={(value) => handleToggle('eventType', value)} value={filterValues.eventType} />
+                            <SearchSelect
+                                options={[
+                                    { value: 'remote', label: 'Remoto' },
+                                    { value: 'presential', label: 'Presencial' },
+                                    { value: 'all', label: 'Ambos' }
+                                ]}
+                                width="100%"
+                                label="Tipo"
+                                onChange={(value) => handleToggle('eventType', value)}
+                                value={filterValues.eventType}
+                            />
                         </div>
                     </div>
                 )}
@@ -168,14 +238,15 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
                                 {/* Input 2 */}
                                 <input
                                     type="number"
-                                    className="w-full px-2 py-2 border rounded  border-1 border-neutral"
+                                    className="w-full px-2 py-2 border rounded border-1 border-neutral"
                                     value={filterValues.salaryMax}
                                     placeholder={'50000'}
                                     onChange={(e) => handleToggle('salaryMax', e.target.value)}
                                 />
                             </div>
                         </div>
-                    </>)}
+                    </>
+                )}
 
                 {hasFilters && (
                     <div className="min-w-[140px] pt-7">
