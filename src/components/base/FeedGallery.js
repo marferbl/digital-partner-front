@@ -26,7 +26,6 @@ const FeedGallery = ({ images }) => {
                             src={image}
                             alt={`Gallery image ${index + 1}`}
                             className="w-full h-[250px] sm:h-[300px] object-cover rounded-lg transition-opacity duration-200 hover:opacity-90 cursor-pointer"
-                            onClick={() => handleImageClick(image)}
                         />
                     </div>
                 ))}
