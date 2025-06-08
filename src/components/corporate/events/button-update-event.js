@@ -21,7 +21,7 @@ import {
     Box
 } from '@chakra-ui/react';
 import { updateService } from '../../../services/service';
-import { ImageUploadInput } from '../../base/image-upload';
+import { ImageGalleryUpload } from '../../base/image-gallery-upload';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { updateEvent } from '../../../services/event';
@@ -31,7 +31,6 @@ export const ButtonUpdateEvent = ({ children, item, refreshEvents }) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
 
     // State for form fields
-    const [logo, setLogo] = useState('');
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [link, setLink] = useState('');
@@ -44,6 +43,7 @@ export const ButtonUpdateEvent = ({ children, item, refreshEvents }) => {
     const [address, setAddress] = useState(''); // Only visible if "presencial" is selected
     const [step, setStep] = useState(1); // Step control
     const [coordinates, setCoordinates] = useState({ lat: '', lng: '' }); // Coordinates for map
+    const [gallery, setGallery] = useState([]);
 
     useEffect(() => {
         if (item) {
@@ -57,8 +57,8 @@ export const ButtonUpdateEvent = ({ children, item, refreshEvents }) => {
             setTime(new Date(item.time));
             setDuration(item.duration);
             setAddress(item.address);
-            setLogo(item.logo);
             setCoordinates(item.coordinates);
+            setGallery(item.gallery);
         }
     }, [item]);
 
@@ -88,8 +88,8 @@ export const ButtonUpdateEvent = ({ children, item, refreshEvents }) => {
             date,
             time,
             duration,
-            photo: logo,
-            coordinates
+            coordinates,
+            gallery
         };
         updateEvent(id, config)
             .then((res) => {
@@ -104,8 +104,38 @@ export const ButtonUpdateEvent = ({ children, item, refreshEvents }) => {
     const closeModal = () => {
         onClose();
         setStep(1); // Reset step to 1 when modal is closed
+        resetForm();
     };
 
+    const resetForm = () => {
+        if (item) {
+            setName(item.name);
+            setDescription(item.description);
+            setLink(item.link);
+            setTypes(item.type);
+            setCorporate(item.corporate);
+            setMaximumCapacity(item.maximumCapacity);
+            setDate(new Date(item.date));
+            setTime(new Date(item.time));
+            setDuration(item.duration);
+            setAddress(item.address);
+            setCoordinates(item.coordinates);
+            setGallery(item.gallery);
+        } else {
+            setName('');
+            setDescription('');
+            setLink('');
+            setTypes([]);
+            setCorporate(false);
+            setMaximumCapacity('');
+            setDate(new Date());
+            setTime(new Date());
+            setDuration('');
+            setAddress('');
+            setCoordinates({ lat: '', lng: '' });
+            setGallery([]);
+        }
+    };
 
     return (
         <>
@@ -120,10 +150,10 @@ export const ButtonUpdateEvent = ({ children, item, refreshEvents }) => {
                     <ModalBody py={5}>
                         {step === 1 && (
                             <>
-                                <Center w={'full'} flexDir={'column'} gap={5} pb={5}>
-                                    {logo && <Image src={logo} alt="Logo" w={32} h={32} objectFit='cover' rounded='lg' />}
-                                    <ImageUploadInput url={`image/upload`} big setLogo={setLogo} />
-                                </Center>
+                                <Box>
+                                    <Text fontWeight="bold" mb={4}>Galería de Imágenes</Text>
+                                    <ImageGalleryUpload url={`image/upload`} setGalleryImages={setGallery} />
+                                </Box>
                                 <Text fontSize='12'>
                                     Nombre del evento
                                 </Text>

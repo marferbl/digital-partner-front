@@ -20,13 +20,12 @@ import {
     Flex,
     Box
 } from '@chakra-ui/react';
-import { ImageUploadInput } from '../../base/image-upload';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { createEvent } from '../../../services/event';
 import { COLORS, DARK_COLORS } from '../../../colors/colors';
 import MapSearcher from '../../base/map-searcher';
-import { APIProvider, Map, Marker } from '@vis.gl/react-google-maps';
+import { ImageGalleryUpload } from '../../base/image-gallery-upload.js';
 
 
 
@@ -48,6 +47,7 @@ export const ButtonCreateEvent = ({ refreshEvents }) => {
     const [step, setStep] = useState(1); // Step control
     const [price, setPrice] = useState('');
     const [city, setCity] = useState('');
+    const [gallery, setGallery] = useState([]);
 
     const [coordinates, setCoordinates] = useState({ lat: 40.416775, lng: -3.703790 });
     const autoCompleteRef = useRef(null);
@@ -85,7 +85,8 @@ export const ButtonCreateEvent = ({ refreshEvents }) => {
             photo: logo,
             coordinates: types.includes('presential') ? coordinates : null,
             price,
-            city: types.includes('presential') ? city : null
+            city: types.includes('presential') ? city : null,
+            gallery
         };
         createEvent(config)
             .then((res) => {
@@ -119,6 +120,7 @@ export const ButtonCreateEvent = ({ refreshEvents }) => {
         setCoordinates({ lat: 40.416775, lng: -3.703790 });
         setPrice('');
         setCity('');
+        setGallery([]);
     };
 
     const formCompleted = () => {
@@ -142,10 +144,10 @@ export const ButtonCreateEvent = ({ refreshEvents }) => {
                     <ModalBody py={5}>
                         {step === 1 && (
                             <>
-                                <Center w={'full'} flexDir={'column'} gap={5} pb={5}>
-                                    {logo && <Image src={logo} alt="Logo" w={32} h={32} objectFit='cover' rounded='lg' />}
-                                    <ImageUploadInput url={`image/upload`} big setLogo={setLogo} />
-                                </Center>
+                                <Box>
+                                    <Text fontWeight="bold" mb={4}>Galería de Imágenes</Text>
+                                    <ImageGalleryUpload url={`image/upload`} setGalleryImages={setGallery} />
+                                </Box>
                                 <Text fontSize='12'>
                                     Nombre del evento
                                 </Text>

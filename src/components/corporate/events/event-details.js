@@ -6,6 +6,7 @@ import { getEventsByCorporate } from "../../../services/event";
 import { useTranslation } from 'react-i18next';
 import MapSearcher from "../../base/map-searcher";
 import { FaCalendarAlt, FaClock, FaUsers, FaEuroSign, FaMapMarkerAlt } from 'react-icons/fa';
+import FeedGallery from "../../base/FeedGallery";
 
 const EventDetails = ({ event }) => {
     const { isLoggedIn } = useContext(UserContext)
@@ -38,7 +39,6 @@ const EventDetails = ({ event }) => {
         { value: 'presential', label: 'Presencial' },
     ]
 
-    console.log(event)
     const solution = event?.solutionId
 
     return (
@@ -50,7 +50,7 @@ const EventDetails = ({ event }) => {
             transition="all 0.3s ease"
             _hover={{ transform: 'translateY(-2px)', boxShadow: 'lg' }}
         >
-            {event && <Grid templateColumns="repeat(8, 1fr)" gap={8} pb={1}>
+            {event && <Grid templateColumns="repeat(8, 1fr)" gap={8} pb={6}>
                 <GridItem colSpan={5}>
                     <VStack spacing={6} align="stretch">
                         <Flex align={'center'} justify='space-between' gap={4}>
@@ -188,6 +188,9 @@ const EventDetails = ({ event }) => {
                     </VStack>
                 </GridItem>
             </Grid>}
+            {
+                (event && event.gallery && event.gallery.length > 0) && <FeedGallery images={event.gallery} />
+            }
         </Box>
     )
 }

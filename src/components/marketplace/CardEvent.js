@@ -9,6 +9,7 @@ import { COLORS } from '../../colors/colors';
 import { FcLike } from 'react-icons/fc';
 import { FiRepeat } from 'react-icons/fi';
 import { Tooltip } from 'react-tooltip';
+import GalleryPhotoCard from './gallery-photo-card';
 
 const CardEvent = ({ isFavorites, item }) => {
     const { isLoggedIn } = useContext(UserContext);
@@ -25,26 +26,18 @@ const CardEvent = ({ isFavorites, item }) => {
         return keys[item.type[0]]
     }
 
-
     return (
         <Box w='full' borderWidth="1px" borderRadius="lg" overflow="hidden" background={'rgba(255, 255, 255, 0.2)'} backdropBlur={'2xl'} boxShadow={'xl'}>
             {isFavorites && <Flex justifyContent="end" pr={1} alignItems="center" h={6} >
                 <FcLike size={20} color={COLORS.primary} />
             </Flex>}
-            <Box height={28} position="relative" fontSize={10} color='white'>
-                {<Image src={item.photo || '/logo-d.png'} h="full" objectFit={item.photo ? "cover" : "contain"} w="full" />}
-
+            <Box position="relative" fontSize={10} color='white'>
+                <GalleryPhotoCard gallery={item.gallery || [item.photo || '/logo-d.png']} />
                 <Text position="absolute" top={0} left={0} p={1} bg="rgba(0, 0, 0, 0.5)" borderRadius="lg">
                     {item.address}
                 </Text>
                 <Text position="absolute" top={0} right={0} p={1} bg="rgba(0, 0, 0, 0.5)" borderRadius="lg">
-                    {new Date(item.date).toLocaleDateString()}
-                </Text>
-                <Text position="absolute" bottom={0} right={0} p={1} bg="rgba(0, 0, 0, 0.5)" borderRadius="lg">
-                    {new Date(item.time).toLocaleTimeString({}, { hour: '2-digit', minute: '2-digit' })}
-                </Text>
-                <Text position="absolute" bottom={0} left={0} p={1} bg="rgba(0, 0, 0, 0.5)" borderRadius="lg">
-                    {getLabelType(item)}
+                    {new Date(item.date).toLocaleDateString()} - {new Date(item.time).toLocaleTimeString({}, { hour: '2-digit', minute: '2-digit' })}H
                 </Text>
             </Box>
             <Box p="1">
@@ -54,16 +47,18 @@ const CardEvent = ({ isFavorites, item }) => {
                             {item.name}
                         </Link>
                     </Heading>
-                    <Text textAlign={'center'} fontSize={10} h={6}>
-                        {item.corporate?.name === 'Digitalando' ? '' : item.corporate?.name}
-                    </Text>
+                    <div className='flex gap-2 justify-center text-xs text-gray-500'>
+                        <Text borderRadius="lg">
+                            {getLabelType(item)}
+                        </Text>
+                    </div>
                 </Box>
-                <Flex h={14} mt={3} px={{ base: 3, md: 5, '2xl': 12 }} fontSize={10} mb={4}>
+                <Flex h={14} mt={2} px={{ base: 3, md: 5, '2xl': 12 }} fontSize={10} mb={4}>
                     <Box
                         h={14}
                         overflow="hidden"
                         textOverflow="ellipsis"
-                        width="100%" // You can adjust this width according to your layout
+                        width="100%"
                         textAlign="center"
                         style={{
                             display: '-webkit-box',
@@ -75,9 +70,8 @@ const CardEvent = ({ isFavorites, item }) => {
                         {item.description}
                     </Box>
                 </Flex>
-
             </Box>
-        </Box >
+        </Box>
     );
 };
 

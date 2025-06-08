@@ -15,8 +15,8 @@ const FeedGallery = ({ images }) => {
     };
 
     return (
-        <div className="w-full max-w-[1500px] mx-auto">
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <div className="w-full max-w-[1500px] mx-auto px-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {displayedImages.map((image, index) => (
                     <div
                         key={index}
@@ -25,7 +25,8 @@ const FeedGallery = ({ images }) => {
                         <img
                             src={image}
                             alt={`Gallery image ${index + 1}`}
-                            className="w-full h-[300px] object-cover rounded-lg transition-opacity duration-200"
+                            className="w-full h-[250px] sm:h-[300px] object-cover rounded-lg transition-opacity duration-200 hover:opacity-90 cursor-pointer"
+                            onClick={() => handleImageClick(image)}
                         />
                     </div>
                 ))}
