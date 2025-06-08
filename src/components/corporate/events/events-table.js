@@ -24,7 +24,7 @@ const EventsTable = ({ events, refreshEvents, smallView = false }) => {
                 >
                     {/* Replace with actual image if available */}
                     <div className="h-48 w-full bg-gray-200 flex items-center justify-center">
-                        <img src={event.photo || 'placeholder.png'} alt={event.name} className="object-cover h-full w-full" />
+                        <img src={event.gallery && event.gallery[0] ? event.gallery[0] : 'placeholder.png'} alt={event.name} className="object-cover h-full w-full" />
                     </div>
                     <div className="mt-2 flex justify-between w-full items-center">
                         <div className="flex gap-2">
