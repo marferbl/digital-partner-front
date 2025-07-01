@@ -90,23 +90,30 @@ export default function Navbar() {
           <Box>
             <HStack as="nav" display={{ base: "none", md: "flex" }} color="black" spacing="0" bg={DARK_COLORS.darkgray} rounded='3xl'>
               {Links.map((link) => (
-                <Box
-                  display={link.hide && !isLoggedIn ? 'none' : 'block'}
-                  key={link.key}
-                  as="button"
-                  flex="1"
-                  w={82}
-                  p={2}
-                  textAlign="center"
-                  bg={selectedRoute === link.key ? DARK_COLORS.gridyellow : 'transparent'}
-                  color={selectedRoute === link.key ? "black" : "white"}
-                  _hover={{ shadow: 'xl' }}
-                  rounded={selectedRoute === link.key ? '3xl' : 'none'}
-                  fontSize={12}
-                  py={3}
-                >
-                  {!link.hide && <Link to={{ pathname: link.link, state: { filter: link.param } }}>{t(link.label)}</Link>}
-                </Box>
+                !link.hide && (
+                  <Link
+                    key={link.key}
+                    to={{ pathname: link.link, state: { filter: link.param } }}
+                    style={{ textDecoration: 'none' }}
+                    aria-current={selectedRoute === link.key ? 'page' : undefined}
+                  >
+                    <Box
+                      flex="1"
+                      w={82}
+                      p={2}
+                      textAlign="center"
+                      bg={selectedRoute === link.key ? DARK_COLORS.gridyellow : 'transparent'}
+                      color={selectedRoute === link.key ? "black" : "white"}
+                      _hover={{ shadow: 'xl' }}
+                      rounded={selectedRoute === link.key ? '3xl' : 'none'}
+                      fontSize={12}
+                      py={3}
+                      sx={{ userSelect: 'none' }}
+                    >
+                      {t(link.label)}
+                    </Box>
+                  </Link>
+                )
               ))}
             </HStack>
 
