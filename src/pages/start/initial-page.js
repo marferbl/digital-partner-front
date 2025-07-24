@@ -5,12 +5,12 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/userContext";
 import { COLORS } from "../../colors/colors";
 import { useLocation } from 'react-router-dom';
-import { useTranslation } from 'react-i18next'; // Importa useTranslation
+import { useTranslation } from 'react-i18next';
 import ContentSwitch from "./ToggleInitial";
 import { IoIosArrowRoundForward } from "react-icons/io";
 
 export default function InitialPage() {
-  const { t } = useTranslation("global"); // Inicializa la traducción
+  const { t } = useTranslation("global");
   const location = useLocation();
   const [showLogin, setShowLogin] = useState(true);
   const navigate = useNavigate();
@@ -32,13 +32,13 @@ export default function InitialPage() {
           className={`px-4 py-2 font-medium ${!showLogin ? "text-gridyellow" : "text-gray-200"} focus:outline-none`}
           onClick={() => setShowLogin(false)}
         >
-          Register
+          {t('register')}
         </button>
         <button
           className={`px-4 py-2 font-medium ${showLogin ? "text-gridyellow" : "text-gray-200"} focus:outline-none`}
           onClick={() => setShowLogin(true)}
         >
-          Login
+          {t('loginKey')}
         </button>
       </div>
       <div className="relative w-96 md:w-170 h-120 shadow-md rounded-2xl bg-white/10  backdrop-blur-xl border border-transparent">
@@ -57,10 +57,10 @@ export default function InitialPage() {
             {showLogin ? (
               <div className="flex flex-col items-start p-8 hidden md:flex">
                 <span className="text-neutral">
-                  ¿No tienes cuenta?
+                  {t('initialPage.noAccount')}
                 </span>
                 <span className="text-xl text-white flex">
-                  Crea una ahora
+                  {t('initialPage.createOneNow')}
                   <IoIosArrowRoundForward size={30} />
                 </span>
               </div>
@@ -81,10 +81,10 @@ export default function InitialPage() {
             ) : (
               <div className="flex flex-col items-start p-8 hidden md:flex">
                 <span className="text-neutral">
-                  ¿Ya tienes cuenta?
+                  {t('initialPage.alreadyHaveAccount')}
                 </span>
                 <span className="text-xl text-white flex">
-                  Inicia sesión
+                  {t('initialPage.loginNow')}
                   <IoIosArrowRoundForward size={30} />
                 </span>
               </div>
@@ -94,5 +94,4 @@ export default function InitialPage() {
       </div>
     </div>
   );
-
-};
+}

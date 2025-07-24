@@ -20,7 +20,7 @@ import conditions from '../../../pdf/conditions.pdf'
 import cookies from '../../../pdf/cookies.pdf'
 import privacypolicy from '../../../pdf/privacypolicy.pdf'
 import brandkit from '../../../pdf/brandkit.pdf'
-
+import { changeLanguage } from "../../../utils/languageUtils";
 
 const Logo = (props) => {
   return <Image src={"/logo-d.png"} h={10} ml={-2} />;
@@ -37,12 +37,16 @@ const NavLink = ({ label, link }) => {
 export default function FooterLanding() {
   const { t, i18n } = useTranslation("global");
 
+  const handleLanguageChange = (newLanguage) => {
+    changeLanguage(i18n, newLanguage);
+  };
+
   return (
     <Flex
       justify={"center"}
       position="relative"
       h='90vh'
-      overflow="hidden" // Ensure the video does not overflow the container
+      overflow="hidden"
       fontFamily={'Roobert'}
     >
       {/* Background Video */}
@@ -56,9 +60,9 @@ export default function FooterLanding() {
           left: 0,
           width: "100%",
           height: "100%",
-          objectFit: "cover", // Ensures the video covers the container
+          objectFit: "cover",
           zIndex: 1,
-          opacity: 1, // Adjust for brightness
+          opacity: 1,
         }}
       >
         <source src={'/videos/footer-split.mp4'} type="video/mp4" />
@@ -68,17 +72,17 @@ export default function FooterLanding() {
       {/* Content */}
       <Container maxW={"6xl"} py={10} zIndex={99}>
         <Grid
-          templateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(3, 1fr)' }}  // Three columns layout
+          templateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(3, 1fr)' }}
           gap={8}
           minH={'50%'}
         >
           {/* First Column */}
           <GridItem textAlign="left" w='full' fontWeight={'light'}>
             <Stack spacing={6}>
-              <Text fontSize={"sm"}>© 2025 digitalando. All rights reserved</Text>
+              <Text fontSize={"sm"}>{t('copyright')}</Text>
 
               <Text fontSize={{ base: "2xl", md: "5xl" }} letterSpacing={2}>
-                THE NEXT PIECE OF THE PUZZLE
+                {t('footer.nextPieceOfPuzzle')}
               </Text>
             </Stack>
           </GridItem>
@@ -90,11 +94,11 @@ export default function FooterLanding() {
                 fontSize="lg"
                 cursor="pointer"
               >
-                IDIOMAS: <Text as='span' _hover={{ textDecor: "underline" }}
-                  onClick={() => i18n.changeLanguage('es')}
+                {t('footer.languages')}: <Text as='span' _hover={{ textDecor: "underline" }}
+                  onClick={() => handleLanguageChange('es')}
                 >{t('spanish')}</Text> /
                 <Text as='span' _hover={{ textDecor: "underline" }}
-                  onClick={() => i18n.changeLanguage('en')}>{t('english')}</Text>
+                  onClick={() => handleLanguageChange('en')}>{t('english')}</Text>
 
               </Text>
             </Stack>
@@ -105,37 +109,38 @@ export default function FooterLanding() {
 
             <Box>
               <Flex gap={3}>
-                LEGAL
+                {t('footer.legal')}
                 <a href={cookies} target="_blank" rel="noreferrer">
                   <Text _hover={{ textDecor: "underline" }}>
-                    Cookies                   </Text>
+                    {t('footer.cookies')}
+                  </Text>
                 </a>
                 /
                 <a href={conditions} target="_blank" rel="noreferrer">
                   <Text _hover={{ textDecor: "underline" }}>
-                    Condiciones
+                    {t('footer.conditions')}
                   </Text>
                 </a>
                 /
                 <a href={privacypolicy} target="_blank" rel="noreferrer">
                   <Text _hover={{ textDecor: "underline" }}>
-                    Privacidad
+                    {t('footer.privacy')}
                   </Text>
                 </a>
               </Flex>
             </Box>
             <Flex gap={3}>
-              SOCIAL
+              {t('footer.social')}
               <Flex align={'center'} gap={1}>
                 <Icon as={FaInstagram} />
                 <a href="https://www.instagram.com/digitalando_/">
-                  <Text>Instagram</Text>
+                  <Text>{t('footer.instagram')}</Text>
                 </a>
               </Flex>
               <Flex align={'center'} gap={1}>
                 <Icon as={FaLinkedin} />
                 <a href="https://www.linkedin.com/company/digital-ando">
-                  <Text>LinkedIn</Text>
+                  <Text>{t('footer.linkedin')}</Text>
                 </a>
               </Flex>
             </Flex>
@@ -143,13 +148,14 @@ export default function FooterLanding() {
           </GridItem>
         </Grid>
         <Flex spacing={6} w='full' justify={'end'} gap={6}>
-          <NavLink label={t("whoWeAre")} link="about" />
+          <NavLink label={t("whoWeAre")} link="/about" />
           -
-          <NavLink label={t("frequentlyAskedQuestions")} link="faqs" />
+          <NavLink label={t("frequentlyAskedQuestions")} link="/faqs" />
           -
           <a href={brandkit} target="_blank" rel="noreferrer">
             <Text fontWeight={'bold'} _hover={{ textDecor: "underline" }} textTransform={'uppercase'} fontSize={{ base: 16, md: 20 }}>
-              BRAND-KIT                   </Text>
+              {t('footer.brandKit')}
+            </Text>
           </a>
 
         </Flex>

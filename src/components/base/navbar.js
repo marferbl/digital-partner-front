@@ -20,8 +20,7 @@ import { SoftwareSearcherInput } from "./software-searcher-input";
 import { useTranslation } from "react-i18next";
 import CountryFlag from "./country-flag";
 import { useLocation } from "react-router-dom";
-
-
+import { changeLanguage, toggleLanguage } from "../../utils/languageUtils";
 
 export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -30,15 +29,12 @@ export default function Navbar() {
   const [selectedRoute, setSelectedRoute] = useState('home')
   const location = useLocation();
 
-
-
   useEffect(() => {
     if (location) {
       let locationName = location.pathname
       const text = locationName === '/' ? 'home' : locationName?.includes('private') ? 'portal' : 'explore'
       location && setSelectedRoute(text)
     }
-
   }, [location])
 
   const Links = [
@@ -66,20 +62,16 @@ export default function Navbar() {
       link: '/',
       key: 'home'
     },
-    { label: 'login', link: '/start', key: 'login' },
-
-    // {
-    //   label: 'explore',
-    //   link: '/search/',
-    //   key: 'explore'
-    // },
-    // {
-    //   label: 'myPanel',
-    //   link: '/start',
-    //   key: 'portal',
-    // },
+    { label: 'loginKey', link: '/start', key: 'login' },
   ];
 
+  const handleLanguageChange = (newLanguage) => {
+    changeLanguage(i18n, newLanguage);
+  };
+
+  const handleToggleLanguage = () => {
+    toggleLanguage(i18n);
+  };
 
   return (
     <>
@@ -119,8 +111,6 @@ export default function Navbar() {
                 )
               ))}
             </HStack> */}
-
-
           </Box>
 
           <Flex display={{ base: 'none', md: 'block' }} alignItems={"center"}>
@@ -132,15 +122,16 @@ export default function Navbar() {
                 color={'black'}
               >
                 <Box p={3} w={120} _hover={{ transform: "scale(1.02)" }} color='white' rounded={'lg'}>
-                  {!isLoggedIn ? <Link key={'/start'} to={{ pathname: '/start' }} >{t('login')}</Link> : ''}
+                  {!isLoggedIn ? <Link key={'/start'} to={{ pathname: '/start' }} >{t('loginKey')}</Link> : ''}
                 </Box>
               </HStack>
               <Flex gap={3} pr={3}>
                 <Select
                   size="sm"
-                  w="120px"
+                  w="100px"
+                  rounded={'lg'}
                   value={i18n.language}
-                  onChange={(e) => i18n.changeLanguage(e.target.value)}
+                  onChange={(e) => handleLanguageChange(e.target.value)}
                   variant="ghost"
                   border="1px solid"
                   borderColor="pink.400"
@@ -150,8 +141,8 @@ export default function Navbar() {
                   _focus={{ borderColor: "pink.500", boxShadow: "0 0 0 1px pink.500", bg: "transparent" }}
                   _active={{ bg: "transparent" }}
                 >
-                  <option value="es" style={{ backgroundColor: 'black', color: 'white' }}>Español</option>
-                  <option value="en" style={{ backgroundColor: 'black', color: 'white' }}>English</option>
+                  <option value="es" style={{ backgroundColor: 'black', color: 'white' }}>{t('spanish')}</option>
+                  <option value="en" style={{ backgroundColor: 'black', color: 'white' }}>{t('english')}</option>
                 </Select>
               </Flex>
             </HStack>
@@ -163,8 +154,8 @@ export default function Navbar() {
             display={{ md: 'none' }}
             onClick={isOpen ? onClose : onOpen}
             variant="ghost"
-            color="yellow.400"         // icon color
-            borderColor="transparent"   // outline border color
+            color="yellow.400"
+            borderColor="transparent"
             _hover={{ bg: 'transparent', borderColor: DARK_COLORS.gridyellow, color: DARK_COLORS.gridyellow }}
             _active={{ bg: 'transparent', borderColor: DARK_COLORS.gridyellow, color: DARK_COLORS.gridyellow }}
           />
@@ -184,9 +175,9 @@ export default function Navbar() {
                   color="pink.400"
                   cursor="pointer"
                   _hover={{ color: "pink.300" }}
-                  onClick={() => i18n.changeLanguage(i18n.language === 'es' ? 'en' : 'es')}
+                  onClick={handleToggleLanguage}
                 >
-                  {i18n.language === 'es' ? 'Cambiar a Inglés' : 'Change to Spanish'}
+                  {i18n.language === 'es' ? t('changeToEnglish') : t('changeToSpanish')}
                 </Text>
               </Flex>
             </Stack>

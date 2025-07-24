@@ -40,7 +40,7 @@ const TopServices = () => {
                         </div>
 
                         <Link to={`/service/${product?._id}`}>
-                            <button class="bg-white text-black px-6 py-1 rounded-xl">
+                            <button className="bg-white text-black px-6 py-1 rounded-xl">
                                 <IoIosArrowRoundForward size={20} />
                             </button>
                         </Link>

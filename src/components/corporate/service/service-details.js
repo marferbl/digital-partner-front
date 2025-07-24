@@ -203,7 +203,7 @@ const ServiceDetails = ({ service }) => {
 
     const LINKS = [
         { label: 'Info', component: <ServiceInfoComponent service={service} />, icon: FaInfoCircle },
-        { label: 'Planes', component: <PlansComponent entity={service} />, icon: FaCreditCard },
+        { label: 'Adquirir', component: <PlansComponent entity={service} />, icon: FaCreditCard },
         { label: 'Referencias', component: <ReferencesComponent />, icon: FaStar },
     ];
 

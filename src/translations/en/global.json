@@ -5,7 +5,7 @@
     "feature1Title": "Do you have a digital solution or are you a digital services company?",
     "feature2Title": "Are you a company interested in staying updated on digitalization?",
     "feature3Title": "Do you have a digital profile and are you interested in learning about the best job offers?",
-    "feature1Description": "Don’t miss the opportunity to advertise in the world’s largest digital community",
+    "feature1Description": "Don't miss the opportunity to advertise in the world's largest digital community",
     "feature2Description": "License management, internal team, and a great offer of manuals and references for the solutions that interest you the most.",
     "feature3Description": "We have a large volume of offers for professionals, freelancers, and experts. The most innovative method on the market.",
     "featureButton1": "Create an ad",
@@ -32,11 +32,11 @@
     "next": "Next",
     "loadingLabel": "Loading...",
     "tryDigitalandoOffer": "Do you want to try everything Digitalando has to offer?",
-    "letsGo": "Let’s go!",
+    "letsGo": "Let's go!",
     "seeDemo": "See demo",
-    "login": "Log in",
+    "loginKey": "Log in",
     "register": "Register",
-    "noAccountPrompt": "Don’t have an account?",
+    "noAccountPrompt": "Don't have an account?",
     "backToLogin": "Back to login",
     "loginButton": "Log in",
     "loginSuccessTitle": "OK",
@@ -68,6 +68,32 @@
     "copyright": "© 2024 digitalando. All rights reserved",
     "spanish": "Spanish",
     "english": "English",
+    "changeToEnglish": "Change to English",
+    "changeToSpanish": "Change to Spanish",
+    "login": {
+        "welcomeBack": "Hello again!",
+        "enterDataToAccess": "Enter your data to access your account",
+        "emailPlaceholder": "name@digitalando.com"
+    },
+    "register": {
+        "welcome": "Welcome!",
+        "enterDataToCreate": "Enter your data to create your account",
+        "emailPlaceholder": "name@digitalando.com"
+    },
+    "initialPage": {
+        "noAccount": "Don't have an account?",
+        "createOneNow": "Create one now",
+        "alreadyHaveAccount": "Already have an account?",
+        "loginNow": "Log in"
+    },
+    "compareAI": {
+        "title": "Compare solutions with AI",
+        "selectSolutions": "Select the solutions to compare:",
+        "commentPlaceholder": "Do you want to add any comment? The more you explain to the AI, the more accurate it will be...",
+        "aiHasSpoken": "Digitalando's AI has spoken...",
+        "cancel": "Cancel",
+        "compare": "Compare"
+    },
     "iaHelpsYou": "I am looking to manage the payrolls of my employees.",
     "search": "Search",
     "development": "Development",
@@ -158,7 +184,7 @@
     "home": "Home",
     "explore": "Explore",
     "myPanel": "Dashboard",
-    "filters": "Filters",
+    "filtersKey": "Filters",
     "clearFilters": "Clear filters",
     "country": "Country",
     "language": "Language",
@@ -280,5 +306,128 @@
     "whatYouNeed": "What do you need?",
     "alreadyHaveThem": "Do you already have them?",
     "dontMissOpportunity": "Don't miss the opportunity to advertise in the most complete digital community",
-    "createAdButton": "Create your ad"
+    "createAdButton": "Create your ad",
+    "filters": {
+        "partner": {
+            "implant": "Implementer",
+            "selling": "Sales",
+            "training": "Training"
+        },
+        "service": "Service",
+        "price": {
+            "title": "Price",
+            "free": "Free",
+            "paid": "Paid"
+        },
+        "priceRange": {
+            "title": "Price range",
+            "1to10": "1 - 10€",
+            "11to50": "11 - 50€",
+            "51to100": "51 - 100€",
+            "over100": ">100€"
+        },
+        "searchCity": "Search city...",
+        "eventType": {
+            "both": "Both"
+        },
+        "salaryRange": "Minimum and maximum salary"
+    },
+    "footer": {
+        "nextPieceOfPuzzle": "THE NEXT PIECE OF THE PUZZLE",
+        "languages": "LANGUAGES",
+        "legal": "LEGAL",
+        "cookies": "Cookies",
+        "conditions": "Conditions",
+        "privacy": "Privacy",
+        "social": "SOCIAL",
+        "instagram": "Instagram",
+        "linkedin": "LinkedIn",
+        "brandKit": "BRAND-KIT"
+    },
+    "faqs": {
+        "search": {
+            "title": "Search",
+            "howToSearch": {
+                "title": "How can I perform a search?",
+                "content": "There are two ways to perform a search to obtain the desired results:\n\nThe first is through the AI-integrated search engine, where you can search for any information you have about the result you want to obtain (name, description, functionality, country, language, etc.)\n\nThe second is through the test, where you can adjust all the necessary filters by answering some questions about the characteristics that the solution/service/talent/event you want to find must meet."
+            },
+            "whyAI": {
+                "title": "Why is AI integrated into the platform?",
+                "content": "AI was integrated into the search engine for a very simple reason: on all solution comparison websites, it was very difficult to achieve the desired results if you didn't have a clear idea of the solution's name or could provide a very detailed description of its functionalities.\nThis way we have achieved that you don't need to have so much clarity to perform a search and that the results fit your needs."
+            },
+            "howOrdered": {
+                "title": "How are searches ordered?",
+                "content": "The order of results will always be based on NPS. First, those that already have a general NPS will be ordered by NPS from highest to lowest; second, those that don't have a general NPS but have more than 10 references will go from highest to lowest; third, those with less than 10 references will appear by NPS from highest to lowest, and finally, the rest of solutions and/or services that don't have references yet will appear."
+            }
+        },
+        "references": {
+            "title": "References",
+            "whatIs": {
+                "title": "What is a reference?",
+                "content": "A reference is a \"business success story\" in text format. The reference document reveals a series of data from the client's experience that can be very useful for other potential clients who are evaluating the implementation of a solution or the hiring of a services company. They can be purchased within the solution's profile and/or the services company's profile.\n\nIt is a fundamental part of the platform as it allows users to acquire customer opinions evaluating positive and negative aspects of the solution and/or services company that could help in decision making."
+            },
+            "howToGive": {
+                "title": "How can I give a reference to a solution?",
+                "content": "It must be the solution's own administrator who sends you the reference form so you can complete it. If you're interested, you can contact the services company or the solution and express your interest in providing a reference."
+            },
+            "howToRequest": {
+                "title": "How can I request a reference from one of my clients?",
+                "content": "Within your corporate, in the references section, there is the option to request a review. It's important to note that a fundamental requirement to request the review is that the client you want to request it from must be registered on the platform as a corporate."
+            },
+            "relationshipWithNPS": {
+                "title": "What relationship do references have with NPS?",
+                "content": "References are the means by which the NPS of the solution and/or services company is measured, which means that having more references, your solution/services company will have much better positioning due to the platform's results ordering policy."
+            },
+            "benefits": {
+                "title": "What benefits does having references in the profile have?",
+                "content": "In addition to being the only way to achieve better positioning in search results, it can also mean savings for those who receive them, since within the platform's policy, solutions/services companies that have more references and more potential clients interested in acquiring them are rewarded."
+            },
+            "whyPaid": {
+                "title": "Why are references paid?",
+                "content": "References are paid because they are considered to provide differential value that goes far beyond a review, for this reason, potential clients of a solution/services company will need to purchase a package of \"spins\" at a very competitive price to investigate the opinion and experience of current clients of the solution and/or services company in question."
+            }
+        },
+        "corporate": {
+            "title": "Corporate",
+            "whatInside": {
+                "title": "What do I find inside my corporate pull?",
+                "content": "Although the functionalities are many, we can divide them into two very differentiated groups. First, within the corporate pull, ads for: Solutions, services and/or events are raised. Second, we can also find a small management software that includes: My team management, license management and published job offers.\n\nAll these functionalities will appear enabled in the pull once the corporate has been registered by the user whom the platform will consider \"superadmin\" of the corporate account."
+            },
+            "whyPaid": {
+                "title": "Why is creating a corporate paid?",
+                "content": "The value that the platform offers to corporates required an annual fee to provide a quality service. However, the price includes an ad for a solution and/or services company, plus the possibility of advertising events for free and using the internal management software."
+            },
+            "whenToCreate": {
+                "title": "In what cases should I create a corporate?",
+                "content": "The corporate must be created in all cases where it is intended to place an ad of any type within the platform's catalog, and also in cases where, although the company doesn't want to advertise anything, it is interested in accessing the internal management software and being able to acquire references from other solutions and/or service companies."
+            },
+            "licenseManagement": {
+                "title": "How does license management work?",
+                "content": "License management is a functionality that can be found within the corporate pull and allows you to enter all active licenses of our company and keep updated data such as: number of licenses, price, expiration dates, payment methods, etc.\n\nAll this information must be entered, for now, manually by the corporate's \"superadmin\", but it generates great value for tracking the company's expenses in this area."
+            },
+            "myTeam": {
+                "title": "What can I do with the \"My team\" functionality?",
+                "content": "\"My team\" is another of the functionalities we can find in the corporate pull. This is not a manual functionality, but rather allows all employees of a company to register on digitalando and, once their \"digital profile\" data is filled out, their company can have their CVs updated at all times and evaluate needs such as: training, new hires, project needs, etc."
+            },
+            "whoHasAccess": {
+                "title": "Who has access to corporate management?",
+                "content": "The pull management, once the corporate has been registered, will be, automatically, the task of the user who registered it (\"superadmin\"). This profile can, later, create a permission hierarchy for other users in their company. This management can be modified at any time due to internal company changes, that is, other \"superadmins\" can be named or each user's permissions can be modified, even cutting off all access to certain profiles due to a professional change or any other type of problem.\n\nFor example, allowing the HR director to manage published job offers or manage the \"My team\" functionality. Or allowing the financial officer to access \"My licenses\" management to evaluate the costs they represent to the company."
+            }
+        }
+    },
+    "about": {
+        "title": "Who are we?",
+        "whatIsDigitalando": {
+            "title": "What is digitalando?",
+            "content": "When we talk about digitalando, the word community is mandatory. What was born with brushstrokes of a solution and services company comparator has inevitably become a great platform that focuses on the comprehensive digitalization of the company.\n\nWoooow, comprehensive digitalization... What exactly do you mean? Very simple, in the imposing digital era (which many companies don't quite understand), there are technological needs of different types, and not just solution search, as our colleagues who arrived years before us intuited. Comprehensive digitalization includes advice for implementing any solution, offering all types of digital services, offering technological talent (permanently or by projects) and, of course, the most innovative events of public interest, all on the same platform!\n\nSpoiler alert: This is the platform ;)"
+        },
+        "whyNow": {
+            "title": "Why is it born in this landscape?",
+            "content": "The current landscape is ideal for many reasons but especially one, when do the most disruptive ideas that come to stay usually appear? Well, unfortunately we have had to wait for one of the most relevant generational changes in the professional scene.\n\nDigital natives are beginning to reach management positions or start their own projects, determined to optimize time without giving up the best results and suddenly, in an environment where everything is within reach of a click, they find themselves obliged to have endless meetings and processes with technology consultancies to make certain decisions that end up arriving late, poorly contrasted by the client and absolutely not neutral among all existing options.\n\nUntil today."
+        },
+        "whoAreIvanAndMarcos": {
+            "title": "Who are Iván and Marcos?",
+            "content": "They are many things. They are friends, first of all. Friends with a shared ambition for many years: To be able to change the course of the sector with which they have always shared their professional career.\n\nIván is a sociologist specialized in human resources with experience in digital business development. His professional career is divided into two very marked parts: A first stage dedicated to IT personnel selection and a second very related to the start-up world.\n\nMarcos is a developer, a possibility he chose after finishing his computer engineering and business administration studies. His professional career has been very linked to the start-up environment. He is a person with interpersonal skills comparable to his development talent.\n\nOf course, I think anyone would say that they are not ordinary people and that, in most cases, they stand out for their way of interpreting reality. This time bomb couldn't leave anyone indifferent and well, nice to meet you all!"
+        }
+    }
 }

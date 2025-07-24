@@ -38,10 +38,10 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
     const hasFilters = Object.values(filterValues).some((value) => value !== '');
 
     const OPTIONS_TYPE = [
-        { value: 'solutions', label: 'solutions' },
-        { value: 'services', label: 'services' },
-        { value: 'events', label: 'events' },
-        { value: 'freelance', label: 'talent', key: 'talent' }
+        { value: 'solutions', label: t('solutions') },
+        { value: 'services', label: t('services') },
+        { value: 'events', label: t('events') },
+        // { value: 'freelance', label: t('talent'), key: 'talent' }
     ];
 
     const handlePriceCategory = (value) => {
@@ -76,7 +76,7 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
 
     return (
         <div className="border-r h-fit-content bg-gray-50 p-4 shadow-2xl rounded-lg">
-            <span className="text-lg font-bold pt-5">{t('filters')}</span>
+            <span className="text-lg font-bold pt-5">{t('filtersKey')}</span>
             <div className="flex flex-col space-y-4 mt-6">
                 {/* <div className="min-w-[140px] pt-1">
                     <SearchSelect
@@ -121,12 +121,12 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
                     <div className="min-w-[140px] pt-1">
                         <SearchSelect
                             options={[
-                                { value: 'partner', label: 'Partner' },
-                                { value: 'development', label: 'Desarrollo' },
-                                { value: 'renting', label: 'Renting' },
-                                { value: 'helps', label: 'Ayudas' },
-                                { value: 'training', label: 'Training' },
-                                { value: 'growth', label: 'Growth' }
+                                { value: 'partner', label: t('partner') },
+                                { value: 'development', label: t('development') },
+                                { value: 'renting', label: t('renting') },
+                                { value: 'helps', label: t('helps') },
+                                { value: 'training', label: t('training') },
+                                { value: 'growth', label: t('growth') }
                             ]}
                             width="100%"
                             label={t('type')}
@@ -140,13 +140,13 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
                     <div className="min-w-[140px]">
                         <SearchSelect
                             options={[
-                                { value: 'implant', label: 'Implantador' },
-                                { value: 'selling', label: 'Venta' },
-                                { value: 'training', label: 'Formación' }
+                                { value: 'implant', label: t('filters.partner.implant') },
+                                { value: 'selling', label: t('filters.partner.selling') },
+                                { value: 'training', label: t('filters.partner.training') }
                             ]}
                             isMulti
                             width="100%"
-                            label="Servicio"
+                            label={t('filters.service')}
                             onChange={(value) => handleToggle('partnerType', value)}
                             value={filterValues.partnerType}
                             height="40px"
@@ -184,11 +184,11 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
                         <div className="min-w-[140px] pt-1">
                             <SearchSelect
                                 options={[
-                                    { value: 'free', label: 'Gratis' },
-                                    { value: 'paid', label: 'De pago' }
+                                    { value: 'free', label: t('filters.price.free') },
+                                    { value: 'paid', label: t('filters.price.paid') }
                                 ]}
                                 width="100%"
-                                label="Precio"
+                                label={t('filters.price.title')}
                                 onChange={handlePriceCategory}
                                 value={filterValues.priceCategory}
                             />
@@ -198,13 +198,13 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
                             <div className="min-w-[140px] pt-1">
                                 <SearchSelect
                                     options={[
-                                        { value: 10, label: '1 - 10€' },
-                                        { value: 50, label: '11 - 50€' },
-                                        { value: 100, label: '51 - 100€' },
-                                        { value: 5000, label: '>100€' }
+                                        { value: 10, label: t('filters.priceRange.1to10') },
+                                        { value: 50, label: t('filters.priceRange.11to50') },
+                                        { value: 100, label: t('filters.priceRange.51to100') },
+                                        { value: 5000, label: t('filters.priceRange.over100') }
                                     ]}
                                     width="100%"
-                                    label="Rango de precios"
+                                    label={t('filters.priceRange.title')}
                                     onChange={handlePriceRange}
                                     value={filterValues.price}
                                 />
@@ -215,7 +215,7 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
                             <SearchSelectCities
                                 value={filterValues.city}
                                 onChange={handleCityChange}
-                                placeholder="Buscar ciudad..."
+                                placeholder={t('filters.searchCity')}
                                 emitFullObject={true}
                             />
                         </div>
@@ -223,12 +223,12 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
                         <div className="min-w-[140px] pt-1">
                             <SearchSelect
                                 options={[
-                                    { value: 'remote', label: 'Remoto' },
-                                    { value: 'presential', label: 'Presencial' },
-                                    { value: 'all', label: 'Ambos' }
+                                    { value: 'remote', label: t('remote') },
+                                    { value: 'presential', label: t('presential') },
+                                    { value: 'all', label: t('filters.eventType.both') }
                                 ]}
                                 width="100%"
-                                label="Tipo"
+                                label={t('type')}
                                 onChange={(value) => handleToggle('eventType', value)}
                                 value={filterValues.eventType}
                             />
@@ -241,7 +241,7 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
 
                         <div className="min-w-[140px] pt-1">
                             <SearchSelectPositions showLabel onChange={(value) => handleToggle('job', value)} theme='light' />
-                            <span className="text-xs">Salario minimo y máximo</span>
+                            <span className="text-xs">{t('filters.salaryRange')}</span>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 ">
                                 {/* Input 1 */}
                                 <input

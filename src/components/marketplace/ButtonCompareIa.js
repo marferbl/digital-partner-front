@@ -69,17 +69,17 @@ export const ButtonCompareIA = ({ refreshSolutions, disabled }) => {
             <Modal isOpen={isOpen} onClose={closeModal} size='3xl'>
                 <ModalOverlay />
                 <ModalContent>
-                    <ModalHeader>Comparar soluciones con IA</ModalHeader>
+                    <ModalHeader>{t('compareAI.title')}</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody py={5}>
-                        <Text>Selecciona las soluciones a comparar:</Text>
+                        <Text>{t('compareAI.selectSolutions')}</Text>
 
                         <Flex gap={4} py={4}>
                             <SearchSelectSolutions onChange={(value) => setsolutionId1(value)} />
                             <SearchSelectSolutions onChange={(value) => setsolutionId2(value)} />
                         </Flex>
 
-                        <Textarea fontSize={12} placeholder='¿Quieres poner algún comentario? Cuanto más le expliques a la IA, más precisa será...' onChange={(e) => setText(e.target.value)} />
+                        <Textarea fontSize={12} placeholder={t('compareAI.commentPlaceholder')} onChange={(e) => setText(e.target.value)} />
 
 
                         {loading && <Center minH={200} w='full' >
@@ -88,7 +88,7 @@ export const ButtonCompareIA = ({ refreshSolutions, disabled }) => {
 
                         {!loading && comparation && (
                             <Box p={5}>
-                                <Text mb={2}>La IA de digitalando ha hablado...</Text>
+                                <Text mb={2}>{t('compareAI.aiHasSpoken')}</Text>
                                 <Box bg={'gray.50'} rounded={'lg'} p={2} fontSize={14}>
                                     <Text lineHeight={1.8} >
                                         {comparation}
@@ -101,9 +101,9 @@ export const ButtonCompareIA = ({ refreshSolutions, disabled }) => {
 
                     <ModalFooter>
                         <Button variant='ghost' mr={3} onClick={onClose}>
-                            cancelar
+                            {t('compareAI.cancel')}
                         </Button>
-                        <Button onClick={compareSolutions} colorScheme='gray'>Comparar</Button>
+                        <Button onClick={compareSolutions} colorScheme='gray'>{t('compareAI.compare')}</Button>
                     </ModalFooter>
                 </ModalContent>
             </Modal>

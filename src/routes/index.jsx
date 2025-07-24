@@ -59,7 +59,7 @@ export const PageRoutes = () => {
           <Route path={'blog-list'} element={<BlogList />} />
           <Route path={'blog/:id'} element={<BlogDetail />} />
           <Route path={'reference-answer/:id'} element={<ReferenceForm />} />
-        {/* <Route path="/recruiter" element={<RecruiterSearch/>} /> */}
+          {/* <Route path="/recruiter" element={<RecruiterSearch/>} /> */}
         </Route>
 
         <Route path={"private"} element={<PrivateRoute />}>

@@ -21,13 +21,19 @@ import './fonts/RoobertTRIAL-Light.ttf'
 import './fonts/RoobertTRIAL-Heavy.ttf'
 import './fonts/RoobertTRIAL-SemiBold.ttf'
 
+// Get language from localStorage or use browser language as fallback
+const getStoredLanguage = () => {
+  const storedLanguage = localStorage.getItem('digitalando_language');
+  if (storedLanguage && (storedLanguage === 'es' || storedLanguage === 'en')) {
+    return storedLanguage;
+  }
 
+  // Fallback to browser language
+  const userLocale = navigator.language || navigator.userLanguage;
+  return userLocale.startsWith('es') ? 'es' : 'en';
+};
 
-
-const userLocale = navigator.language || navigator.userLanguage; // e.g., "es-ES" or "en-US"
-// const userLanguage = userLocale.startsWith('es') ? 'es' : 'en';
-const userLanguage = 'es'
-
+const userLanguage = getStoredLanguage();
 
 i18Next.init({
   interpolation: {
@@ -39,7 +45,6 @@ i18Next.init({
     en: { global: global_en },
   },
 });
-
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
