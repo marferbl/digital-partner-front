@@ -146,8 +146,8 @@ const FaqsPage = () => {
                     Búsqueda
                 </Text>
                 <Accordion>
-                    {SEARCH_QUESTIONS.map(e => (
-                        <AccordionItem>
+                    {SEARCH_QUESTIONS.map((e, index) => (
+                        <AccordionItem key={`search-${index}`}>
                             <AccordionButton>
                                 <Box as='span' flex='1' textAlign='left'>
                                     {e.title}
@@ -167,8 +167,8 @@ const FaqsPage = () => {
                     Referencias
                 </Text>
                 <Accordion>
-                    {REFERENCES_QUESTIONS.map(e => (
-                        <AccordionItem>
+                    {REFERENCES_QUESTIONS.map((e, index) => (
+                        <AccordionItem key={`reference-${index}`}>
                             <AccordionButton>
                                 <Box as='span' flex='1' textAlign='left'>
                                     {e.title}
@@ -188,8 +188,8 @@ const FaqsPage = () => {
                     Corporate
                 </Text>
                 <Accordion>
-                    {CORPORATE_QUESTIONS.map(e => (
-                        <AccordionItem>
+                    {CORPORATE_QUESTIONS.map((e, index) => (
+                        <AccordionItem key={`corporate-${index}`}>
                             <AccordionButton>
                                 <Box as='span' flex='1' textAlign='left'>
                                     {e.title}

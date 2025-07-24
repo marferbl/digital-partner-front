@@ -153,7 +153,7 @@
         "update": "Maybe we could mention that being on Digitalando is the easiest way to stay updated and digitize any process.",
         "jobs": "We could even bring up the fact that if you're in the digital world and looking for job offers, we've got some pretty juicy ones here."
     },
-    "topSolutionsOfTheMonth": "TOP SOLUTIONS OF THE MONTH",
+    "topSolutionsOfTheMonth": "THE LATEST HITS",
     "topServicesStartUps": "MOST USEFUL SERVICES FOR START UPS",
     "home": "Home",
     "explore": "Explore",
@@ -276,5 +276,9 @@
     "select": "Select option",
     "monthly": "Monthly",
     "quarterly": "Quarterly",
-    "yearly": "Yearly"
+    "yearly": "Yearly",
+    "whatYouNeed": "What do you need?",
+    "alreadyHaveThem": "Do you already have them?",
+    "dontMissOpportunity": "Don't miss the opportunity to advertise in the most complete digital community",
+    "createAdButton": "Create your ad"
 }

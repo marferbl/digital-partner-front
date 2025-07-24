@@ -19,14 +19,14 @@ const LandingPage = () => {
     <>
       <Box overflowX={'hidden'} position='relative' bg='black'>
         <Hero />
-        <SecondHero />
-        <WelcomePart />
-        <DiscoverLanding />
-        <BlogListLanding />
+        {/* <SecondHero /> */}
+        {/* <WelcomePart /> */}
+        {/* <DiscoverLanding /> */}
+        {/* <BlogListLanding /> */}
         <TopSolutions />
-        <TopServices />
-        <WhyDigitalando />
-        <FeaturesDigitalando />
+        {/* <TopServices /> */}
+        {/* <WhyDigitalando /> */}
+        {/* <FeaturesDigitalando /> */}
         <FooterLanding />
       </Box>
     </>
