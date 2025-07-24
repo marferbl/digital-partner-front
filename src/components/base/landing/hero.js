@@ -25,13 +25,13 @@ export default function Hero() {
             autoPlay
             loop
             muted
-            className="object-cover w-full h-full opacity-50"
+            className="object-cover w-full h-full opacity-100"
           />
           <div className="absolute inset-0 bg-black opacity-50"></div>
         </div>
 
 
-        <div className="relative z-10 flex flex-col justify-center items-center h-full text-center mt-20 md:mt-0">
+        <div className="relative z-10 flex flex-col justify-center items-center h-full text-center mt-20 md:mt-12">
           {/* <SoftwareSearcherInput /> */}
 
           <div className='flex flex-col items-center justify-center mb-8'>
@@ -71,14 +71,27 @@ export default function Hero() {
               </div>
             </div>
           </div>
-
+          <div className="mt-20 text-center max-w-3xl mx-auto px-4 h-fit md:h-72 hidden md:block">
+            <h2 className="font-montserrat font-base text-white text-lg md:text-3xl  mb-4">
+              {t('alreadyHaveThem')}
+            </h2>
+            <p className="font-montserrat text-white text-sm md:text-lg b-8 opacity-90 leading-relaxed">
+              {t('dontMissOpportunity')}
+            </p>
+            <button
+              onClick={handleCreateAd}
+              className="bg-gradient-to-r text-sm md:text-lg mt-4 md:mt-8 from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-montserrat font-semibold px-4 py-2 md:px-8 md:py-4  rounded-full text-lg md:text-xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl backdrop-blur-sm border border-white/20"
+            >
+              {t('createAdButton')}
+            </button>
+          </div>
 
         </div>
 
 
       </div>
       {/* Sección de anuncios */}
-      <div className="mt-12 md:mt-0 text-center max-w-3xl mx-auto px-4 h-fit md:h-72">
+      <div className="mt-12 md:mt-0 text-center max-w-3xl mx-auto px-4 h-fit md:h-72 block md:hidden">
         <h2 className="font-montserrat font-base text-white text-lg md:text-4xl  mb-4">
           {t('alreadyHaveThem')}
         </h2>
