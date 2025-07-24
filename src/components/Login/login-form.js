@@ -82,23 +82,23 @@ const LoginForm = () => {
   return (
     <Box py={0} rounded={"xl"}>
       <Text fontSize="5xl" fontWeight="light" textAlign="center" color='white'>
-        {t("¡Hola de nuevo!")}
+        {t("login.welcomeBack")}
       </Text>
       <Text fontWeight="light" textAlign="center" color={DARK_COLORS.neutral} mb={5}>
-        {t("Introduce tus datos para acceder a cuenta")}
+        {t("login.enterDataToAccess")}
       </Text>
       <FormControl my={5}>
-        <FormLabel color={'white'} htmlFor="email">{t("Email")}</FormLabel> {/* Traducción del texto */}
+        <FormLabel color={'white'} htmlFor="email">{t("emailLabel")}</FormLabel>
         <Input
           id="email"
-          placeholder={t("nombre@digitalando.com")}
+          placeholder={t("login.emailPlaceholder")}
           onChange={(e) => setEmail(e.target.value)}
           value={email}
           onKeyDown={handleKeyPress}
         />
       </FormControl>
       <FormControl my={5}>
-        <FormLabel color={'white'} htmlFor="password">{t("passwordLabel")}</FormLabel> {/* Traducción del texto */}
+        <FormLabel color={'white'} htmlFor="password">{t("passwordLabel")}</FormLabel>
         <Input
           id="password"
           placeholder={t("passwordPlaceholder")}
@@ -110,7 +110,7 @@ const LoginForm = () => {
       </FormControl>
 
       <Button
-        ref={buttonRef} // Assign a ref to the button
+        ref={buttonRef}
         mt={4}
         bg={DARK_COLORS.gridyellow}
         color={'black'}
@@ -119,13 +119,13 @@ const LoginForm = () => {
         onClick={handleSubmit}
         isLoading={loading}
       >
-        {t("loginButton")} {/* Traducción del botón */}
+        {t("loginButton")}
         <IoIosArrowRoundForward size={30} />
       </Button>
 
       {emptyFieldMessage && (
         <Text my={2} color={"red"}>
-          {t("emptyFieldMessage")} {/* Traducción del mensaje */}
+          {t("emptyFieldMessage")}
         </Text>
       )}
 

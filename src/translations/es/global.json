@@ -70,6 +70,32 @@
     "copyright": "© 2024 digitalando. All rights reserved",
     "spanish": "Español",
     "english": "Inglés",
+    "changeToEnglish": "Cambiar a Inglés",
+    "changeToSpanish": "Cambiar a Español",
+    "login": {
+        "welcomeBack": "¡Hola de nuevo!",
+        "enterDataToAccess": "Introduce tus datos para acceder a cuenta",
+        "emailPlaceholder": "nombre@digitalando.com"
+    },
+    "register": {
+        "welcome": "¡Bienvenido!",
+        "enterDataToCreate": "Introduce tus datos para crear la cuenta",
+        "emailPlaceholder": "nombre@digitalando.com"
+    },
+    "initialPage": {
+        "noAccount": "¿No tienes cuenta?",
+        "createOneNow": "Crea una ahora",
+        "alreadyHaveAccount": "¿Ya tienes cuenta?",
+        "loginNow": "Inicia sesión"
+    },
+    "compareAI": {
+        "title": "Comparar soluciones con IA",
+        "selectSolutions": "Selecciona las soluciones a comparar:",
+        "commentPlaceholder": "¿Quieres poner algún comentario? Cuanto más le expliques a la IA, más precisa será...",
+        "aiHasSpoken": "La IA de digitalando ha hablado...",
+        "cancel": "Cancelar",
+        "compare": "Comparar"
+    },
     "iaHelpsYou": "Busco gestionar las nominas de mis empleados...",
     "search": "Buscar",
     "development": "Desarrollo a medida",
@@ -160,7 +186,7 @@
     "home": "Home",
     "explore": "Explorar",
     "myPanel": "Mi panel",
-    "filters": "Filtros",
+    "filtersKey": "Filtros",
     "clearFilters": "Limpiar filtros",
     "country": "País",
     "language": "Idioma",
@@ -276,6 +302,7 @@
     "finnish": "Finlandés",
     "danish": "Danés",
     "norwegian": "Noruego",
+    "loginKey": "Iniciar sesión",
     "hungarian": "Húngaro",
     "tagalog": "Tagalo",
     "malay": "Malayo",
@@ -292,5 +319,128 @@
     "yearly": "Anual",
     "alreadyHaveThem": "¿Ah, ¿que ya los tienes?",
     "dontMissOpportunity": "No pierdas la oportunidad de anunciarte en la comunidad digital más completa",
-    "createAdButton": "Da de alta tu anuncio"
+    "createAdButton": "Da de alta tu anuncio",
+    "filters": {
+        "partner": {
+            "implant": "Implantador",
+            "selling": "Venta",
+            "training": "Formación"
+        },
+        "service": "Servicio",
+        "price": {
+            "title": "Precio",
+            "free": "Gratis",
+            "paid": "De pago"
+        },
+        "priceRange": {
+            "title": "Rango de precios",
+            "1to10": "1 - 10€",
+            "11to50": "11 - 50€",
+            "51to100": "51 - 100€",
+            "over100": ">100€"
+        },
+        "searchCity": "Buscar ciudad...",
+        "eventType": {
+            "both": "Ambos"
+        },
+        "salaryRange": "Salario mínimo y máximo"
+    },
+    "footer": {
+        "nextPieceOfPuzzle": "LA SIGUIENTE PIEZA DEL PUZZLE",
+        "languages": "IDIOMAS",
+        "legal": "LEGAL",
+        "cookies": "Cookies",
+        "conditions": "Condiciones",
+        "privacy": "Privacidad",
+        "social": "SOCIAL",
+        "instagram": "Instagram",
+        "linkedin": "LinkedIn",
+        "brandKit": "BRAND-KIT"
+    },
+    "faqs": {
+        "search": {
+            "title": "Búsqueda",
+            "howToSearch": {
+                "title": "¿Cómo puedo hacer una búsqueda?",
+                "content": "Existen dos formas de realizar una búsqueda para poder obtener los resultados deseados:\n\nLa primera de ellas es a través del buscador integrado con IA, donde podrás buscar por cualquier información que tengas del resultado que desees obtener (nombre, descripción, funcionalidad, país, idioma, etc.)\n\nLa segunda de ellas es a través del test, donde podrás ajustar todos los filtros necesarios respondiendo algunas preguntas sobre las características que debe cumplir la solución/servicio/talento/evento que desees encontrar."
+            },
+            "whyAI": {
+                "title": "¿Por qué está integrada la IA en la plataforma?",
+                "content": "La IA se integró en el buscador por una razón muy sencilla, en todos los sitios web de comparación de solución era muy difícil alcanzar los resultados deseados si no tenías claro cuál era el nombre de la solución o podías dar una descripción muy detallada sobre sus funcionalidades.\nDe este modo hemos conseguido que no tengas que tener tanta claridad para poder hacer una búsqueda y que los resultados se ajusten a tus necesidades."
+            },
+            "howOrdered": {
+                "title": "¿Cómo se ordenan las búsquedas?",
+                "content": "El orden de resultados siempre irá basado en el NPS. En primer lugar se ordenarán por NPS de mayor a menor las que ya tengan NPS general; en segundo lugar irán de mayor a menor las que no tengan NPS general pero tengan más de 10 referencias; en tercer lugar aparecerán de mayor a menor NPS las que tengan menos de 10 referencias y, en último lugar, aparecerán el resto de soluciones y/o servicios que todavía no tengan referencias."
+            }
+        },
+        "references": {
+            "title": "Referencias",
+            "whatIs": {
+                "title": "¿Qué es una referencia?",
+                "content": "Una referencia es un \"business success story\" en formato de texto. El documento de referencia descubre una serie de datos de la experiencia del cliente que puede ser de gran utilidad para otros clientes potenciales que están valorando la implantación de una solución o la contratación de una empresa de servicios. Se pueden comprar dentro del perfil de la solución y/o de la empresa de servicios.\n\nEs una parte fundamental de la plataforma puesto que permite a los usuarios adquirir opiniones de clientes valorando aspectos positivos y negativos de la solución y/o empresa de servicios que podrían ayudar en la toma de decisiones."
+            },
+            "howToGive": {
+                "title": "¿Cómo puedo dar una referencia a una solución?",
+                "content": "Debe ser el propio administrador de la solución el que te mande el formulario de referencia para que puedas completarlo. En el caso de estar interesado puedes ponerte en contacto con la empresa de servicios o la solución y expresarles el interés de poner una referencia."
+            },
+            "howToRequest": {
+                "title": "¿Cómo puedo solicitar una referencia a uno de mis clientes?",
+                "content": "Dentro de tu corporate, en el apartado de referencias, existe la opción de solicitar reseña. Es importante destacar que un requisito fundamental para solicitar la reseña es que el cliente al que deseas solicitarla esté dado de alta en la plataforma como corporate."
+            },
+            "relationshipWithNPS": {
+                "title": "¿Qué relación tienen las referencias con el NPS?",
+                "content": "Las referencias son el medio por el que se mide el NPS de la solución y/o la empresa de servicios, lo que hace que al tener más referencias, tu solución/empresa de servicios tenga un mucho mejor posicionamiento por la política de orden de resultados de la plataforma."
+            },
+            "benefits": {
+                "title": "¿Qué beneficios tiene tener referencias en el perfil?",
+                "content": "Además de que es la única forma para conseguir un mejor posicionamiento en los resultados de búsqueda, también puede suponer un ahorro para quién las reciba, puesto que dentro la política de la plataforma se premia a las soluciones/empresas de servicios que más referencias tengan y más posibles clientes estén interesados en adquirir."
+            },
+            "whyPaid": {
+                "title": "¿Por qué las referencias son de pago?",
+                "content": "Las referencias son de pago porque se considera que aportan un valor diferencial que va mucho más allá de una reseña, por este motivo, los posibles clientes de una solución/empresa de servicios, deberán adquirir un paquete de \"spins\" a un precio muy competitivo para poder investigar acerca de la opinión y la experiencia de clientes actuales de la solución y/o de la empresa de servicios en cuestión."
+            }
+        },
+        "corporate": {
+            "title": "Corporate",
+            "whatInside": {
+                "title": "¿Qué encuentro dentro de mi pull de corporate?",
+                "content": "Aunque las funcionalidades son muchas, las podemos dividir en dos grupos muy diferenciados. En primer lugar, dentro del pull de la corporate se levantan los anuncios de: Soluciones, servicios y/o eventos. En segundo lugar, también podremos encontrar un pequeño software de gestión que incluye: Gestión de mi equipo, gestión de licencias y ofertas de empleo publicadas.\n\nTodas estas funcionalidades aparecerán habilitadas en el pull una vez dada de alta la corporate por parte del usuario al que la plataforma considerará \"superadmin\" de la cuenta de corporate."
+            },
+            "whyPaid": {
+                "title": "¿Por qué crear una corporate es de pago?",
+                "content": "El valor que ofrece la plataforma a las corporates requería de una tarifa anual para poder brindar un servicio de calidad. De todos modos, dentro del precio va incluido un anuncio de solución y/o empresa de servicios, además de la posibilidad de anunciar eventos de forma gratuita y hacer uso del software de gestión interno."
+            },
+            "whenToCreate": {
+                "title": "¿En qué casos debo crear una corporate?",
+                "content": "La corporate debe crearse en todos los casos en los que se pretenda poner un anuncio de cualquier tipo dentro del catálogo de la plataforma y, además, también en los casos en los que, aunque la empresa no quiera anunciar nada, esté interesada en acceder al software de gestión interno y poder adquirir referencias de otras soluciones y/o empresas de servicio."
+            },
+            "licenseManagement": {
+                "title": "¿Cómo funciona la gestión de licencias?",
+                "content": "La gestión de licencias es una funcionalidad que se puede encontrar dentro del pull de corporate y que permite introducir todas las licencias activas de nuestra compañía y tener actualizados datos como: nº de licencias, precio, fechas de vencimiento, métodos de pago, etc.\n\nToda esta información debe introducirse, por el momento, de forma manual por el \"superadmin\" de la corporate, pero genera un gran valor de cara a hacer un seguimiento de los gastos de la empresa en este ámbito."
+            },
+            "myTeam": {
+                "title": "¿Qué puedo hacer con la funcionalidad de \"Mi equipo\"?",
+                "content": "\"Mi equipo\" es otra de las funcionalidades que podemos encontrar en el pull de la corporate. Esta no se trata de una funcionalidad manual, sino que permite que todos los empleados de una empresa puedan darse de alta en digitalando y, una vez rellenados sus datos del \"digital profile\", su empresa pueda tener sus CV's actualizados en todo momento y valorar necesidades como: formaciones, nuevas incorporaciones, necesidades por proyectos, etc."
+            },
+            "whoHasAccess": {
+                "title": "¿Quién tiene acceso a la gestión de la corporate?",
+                "content": "La gestión del pull, una vez dada de alta la corporate, será, de forma automática, tarea del usuario que la haya dado de alta (\"superadmin\"). Este perfil puede, más tarde, crear un organigrama de permisos para otros usuarios de su empresa. Esta gestión podrá ser modificable en cualquier momento por cambios internos de la empresa, es decir, se podrán nombrar otros \"superadmin\" o modificar los permisos de cada usuario, incluso cortar todos los accesos a determinados perfiles por un cambio profesional u otra problemática de cualquier tipo.\n\nPor ejemplo, permitir al director de RRHH administrar la gestión de ofertas publicadas o la gestión de la funcionalidad de \"Mi equipo\". O permitir al financiero acceder a la gestión de \"Mis licencias\" para valorar los costes que suponen a la empresa."
+            }
+        }
+    },
+    "about": {
+        "title": "¿Quiénes somos?",
+        "whatIsDigitalando": {
+            "title": "¿Qué es digitalando?",
+            "content": "Cuando hablamos de digitalando, la palabra comunidad es obligatoria. Lo que nació con pinceladas de comparador de soluciones y empresas de servicios, se ha convertido inevitablemente en una gran plataforma que pone el foco en la digitalización integral de la empresa.\n\nWoooow, la digitalización integral… ¿A qué te refieres exactamente? Muy sencillo, en la imponente era digital (que muchas empresas no acaban de entender), existen necesidades tecnológicas de diferentes tipos, y no solo de búsqueda de soluciones, como intuyeron nuestros compis que llegaron años antes que nosotros. La digitalización integral incluye el asesoramiento para la implantación de cualquier solución, la oferta de todo tipo de servicio digital, la oferta de talento tecnológico (de forma permanente o por proyectos) y, por supuesto, los eventos más innovadores de interés público, ¡Todo en la misma plataforma!\n\nAlerta spoiler: Esta es la plataforma ;)"
+        },
+        "whyNow": {
+            "title": "¿Por qué nace en este panorama?",
+            "content": "El panorama actual es idóneo por muchas razones pero por una especialmente, ¿Cuándo suelen aparecer las ideas más rompedoras que llegan para quedarse? Pues desgraciadamente hemos tenido que esperar a uno de los cambios generacionales más relevantes en la escena profesional.\n\nLos nativos digitales empiezan a llegar a puestos directivos o a emprender sus propios proyectos, decididos a optimizar tiempos sin renunciar a los mejores resultados y de repente, en un entorno en el que todo está al alcance de un click se ven en la obligación de reuniones y procesos eternos con consultoras tecnológicas para tomar ciertas decisiones que acaban llegando tarde, poco contrastadas por el cliente y en absoluto neutrales entre todas las opciones existentes.\n\nHasta hoy."
+        },
+        "whoAreIvanAndMarcos": {
+            "title": "¿Quiénes son Iván y Marcos?",
+            "content": "Son muchas cosas. Son amigos, primero que nada. Amigos con una ambición compartida desde hace muchos años: Poder cambiar el rumbo del sector con el que siempre han compartido su trayectoria profesional.\n\nIván es sociólogo especializado en recursos humanos con experiencia en el desarrollo de negocio digital. Su trayectoria profesional se divide en dos partes muy marcadas: Una primera etapa dedicada a la selección de personal IT y una segunda muy relacionada con el mundo de las start-ups.\n\nMarcos es desarrollador, posibilidad por la que se decantó al acabar sus estudios de ingeniería informática y ADE. Su trayectoria profesional ha ido muy ligada al entorno start-up. Se trata de una persona con unas habilidades interpersonales equiparadas con su talento para el desarrollo.\n\nDesde luego, creo que cualquiera afirmaría que no se trata de personas al uso y que, en la mayoría de ocasiones, destacan por su forma de interpretar la realidad. Esta bomba de relojería no podía dejar indiferente a nadie y en fin, ¡Encantados de saludaros a todxs!"
+        }
+    }
 }

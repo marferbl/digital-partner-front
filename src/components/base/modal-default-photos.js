@@ -56,7 +56,7 @@ const ModalDefaultPhoto = ({ setLogo, children, defaultImage, onSave }) => {
             </div>
 
             {/* Modal */}
-            <Modal isOpen={isOpen} onClose={onClose} size={{base: 'xl', md: "2xl"}}>
+            <Modal isOpen={isOpen} onClose={onClose} size={{ base: 'xl', md: "2xl" }}>
                 <ModalOverlay />
                 <ModalContent bg="black" shadow={'xl'} borderWidth={1} borderColor='white' p={6} color='white'>
                     <ModalHeader as={Text}>
@@ -67,7 +67,7 @@ const ModalDefaultPhoto = ({ setLogo, children, defaultImage, onSave }) => {
                         <Box display={{ base: "block", md: "flex" }} gap={{ base: 4, lg: 24 }} >
                             {/* Left Column */}
                             <Flex>
-                                {selectedImage && <img src={selectedImage} alt="Selected" class="w-20 h-20" />}
+                                {selectedImage && <img src={selectedImage} alt="Selected" className="w-20 h-20" />}
                                 <Box mb={{ base: 4, md: 0 }}>
                                     <ImageUploadInput url={`image/upload`} setLogo={setLogo} hideLink />
                                 </Box>
@@ -89,7 +89,7 @@ const ModalDefaultPhoto = ({ setLogo, children, defaultImage, onSave }) => {
                                             overflow="hidden"
                                             onClick={() => handleImageClick(image)}
                                         >
-                                            <Image src={image} alt={`Default ${index + 1}`} height={14} width={14}  />
+                                            <Image src={image} alt={`Default ${index + 1}`} height={14} width={14} />
                                         </Box>
                                     ))}
                                 </Flex>

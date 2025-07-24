@@ -27,10 +27,14 @@ function CustomRadioButtonGroup({ options, onChange, defaultValue }) {
                         className="hidden"
                     />
                     <div
-                        className={`w-5 h-5 rounded-full border-2 border-gray-300 flex items-center justify-center mr-2 
-              ${selectedValue === option.value ? 'bg-gray-200' : 'bg-white'}`}
+                        className={`w-5 h-5 rounded-full border-2 border-gray-300 flex items-center justify-center mr-2 transition-all duration-300
+                        ${selectedValue === option.value
+                                ? 'bg-gradient-to-r from-blue-600 to-purple-600 border-blue-600 shadow-lg'
+                                : 'bg-white hover:border-gray-400'}`}
                     >
-
+                        {selectedValue === option.value && (
+                            <div className="w-2 h-2 bg-white rounded-full"></div>
+                        )}
                     </div>
                 </label>
             ))}

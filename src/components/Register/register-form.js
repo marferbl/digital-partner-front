@@ -19,11 +19,11 @@ import { AiFillEye } from "react-icons/ai";
 import { AiFillEyeInvisible } from "react-icons/ai";
 import { COLORS, DARK_COLORS } from "../../colors/colors";
 import { useNavigate } from "react-router-dom";
-import { useTranslation } from 'react-i18next'; // Importa useTranslation
+import { useTranslation } from 'react-i18next';
 import { IoIosArrowRoundForward } from 'react-icons/io';
 
 const RegisterForm = () => {
-  const { t } = useTranslation("global"); // Inicializa la traducción
+  const { t } = useTranslation("global");
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
@@ -89,13 +89,13 @@ const RegisterForm = () => {
   return (
     <Box py={0} rounded={"xl"} fontFamily='Roobert' fontWeight={'light'}>
       <Text fontSize="5xl" fontWeight="light" textAlign="center" color='white'>
-        {t("¡Bienvenido!")}
+        {t("register.welcome")}
       </Text>
       <Text fontWeight="light" textAlign="center" color={DARK_COLORS.neutral} mb={5}>
-        {t("Introduce tus datos para crear la cuenta")}
+        {t("register.enterDataToCreate")}
       </Text>
       <FormControl my={5}>
-        <FormLabel color='white' htmlFor="name">{t("nameLabel")}</FormLabel> {/* Traducción del texto */}
+        <FormLabel color='white' htmlFor="name">{t("nameLabel")}</FormLabel>
         <Input
           id="name"
           placeholder={t("namePlaceholder")}
@@ -104,17 +104,17 @@ const RegisterForm = () => {
         />
       </FormControl>
       <FormControl my={5}>
-        <FormLabel color='white' htmlFor="email">{t("Email")}</FormLabel> {/* Traducción del texto */}
+        <FormLabel color='white' htmlFor="email">{t("emailLabel")}</FormLabel>
         <Input
           id="email"
-          placeholder={t("nombre@digitalando.com")}
+          placeholder={t("register.emailPlaceholder")}
           onChange={(e) => setEmail(e.target.value)}
           value={email}
         />
       </FormControl>
 
       <FormControl my={5}>
-        <FormLabel color='white' htmlFor="password">{t("passwordLabel")}</FormLabel> {/* Traducción del texto */}
+        <FormLabel color='white' htmlFor="password">{t("passwordLabel")}</FormLabel>
         <InputGroup size="md">
           <Input
             id="password"
@@ -146,7 +146,7 @@ const RegisterForm = () => {
         color={'black'}
         onClick={handleSubmit}
       >
-        {t("registerButton")} {/* Traducción del botón */}
+        {t("registerButton")}
         <IoIosArrowRoundForward size={30} />
       </Button>
 
@@ -158,7 +158,7 @@ const RegisterForm = () => {
 
       {emptyFieldMessage && (
         <Text my={2} color={"red"}>
-          {t("emptyFieldMessage")} {/* Traducción del mensaje */}
+          {t("emptyFieldMessage")}
         </Text>
       )}
     </Box>

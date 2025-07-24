@@ -31,7 +31,7 @@ export default function Hero() {
         </div>
 
 
-        <div className="relative z-10 flex flex-col justify-center items-center h-full text-center mt-20 md:mt">
+        <div className="relative z-10 flex flex-col justify-center items-center h-full text-center mt-20 md:mt-0">
           {/* <SoftwareSearcherInput /> */}
 
           <div className='flex flex-col items-center justify-center mb-8'>
@@ -47,7 +47,7 @@ export default function Hero() {
                 <div className="w-10 h-10 md:w-16 md:h-16 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-all duration-300">
                   <FiTool className="w-5 h-5 md:w-8 md:h-8 text-white" />
                 </div>
-                <h3 className="text-sm md:text-xl font-semibold text-white">Soluciones</h3>
+                <h3 className="text-sm md:text-xl font-semibold text-white">{t('solutions')}</h3>
               </div>
             </div>
 
@@ -57,7 +57,7 @@ export default function Hero() {
                 <div className="w-10 h-10 md:w-16 md:h-16 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-all duration-300">
                   <FiRepeat className="w-5 h-5 md:w-8 md:h-8 text-white" />
                 </div>
-                <h3 className="text-sm md:text-xl font-semibold text-white">Servicios</h3>
+                <h3 className="text-sm md:text-xl font-semibold text-white">{t('services')}</h3>
               </div>
             </div>
 
@@ -67,7 +67,7 @@ export default function Hero() {
                 <div className="w-10 h-10 md:w-16 md:h-16 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-all duration-300">
                   <FiCalendar className="w-5 h-5 md:w-8 md:h-8 text-white" />
                 </div>
-                <h3 className="text-sm md:text-xl font-semibold text-white">Eventos</h3>
+                <h3 className="text-sm md:text-xl font-semibold text-white">{t('events')}</h3>
               </div>
             </div>
           </div>

@@ -57,7 +57,7 @@ export const SolutionDetailPage = () => {
         // { label: 'Descargar manuales', component: <ManualComponent solution={solution} isDemo={isDemoSolution} /> },
         { label: 'Referencias', component: <ReferencesComponent isDemo={isDemoSolution} />, icon: FaStar },
         { label: 'Obtener certificaciones', component: <CertificationComponent solution={solution} isDemo={isDemoSolution} />, icon: FaCertificate },
-        { label: 'Planes', component: <PlansComponent entity={solution} isDemo={isDemoSolution} />, icon: FaCreditCard },
+        { label: 'Adquirir', component: <PlansComponent entity={solution} isDemo={isDemoSolution} />, icon: FaCreditCard },
 
     ];
 

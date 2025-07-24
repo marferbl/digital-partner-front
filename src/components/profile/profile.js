@@ -79,7 +79,7 @@ export const Profile = () => {
       <Box borderWidth={1} rounded='2xl' >
         {showEdit ? <ProfileEdit me={me} refreshData={getMe} /> : <ProfileUser me={me} toggleShowEdit={toggleShowEdit} />}ç
       </Box>
-      <div class="flex items-center justify-center">
+      <div className="flex items-center justify-center">
         <video src={'/videos/logo-symbol.mp4'} autoPlay loop muted style={{ width: '600px', height: '600px' }} />
       </div>
     </Box >
