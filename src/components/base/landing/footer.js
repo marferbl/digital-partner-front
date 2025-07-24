@@ -8,7 +8,8 @@ import {
   Text,
   useColorModeValue,
   Icon,
-  Flex
+  Flex,
+  Select
 } from "@chakra-ui/react";
 import { FaInstagram, FaLinkedin } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -34,7 +35,8 @@ const NavLink = ({ label, link }) => {
 };
 
 export default function FooterLanding() {
-  const { t } = useTranslation("global");
+  const { t, i18n } = useTranslation("global");
+
   return (
     <Flex
       justify={"center"}
@@ -73,7 +75,7 @@ export default function FooterLanding() {
           {/* First Column */}
           <GridItem textAlign="left" w='full' fontWeight={'light'}>
             <Stack spacing={6}>
-              <Text fontSize={"sm"}>© 2024 digitalando. All rights reserved</Text>
+              <Text fontSize={"sm"}>© 2025 digitalando. All rights reserved</Text>
 
               <Text fontSize={{ base: "2xl", md: "5xl" }} letterSpacing={2}>
                 THE NEXT PIECE OF THE PUZZLE
@@ -84,7 +86,17 @@ export default function FooterLanding() {
           {/* Second Column */}
           <GridItem textAlign="center">
             <Stack spacing={6}>
-              <Text fontSize="lg">IDIOMA: Español / Ingles</Text>
+              <Text
+                fontSize="lg"
+                cursor="pointer"
+              >
+                IDIOMAS: <Text as='span' _hover={{ textDecor: "underline" }}
+                  onClick={() => i18n.changeLanguage('es')}
+                >{t('spanish')}</Text> /
+                <Text as='span' _hover={{ textDecor: "underline" }}
+                  onClick={() => i18n.changeLanguage('en')}>{t('english')}</Text>
+
+              </Text>
             </Stack>
           </GridItem>
 
