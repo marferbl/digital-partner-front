@@ -25,6 +25,9 @@ export default function Hero() {
             autoPlay
             loop
             muted
+            playsInline
+            disablePictureInPicture
+            controlsList="nodownload nofullscreen noremoteplayback"
             className="object-cover w-full h-full opacity-100"
           />
           <div className="absolute inset-0 bg-black opacity-50"></div>

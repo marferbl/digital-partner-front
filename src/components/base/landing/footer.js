@@ -54,6 +54,9 @@ export default function FooterLanding() {
         autoPlay
         loop
         muted
+        playsInline
+        disablePictureInPicture
+        controlsList="nodownload nofullscreen noremoteplayback"
         style={{
           position: "absolute",
           top: 0,
