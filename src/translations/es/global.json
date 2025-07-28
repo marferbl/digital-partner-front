@@ -67,7 +67,7 @@
     "comingSoon": "Próximamente",
     "whoWeAre": "¿Quiénes somos?",
     "frequentlyAskedQuestions": "Preguntas frecuentes",
-    "copyright": "© 2024 digitalando. All rights reserved",
+    "copyright": "© 2025 digitalando. All rights reserved",
     "spanish": "Español",
     "english": "Inglés",
     "changeToEnglish": "Cambiar a Inglés",
@@ -200,7 +200,7 @@
         "do": "DO?",
         "reason": "BUENO, PORQUE MOLA..."
     },
-    "whatYouNeed": "¿Qué necesitas?",
+    "whatYouNeed": "¿Qué te gustaría ver primero?",
     "advanced": "Avanzado",
     "native": "Nativo",
     "basic": "Básico",
@@ -317,9 +317,9 @@
     "monthly": "Mensual",
     "quarterly": "Trimestral",
     "yearly": "Anual",
-    "alreadyHaveThem": "¿Ah, ¿que ya los tienes?",
-    "dontMissOpportunity": "No pierdas la oportunidad de anunciarte en la comunidad digital más completa",
-    "createAdButton": "Da de alta tu anuncio",
+    "alreadyHaveThem": "¿Cómo? ¿Todavía no estás en Digitalando?",
+    "dontMissOpportunity": "No pierdas la oportunidad de formar parte de la comunidad digital más completa y que todo el mundo te conozca",
+    "createAdButton": "Crea tu primer anuncio",
     "filters": {
         "partner": {
             "implant": "Implantador",

@@ -32,7 +32,7 @@ export default function InitialPage() {
           className={`px-4 py-2 font-medium ${!showLogin ? "text-gridyellow" : "text-gray-200"} focus:outline-none`}
           onClick={() => setShowLogin(false)}
         >
-          {t('register')}
+          {t('registerKey')}
         </button>
         <button
           className={`px-4 py-2 font-medium ${showLogin ? "text-gridyellow" : "text-gray-200"} focus:outline-none`}

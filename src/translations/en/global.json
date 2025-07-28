@@ -65,7 +65,7 @@
     "comingSoon": "Coming soon",
     "whoWeAre": "Who are we?",
     "frequentlyAskedQuestions": "Frequently Asked Questions",
-    "copyright": "© 2024 digitalando. All rights reserved",
+    "copyright": "© 2025 digitalando. All rights reserved",
     "spanish": "Spanish",
     "english": "English",
     "changeToEnglish": "Change to English",
@@ -303,10 +303,10 @@
     "monthly": "Monthly",
     "quarterly": "Quarterly",
     "yearly": "Yearly",
-    "whatYouNeed": "What do you need?",
-    "alreadyHaveThem": "Do you already have them?",
-    "dontMissOpportunity": "Don't miss the opportunity to advertise in the most complete digital community",
-    "createAdButton": "Create your ad",
+    "whatYouNeed": "What would you like to check?",
+    "alreadyHaveThem": "What? You are not in Digitalando yet?",
+    "dontMissOpportunity": "Don't miss the opportunity to be part of the most complete digital community and that everyone knows you",
+    "createAdButton": "Create your first ad",
     "filters": {
         "partner": {
             "implant": "Implementer",
