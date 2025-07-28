@@ -49,11 +49,11 @@ export default function Navbar() {
       key: 'explore'
     },
     {
-      label: 'myPanel',
+      label: !isLoggedIn ? 'loginKey' : 'myPanel',
       link: '/start',
       key: 'portal',
-      hide: !isLoggedIn
     },
+
   ];
 
   const LinksMobile = [
@@ -75,11 +75,11 @@ export default function Navbar() {
 
   return (
     <>
-      <Box bg='black' px={41} position='sticky' top={0} zIndex={99}>
+      <Box bg='black' pr={41} pl={{ base: 10, md: 41 }} position='sticky' top={0} zIndex={99}>
         <Flex h={'80px'} alignItems={"center"} justifyContent={"space-between"}>
-          <Box display={{ base: 'none', md: 'block' }} w={200}>
+          <Box w={{ base: 110, md: 180 }}>
             <Link to="/">
-              <img src="/logos/navbar.png" className="h-16 w-16" alt="Digitalando navbar logo" />
+              <img src="/logos/logo-full.png" className="h-4 md:h-6 w-full" alt="Digitalando navbar logo" />
             </Link>
           </Box>
           <Box>
@@ -122,7 +122,7 @@ export default function Navbar() {
                 color={'black'}
               >
                 <Box p={3} w={120} _hover={{ transform: "scale(1.02)" }} color='white' rounded={'lg'}>
-                  {!isLoggedIn ? <Link key={'/start'} to={{ pathname: '/start' }} >{t('loginKey')}</Link> : ''}
+                  <Link key={'/start'} to={{ pathname: '/start' }} >{t(isLoggedIn ? 'myPanel' : 'loginKey')}</Link>
                 </Box>
               </HStack>
               <Flex gap={3} pr={3}>
