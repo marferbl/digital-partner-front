@@ -9,8 +9,12 @@ import ProfileActionsDropdown from "../components/profile/profile-actions";
 import { FiMoreHorizontal } from "react-icons/fi";
 import ModalDefaultPhoto from "../components/base/modal-default-photos";
 import { FiEdit } from "react-icons/fi";
+import { useTranslation } from "react-i18next";
 
 const PrivateRoute = () => {
+
+  const { t } = useTranslation("global");
+
   const { isLoggedIn, isLoading, setMe, me } = useContext(UserContext);
   const [routeInHidden, setRouteInHidden] = useState(false);
   const ROUTES_EXCEPTIONS = [
@@ -60,10 +64,9 @@ const PrivateRoute = () => {
     <div className="bg-black pb-8" >
       <Navbar />
       {!routeInHidden && <div className="px-4 md:px-28">
-        <h2 className="text-6xl md:text-10xl lg:text-12xl font-semibold text-white text-center ">MI PANEL</h2>
-        <img src='/profile-banners/profile-banner-1.png' className='w-full h-200' />
+        <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white text-center border-b border-white">{t('profile-user.title')}</h2>
         <div className="flex justify-between items-center">
-          <div className="flex items-center -mt-4">
+          <div className="flex items-center mt-4">
             <ModalDefaultPhoto defaultImage={me?.avatar} setLogo={setLogo} onSave={onSave}>
               <div className="relative w-20 h-20 md:w-40 md:h-40  ml-0 md:ml-10">
                 {/* Image */}
