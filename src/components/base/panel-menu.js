@@ -103,7 +103,7 @@ export const HorizontalMenu = ({ onClose, isSidebarOpen, setIsSidebarOpen, ...re
   const userRoutes = [
     { name: "Perfil", icon: FiUser, to: "profile", key: 'profile' },
     { name: "Digital Profile", icon: FiTrendingUp, to: "digital-profile", key: 'digital-profile', soon: false },
-    { name: "Empleo", icon: FiGrid, to: "dashboard", soon: true },
+    //{ name: "Empleo", icon: FiGrid, to: "dashboard", soon: true },
     // { name: "Gurús", icon: FiStar, to: "dashboard", soon: true },
   ];
 
@@ -111,11 +111,11 @@ export const HorizontalMenu = ({ onClose, isSidebarOpen, setIsSidebarOpen, ...re
     { name: "Mi Corporate", icon: FiDatabase, to: "corporate/profile", application: 'corporate', key: 'profile' },
     { name: "Soluciones", icon: FiTool, to: "corporate/solutions", application: 'solutions', key: 'solutions' },
     { name: "Servicios", icon: FiRepeat, to: "corporate/service", application: 'services', key: 'service' },
-    { name: "Referencias", icon: FiRepeat, to: "corporate/references", application: 'solutions', key: 'references' },
     { name: "Eventos", icon: FiCalendar, to: "corporate/events", application: 'events', key: 'events' },
+    { name: "Referencias", icon: FiRepeat, to: "corporate/references", application: 'solutions', key: 'references' },
     { name: "Equipo", icon: FiUsers, soon: true, application: 'teamManagement' },
     { name: "Licencias", icon: FiBookOpen, soon: true, application: 'licenses' },
-    { name: "Selección", icon: FiSearch, soon: true, to: 'corporate/selection', application: 'recruitment', key: 'selection' },
+    //{ name: "Selección", icon: FiSearch, soon: true, to: 'corporate/selection', application: 'recruitment', key: 'selection' },
   ];
 
   const adminRoutesFiltered = adminRoutes.filter((route) => filteredApplications.includes(route.application) || route.application === 'corporate');
@@ -199,6 +199,3 @@ const MenuButton = ({ icon, children, to, soon, keyLabel, selectedKey, setSelect
     </Link>
   );
 };
-
-
-
