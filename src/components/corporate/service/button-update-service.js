@@ -20,29 +20,26 @@ import { createCorporate } from '../../../services/corporate';
 import PartnerModalCreate from './create-service/partner';
 import { createService, updateService } from '../../../services/service';
 import { ImageUploadInput } from '../../base/image-upload';
-
-
-
-
+import { ImageGalleryUpload } from '../../base/image-gallery-upload';
 
 export const ButtonUpdateService = ({ refreshServices, item, children, serviceTypeDefault }) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
 
+    const [currentStep, setCurrentStep] = useState(1);
     const [serviceType, setServiceType] = useState('');
     const [config, setConfig] = useState({});
     const [logo, setLogo] = useState('');
-
+    const [galleryImages, setGalleryImages] = useState([]);
 
     useEffect(() => {
         setConfig(item);
-        setLogo(item?.logo)
+        setLogo(item?.logo);
+        setGalleryImages(item?.gallery || []);
     }, [item]);
-
-
-
 
     const closeModal = () => {
         onClose();
+        setCurrentStep(1);
     }
 
     const openModal = (type) => {
@@ -54,16 +51,27 @@ export const ButtonUpdateService = ({ refreshServices, item, children, serviceTy
         const body = {
             ...config,
             serviceType: serviceTypeDefault || serviceType,
-            logo: logo
+            logo: logo,
+            gallery: galleryImages
         }
         updateService(item._id, body).then((res) => {
             refreshServices();
             onClose();
-        }
-        ).catch((err) => {
+        }).catch((err) => {
             console.log(err);
+        });
+    };
+
+    const handleNextStep = () => {
+        if (currentStep < 2) {
+            setCurrentStep(currentStep + 1);
         }
-        );
+    };
+
+    const handlePrevStep = () => {
+        if (currentStep > 1) {
+            setCurrentStep(currentStep - 1);
+        }
     };
 
     return (
@@ -78,29 +86,43 @@ export const ButtonUpdateService = ({ refreshServices, item, children, serviceTy
                     <MenuItem onClick={() => { openModal('helps') }} _hover={{ bg: 'gray.100' }} h={'full'} fontSize={14} textAlign={'center'} width={'full'} fontWeight={'bold'}>Ayudas</MenuItem>
                     <MenuItem onClick={() => { openModal('training') }} _hover={{ bg: 'gray.100' }} h={'full'} fontSize={14} textAlign={'center'} width={'full'} fontWeight={'bold'}>Training</MenuItem>
                     <MenuItem onClick={() => { openModal('growth') }} _hover={{ bg: 'gray.100' }} h={'full'} fontSize={14} textAlign={'center'} width={'full'} fontWeight={'bold'}>Growth</MenuItem>
-
                 </MenuList>
             </Menu>
-            <Modal isOpen={isOpen} onClose={onClose} size='xl'>
+            <Modal isOpen={isOpen} onClose={closeModal} size='xl'>
                 <ModalOverlay />
                 <ModalContent>
                     <ModalHeader>Editar Servicio</ModalHeader>
                     <ModalCloseButton onClick={closeModal} />
                     <ModalBody py={5}>
-                        <Center w={'full'} flexDir={'column'} gap={5}>
-                            {logo && <Image src={logo} alt="Logo" w={32} h={32} rounded='lg' objectFit='cover' />}
-                            <ImageUploadInput url={`service/uploadImage/${item?._id}`} big setLogo={setLogo} />
-                        </Center>
-                        <PartnerModalCreate initialConfig={item} type={serviceType} onChangeConfig={(value) => {
-                            setConfig(value)
-                        }} />
+                        {currentStep === 1 && (
+                            <Box>
+                                <Center w={'full'} flexDir={'column'} gap={5}>
+                                    {logo && <Image src={logo} alt="Logo" w={32} h={32} rounded='lg' objectFit='cover' />}
+                                    <ImageUploadInput url={`service/uploadImage/${item?._id}`} big setLogo={setLogo} />
+                                </Center>
+                                <PartnerModalCreate initialConfig={item} type={serviceType} onChangeConfig={(value) => {
+                                    setConfig(value)
+                                }} />
+                            </Box>
+                        )}
+
+                        {currentStep === 2 && (
+                            <Box>
+                                <Text fontWeight="bold" mb={4}>Galería de Imágenes</Text>
+                                <ImageGalleryUpload url={`image/upload`} setGalleryImages={setGalleryImages} defaultUrls={galleryImages} />
+                            </Box>
+                        )}
                     </ModalBody>
 
                     <ModalFooter>
-                        <Button variant='ghost' mr={3} onClick={closeModal}>
-                            cancelar
-                        </Button>
-                        <Button colorScheme='gray' onClick={create}>Confirmar</Button>
+                        {currentStep > 1 && (
+                            <Button variant='ghost' mr={3} onClick={handlePrevStep}>Anterior</Button>
+                        )}
+                        {currentStep === 1 ? (
+                            <Button onClick={handleNextStep} colorScheme='gray'>Siguiente</Button>
+                        ) : (
+                            <Button colorScheme='gray' onClick={create}>Confirmar</Button>
+                        )}
                     </ModalFooter>
                 </ModalContent>
             </Modal>

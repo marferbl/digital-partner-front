@@ -14,6 +14,7 @@ import { PlansComponent } from "../solutions/solution-detail/plans-component";
 import { ReferencesComponent } from "../solutions/solution-detail/references-component";
 import CustomButton from "../../base/CustomButton";
 import { FaInfoCircle, FaCreditCard, FaStar, FaBuilding, FaLanguage, FaGlobe, FaLink } from 'react-icons/fa';
+import FeedGallery from "../../base/FeedGallery";
 
 const ServiceInfoComponent = ({ service }) => {
     const { t } = useTranslation("global");
@@ -161,6 +162,12 @@ const ServiceInfoComponent = ({ service }) => {
                         </Box>
                     )}
                 </VStack>
+            )}
+
+            {service && service?.gallery && service.gallery.length > 0 && (
+                <Box mt={6}>
+                    <FeedGallery images={service.gallery} />
+                </Box>
             )}
 
             {!isDigitalando() && (

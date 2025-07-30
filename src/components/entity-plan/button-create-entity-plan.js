@@ -18,6 +18,8 @@ import {
     Select,
     FormControl,
     FormLabel,
+    Checkbox,
+    Flex,
 } from '@chakra-ui/react';
 import { createEntityPlan } from '../../services/entity-plan';
 import { DARK_COLORS } from '../../colors/colors';
@@ -29,9 +31,11 @@ export const ButtonCreateEntityPlan = ({ refreshEntityPlans, entity }) => {
     // State for form fields
     const [name, setName] = useState('');
     const [price, setPrice] = useState('');
+    const [endPrice, setEndPrice] = useState('');
     const [period, setPeriod] = useState('');
     const [description, setDescription] = useState('');
     const [color, setColor] = useState('bg-red-500');
+    const [hasPriceRange, setHasPriceRange] = useState(false);
 
 
     // Handle form submission
@@ -47,6 +51,11 @@ export const ButtonCreateEntityPlan = ({ refreshEntityPlans, entity }) => {
                 itemId: entity._id
             }
         };
+
+        // Only add endPrice if price range is enabled and endPrice has a value
+        if (hasPriceRange && endPrice) {
+            config.endPrice = Number(endPrice);
+        }
 
         try {
             await createEntityPlan(config);
@@ -65,13 +74,27 @@ export const ButtonCreateEntityPlan = ({ refreshEntityPlans, entity }) => {
     const resetForm = () => {
         setName('');
         setPrice('');
+        setEndPrice('');
         setPeriod('');
         setDescription('');
         setColor('');
+        setHasPriceRange(false);
     };
 
     const formCompleted = () => {
-        return !!name && !!price && !!period && !!color;
+        const basicFields = !!name && !!price && !!period && !!color;
+        // If price range is enabled, endPrice must also be filled
+        if (hasPriceRange) {
+            return basicFields && !!endPrice;
+        }
+        return basicFields;
+    };
+
+    const handlePriceRangeChange = (e) => {
+        setHasPriceRange(e.target.checked);
+        if (!e.target.checked) {
+            setEndPrice(''); // Clear endPrice when disabling price range
+        }
     };
 
     return (
@@ -103,13 +126,44 @@ export const ButtonCreateEntityPlan = ({ refreshEntityPlans, entity }) => {
                         </FormControl>
 
                         <FormControl isRequired mb={4}>
-                            <FormLabel fontSize='12'>Precio</FormLabel>
-                            <NumberInput
-                                value={price}
-                                onChange={(valueString) => setPrice(valueString)}
+                            <FormLabel fontSize='12'>
+                                {hasPriceRange ? 'Precio inicial' : 'Precio'}
+                            </FormLabel>
+                            {hasPriceRange ? (
+                                <Flex gap={3}>
+                                    <NumberInput
+                                        value={price}
+                                        onChange={(valueString) => setPrice(valueString)}
+                                        flex={1}
+                                    >
+                                        <NumberInputField placeholder="Precio inicial" />
+                                    </NumberInput>
+                                    <NumberInput
+                                        value={endPrice}
+                                        onChange={(valueString) => setEndPrice(valueString)}
+                                        flex={1}
+                                    >
+                                        <NumberInputField placeholder="Precio final" />
+                                    </NumberInput>
+                                </Flex>
+                            ) : (
+                                <NumberInput
+                                    value={price}
+                                    onChange={(valueString) => setPrice(valueString)}
+                                >
+                                    <NumberInputField placeholder="Precio" />
+                                </NumberInput>
+                            )}
+                        </FormControl>
+
+                        <FormControl mb={4}>
+                            <Checkbox
+                                isChecked={hasPriceRange}
+                                onChange={handlePriceRangeChange}
+                                colorScheme="gray"
                             >
-                                <NumberInputField placeholder="Precio" />
-                            </NumberInput>
+                                <Text fontSize='12'>Añadir horquilla de precio</Text>
+                            </Checkbox>
                         </FormControl>
 
                         <FormControl isRequired mb={4}>
@@ -122,6 +176,7 @@ export const ButtonCreateEntityPlan = ({ refreshEntityPlans, entity }) => {
                                 <option value="monthly">Mensual</option>
                                 <option value="quarterly">Trimestral</option>
                                 <option value="yearly">Anual</option>
+                                <option value="indeterminate">Indeterminado</option>
                             </Select>
                         </FormControl>
 

@@ -20,6 +20,7 @@ import { createCorporate } from '../../../services/corporate';
 import PartnerModalCreate from './create-service/partner';
 import { createService } from '../../../services/service';
 import { ImageUploadInput } from '../../base/image-upload';
+import { ImageGalleryUpload } from '../../base/image-gallery-upload';
 import { PaymentForm } from '../../stripe';
 import { UserContext } from '../../../context/userContext';
 
@@ -31,6 +32,7 @@ export const ButtonCreateService = ({ refreshServices }) => {
     const [serviceType, setServiceType] = useState('');
     const [config, setConfig] = useState({});
     const [logo, setLogo] = useState('');
+    const [galleryImages, setGalleryImages] = useState([]);
     const [paymentCompleted, setPaymentCompleted] = useState(false);
 
     const closeModal = () => {
@@ -39,6 +41,7 @@ export const ButtonCreateService = ({ refreshServices }) => {
         setServiceType('');
         setConfig({});
         setLogo('');
+        setGalleryImages([]);
         setPaymentCompleted(false);
     }
 
@@ -49,7 +52,12 @@ export const ButtonCreateService = ({ refreshServices }) => {
 
     const create = async () => {
         try {
-            await createService({ ...config, serviceType: serviceType, logo: logo });
+            await createService({
+                ...config,
+                serviceType: serviceType,
+                logo: logo,
+                gallery: galleryImages
+            });
             refreshServices();
             closeModal();
         } catch (err) {
@@ -58,7 +66,7 @@ export const ButtonCreateService = ({ refreshServices }) => {
     };
 
     const handleNextStep = () => {
-        if (currentStep < 2) {
+        if (currentStep < 3) {
             setCurrentStep(currentStep + 1);
         }
     };
@@ -107,6 +115,13 @@ export const ButtonCreateService = ({ refreshServices }) => {
 
                         {currentStep === 2 && (
                             <Box>
+                                <Text fontWeight="bold" mb={4}>Galería de Imágenes</Text>
+                                <ImageGalleryUpload url={`image/upload`} setGalleryImages={setGalleryImages} />
+                            </Box>
+                        )}
+
+                        {currentStep === 3 && (
+                            <Box>
                                 <Text fontWeight="bold" mb={4}>Pago del Servicio</Text>
                                 <PaymentForm onPaymentSuccess={handlePaymentSuccess} />
                             </Box>
@@ -117,8 +132,12 @@ export const ButtonCreateService = ({ refreshServices }) => {
                         {currentStep > 1 && (
                             <Button variant='ghost' mr={3} onClick={handlePrevStep}>Anterior</Button>
                         )}
-                        {currentStep === 1 && (
+                        {currentStep === 1 ? (
                             <Button onClick={handleNextStep} disabled={!config.title || !config.description || !config.languages || !config.countries || !config.web} colorScheme='gray'>Siguiente</Button>
+                        ) : currentStep === 2 ? (
+                            <Button onClick={handleNextStep} colorScheme='gray'>Siguiente</Button>
+                        ) : (
+                            <></>
                         )}
                     </ModalFooter>
                 </ModalContent>

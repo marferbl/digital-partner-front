@@ -343,7 +343,10 @@
         "eventType": {
             "both": "Ambos"
         },
-        "salaryRange": "Salario mínimo y máximo"
+        "salaryRange": "Salario mínimo y máximo",
+        "dateRange": "Rango de fechas",
+        "startDate": "Fecha inicio",
+        "endDate": "Fecha fin"
     },
     "footer": {
         "nextPieceOfPuzzle": "LA SIGUIENTE PIEZA DEL PUZZLE",

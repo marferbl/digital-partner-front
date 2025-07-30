@@ -8,6 +8,8 @@ import CustomRadioButtonGroup from '../base/radio-group';
 import { useTranslation } from 'react-i18next';
 import SearchSelectPositions from '../base/search-select-positions';
 import SearchSelectCities from '../base/search-select-cities';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
     const { t } = useTranslation("global");
 
@@ -32,10 +34,13 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
         setFilterValues({});
         setFilterValues({ lineType: currentLineType });
         setTermLabel('');
+        // Clear date filters as well
+        handleToggle('from', null);
+        handleToggle('to', null);
         //handleToggle('lineType', 'solutions')
     };
 
-    const hasFilters = Object.values(filterValues).some((value) => value !== '');
+    const hasFilters = Object.values(filterValues).some((value) => value !== '' && value !== null);
 
     const OPTIONS_TYPE = [
         { value: 'solutions', label: t('solutions') },
@@ -71,6 +76,11 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
 
     const handleCityChange = (city) => {
         handleToggle('city', city);
+    };
+
+    const handleDateChange = (startDate, endDate) => {
+        handleToggle('from', startDate ? startDate.toISOString() : null);
+        handleToggle('to', endDate ? endDate.toISOString() : null);
     };
 
 
@@ -232,6 +242,35 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
                                 onChange={(value) => handleToggle('eventType', value)}
                                 value={filterValues.eventType}
                             />
+                        </div>
+
+                        <div className="min-w-[140px] pt-1">
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                                {t('filters.dateRange', 'Rango de fechas')}
+                            </label>
+                            <div className="grid grid-cols-2 gap-2">
+                                <DatePicker
+                                    selected={filterValues.from ? new Date(filterValues.from) : null}
+                                    onChange={(date) => handleDateChange(date, filterValues.to ? new Date(filterValues.to) : null)}
+                                    selectsStart
+                                    startDate={filterValues.from ? new Date(filterValues.from) : null}
+                                    endDate={filterValues.to ? new Date(filterValues.to) : null}
+                                    dateFormat="dd/MM/yyyy"
+                                    placeholderText={t('filters.startDate', 'Fecha inicio')}
+                                    className="w-full text-xs px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                />
+                                <DatePicker
+                                    selected={filterValues.to ? new Date(filterValues.to) : null}
+                                    onChange={(date) => handleDateChange(filterValues.from ? new Date(filterValues.from) : null, date)}
+                                    selectsEnd
+                                    startDate={filterValues.from ? new Date(filterValues.from) : null}
+                                    endDate={filterValues.to ? new Date(filterValues.to) : null}
+                                    minDate={filterValues.from ? new Date(filterValues.from) : null}
+                                    dateFormat="dd/MM/yyyy"
+                                    placeholderText={t('filters.endDate', 'Fecha fin')}
+                                    className="w-full text-xs px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                />
+                            </div>
                         </div>
                     </div>
                 )}

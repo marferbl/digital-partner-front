@@ -55,7 +55,7 @@ export const PlansComponent = ({ entity }) => {
                                             <Text fontSize="md" color="gray.600">{plan.description}</Text>
                                             <Flex align={'baseline'} gap={3}>
                                                 <Badge colorScheme="green" fontSize="lg" px={3} py={1} borderRadius="full">
-                                                    ${plan.price}
+                                                    {plan.endPrice ? `$${plan.price} - $${plan.endPrice}` : `$${plan.price}`}
                                                 </Badge>
                                                 <Badge colorScheme='gray' fontSize="sm" px={3} py={1} borderRadius="full">
                                                     {t(plan.period)}
