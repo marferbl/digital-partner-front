@@ -6,6 +6,7 @@ import { ButtonSendReference } from '../../../components/references/buttonsendre
 import { useNavigate } from 'react-router-dom'
 import SearchSelectSolutions from '../../../components/base/search-select-solutions'
 import RadarChart from '../../../components/statistics/radar-chart'
+import { useTranslation } from 'react-i18next'
 
 const ReferenceAdmin = () => {
 
@@ -51,6 +52,8 @@ const ReferenceAdmin = () => {
         navigate(`/private/reference-answer`, { state: { reference } });
     }
 
+    const { t } = useTranslation("global")
+
     return (
         <div className='pb-20'>
             <div className="flex justify-center text-white text-2xl font-bold">
@@ -60,12 +63,12 @@ const ReferenceAdmin = () => {
                 <div className="flex justify-end pb-8">
                     <ButtonSendReference spreadFullObject={(sol) => setSolution(sol)} />
                 </div>
-                <p className='text-8xl text-white font-light text-center w-full mt-12'>MIS REFERENCIAS</p>
+                <p className='text-4xl text-white font-medium text-center w-full mt-12 border-b border-gray-500'>{t('profileUser.references.myReferences')}</p>
                 <div className="w-full flex my-4 items-center text-white p-4 border-b-1 border-neutralblack gap-6">
-                    {solution?.logo ? <img src={solution ? solution.logo : ''} alt="" className='w-28 h-28 bg-white rounded-xl' /> : 'Filtra por solución'}
+                    {solution?.logo ? <img src={solution ? solution.logo : ''} alt="" className='w-28 h-28 bg-white rounded-xl' /> : t('profileUser.references.filterBySolution')}
                     <span className='text-6xl font-light'>{solution?.name}</span>
                     <div className='min-w-78'>
-                        <SearchSelectSolutions corporate placeholder='Seleccionar solución' onChange={(solution) => { setSolutionSelected(solution) }} emitFullObject getFullObject={(solution) => setSolution(solution)} />
+                        <SearchSelectSolutions corporate placeholder={t('profileUser.references.selectPlaceholderSolution')} onChange={(solution) => { setSolutionSelected(solution) }} emitFullObject getFullObject={(solution) => setSolution(solution)} theme={'dark'} />
                     </div>
                     {solution && <span className='cursor-pointer hover:bg-gray-700 p-3 rounded-xl' onClick={() => { setSolution(null) }}>Limpiar filtro</span>}
                 </div>
@@ -74,8 +77,8 @@ const ReferenceAdmin = () => {
                     <div key={reference._id} className="w-full flex my-4 items-center justify-between text-white p-4 border-b-1 border-neutralblack">
                         <span className='w-80'>{reference.email}</span>
                         <span className='w-80'>{reference.entityName}</span>
-                        <span className={`w-80 ${reference.finished ? 'text-green-200' : 'text-red-400'}`}>{reference.finished ? 'Contestada' : 'Pendiente'}</span>
-                        <CustomButton onClick={() => { goToDetails(reference) }} text='Ver respuestas' showIcon></CustomButton>
+                        <span className={`w-80 ${reference.finished ? 'text-green-200' : 'text-red-400'}`}>{reference.finished ? t('profileUser.references.answered') : t('profileUser.references.pending')}</span>
+                        <CustomButton onClick={() => { goToDetails(reference) }} text={t('profileUser.references.seeAnswers')} showIcon></CustomButton>
                     </div>
                 ))}
             </div> :
