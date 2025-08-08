@@ -428,8 +428,11 @@ const DigitalProfileForm = ({ myFreelance }) => {
             {user && user.gallery && <ImageGalleryUpload url={`image/upload`} setGalleryImages={setGalleryImages} defaultUrls={user?.gallery} />}
 
 
-            <div className="flex justify-end w-full">
+            <div className="flex justify-end w-full gap-2">
                 <CustomButton text="Guardar cambios" onClick={saveFreelance} />
+                {user?._id && <Link to={`/talent/${user._id}`} className="text-white">
+                    <CustomButton text="Vista previa" type='secondary' />
+                </Link>}
             </div>
         </div>
     );
