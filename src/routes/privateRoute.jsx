@@ -61,10 +61,10 @@ const PrivateRoute = () => {
   }
 
   return (
-    <div className="bg-black pb-8" >
+    <div className="bg-black pb-8 min-h-screen" >
       <Navbar />
       {!routeInHidden && <div className="px-4 md:px-28">
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white text-center border-b border-white">{t('profile-user.title')}</h2>
+        <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white text-center border-b border-white">{t('profileUser.title')}</h2>
         <div className="flex justify-between items-center">
           <div className="flex items-center mt-4">
             <ModalDefaultPhoto defaultImage={me?.avatar} setLogo={setLogo} onSave={onSave}>
