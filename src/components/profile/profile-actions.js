@@ -24,7 +24,7 @@ const ProfileActionsDropdown = ({ children }) => {
                     {children}
                 </MenuButton>
                 <MenuList width={20} p={0} bg='black' borderColor={'gray.400'}>
-                    <LinkDropdown label={userView === 'corporate' ? t('profileUser.actions.changeToCorporate') : t('profileUser.actions.changeToPersonal')} action={() => changeUserView()} />
+                    <LinkDropdown label={userView === 'corporate' ? t('profileUser.actions.changeToPersonal') : t('profileUser.actions.changeToCorporate')} action={() => changeUserView()} />
                     <LinkDropdown label={t('profileUser.actions.logout')} action={logOutUser} color={'red.300'} />
                 </MenuList>
             </Menu>
