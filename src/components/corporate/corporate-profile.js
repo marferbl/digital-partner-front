@@ -52,9 +52,9 @@ export const CorporateProfile = ({ corporate }) => {
 
     return (
         <Box>
-            <Grid templateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(5, 1fr)' }} gap={6} justifyItems={'center'}>
-                <GridItem colSpan={{ base: 1, md: 2 }} w='full' p={3}>
-                    <Box borderWidth={1} borderColor='gray.700' rounded={'md'} p={6} w='full'>
+            <Grid templateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(5, 1fr)' }} gap={3} justifyItems={'center'}>
+                <GridItem colSpan={{ base: 1, md: 2 }} w='full' p={1}>
+                    <Box borderWidth={1} borderColor='gray.700' rounded={'md'} p={4} w='full'>
                         <Flex pb={4} flexDir='row' align={'center'} pt={3} gap={2}>
                             <Avatar name={corporate?.name} rounded={'md'} />
                             <div>

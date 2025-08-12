@@ -63,17 +63,17 @@ const PrivateRoute = () => {
   return (
     <div className="bg-black pb-8" >
       <Navbar />
-      {!routeInHidden && <div className="px-4 md:px-28">
+      {!routeInHidden && <div className="px-1 md:px-28">
         <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white text-center border-b border-white">{t('profile-user.title')}</h2>
         <div className="flex justify-between items-center">
-          <div className="flex items-center mt-4">
+          <div className="flex items-center mt-4 justify-center md:justify-start w-full">
             <ModalDefaultPhoto defaultImage={me?.avatar} setLogo={setLogo} onSave={onSave}>
-              <div className="relative w-20 h-20 md:w-40 md:h-40  ml-0 md:ml-10">
+              <div className="relative w-16 h-16 md:w-40 md:h-40  ml-0 md:ml-10 flex items-center justify-center">
                 {/* Image */}
                 <img
                   src={me?.avatar || '/profile-photos/profile-photo-1.png'}
                   alt="Profile Avatar"
-                  className="w-20 h-20 md:w-40 md:h-40 rounded-xl"
+                  className="w-16 h-16 md:w-40 md:h-40 rounded-xl"
                 />
 
                 {/* Edit Icon */}
@@ -84,7 +84,7 @@ const PrivateRoute = () => {
 
             </ModalDefaultPhoto>
             <div className="ml-5">
-              <h2 className="text-2xl font-semibold text-white">{me?.name}</h2>
+              <h2 className="text-lg md:text-2xl font-semibold text-white">{me?.name}</h2>
             </div>
             <ProfileActionsDropdown>
               <FiMoreHorizontal className="text-white text-2xl cursor-pointer" />
