@@ -5,7 +5,7 @@ import { COLORS } from '../../colors/colors'
 import { getAllServices, getServiceByUserCorporate } from '../../services/service'
 import SearchSelect from './search-select'
 
-const SearchSelectServices = ({ term, onChange, corporate, placeholder, emitFullObject, getFullObject }) => {
+const SearchSelectServices = ({ term, onChange, corporate, placeholder, emitFullObject, getFullObject, theme }) => {
     const [services, setServices] = useState([])
     const [selected, setSelected] = useState(null)
 
@@ -53,7 +53,7 @@ const SearchSelectServices = ({ term, onChange, corporate, placeholder, emitFull
     }
 
     return (
-        <SearchSelect options={servicesKey()} value={selected} onChange={(value) => setSelected(value)} searchable placeholder={placeholder} />
+        <SearchSelect options={servicesKey()} value={selected} onChange={(value) => setSelected(value)} searchable placeholder={placeholder} theme={theme} />
     )
 }
 export default SearchSelectServices 

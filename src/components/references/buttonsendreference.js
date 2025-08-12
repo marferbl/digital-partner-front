@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { Box, Button, Flex, Text, Input, Textarea, } from '@chakra-ui/react'
+import { RadioGroup, Radio, Stack, Box, Button, Flex, Text, Input, Textarea, } from '@chakra-ui/react'
 import {
     Modal,
     ModalOverlay,
@@ -33,7 +33,7 @@ export const ButtonSendReference = ({ disabled }) => {
     const { t } = useTranslation("global")
 
     const [selectedEntityId, setSelectedEntityId] = useState('')
-    const [selectedEntityModel, setSelectedEntityModel] = useState('solution')
+    const [selectedEntityModel, setSelectedEntityModel] = useState('solution') // default
     const [loading, setLoading] = useState(false)
     const [text, setText] = useState('')
     const [error, setError] = useState('')
@@ -74,29 +74,48 @@ export const ButtonSendReference = ({ disabled }) => {
 
     return (
         <>
-            <div className='bg-neutralblack rounded-lg p-10 w-full mt-4' >
-                <span className='text-4xl text-white'>Solicitar referencia</span>
+            <div className='bg-neutralblack rounded-lg p-10 w-full mt-4'>
+                <span className='text-4xl text-white'>{t('profileUser.references.title')}</span>
 
                 <div className='flex items-center justify-between text-white gap-10 mt-6'>
-                    <div>
-                        <span className='pt-4'>Sobre que solución quieres enviar la referencia</span>
-                        <SearchSelectSolutions onChange={(value) => {
-                            setSelectedEntityId(value)
-                            setSelectedEntityModel('solution')
-                        }} corporate placeholder='Seleccionar solución' />
-                        <SearchSelectServices onChange={(value) => {
-                            setSelectedEntityId(value)
-                            setSelectedEntityModel('service')
-                        }} corporate placeholder='Seleccionar servicio' />
-                    </div>
-                    <div>
-                        <span>Escribe el correo de la persona a la que le quieres enviar la referencia</span>
-                        <input type="text" value={email} className={'border-1 border-gray-500 py-1.5 rounded-lg w-full text-white bg-black'} onChange={(e) => setEmail(e.target.value)} />
+                    <div className='flex flex-col gap-4'>
+                        <span>{t('profileUser.references.selectType')}</span>
+                        <RadioGroup value={selectedEntityModel} onChange={setSelectedEntityModel}>
+                            <Stack direction='row'>
+                                <Radio value='solution'>{t('profileUser.references.solution')}</Radio>
+                                <Radio value='service'>{t('profileUser.references.service')}</Radio>
+                            </Stack>
+                        </RadioGroup>
 
-                    </div>
+                        {selectedEntityModel === 'solution' ? (
+                            <SearchSelectSolutions
+                                onChange={(value) => setSelectedEntityId(value)}
+                                corporate
+                                placeholder={t('profileUser.references.selectPlaceholderSolution')}
+                                theme="dark"
+                            />
+                        ) : (
+                            <SearchSelectServices
+                                onChange={(value) => setSelectedEntityId(value)}
+                                corporate
+                                placeholder={t('profileUser.references.selectPlaceholderService')}
+                                theme="dark"
+                            />
+                        )}
+            </div>
+
+            <div>
+                <span>{t('profileUser.references.emailTitle')}</span>
+                <input
+                    type="text"
+                    value={email}
+                    className='mt-2 border-1 border-gray-500 py-1.5 px-2.5 rounded-lg w-full text-white bg-black'
+                    onChange={(e) => setEmail(e.target.value)}
+                />
+            </div>
 
 
-                    <CustomButton text="Enviar referencia" onClick={compareSolutions} extraClass='mt-6' />
+                    <CustomButton text={t('profileUser.references.sendReference')} onClick={compareSolutions} extraClass='mt-6' />
                 </div>
             </div>
         </>

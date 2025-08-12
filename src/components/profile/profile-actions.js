@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { Menu, MenuButton, Button, MenuList, MenuItem } from '@chakra-ui/react'
 import { UserContext } from '../../context/userContext'
+import { useTranslation } from "react-i18next";
 
 
 const ProfileActionsDropdown = ({ children }) => {
@@ -13,6 +14,8 @@ const ProfileActionsDropdown = ({ children }) => {
         )
     }
 
+    const { t } = useTranslation("global");
+
     return (
         <div>
             <Menu _focus={{ boxShadow: 'none' }}  // Remove focus outline
@@ -21,8 +24,8 @@ const ProfileActionsDropdown = ({ children }) => {
                     {children}
                 </MenuButton>
                 <MenuList width={20} p={0} bg='black' borderColor={'gray.400'}>
-                    <LinkDropdown label={userView === 'corporate' ? 'Cambiar a cuenta personal' : 'Cambiar a cuenta corporate'} action={() => changeUserView()} />
-                    <LinkDropdown label={'Cerrar sesión'} action={logOutUser} color={'red.300'} />
+                    <LinkDropdown label={userView === 'corporate' ? t('profileUser.actions.changeToPersonal') : t('profileUser.actions.changeToCorporate')} action={() => changeUserView()} />
+                    <LinkDropdown label={t('profileUser.actions.logout')} action={logOutUser} color={'red.300'} />
                 </MenuList>
             </Menu>
         </div>

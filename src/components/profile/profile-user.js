@@ -8,7 +8,7 @@ export const ProfileUser = ({ me }) => {
         <>
             <div className="flex items-center justify-center w-full min-h-80 rounded-lg" >
                 <span className='text-center font-light text-neutral w-1/2'>
-                    {t('profile-user.legend')}
+                    {t('profileUser.legend')}
                 </span>
             </div >
         </>

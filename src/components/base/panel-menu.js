@@ -41,7 +41,7 @@ import { useState } from "react";
 import { getApplications } from "../../services/corporate";
 import { SoftwareSearcherInput } from "./software-searcher-input";
 import { useLocation } from 'react-router-dom';
-
+import { useTranslation } from "react-i18next";
 
 
 
@@ -57,6 +57,7 @@ export const HorizontalMenu = ({ onClose, isSidebarOpen, setIsSidebarOpen, ...re
   const APPLICATIONS = ['corporate', 'solutions', 'services', 'events', 'teamManagement', 'recruitment', 'licenses', 'selection']
   const [selectedKey, setSelectedKey] = useState('profile');
   const location = useLocation();
+  const { t } = useTranslation("global");
 
   useEffect(() => {
     if (location.pathname.includes('solutions')) {
@@ -101,18 +102,18 @@ export const HorizontalMenu = ({ onClose, isSidebarOpen, setIsSidebarOpen, ...re
 
 
   const userRoutes = [
-    { name: "Perfil", icon: FiUser, to: "profile", key: 'profile' },
+    { name: t('profileUser.navbar.profile'), icon: FiUser, to: "profile", key: 'profile' },
     { name: "Digital Profile", icon: FiTrendingUp, to: "digital-profile", key: 'digital-profile', soon: false },
     //{ name: "Empleo", icon: FiGrid, to: "dashboard", soon: true },
     // { name: "Gurús", icon: FiStar, to: "dashboard", soon: true },
   ];
 
   const adminRoutes = [
-    { name: "Mi Corporate", icon: FiDatabase, to: "corporate/profile", application: 'corporate', key: 'profile' },
-    { name: "Soluciones", icon: FiTool, to: "corporate/solutions", application: 'solutions', key: 'solutions' },
-    { name: "Servicios", icon: FiRepeat, to: "corporate/service", application: 'services', key: 'service' },
-    { name: "Eventos", icon: FiCalendar, to: "corporate/events", application: 'events', key: 'events' },
-    { name: "Referencias", icon: FiRepeat, to: "corporate/references", application: 'solutions', key: 'references' },
+    { name: t('profileUser.navbar.myCorporate'), icon: FiDatabase, to: "corporate/profile", application: 'corporate', key: 'profile' },
+    { name: t('solutions'), icon: FiTool, to: "corporate/solutions", application: 'solutions', key: 'solutions' },
+    { name: t('services'), icon: FiRepeat, to: "corporate/service", application: 'services', key: 'service' },
+    { name: t('events'), icon: FiCalendar, to: "corporate/events", application: 'events', key: 'events' },
+    { name: t('profileUser.navbar.references'), icon: FiRepeat, to: "corporate/references", application: 'solutions', key: 'references' },
     { name: "Equipo", icon: FiUsers, soon: true, application: 'teamManagement' },
     { name: "Licencias", icon: FiBookOpen, soon: true, application: 'licenses' },
     //{ name: "Selección", icon: FiSearch, soon: true, to: 'corporate/selection', application: 'recruitment', key: 'selection' },

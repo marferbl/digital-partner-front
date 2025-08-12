@@ -30,6 +30,9 @@
     "surpriseMeButton": "Surprise me",
     "startOver": "Start over",
     "next": "Next",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "back": "Back",
     "loadingLabel": "Loading...",
     "tryDigitalandoOffer": "Do you want to try everything Digitalando has to offer?",
     "letsGo": "Let's go!",
@@ -433,8 +436,56 @@
             "content": "They are many things. They are friends, first of all. Friends with a shared ambition for many years: To be able to change the course of the sector with which they have always shared their professional career.\n\nIván is a sociologist specialized in human resources with experience in digital business development. His professional career is divided into two very marked parts: A first stage dedicated to IT personnel selection and a second very related to the start-up world.\n\nMarcos is a developer, a possibility he chose after finishing his computer engineering and business administration studies. His professional career has been very linked to the start-up environment. He is a person with interpersonal skills comparable to his development talent.\n\nOf course, I think anyone would say that they are not ordinary people and that, in most cases, they stand out for their way of interpreting reality. This time bomb couldn't leave anyone indifferent and well, nice to meet you all!"
         }
     },
-    "profile-user": {
+    "profileUser": {
         "title": "MY DASHBOARD",
-        "legend": "For now, there's not much to do around here, but you can start creating your Digital Profile.\nWe'll keep you updated soon."
+        "legend": "For now, there's not much to do around here, but you can start creating your Digital Profile.\nWe'll keep you updated soon.",
+        "navbar": {
+            "profile": "Profile",
+            "myCorporate": "My Corporate",
+            "references": "References"
+        },
+        "actions": {
+            "changeToCorporate": "Change to corporate account",
+            "changeToPersonal": "Change to personal account",
+            "logout": "Log out"
+        },
+        "events" : {
+            "createEvent": "Create Event",
+            "1": {
+                "title": "1ˢᵗ Step: Basic Info", 
+                "imageGallery": "Image Gallery",
+                "name": "Name",
+                "nameEvent": "Name of the Event",
+                "description": "Description",
+                "descriptionEvent": "Description of the Event",
+                "link": "Link",
+                "linkToEvent": "Link to Event",
+                "maxCapacity": "Maximum capacity",
+                "capacity": "Capacity",
+                "durationH": "Duration (H)",
+                "price": "Price (€)"
+            },
+            "2": {
+                "title":  "2ⁿᵈ Step: Details",
+                "dateTime": "Date and Time of the event",
+                "type": "Type of event",
+                "city": "City"
+            }
+        },
+        "references": {
+            "title": "Request reference",
+            "selectType": "Select type of entity",
+            "solution": "Solution",
+            "service": "Service",
+            "selectPlaceholderSolution": "Select solution",
+            "selectPlaceholderService": "Select service",
+            "emailTitle": "Recipient's email address:",
+            "sendReference": "Send Reference",
+            "myReferences": "MY REFERENCES",
+            "filterBySolution": "Filter by solution",
+            "answered": "Answered",
+            "pending": "Pending",
+            "seeAnswers": "See Answers"
+        }
     }
 }
