@@ -18,7 +18,7 @@ import SearchSelectSolutions from '../base/search-select-solutions'
 import { compareSolutionsIA } from '../../services/search'
 import LoadingSpinner from '../base/LoadingSpinner'
 import { useTranslation } from 'react-i18next'
-
+import CustomButton from '../base/CustomButton'
 
 
 
@@ -64,7 +64,8 @@ export const ButtonCompareIA = ({ refreshSolutions, disabled }) => {
 
     return (
         <>
-            <GradientButton onClick={onOpen} label={t('compareWithAI')} type='green' size='sm' />
+            <CustomButton onClick={onOpen} text={t('compareWithAI')} extraClass='text-sm py-2' showIcon></CustomButton>
+
 
             <Modal isOpen={isOpen} onClose={closeModal} size='3xl'>
                 <ModalOverlay />
