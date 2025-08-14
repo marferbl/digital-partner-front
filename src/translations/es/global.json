@@ -462,10 +462,10 @@
             "changeToPersonal": "Cambiar a cuenta personal",
             "logout": "Cerrar sesión"
         },
-        "events" : {
+        "events": {
             "createEvent": "Create Event",
             "1": {
-                "title": "1ᵉʳ Paso: Información Básica", 
+                "title": "1ᵉʳ Paso: Información Básica",
                 "imageGallery": "Galería de imágenes",
                 "name": "Nombre",
                 "nameEvent": "Nombre del Evento",
@@ -479,7 +479,7 @@
                 "price": "Precio (€)"
             },
             "2": {
-                "title":  "2º Paso: Detalles",
+                "title": "2º Paso: Detalles",
                 "dateTime": "Fecha y Hora del evento",
                 "type": "Tipo de evento",
                 "city": "Ciudad"
@@ -500,5 +500,47 @@
             "pending": "Pendiente",
             "seeAnswers": "Ver Respuestas"
         }
+    },
+    "deploymentOptions": {
+        "cloud": "Cloud",
+        "saas": "SaaS",
+        "web": "Web",
+        "mac_desktop": "Mac (Desktop)",
+        "windows_desktop": "Windows (Desktop)",
+        "linux_desktop": "Linux (Desktop)",
+        "chromebook_desktop": "Chromebook (Desktop)",
+        "android_mobile": "Android (Mobile)",
+        "ios_mobile": "iOS (Mobile)"
+    },
+    "integrationOptions": {
+        "apis": "APIs",
+        "batch_etl": "Batch/ETL (Intercambio de archivos)",
+        "esb": "ESB (Enterprise Service Bus)",
+        "ipaas": "iPaaS (Platform as a service)",
+        "point_to_point": "Point to Point",
+        "rpa": "RPA (Automatización robótica de procesos)",
+        "shared_database": "Base de datos compartida",
+        "eda": "EDA (Basada en eventos)",
+        "microservices": "Microservicios",
+        "webhooks": "Webhooks",
+        "low_code_no_code": "Low code/No code",
+        "embedded_integration": "Integración embebida"
+    },
+    "supportOptions": {
+        "included_license": "Incluido en licencia",
+        "upgrade": "Upgrade (Posibilidad de ampliación)",
+        "support_24_7": "365/24h",
+        "incident_submission": "Envío incidencia",
+        "chat_online": "Chat Online",
+        "phone_support": "Telefónico",
+        "in_person": "Presencial",
+        "updates": "Actualizaciones",
+        "user_groups": "Grupos de usuarios",
+        "github_repositories": "Repositorios de GitHub"
+    },
+    "hiringOptions": {
+        "project_based": "Por proyecto",
+        "hourly": "Por horas",
+        "other_contract": "Otro tipo de contrato"
     }
 }

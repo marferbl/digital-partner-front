@@ -16,7 +16,7 @@ import {
 import { COLORS, DARK_COLORS } from "../../../colors/colors";
 import { createSolution } from '../../../services/solution';
 import SearchSelect from '../../base/search-select';
-import { COUNTRIES, LANGUAGES } from '../../../utils/constants';
+import { COUNTRIES, LANGUAGES, DEPLOYMENT_OPTIONS, INTEGRATION_OPTIONS, SUPPORT_OPTIONS, DIGITALANDO_COMPANY_ID } from '../../../utils/constants';
 import SearchSelectSpecifyFeatures from '../../base/search-select-specify-features';
 import { ImageUploadInput } from '../../base/image-upload';
 import { ImageGalleryUpload } from '../../base/image-gallery-upload';
@@ -25,7 +25,7 @@ import { PaymentForm } from '../../stripe';
 
 export const ButtonCreateSolution = ({ refreshSolutions, disabled }) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const { getToken } = useContext(UserContext);
+    const { loggedUser } = useContext(UserContext);
 
     const [currentStep, setCurrentStep] = useState(1);
     const [countries, setCountries] = useState([]);
@@ -40,6 +40,9 @@ export const ButtonCreateSolution = ({ refreshSolutions, disabled }) => {
     const [logo, setLogo] = useState('');
     const [galleryImages, setGalleryImages] = useState([]);
     const [paymentCompleted, setPaymentCompleted] = useState(false);
+    const [deployment, setDeployment] = useState([]);
+    const [integration, setIntegration] = useState([]);
+    const [support, setSupport] = useState([]);
 
     const countriesOptions = COUNTRIES;
     const languageOptions = LANGUAGES;
@@ -59,6 +62,8 @@ export const ButtonCreateSolution = ({ refreshSolutions, disabled }) => {
         { value: 'firstSector', label: 'Primer sector' },
     ];
 
+    const isDigitalando = loggedUser._id === DIGITALANDO_COMPANY_ID;
+
     const create = async () => {
         const specifyFeaturesArray = typeof specifyFeatures === 'string' ? [specifyFeatures] : specifyFeatures;
 
@@ -75,6 +80,9 @@ export const ButtonCreateSolution = ({ refreshSolutions, disabled }) => {
                 specifyFeatures: specifyFeaturesArray,
                 logo: logo,
                 gallery: galleryImages,
+                deployment,
+                integration,
+                support,
             });
 
             refreshSolutions();
@@ -111,6 +119,9 @@ export const ButtonCreateSolution = ({ refreshSolutions, disabled }) => {
         setLogo('');
         setGalleryImages([]);
         setPaymentCompleted(false);
+        setDeployment([]);
+        setIntegration([]);
+        setSupport([]);
     };
 
     const handlePaymentSuccess = () => {
@@ -194,6 +205,22 @@ export const ButtonCreateSolution = ({ refreshSolutions, disabled }) => {
                                         <SearchSelect options={languageOptions} value={languages} isMulti onChange={setLanguages} />
                                     </Box>
                                 </Flex>
+
+                                <Flex gap={2} w='full' mt={3}>
+                                    <Box w='48%'>
+                                        <Text fontWeight={"bold"}>Deployment: </Text>
+                                        <SearchSelect options={DEPLOYMENT_OPTIONS} value={deployment} isMulti onChange={setDeployment} />
+                                    </Box>
+                                    <Box w='49%'>
+                                        <Text fontWeight={"bold"}>Integración: </Text>
+                                        <SearchSelect options={INTEGRATION_OPTIONS} value={integration} isMulti onChange={setIntegration} />
+                                    </Box>
+                                </Flex>
+
+                                <Box w='full' mt={3}>
+                                    <Text fontWeight={"bold"}>Soporte: </Text>
+                                    <SearchSelect options={SUPPORT_OPTIONS} value={support} isMulti onChange={setSupport} />
+                                </Box>
                             </Box>
                         )}
 
@@ -204,12 +231,18 @@ export const ButtonCreateSolution = ({ refreshSolutions, disabled }) => {
                             </Box>
                         )}
 
-                        {currentStep === 3 && (
+                        {currentStep === 3 && !isDigitalando && (
                             <Box>
                                 <Text fontWeight="bold" mb={4}>Pago de la Solución</Text>
                                 <PaymentForm onPaymentSuccess={handlePaymentSuccess} />
                             </Box>
                         )}
+                        {isDigitalando && currentStep === 3 && (
+                            <Box bg='purple.100' p={3} borderRadius={5}>
+                                Estas usando el modo superadmin de hello@digitalando.com
+                            </Box>
+                        )}
+
                     </ModalBody>
 
                     <ModalFooter>
@@ -230,6 +263,12 @@ export const ButtonCreateSolution = ({ refreshSolutions, disabled }) => {
                             //     Confirmar
                             // </Button>
                         )}
+                        {isDigitalando && currentStep === 3 ? <Button
+                            onClick={create}
+                            colorScheme='gray'
+                        >
+                            Confirmar
+                        </Button> : <></>}
                     </ModalFooter>
                 </ModalContent>
             </Modal>

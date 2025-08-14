@@ -1,3 +1,5 @@
+export const DIGITALANDO_COMPANY_ID = "66e32f6e743b31645e88f49c"
+
 export const COUNTRIES = [
     { value: 'spain', label: 'España' },
     { value: 'germany', label: 'Alemania' },
@@ -350,6 +352,52 @@ export const POSITIONS = [
     { value: 'ecommerce_manager', label: 'E-commerce Manager' },
     { value: 'growth_hacker', label: 'Growth Hacker' },
     { value: 'crm_manager', label: 'CRM Manager' }
+];
+
+export const DEPLOYMENT_OPTIONS = [
+    { value: 'cloud', label: 'Cloud' },
+    { value: 'saas', label: 'SaaS' },
+    { value: 'web', label: 'Web' },
+    { value: 'mac_desktop', label: 'Mac (Desktop)' },
+    { value: 'windows_desktop', label: 'Windows (Desktop)' },
+    { value: 'linux_desktop', label: 'Linux (Desktop)' },
+    { value: 'chromebook_desktop', label: 'Chromebook (Desktop)' },
+    { value: 'android_mobile', label: 'Android (Mobile)' },
+    { value: 'ios_mobile', label: 'iOS (Mobile)' }
+];
+
+export const INTEGRATION_OPTIONS = [
+    { value: 'apis', label: 'APIs' },
+    { value: 'batch_etl', label: 'Batch/ETL (Intercambio de archivos)' },
+    { value: 'esb', label: 'ESB (Enterprise Service Bus)' },
+    { value: 'ipaas', label: 'iPaaS (Platform as a service)' },
+    { value: 'point_to_point', label: 'Point to Point' },
+    { value: 'rpa', label: 'RPA (Automatización robótica de procesos)' },
+    { value: 'shared_database', label: 'Base de datos compartida' },
+    { value: 'eda', label: 'EDA (Basada en eventos)' },
+    { value: 'microservices', label: 'Microservicios' },
+    { value: 'webhooks', label: 'Webhooks' },
+    { value: 'low_code_no_code', label: 'Low code/No code' },
+    { value: 'embedded_integration', label: 'Integración embebida' }
+];
+
+export const SUPPORT_OPTIONS = [
+    { value: 'included_license', label: 'Incluido en licencia' },
+    { value: 'upgrade', label: 'Upgrade (Posibilidad de ampliación)' },
+    { value: 'support_24_7', label: '365/24h' },
+    { value: 'incident_submission', label: 'Envío incidencia' },
+    { value: 'chat_online', label: 'Chat Online' },
+    { value: 'phone_support', label: 'Telefónico' },
+    { value: 'in_person', label: 'Presencial' },
+    { value: 'updates', label: 'Actualizaciones' },
+    { value: 'user_groups', label: 'Grupos de usuarios' },
+    { value: 'github_repositories', label: 'Repositorios de GitHub' }
+];
+
+export const HIRING_OPTIONS = [
+    { value: 'project_based', label: 'Por proyecto' },
+    { value: 'hourly', label: 'Por horas' },
+    { value: 'other_contract', label: 'Otro tipo de contrato' }
 ];
 
 

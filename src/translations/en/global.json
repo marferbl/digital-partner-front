@@ -449,10 +449,10 @@
             "changeToPersonal": "Change to personal account",
             "logout": "Log out"
         },
-        "events" : {
+        "events": {
             "createEvent": "Create Event",
             "1": {
-                "title": "1ˢᵗ Step: Basic Info", 
+                "title": "1ˢᵗ Step: Basic Info",
                 "imageGallery": "Image Gallery",
                 "name": "Name",
                 "nameEvent": "Name of the Event",
@@ -466,7 +466,7 @@
                 "price": "Price (€)"
             },
             "2": {
-                "title":  "2ⁿᵈ Step: Details",
+                "title": "2ⁿᵈ Step: Details",
                 "dateTime": "Date and Time of the event",
                 "type": "Type of event",
                 "city": "City"
@@ -487,5 +487,47 @@
             "pending": "Pending",
             "seeAnswers": "See Answers"
         }
+    },
+    "deploymentOptions": {
+        "cloud": "Cloud",
+        "saas": "SaaS",
+        "web": "Web",
+        "mac_desktop": "Mac (Desktop)",
+        "windows_desktop": "Windows (Desktop)",
+        "linux_desktop": "Linux (Desktop)",
+        "chromebook_desktop": "Chromebook (Desktop)",
+        "android_mobile": "Android (Mobile)",
+        "ios_mobile": "iOS (Mobile)"
+    },
+    "integrationOptions": {
+        "apis": "APIs",
+        "batch_etl": "Batch/ETL (File Exchange)",
+        "esb": "ESB (Enterprise Service Bus)",
+        "ipaas": "iPaaS (Platform as a service)",
+        "point_to_point": "Point to Point",
+        "rpa": "RPA (Robotic Process Automation)",
+        "shared_database": "Shared Database",
+        "eda": "EDA (Event-Driven Architecture)",
+        "microservices": "Microservices",
+        "webhooks": "Webhooks",
+        "low_code_no_code": "Low code/No code",
+        "embedded_integration": "Embedded Integration"
+    },
+    "supportOptions": {
+        "included_license": "Included in License",
+        "upgrade": "Upgrade (Expansion Possibility)",
+        "support_24_7": "365/24h",
+        "incident_submission": "Incident Submission",
+        "chat_online": "Online Chat",
+        "phone_support": "Phone Support",
+        "in_person": "In-Person",
+        "updates": "Updates",
+        "user_groups": "User Groups",
+        "github_repositories": "GitHub Repositories"
+    },
+    "hiringOptions": {
+        "project_based": "Project-based",
+        "hourly": "Hourly",
+        "other_contract": "Other type of contract"
     }
 }

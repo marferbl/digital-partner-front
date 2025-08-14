@@ -23,10 +23,11 @@ import { ImageUploadInput } from '../../base/image-upload';
 import { ImageGalleryUpload } from '../../base/image-gallery-upload';
 import { PaymentForm } from '../../stripe';
 import { UserContext } from '../../../context/userContext';
+import { DIGITALANDO_COMPANY_ID } from '../../../utils/constants';
 
 export const ButtonCreateService = ({ refreshServices }) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const { getToken } = useContext(UserContext);
+    const { getToken, loggedUser } = useContext(UserContext);
 
     const [currentStep, setCurrentStep] = useState(1);
     const [serviceType, setServiceType] = useState('');
@@ -34,6 +35,8 @@ export const ButtonCreateService = ({ refreshServices }) => {
     const [logo, setLogo] = useState('');
     const [galleryImages, setGalleryImages] = useState([]);
     const [paymentCompleted, setPaymentCompleted] = useState(false);
+
+    const isDigitalando = loggedUser._id === DIGITALANDO_COMPANY_ID;
 
     const closeModal = () => {
         onClose();
@@ -104,7 +107,7 @@ export const ButtonCreateService = ({ refreshServices }) => {
                     <ModalCloseButton onClick={closeModal} />
                     <ModalBody py={5}>
                         {currentStep === 1 && (
-                            <Box w={'full'} flexDir={'column'} gap={5} w='100%' px={{ base: 2, md: 10 }}>
+                            <Box w={'full'} flexDir={'column'} gap={5} px={{ base: 2, md: 10 }}>
                                 {logo && <Image src={logo} alt="Logo" w={32} h={32} objectFit='cover' rounded='lg' />}
                                 <ImageUploadInput url={`image/upload`} big setLogo={setLogo} />
                                 <PartnerModalCreate type={serviceType} onChangeConfig={(value) => {
@@ -120,10 +123,15 @@ export const ButtonCreateService = ({ refreshServices }) => {
                             </Box>
                         )}
 
-                        {currentStep === 3 && (
+                        {currentStep === 3 && !isDigitalando && (
                             <Box>
                                 <Text fontWeight="bold" mb={4}>Pago del Servicio</Text>
                                 <PaymentForm onPaymentSuccess={handlePaymentSuccess} />
+                            </Box>
+                        )}
+                        {isDigitalando && currentStep === 3 && (
+                            <Box bg='purple.100' p={3} borderRadius={5}>
+                                Estas usando el modo superadmin de hello@digitalando.com
                             </Box>
                         )}
                     </ModalBody>
@@ -139,6 +147,12 @@ export const ButtonCreateService = ({ refreshServices }) => {
                         ) : (
                             <></>
                         )}
+                        {isDigitalando && currentStep === 3 ? <Button
+                            onClick={create}
+                            colorScheme='gray'
+                        >
+                            Confirmar
+                        </Button> : <></>}
                     </ModalFooter>
                 </ModalContent>
             </Modal>

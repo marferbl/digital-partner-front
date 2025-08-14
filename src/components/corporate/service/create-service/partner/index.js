@@ -5,6 +5,7 @@ import SearchSelectSolutions from "../../../../base/search-select-solutions"
 import SearchSelectLanguage from "../../../../base/search-select-language"
 import SearchSelectCountries from "../../../../base/search-select-countries"
 import SearchSelect from '../../../../base/search-select'
+import { HIRING_OPTIONS } from '../../../../../utils/constants'
 
 
 
@@ -18,6 +19,7 @@ const PartnerModalCreate = ({ onChangeConfig, type, initialConfig }) => {
     const [showOtherSolution, setShowOtherSolution] = useState(false);
     const [otherSolution, setOtherSolution] = useState(null);
     const [title, setTitle] = useState('');
+    const [hiring, setHiring] = useState('');
 
     const [web, setWeb] = useState('');
     const options = [
@@ -36,13 +38,14 @@ const PartnerModalCreate = ({ onChangeConfig, type, initialConfig }) => {
             setOtherSolution(initialConfig.otherSolution)
             setTitle(initialConfig.title)
             setWeb(initialConfig.web)
+            setHiring(initialConfig.hiring || '')
         }
     }, [initialConfig])
 
 
     useEffect(() => {
-        onChangeConfig({ languages, countries, description, partnerType, web, solutionId, otherSolution, title })
-    }, [languages, countries, description, partnerType, web, solutionId, otherSolution, title])
+        onChangeConfig({ languages, countries, description, partnerType, web, solutionId, otherSolution, title, hiring })
+    }, [languages, countries, description, partnerType, web, solutionId, otherSolution, title, hiring])
 
 
 
@@ -80,6 +83,15 @@ const PartnerModalCreate = ({ onChangeConfig, type, initialConfig }) => {
                     placeholder="Mensaje"
                     onChange={(e) => setDescription(e.target.value)}
                 />
+
+                <Text fontSize={14} mt={4} mb={1}>Tipo de contratación</Text>
+                <SearchSelect
+                    value={hiring}
+                    options={HIRING_OPTIONS}
+                    onChange={(value) => setHiring(value)}
+                    placeholder="Selecciona tipo de contratación"
+                />
+
                 <Text fontSize={14} mt={4} mb={1}>Lenguajes disponibles</Text>
                 <SearchSelectLanguage defaultValue={languages} isMulti onChange={(value) => setLanguages(value)} mb={5} />
                 <Text fontSize={14} mt={4} mb={1}>Países disponibles</Text>

@@ -9,11 +9,15 @@ import { useTranslation } from 'react-i18next';
 import SearchSelectPositions from '../base/search-select-positions';
 import SearchSelectCities from '../base/search-select-cities';
 import DatePicker from 'react-datepicker';
+import { DEPLOYMENT_OPTIONS, INTEGRATION_OPTIONS, SUPPORT_OPTIONS, HIRING_OPTIONS } from '../../utils/constants';
 import 'react-datepicker/dist/react-datepicker.css';
+import { FaSortAlphaDown } from 'react-icons/fa';
+
 const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
     const { t } = useTranslation("global");
 
     const [filterValues, setFilterValues] = useState(filters);
+    const [isOrderDropdownOpen, setIsOrderDropdownOpen] = useState(false);
 
     const handleToggle = (filterName, value) => {
         setFilterValues((prevValues) => ({
@@ -29,6 +33,20 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
         onChangeFilters(filterValues);
     }, [filterValues]);
 
+    // Close dropdown when clicking outside
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (isOrderDropdownOpen && !event.target.closest('.relative')) {
+                setIsOrderDropdownOpen(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [isOrderDropdownOpen]);
+
     const clearFilters = () => {
         const currentLineType = filterValues.lineType;
         setFilterValues({});
@@ -37,7 +55,31 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
         // Clear date filters as well
         handleToggle('from', null);
         handleToggle('to', null);
+        // Clear new solution filters
+        handleToggle('deployment', []);
+        handleToggle('integration', []);
+        handleToggle('support', []);
+        // Clear service filters
+        handleToggle('hiring', '');
+        // Clear ordering
+        handleToggle('orderBy', 'createdAt');
+        handleToggle('orderValue', 'desc');
         //handleToggle('lineType', 'solutions')
+    };
+
+    const handleOrderChange = (orderBy, orderValue) => {
+        handleToggle('orderBy', orderBy);
+        handleToggle('orderValue', orderValue);
+        setIsOrderDropdownOpen(false);
+    };
+
+    const getOrderLabel = () => {
+        if (filterValues.orderBy && filterValues.orderValue) {
+            const orderByLabel = filterValues.orderBy === 'name' ? 'Alfabético' : 'Fecha de creación';
+            const orderValueLabel = filterValues.orderValue === 'asc' ? 'ASC' : 'DESC';
+            return `${orderByLabel} ${orderValueLabel}`;
+        }
+        return 'Ordenar por';
     };
 
     const hasFilters = Object.values(filterValues).some((value) => value !== '' && value !== null);
@@ -86,7 +128,53 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
 
     return (
         <div className="border-r h-fit-content bg-gray-50 p-4 shadow-2xl rounded-lg">
-            <span className="text-lg font-bold pt-5">{t('filtersKey')}</span>
+            <div className="flex items-center justify-between mb-4">
+                <span className="text-lg font-bold pt-5">{t('filtersKey')}</span>
+                <div className="relative pt-5">
+                    <button
+                        onClick={() => setIsOrderDropdownOpen(!isOrderDropdownOpen)}
+                        className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+
+                        {/* <span className="text-xs">{getOrderLabel()}</span> */}
+                        {/* <svg className={`w-4 h-4 transition-transform ${isOrderDropdownOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+                        </svg> */}
+                        <FaSortAlphaDown />
+                    </button>
+
+                    {isOrderDropdownOpen && (
+                        <div className="absolute right-0 mt-1 w-40 bg-white border border-gray-300 rounded-md shadow-lg z-10">
+                            <div className="py-1">
+                                <button
+                                    onClick={() => handleOrderChange('name', 'asc')}
+                                    className={`block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 text-xxs text-right ${filterValues.orderBy === 'name' && filterValues.orderValue === 'asc' ? 'bg-pink-500 text-white' : ''}`}
+                                >
+                                    Alfabético ASC
+                                </button>
+                                <button
+                                    onClick={() => handleOrderChange('name', 'desc')}
+                                    className={`block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 text-xxs text-right ${filterValues.orderBy === 'name' && filterValues.orderValue === 'desc' ? 'bg-pink-500 text-white' : ''}`}
+                                >
+                                    Alfabético DESC
+                                </button>
+                                <button
+                                    onClick={() => handleOrderChange('createdAt', 'asc')}
+                                    className={`block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 text-xxs text-right ${filterValues.orderBy === 'createdAt' && filterValues.orderValue === 'asc' ? 'bg-pink-500 text-white' : ''}`}
+                                >
+                                    Fecha de creación ASC
+                                </button>
+                                <button
+                                    onClick={() => handleOrderChange('createdAt', 'desc')}
+                                    className={`block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 text-xxs text-right ${filterValues.orderBy === 'createdAt' && filterValues.orderValue === 'desc' ? 'bg-pink-500 text-white' : ''}`}
+                                >
+                                    Fecha de creación DESC
+                                </button>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            </div>
             <div className="flex flex-col space-y-4 mt-6">
                 {/* <div className="min-w-[140px] pt-1">
                     <SearchSelect
@@ -124,6 +212,42 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
                                 />
                             </div>
                         )}
+
+                        <div className="min-w-[140px]">
+                            <SearchSelect
+                                options={DEPLOYMENT_OPTIONS}
+                                value={filterValues.deployment}
+                                showLabel
+                                width="100%"
+                                label="Despliegue"
+                                isMulti
+                                onChange={(value) => handleToggle('deployment', Array.isArray(value) ? value : [value])}
+                            />
+                        </div>
+
+                        <div className="min-w-[140px]">
+                            <SearchSelect
+                                options={INTEGRATION_OPTIONS}
+                                value={filterValues.integration}
+                                showLabel
+                                width="100%"
+                                label="Integración"
+                                isMulti
+                                onChange={(value) => handleToggle('integration', Array.isArray(value) ? value : [value])}
+                            />
+                        </div>
+
+                        <div className="min-w-[140px]">
+                            <SearchSelect
+                                options={SUPPORT_OPTIONS}
+                                value={filterValues.support}
+                                showLabel
+                                width="100%"
+                                label="Soporte"
+                                isMulti
+                                onChange={(value) => handleToggle('support', Array.isArray(value) ? value : [value])}
+                            />
+                        </div>
                     </>
                 )}
 
@@ -131,12 +255,12 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
                     <div className="min-w-[140px] pt-1">
                         <SearchSelect
                             options={[
-                                { value: 'partner', label: t('partner') },
-                                { value: 'development', label: t('development') },
-                                { value: 'renting', label: t('renting') },
                                 { value: 'helps', label: t('helps') },
+                                { value: 'development', label: t('development') },
                                 { value: 'training', label: t('training') },
-                                { value: 'growth', label: t('growth') }
+                                { value: 'growth', label: t('growth') },
+                                { value: 'partner', label: t('partner') },
+                                { value: 'renting', label: t('renting') },
                             ]}
                             width="100%"
                             label={t('type')}
@@ -160,6 +284,19 @@ const FiltersSection = ({ filters, setTermLabel, onChangeFilters }) => {
                             onChange={(value) => handleToggle('partnerType', value)}
                             value={filterValues.partnerType}
                             height="40px"
+                        />
+                    </div>
+                )}
+
+                {filterValues.lineType === 'services' && (
+                    <div className="min-w-[140px]">
+                        <SearchSelect
+                            options={HIRING_OPTIONS}
+                            value={filterValues.hiring}
+                            showLabel
+                            width="100%"
+                            label="Contratación"
+                            onChange={(value) => handleToggle('hiring', value)}
                         />
                     </div>
                 )}

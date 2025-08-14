@@ -16,7 +16,7 @@ import {
 import { COLORS } from "../../../colors/colors";
 import { createSolution, updateSolution } from '../../../services/solution';
 import SearchSelect from '../../base/search-select';
-import { COUNTRIES, LANGUAGES } from '../../../utils/constants';
+import { COUNTRIES, LANGUAGES, DEPLOYMENT_OPTIONS, INTEGRATION_OPTIONS, SUPPORT_OPTIONS } from '../../../utils/constants';
 import SearchSelectSpecifyFeatures from '../../base/search-select-specify-features';
 import { ImageUploadInput } from '../../base/image-upload';
 import { ImageGalleryUpload } from '../../base/image-gallery-upload';
@@ -42,6 +42,9 @@ export const ButtonUpdateSolution = ({ children, refreshSolutions, disabled, sol
     const [logo, setLogo] = useState(null);
     const [galleryImages, setGalleryImages] = useState([]);  // Store uploaded images
     const [currentStep, setCurrentStep] = useState(1);  // Step tracker
+    const [deployment, setDeployment] = useState([]);
+    const [integration, setIntegration] = useState([]);
+    const [support, setSupport] = useState([]);
 
     useEffect(() => {
         setName(solution.name);
@@ -56,6 +59,9 @@ export const ButtonUpdateSolution = ({ children, refreshSolutions, disabled, sol
         setSpecifyFeatures(solution.specifyFeatures);
         setLogo(solution.logo);
         setGalleryImages(solution.gallery || []);
+        setDeployment(solution.deployment || []);
+        setIntegration(solution.integration || []);
+        setSupport(solution.support || []);
 
     }, [solution])
 
@@ -102,7 +108,10 @@ export const ButtonUpdateSolution = ({ children, refreshSolutions, disabled, sol
             isErp,
             isSectorial,
             specifyFeatures: specifyFeaturesArray,
-            gallery: galleryImages
+            gallery: galleryImages,
+            deployment,
+            integration,
+            support,
         }).then((res) => {
             refreshSolutions();
             closeAndReset()
@@ -212,6 +221,22 @@ export const ButtonUpdateSolution = ({ children, refreshSolutions, disabled, sol
                                         <SearchSelect options={languageOptions} value={languages} isMulti onChange={(value) => setLanguages(value)} />
                                     </Box>
                                 </Flex>
+
+                                <Flex gap={2} w='full' mt={3}>
+                                    <Box w='48%'>
+                                        <Text fontWeight={"bold"}>Deployment: </Text>
+                                        <SearchSelect options={DEPLOYMENT_OPTIONS} value={deployment} isMulti onChange={(value) => setDeployment(value)} />
+                                    </Box>
+                                    <Box w='49%'>
+                                        <Text fontWeight={"bold"}>Integración: </Text>
+                                        <SearchSelect options={INTEGRATION_OPTIONS} value={integration} isMulti onChange={(value) => setIntegration(value)} />
+                                    </Box>
+                                </Flex>
+
+                                <Box w='full' mt={3}>
+                                    <Text fontWeight={"bold"}>Soporte: </Text>
+                                    <SearchSelect options={SUPPORT_OPTIONS} value={support} isMulti onChange={(value) => setSupport(value)} />
+                                </Box>
 
                             </Box>)}
 
