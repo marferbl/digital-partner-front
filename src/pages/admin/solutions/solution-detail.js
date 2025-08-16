@@ -53,7 +53,7 @@ export const SolutionDetailPage = () => {
     const LINKS = [
         { label: 'Info', component: <SolutionDetail solution={solution} isDemo={isDemoSolution} />, icon: FaInfoCircle },
         { label: 'Descubrir partners', component: <PartnerComponent isDemo={isDemoSolution} />, icon: FaUsers },
-        { label: 'Pedir demo', component: <DemoComponent solution={solution} isDemo={isDemoSolution} />, icon: FaLaptop },
+        // { label: 'Pedir demo', component: <DemoComponent solution={solution} isDemo={isDemoSolution} />, icon: FaLaptop },
         // { label: 'Descargar manuales', component: <ManualComponent solution={solution} isDemo={isDemoSolution} /> },
         { label: 'Referencias', component: <ReferencesComponent isDemo={isDemoSolution} />, icon: FaStar },
         { label: 'Obtener certificaciones', component: <CertificationComponent solution={solution} isDemo={isDemoSolution} />, icon: FaCertificate },
@@ -133,6 +133,7 @@ export const SolutionDetailPage = () => {
                                     <Text fontSize={{ base: 14, md: 30 }} whiteSpace='nowrap' color='white' fontWeight={300}>
                                         {solution.name}
                                     </Text>
+                                    {/*
                                     <HStack>
                                         <Icon as={FaGlobe} color="yellow.400" />
                                         <Text fontSize={{ base: 8, md: 14 }} color="gray.300" _hover={{ color: 'yellow.400' }}>
@@ -141,6 +142,7 @@ export const SolutionDetailPage = () => {
                                             </a>
                                         </Text>
                                     </HStack>
+                                    */}
                                 </VStack>
                             </Flex>
                             <div>
