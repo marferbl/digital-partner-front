@@ -529,5 +529,10 @@
         "project_based": "Project-based",
         "hourly": "Hourly",
         "other_contract": "Other type of contract"
+    },
+    "auth": {
+        "requiredTitle": "Login Required",
+        "requiredMessage": "You need to log in to compare results with AI. Do you want to continue without logging in? (You won't be able to compare with AI)",
+        "continueWithoutLogin": "Continue without login"
     }
 }

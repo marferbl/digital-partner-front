@@ -542,5 +542,10 @@
         "project_based": "Por proyecto",
         "hourly": "Por horas",
         "other_contract": "Otro tipo de contrato"
+    },
+    "auth": {
+    "requiredTitle": "Inicio de sesión requerido",
+    "requiredMessage": "Necesitas iniciar sesión para comparar resultados con la IA. ¿Quieres continuar sin iniciar sesión? (No podrás comparar con la IA)",
+    "continueWithoutLogin": "Continuar sin iniciar sesión"
     }
 }
