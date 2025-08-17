@@ -1,4 +1,4 @@
-import { Box, Text, Flex, Avatar, VStack, HStack, Badge, Icon } from "@chakra-ui/react";
+import { Box, Text, Flex, Avatar, VStack, HStack, Badge, Icon, Center } from "@chakra-ui/react";
 import React, { useState, useEffect, useContext } from "react";
 import { SolutionDetail } from "../../../components/corporate/solutions/solution-detail";
 import { getSolutionById } from "../../../services/solution";
@@ -199,22 +199,59 @@ export const SolutionDetailPage = () => {
                         {selectedComponent}
                     </Box>
                 ) : (
-                    <Flex w='full' justify={'center'} align={'center'} flexDir='column' mt={4}>
-                        <Text mt={6} fontSize='xl' fontWeight='bold' color={'gray.400'}>
-                            {t('solutionDetail.mustLoginDetails')}
-                        </Text>
-                        <Link to={'/start'}>
+                <Flex w='full' justify={'center'} align={'center'} flexDir='column' mt={4}>
+                    {label === t('solutionDetail.references') ? (
+                        <>
+                            <Text
+                                mt={6}
+                                fontSize='xl'
+                                fontWeight='bold'
+                                color='gray.400'
+                                whiteSpace="pre-line"
+                                textAlign='center'
+                                fontStyle='italic'
+                            >
+                                {t('references.notLogged')}
+                            </Text>
                             <Text
                                 mt={2}
-                                fontSize='sm'
+                                fontSize='xl'
                                 fontWeight='bold'
-                                color={'yellow.400'}
-                                _hover={{ color: 'yellow.300' }}
+                                color='gray.400'
+                                whiteSpace="pre-line"
+                                textAlign='center'
                             >
-                                {t('solutionDetail.login')}
+                                {t('references.notLogged2')}
                             </Text>
-                        </Link>
-                    </Flex>
+                        </>
+                    ) : (
+                        <Text
+                            mt={6}
+                            fontSize='xl'
+                            fontWeight='bold'
+                            color='gray.400'
+                            whiteSpace="pre-line"
+                            textAlign='center'
+                        >
+                            {label === t('solutionDetail.partners')
+                                ? t('partners.notLogged')
+                                : t('solutionDetail.mustLoginDetails')
+                            }
+                        </Text>
+                    )}
+
+                    <Link to={'/start'}>
+                        <Text
+                            mt={2}
+                            fontSize='sm'
+                            fontWeight='bold'
+                            color={'yellow.400'}
+                            _hover={{ color: 'yellow.300' }}
+                        >
+                            {t('solutionDetail.login')}
+                        </Text>
+                    </Link>
+                </Flex>
                 )}
             </Box>
         </Box>

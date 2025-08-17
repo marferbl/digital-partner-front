@@ -266,7 +266,7 @@ const ServiceDetails = ({ service }) => {
                 ) : (
                     <Flex w='full' justify={'center'} align={'center'} flexDir='column' mt={4}>
                         <Text mt={6} fontSize='xl' fontWeight='bold' color={'gray.400'}>
-                            {t('serviceDetails.loginRequired')}
+                            {t('serviceDetails.loginToSeeDetails')}
                         </Text>
                         <Link to={'/start'}>
                             <Text
