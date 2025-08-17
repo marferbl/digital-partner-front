@@ -89,7 +89,7 @@ const EventDetails = ({ event }) => {
 
                         <Box>
                             <Text fontSize="lg" fontWeight='bold' color="white" mb={2}>Descripción</Text>
-                            <Text color="gray.300" lineHeight="tall">{event.description}</Text>
+                            <Text color="gray.300" lineHeight="tall" textAlign={"justify"}>{event.description}</Text>
                         </Box>
 
                         <HStack spacing={8} wrap="wrap">

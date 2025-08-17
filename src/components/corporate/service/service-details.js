@@ -98,7 +98,7 @@ const ServiceInfoComponent = ({ service }) => {
                             <Icon as={FaInfoCircle} color="yellow.400" />
                             <Text fontSize="lg" fontWeight='bold' color="white">Descripción</Text>
                         </HStack>
-                        <Text color="gray.300">{service.description}</Text>
+                        <Text color="gray.300" textAlign={"justify"}>{service.description}</Text>
                     </Box>
 
                     <Box>

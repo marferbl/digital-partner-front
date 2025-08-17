@@ -37,7 +37,7 @@ export const SolutionDetail = ({ solution }) => {
                 <>
                     <Box mt={1} p={5} bgColor={"black"} w={"100%"} px={2} mb={3} color='white'>
                         <Text fontSize={{ base: 8, md: 14 }} mt={3} fontWeight='bold' textDecor={'underline'}>Descripción:</Text>
-                        <Text fontSize={{ base: 8, md: 16 }} mt={0}>{solution.description}</Text>
+                        <Text fontSize={{ base: 8, md: 16 }} mt={0} textAlign={"justify"}>{solution.description}</Text>
                         <Box>
                             <Text fontSize={{ base: 8, md: 14 }} mt={5} fontWeight='bold' textDecor={'underline'}>Funcionalidad:</Text>
                             <Flex align={'center'} gap={3} pt={2} flexWrap='wrap'>
