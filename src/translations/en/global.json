@@ -575,7 +575,8 @@
         "empty": "This solution does not have any certifications yet"
     },
     "partners": {
-        "empty": "This solution does not have any partners yet"
+        "empty": "This solution does not have any partners yet",
+        "notLogged": "Do you want to discover the Service Partners that help with the implementation, training, and support of this solution?\nYou must log in so we can tell you more in detail."
     },
     "plans": {
         "title": "Plans",
@@ -588,7 +589,9 @@
         "completed": "Completed",
         "pending": "Pending",
         "answeredOn": "Answered on",
-        "empty": "This solution does not have any references yet"
+        "empty": "This solution does not have any references yet",
+        "notLogged": "In Digitalando, references are not a rating system and they don’t affect your on the platform.\nThey are completely objective client references.\nDo you want to see the client references for this service?",
+        "notLogged2": "You need to log in to view more details."
     },
     "favorites": {
         "remove": "Remove from favorites",
