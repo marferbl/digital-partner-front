@@ -15,6 +15,8 @@
     "completeTest": "Complete the test",
     "solutions": "Solutions",
     "services": "Services",
+    "service": "Service",
+    "solution": "Solution",
     "talent": "Talent",
     "events": "Events",
     "serviceTypeQuestion": "What type of service are you looking for?",
@@ -534,5 +536,103 @@
         "requiredTitle": "Login Required",
         "requiredMessage": "You need to log in to compare results with AI. Do you want to continue without logging in? (You won't be able to compare with AI)",
         "continueWithoutLogin": "Continue without login"
+    },
+    "solutionDetail": {
+        "back": "Back",
+        "info": "Info",
+        "partners": "Discover partners",
+        "references": "References",
+        "certifications": "Get certifications",
+        "acquire": "Acquire",
+        "contact": "Contact",
+        "mustLogin": "You must be logged in",
+        "mustLoginDetails": "You must be logged in to see more details",
+        "login": "Login",
+        "description": "Description",
+        "functionality": "Functionality",
+        "specificFeatures": "Specific features",
+        "countries": "Countries",
+        "languages": "Languages",
+        "showMore": "Show more...",
+        "features": {
+            "rrhh": "HR",
+            "sellmarketing": "Sales and marketing",
+            "finance": "Finance",
+            "logistics": "CSM",
+            "it": "IT",
+            "data": "Data",
+            "other": "Other",
+            "law": "Legal",
+            "transversal": "Cross-functional"
+        }
+    },
+    "common": {
+        "nothingHere": "Nothing here..."
+    },
+    "certifications": {
+        "title": "Certifications",
+        "goTo": "Go to certification",
+        "empty": "This solution does not have any certifications yet"
+    },
+    "partners": {
+        "empty": "This solution does not have any partners yet"
+    },
+    "plans": {
+        "title": "Plans",
+        "empty": "This solution does not have any plans yet"
+    },
+    "references": {
+        "of": "of",
+        "view": "View",
+        "status": "Status",
+        "completed": "Completed",
+        "pending": "Pending",
+        "answeredOn": "Answered on",
+        "empty": "This solution does not have any references yet"
+    },
+    "favorites": {
+        "remove": "Remove from favorites",
+        "add": "Add to favorites"
+    },
+    "serviceDetails": {
+        "back": "Back",
+        "visitWebsite": "Visit website",
+        "contact": "Contact",
+        "loginToContact": "Log in to contact",
+        "corporate": "Corporate",
+        "serviceType": "Service type",
+        "description": "Description",
+        "availableLanguages": "Available languages",
+        "availableCountries": "Available countries",
+        "solution": "Solution",
+        "solutionNotRegistered": "This solution is not registered",
+        "goToDetails": "Go to details",
+        "seeOtherServices": "See other services from this corporate",
+        "noOtherServices": "No more services from this corporate",
+        "info": "Info",
+        "acquire": "Acquire",
+        "references": "References",
+        "loginToSeeDetails": "You must log in to see more details",
+        "login": "Log in",
+        "partnerTypes": {
+            "selling": "Sales",
+            "implant": "Implementer",
+            "training": "Training"
+            }
+    },
+    "eventDetails": {
+        "corporate": "Corporate",
+        "description": "Description",
+        "date": "Date",
+        "time": "Time",
+        "type": "Event Type",
+        "remote": "Remote",
+        "presential": "On-site",
+        "duration": "Duration",
+        "capacity": "Capacity",
+        "people": "people",
+        "price": "Price",
+        "free": "FREE",
+        "location": "Location"
     }
 }

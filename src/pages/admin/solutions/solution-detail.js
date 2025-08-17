@@ -18,9 +18,11 @@ import { isDemoSolutionId } from "../../../utils/methods";
 import GradientButton from "../../../components/base/GradientButton";
 import CustomButton from "../../../components/base/CustomButton";
 import { PlansComponent } from "../../../components/corporate/solutions/solution-detail/plans-component";
+import { useTranslation } from "react-i18next";
 
 export const SolutionDetailPage = () => {
     const { isLoggedIn } = useContext(UserContext)
+    const { t } = useTranslation("global")
     const [solution, setSolution] = useState(null);
     const [selectedComponent, setSelectedComponent] = useState(null);
     const [label, setLabel] = useState(null);
@@ -51,14 +53,13 @@ export const SolutionDetailPage = () => {
 
 
     const LINKS = [
-        { label: 'Info', component: <SolutionDetail solution={solution} isDemo={isDemoSolution} />, icon: FaInfoCircle },
-        { label: 'Descubrir partners', component: <PartnerComponent isDemo={isDemoSolution} />, icon: FaUsers },
+        { label: t('solutionDetail.info'), component: <SolutionDetail solution={solution} isDemo={isDemoSolution} />, icon: FaInfoCircle },
+        { label: t('solutionDetail.partners'), component: <PartnerComponent isDemo={isDemoSolution} />, icon: FaUsers },
         // { label: 'Pedir demo', component: <DemoComponent solution={solution} isDemo={isDemoSolution} />, icon: FaLaptop },
         // { label: 'Descargar manuales', component: <ManualComponent solution={solution} isDemo={isDemoSolution} /> },
-        { label: 'Referencias', component: <ReferencesComponent isDemo={isDemoSolution} />, icon: FaStar },
-        { label: 'Obtener certificaciones', component: <CertificationComponent solution={solution} isDemo={isDemoSolution} />, icon: FaCertificate },
-        { label: 'Adquirir', component: <PlansComponent entity={solution} isDemo={isDemoSolution} />, icon: FaCreditCard },
-
+        { label: t('solutionDetail.references'), component: <ReferencesComponent isDemo={isDemoSolution} />, icon: FaStar },
+        { label: t('solutionDetail.certifications'), component: <CertificationComponent solution={solution} isDemo={isDemoSolution} />, icon: FaCertificate },
+        { label: t('solutionDetail.acquire'), component: <PlansComponent entity={solution} isDemo={isDemoSolution} />, icon: FaCreditCard },
     ];
 
 
@@ -79,7 +80,7 @@ export const SolutionDetailPage = () => {
 
     const renderComponent = (label) => {
         const selectedLink = LINKS.find(link => link.label === label);
-        setLabel(selectedLink.label);
+        setLabel(selectedLink?.label);
         setSelectedComponent(selectedLink ? selectedLink.component : null);
     };
 
@@ -100,7 +101,7 @@ export const SolutionDetailPage = () => {
                         transition="all 0.3s ease"
                     >
                         <IoChevronBack size={20} />
-                        <Text ml={2} pt={-1} fontSize={16} fontWeight={'bold'}>Volver</Text>
+                        <Text ml={2} pt={-1} fontSize={16} fontWeight={'bold'}>{t('solutionDetail.back')}</Text>
                     </Flex>
                     {isLoggedIn && <AddFavoriteButton entity={solution} />}
                 </Flex>
@@ -147,12 +148,12 @@ export const SolutionDetailPage = () => {
                             </Flex>
                             <div>
                                 <CustomButton
-                                    text='Contactar'
+                                    text={t('solutionDetail.contact')}
                                     disabled={!isLoggedIn}
                                     showIcon={true}
                                     onClick={() => window.open(`mailto:${solution?.corporate?.superadmin?.email}`)}
                                 />
-                                {!isLoggedIn && <Text className='text-sm text-neutral pl-3'>Debes iniciar sesión</Text>}
+                                {!isLoggedIn && <Text className='text-sm text-neutral pl-3'>{t('solutionDetail.mustLogin')}</Text>}
                             </div>
                         </Flex>
                     )}
@@ -193,14 +194,14 @@ export const SolutionDetailPage = () => {
                     ))}
                 </Flex>
 
-                {isLoggedIn || isDemoSolution || label === 'Info' ? (
+                {isLoggedIn || isDemoSolution || label === t('solutionDetail.info') ? (
                     <Box mt={4} px={{ base: 2, md: 14 }} flex={1}>
                         {selectedComponent}
                     </Box>
                 ) : (
                     <Flex w='full' justify={'center'} align={'center'} flexDir='column' mt={4}>
                         <Text mt={6} fontSize='xl' fontWeight='bold' color={'gray.400'}>
-                            Debes iniciar sesión para ver más detalles
+                            {t('solutionDetail.mustLoginDetails')}
                         </Text>
                         <Link to={'/start'}>
                             <Text
@@ -210,7 +211,7 @@ export const SolutionDetailPage = () => {
                                 color={'yellow.400'}
                                 _hover={{ color: 'yellow.300' }}
                             >
-                                Iniciar sesión
+                                {t('solutionDetail.login')}
                             </Text>
                         </Link>
                     </Flex>

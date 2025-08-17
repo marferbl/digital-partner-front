@@ -70,10 +70,8 @@ export const PlansComponent = ({ entity }) => {
                 </SimpleGrid> :
                 <div className='h-80 w-full flex items-center justify-center'>
                     <div className='text-white flex flex-col items-center'>
-                        <span className="text-3xl font-bold">
-                            Nada por aqui...
-                        </span>
-                        <span color='white'>Esta solución todavía no tiene planes dados de alta</span>
+                        <span className="text-3xl font-bold">{t("common.nothingHere")}</span>
+                        <span>{t("plans.empty")}</span>
                     </div>
                 </div>}
         </Box>

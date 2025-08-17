@@ -6,10 +6,12 @@ import { Box, Text, Flex } from '@chakra-ui/react';
 import { getCertificationsBySolution } from '../../../../services/certification';
 import { ButtonCreateCertification } from './certifications/button-create-certification';
 import { UserContext } from '../../../../context/userContext';
+import { useTranslation } from 'react-i18next';
 
 export const CertificationComponent = ({ solution }) => {
     const { id } = useParams();
     const { me } = useContext(UserContext)
+    const { t } = useTranslation("global");
 
     const [certifications, setCertifications] = useState([])
 
@@ -63,9 +65,9 @@ export const CertificationComponent = ({ solution }) => {
                 <div className='h-80 w-full flex items-center justify-center'>
                     <div className='text-white flex flex-col items-center'>
                         <span className="text-3xl font-bold">
-                            Nada por aqui...
+                            {t("common.nothingHere")}
                         </span>
-                        <span color='white'> Está solución todavía no tiene certificaciones dadas de alta</span>
+                        <span color='white'> {t("certifications.empty")}</span>
                     </div>
                 </div>}
         </Box>
