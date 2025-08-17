@@ -14,7 +14,7 @@ const GalleryPhotoCard = ({ gallery }) => {
             <img
                 src={gallery && gallery.length ? gallery[currentIndex] : 'https://www.shutterstock.com/image-vector/image-icon-600nw-211642900.jpg'}
                 alt=""
-                className="w-full h-40 rounded-lg object-cover transition-all duration-500 ease-in-out"
+                className="w-full aspect-video rounded-lg object-cover transition-all duration-500 ease-in-out"
             />
 
             {/* Dots below the image */}
