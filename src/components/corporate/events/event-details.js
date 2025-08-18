@@ -35,8 +35,8 @@ const EventDetails = ({ event }) => {
     };
 
     const eventTypes = [
-        { value: 'remote', label: 'Remoto' },
-        { value: 'presential', label: 'Presencial' },
+        { value: 'remote', label: t("eventDetails.remote") },
+        { value: 'presential', label: t("eventDetails.presential") },
     ]
 
     const solution = event?.solutionId
@@ -83,20 +83,20 @@ const EventDetails = ({ event }) => {
                         </Flex>
 
                         <Box>
-                            <Text fontSize="lg" fontWeight='bold' color="white" mb={2}>Corporate</Text>
+                            <Text fontSize="lg" fontWeight='bold' color="white" mb={2}>{t("eventDetails.corporate")}</Text>
                             <Text fontSize="md" color="gray.300">{event?.corporate?.name}</Text>
                         </Box>
 
                         <Box>
-                            <Text fontSize="lg" fontWeight='bold' color="white" mb={2}>Descripción</Text>
-                            <Text color="gray.300" lineHeight="tall">{event.description}</Text>
+                            <Text fontSize="lg" fontWeight='bold' color="white" mb={2}>{t("eventDetails.description")}</Text>
+                            <Text color="gray.300" lineHeight="tall" textAlign={"justify"}>{event.description}</Text>
                         </Box>
 
                         <HStack spacing={8} wrap="wrap">
                             <VStack align="start" spacing={1}>
                                 <HStack>
                                     <Icon as={FaCalendarAlt} color="yellow.400" />
-                                    <Text fontSize="lg" fontWeight='bold' color="white">Fecha</Text>
+                                    <Text fontSize="lg" fontWeight='bold' color="white">{t("eventDetails.date")}</Text>
                                 </HStack>
                                 <Text color="gray.300">
                                     {new Date(event.date).toLocaleDateString()}
@@ -106,7 +106,7 @@ const EventDetails = ({ event }) => {
                             <VStack align="start" spacing={1}>
                                 <HStack>
                                     <Icon as={FaClock} color="yellow.400" />
-                                    <Text fontSize="lg" fontWeight='bold' color="white">Hora</Text>
+                                    <Text fontSize="lg" fontWeight='bold' color="white">{t("eventDetails.time")}</Text>
                                 </HStack>
                                 <Text color="gray.300">
                                     {new Date(event.time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
@@ -115,11 +115,11 @@ const EventDetails = ({ event }) => {
                         </HStack>
 
                         <Box>
-                            <Text fontSize="lg" fontWeight='bold' color="white" mb={2}>Tipo de Evento</Text>
+                            <Text fontSize="lg" fontWeight='bold' color="white" mb={2}>{t("eventDetails.type")}</Text>
                             <HStack spacing={4}>
                                 {eventTypes.map(eventType => (
                                     <Badge
-                                        key={eventType.label}
+                                        key={eventType.value}
                                         colorScheme={event.type.includes(eventType.value) ? "yellow" : "gray"}
                                         px={3}
                                         py={1}
@@ -135,7 +135,7 @@ const EventDetails = ({ event }) => {
                             <VStack align="start" spacing={1}>
                                 <HStack>
                                     <Icon as={FaClock} color="yellow.400" />
-                                    <Text fontSize="lg" fontWeight='bold' color="white">Duración</Text>
+                                    <Text fontSize="lg" fontWeight='bold' color="white">{t("eventDetails.duration")}</Text>
                                 </HStack>
                                 <Text color="gray.300">{event.duration}H</Text>
                             </VStack>
@@ -143,17 +143,17 @@ const EventDetails = ({ event }) => {
                             <VStack align="start" spacing={1}>
                                 <HStack>
                                     <Icon as={FaUsers} color="yellow.400" />
-                                    <Text fontSize="lg" fontWeight='bold' color="white">Aforo</Text>
+                                    <Text fontSize="lg" fontWeight='bold' color="white">{t("eventDetails.capacity")}</Text>
                                 </HStack>
-                                <Text color="gray.300">{event.maximumCapacity} personas</Text>
+                                <Text color="gray.300">{event.maximumCapacity} {t("eventDetails.people")}</Text>
                             </VStack>
 
                             <VStack align="start" spacing={1}>
                                 <HStack>
                                     <Icon as={FaEuroSign} color="yellow.400" />
-                                    <Text fontSize="lg" fontWeight='bold' color="white">Precio</Text>
+                                    <Text fontSize="lg" fontWeight='bold' color="white">{t("eventDetails.price")}</Text>
                                 </HStack>
-                                <Text color="gray.300">{event.price === 0 || event.price === null ? 'GRATIS' : `${event.price} €`}</Text>
+                                <Text color="gray.300">{event.price === 0 || event.price === null ? t("eventDetails.free") : `${event.price} €`}</Text>
                             </VStack>
                         </Grid>
                     </VStack>
@@ -164,7 +164,7 @@ const EventDetails = ({ event }) => {
                         <Box>
                             <HStack mb={2}>
                                 <Icon as={FaMapMarkerAlt} color="yellow.400" />
-                                <Text fontSize="lg" fontWeight='bold' color="white">Ubicación</Text>
+                                <Text fontSize="lg" fontWeight='bold' color="white">{t("eventDetails.location")}</Text>
                             </HStack>
                             <Text color="gray.300">{event.address}</Text>
                         </Box>

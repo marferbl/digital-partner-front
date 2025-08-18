@@ -40,9 +40,9 @@ const ServiceInfoComponent = ({ service }) => {
     }
 
     const PARTNER_TYPE_KEYS = {
-        'selling': 'Venta',
-        'implant': 'Implantador',
-        'training': 'Formación'
+        'selling': t('serviceDetails.selling'),
+        'implant': t('serviceDetails.implant'),
+        'training': t('serviceDetails.training')
     }
     const solution = service?.solutionId
 
@@ -54,7 +54,7 @@ const ServiceInfoComponent = ({ service }) => {
             return `${PARTNER_TYPE_KEYS[array[0]]} y ${PARTNER_TYPE_KEYS[array[1]]}`
         }
         if (array.length > 2) {
-            return `${PARTNER_TYPE_KEYS[array[0]]}, ${PARTNER_TYPE_KEYS[array[1]]} y ${PARTNER_TYPE_KEYS[array[1]]} más`
+            return `${PARTNER_TYPE_KEYS[array[0]]}, ${PARTNER_TYPE_KEYS[array[1]]} y ${PARTNER_TYPE_KEYS[array[2]]} ${t('serviceDetails.more')}`
         }
     }
 
@@ -74,7 +74,7 @@ const ServiceInfoComponent = ({ service }) => {
                         <Box>
                             <HStack mb={2}>
                                 <Icon as={FaBuilding} color="yellow.400" />
-                                <Text fontSize="lg" fontWeight='bold' color="white">Corporate</Text>
+                                <Text fontSize="lg" fontWeight='bold' color="white">{t('serviceDetails.corporate')}</Text>
                             </HStack>
                             <Text fontSize="md" color="gray.300">{service?.corporate?.name}</Text>
                         </Box>
@@ -83,7 +83,7 @@ const ServiceInfoComponent = ({ service }) => {
                     <Box>
                         <HStack mb={2}>
                             <Icon as={FaInfoCircle} color="yellow.400" />
-                            <Text fontSize="lg" fontWeight='bold' color="white">Tipo de servicio</Text>
+                            <Text fontSize="lg" fontWeight='bold' color="white">{t('serviceDetails.serviceType')}</Text>
                         </HStack>
                         <Text color="gray.300">
                             {capitalizeFirstLetter(t(service.serviceType))}
@@ -96,15 +96,15 @@ const ServiceInfoComponent = ({ service }) => {
                     <Box>
                         <HStack mb={2}>
                             <Icon as={FaInfoCircle} color="yellow.400" />
-                            <Text fontSize="lg" fontWeight='bold' color="white">Descripción</Text>
+                            <Text fontSize="lg" fontWeight='bold' color="white">{t('serviceDetails.description')}</Text>
                         </HStack>
-                        <Text color="gray.300">{service.description}</Text>
+                        <Text color="gray.300" textAlign={"justify"}>{service.description}</Text>
                     </Box>
 
                     <Box>
                         <HStack mb={2}>
                             <Icon as={FaLanguage} color="yellow.400" />
-                            <Text fontSize="lg" fontWeight='bold' color="white">Idiomas disponibles</Text>
+                            <Text fontSize="lg" fontWeight='bold' color="white">{t('serviceDetails.availableLanguages')}</Text>
                         </HStack>
                         <VStack align="start" spacing={1}>
                             {service?.languages?.map((e, index) => (
@@ -117,7 +117,7 @@ const ServiceInfoComponent = ({ service }) => {
                         <Box>
                             <HStack mb={2}>
                                 <Icon as={FaGlobe} color="yellow.400" />
-                                <Text fontSize="lg" fontWeight='bold' color="white">Países disponibles</Text>
+                                <Text fontSize="lg" fontWeight='bold' color="white">{t('serviceDetails.availableCountries')}</Text>
                             </HStack>
                             <HStack spacing={2}>
                                 {service?.countries?.map((e, index) => (
@@ -137,7 +137,7 @@ const ServiceInfoComponent = ({ service }) => {
                         >
                             <HStack mb={2}>
                                 <Icon as={FaLink} color="yellow.400" />
-                                <Text fontSize="lg" fontWeight='bold' color="white">Solución</Text>
+                                <Text fontSize="lg" fontWeight='bold' color="white">{t('serviceDetails.solution')}</Text>
                             </HStack>
                             <VStack align="start" spacing={2}>
                                 <Text fontWeight={'bold'} fontSize={18} color="white">
@@ -145,7 +145,7 @@ const ServiceInfoComponent = ({ service }) => {
                                 </Text>
                                 <Text fontSize={16} color="gray.300">{solution?.website}</Text>
                                 {service.otherSolution ? (
-                                    <Text fontSize={14} color="gray.400">Esta solución no está dada de alta</Text>
+                                    <Text fontSize={14} color="gray.400">{t('serviceDetails.notRegistered')}</Text>
                                 ) : (
                                     <Link to={isLoggedIn ? `/private/solution/${solution?._id}` : `/solution/${solution?._id}`}>
                                         <Text
@@ -154,7 +154,7 @@ const ServiceInfoComponent = ({ service }) => {
                                             fontSize={14}
                                             _hover={{ color: 'yellow.300' }}
                                         >
-                                            Ir a detalles
+                                            {t('serviceDetails.goToDetails')}
                                         </Text>
                                     </Link>
                                 )}
@@ -177,7 +177,7 @@ const ServiceInfoComponent = ({ service }) => {
                             <AccordionButton>
                                 <Box flex="1" textAlign="left">
                                     <Text fontSize={14} fontWeight="bold" color="white">
-                                        Ver otros servicios de esta corporate
+                                        {t('serviceDetails.viewOtherServices')}
                                     </Text>
                                 </Box>
                                 <AccordionIcon color="yellow.400" />
@@ -186,7 +186,7 @@ const ServiceInfoComponent = ({ service }) => {
                                 {services?.length ? (
                                     <ServicesTable services={services} smallView={true} />
                                 ) : (
-                                    <Text color="gray.400">No hay más servicios de esta corporate</Text>
+                                    <Text color="gray.400">{t('serviceDetails.noOtherServices')}</Text>
                                 )}
                             </AccordionPanel>
                         </AccordionItem>
@@ -201,6 +201,7 @@ const ServiceDetails = ({ service }) => {
     const [selectedComponent, setSelectedComponent] = useState(null);
     const [label, setLabel] = useState(null);
     const { isLoggedIn } = useContext(UserContext);
+    const { t } = useTranslation("global");
 
     useEffect(() => {
         if (!selectedComponent && service) {
@@ -209,9 +210,9 @@ const ServiceDetails = ({ service }) => {
     }, [service]);
 
     const LINKS = [
-        { label: 'Info', component: <ServiceInfoComponent service={service} />, icon: FaInfoCircle },
-        { label: 'Adquirir', component: <PlansComponent entity={service} />, icon: FaCreditCard },
-        { label: 'Referencias', component: <ReferencesComponent />, icon: FaStar },
+        { label: t('serviceDetails.info'), component: <ServiceInfoComponent service={service} />, icon: FaInfoCircle },
+        { label: t('serviceDetails.acquire'), component: <PlansComponent entity={service} />, icon: FaCreditCard },
+        { label: t('serviceDetails.references'), component: <ReferencesComponent />, icon: FaStar },
     ];
 
     const renderComponent = (label) => {
@@ -265,7 +266,7 @@ const ServiceDetails = ({ service }) => {
                 ) : (
                     <Flex w='full' justify={'center'} align={'center'} flexDir='column' mt={4}>
                         <Text mt={6} fontSize='xl' fontWeight='bold' color={'gray.400'}>
-                            Debes iniciar sesión para ver más detalles
+                            {t('serviceDetails.loginToSeeDetails')}
                         </Text>
                         <Link to={'/start'}>
                             <Text
@@ -275,7 +276,7 @@ const ServiceDetails = ({ service }) => {
                                 color={'yellow.400'}
                                 _hover={{ color: 'yellow.300' }}
                             >
-                                Iniciar sesión
+                                {t('serviceDetails.login')}
                             </Text>
                         </Link>
                     </Flex>

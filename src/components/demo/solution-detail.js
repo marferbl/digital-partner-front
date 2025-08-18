@@ -4,6 +4,7 @@ import { SPECIFY_FEATURES_LABELS } from '../../utils/constants'
 import { Box, Text, Grid, GridItem, Avatar, Flex, Checkbox } from '@chakra-ui/react'
 import GradientButton from '../base/GradientButton'
 import CountryFlag from '../base/country-flag'
+import { useTranslation } from "react-i18next";
 
 
 
@@ -45,6 +46,8 @@ const SolutionDetailDemo = () => {
         'chinese',
         'russian',
     ]
+
+    const { t } = useTranslation("global")
 
     return (
         <Box mt={6} p={5} rounded={"xl"} w={"100%"}>

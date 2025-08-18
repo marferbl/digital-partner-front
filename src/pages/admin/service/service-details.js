@@ -8,11 +8,13 @@ import { FaGlobe, FaEnvelope } from "react-icons/fa";
 import { capitalizeFirstLetter } from "../../../utils/methods";
 import CustomButton from "../../../components/base/CustomButton";
 import ServiceDetails from "../../../components/corporate/service/service-details";
+import { useTranslation } from "react-i18next";
 
 const ServiceDetailsPage = () => {
     const [service, setService] = useState(null);
     const { isLoggedIn } = useContext(UserContext)
     const { id } = useParams();
+    const { t } = useTranslation("global");
 
     useEffect(() => {
         getMyService();
@@ -59,7 +61,7 @@ const ServiceDetailsPage = () => {
                     transition="all 0.3s ease"
                 >
                     <IoChevronBack size={20} />
-                    <Text ml={2} pt={-4} fontSize={16} fontWeight={'bold'}>Volver</Text>
+                    <Text ml={2} pt={-4} fontSize={16} fontWeight={'bold'}>{t("back")}</Text>
                 </Flex>
 
                 <Box
@@ -89,14 +91,13 @@ const ServiceDetailsPage = () => {
                                 )}
                                 {service?.website && (
                                     <HStack>
-                                        <Icon as={FaGlobe} color="yellow.400" />
                                         <Text
                                             fontSize="sm"
                                             color="gray.300"
                                             _hover={{ color: 'yellow.400' }}
                                         >
                                             <a href={service.website} target="_blank" rel="noopener noreferrer">
-                                                Ir a su web
+                                                {t("serviceDetails.visitWebsite")}
                                             </a>
                                         </Text>
                                     </HStack>
@@ -107,18 +108,17 @@ const ServiceDetailsPage = () => {
                         <Box>
                             {isLoggedIn ? (
                                 <HStack spacing={2}>
-                                    <Icon as={FaEnvelope} color="yellow.400" />
                                     <CustomButton
-                                        text='Contactar'
+                                        text={t("serviceDetails.contact")}
                                         showIcon={true}
                                         onClick={() => window.open(`mailto:${service?.corporate?.superadmin?.email}`)}
                                     />
                                 </HStack>
                             ) : (
                                 <VStack align="start" spacing={1}>
-                                    <CustomButton text='Contactar' disabled={true} showIcon={true} />
+                                    <CustomButton text={t("serviceDetails.contact")} disabled={true} showIcon={true} />
                                     <Text fontSize="sm" color="gray.400">
-                                        Inicia sesión para contactar
+                                        {t("serviceDetails.loginToContact")}
                                     </Text>
                                 </VStack>
                             )}

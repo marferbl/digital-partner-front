@@ -5,26 +5,28 @@ import { languageLabelFromValue } from "../../../utils/methods";
 import { SPECIFY_FEATURES_LABELS } from "../../../utils/constants";
 import GradientButton from "../../base/GradientButton";
 import FeedGallery from "../../base/FeedGallery";
+import { useTranslation } from "react-i18next";
 
 
 
 export const SolutionDetail = ({ solution }) => {
     const [showAllCountries, setShowAllCountries] = useState(false);
+    const { t } = useTranslation('global')
 
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
 
     const KEYS_FEATURES = {
-        rrhh: 'RRHH',
-        sellmarketing: 'Ventas y marketing',
-        finance: 'Finanzas',
-        logistics: 'CSM',
-        it: 'IT',
-        data: 'Data',
-        other: 'Otro',
-        law: 'Legal',
-        transversal: 'Transversal'
+        rrhh: t("solutionDetail.features.rrhh"),
+        sellmarketing: t("solutionDetail.features.sellmarketing"),
+        finance: t("solutionDetail.features.finance"),
+        logistics: t("solutionDetail.features.logistics"),
+        it: t("solutionDetail.features.it"),
+        data: t("solutionDetail.features.data"),
+        other: t("solutionDetail.features.other"),
+        law: t("solutionDetail.features.law"),
+        transversal: t("solutionDetail.features.transversal")
     };
 
     const displayedCountries = showAllCountries ? solution?.countries : solution?.countries?.slice(0, 4);
@@ -36,10 +38,10 @@ export const SolutionDetail = ({ solution }) => {
             {solution &&
                 <>
                     <Box mt={1} p={5} bgColor={"black"} w={"100%"} px={2} mb={3} color='white'>
-                        <Text fontSize={{ base: 8, md: 14 }} mt={3} fontWeight='bold' textDecor={'underline'}>Descripción:</Text>
-                        <Text fontSize={{ base: 8, md: 16 }} mt={0}>{solution.description}</Text>
+                        <Text fontSize={{ base: 8, md: 14 }} mt={3} fontWeight='bold' textDecor={'underline'}>{t("solutionDetail.description")}:</Text>
+                        <Text fontSize={{ base: 8, md: 16 }} mt={0} textAlign={"justify"}>{solution.description}</Text>
                         <Box>
-                            <Text fontSize={{ base: 8, md: 14 }} mt={5} fontWeight='bold' textDecor={'underline'}>Funcionalidad:</Text>
+                            <Text fontSize={{ base: 8, md: 14 }} mt={5} fontWeight='bold' textDecor={'underline'}>{t("solutionDetail.functionality")}:</Text>
                             <Flex align={'center'} gap={3} pt={2} flexWrap='wrap'>
                                 {solution?.features.map((feature, index) => (
                                     <Flex key={index} alignItems="center" gap={1}>
@@ -55,7 +57,7 @@ export const SolutionDetail = ({ solution }) => {
                         </Box>
                         <Flex align={'center'} gap={6} flexWrap='wrap'>
                             <Box>
-                                <Text fontSize={{ base: 8, md: 14 }} mt={5} fontWeight='bold' textDecor={'underline'}>Funcionalidades específicas:</Text>
+                                <Text fontSize={{ base: 8, md: 14 }} mt={5} fontWeight='bold' textDecor={'underline'}>{t("solutionDetail.specificFeatures")}:</Text>
                                 <Flex align="center" gap={2} pt={2}>
                                     <Grid templateColumns="repeat(4, 1fr)" gap={4}>
                                         {/* First column */}
@@ -103,12 +105,12 @@ export const SolutionDetail = ({ solution }) => {
                         </Flex>
                         <Flex align={'center'} gap={10} pt={8}>
                             <Box>
-                                <Text fontSize={{ base: 8, md: 14 }} fontWeight='bold' textDecor={'underline'}>Países:</Text>
+                                <Text fontSize={{ base: 8, md: 14 }} fontWeight='bold' textDecor={'underline'}>{t("solutionDetail.countries")}:</Text>
                                 <Flex align={'center'} gap={2} pt={1} flexWrap='wrap'>
                                     {displayedCountries.map((country, index) => (
                                         <Text key={index} fontSize={{ base: 8, md: 18 }}><CountryFlag country={country} /></Text>
                                     ))}
-                                    {/* "Ver más" button to reveal all countries */}
+                                    {/* "Show more" button to reveal all countries */}
                                     {!showAllCountries && solution?.countries?.length > 4 && (
                                         <Button
                                             onClick={() => setShowAllCountries(true)}
@@ -118,13 +120,13 @@ export const SolutionDetail = ({ solution }) => {
                                             textDecoration="underline"
                                             pl={2}
                                         >
-                                            Ver más...
+                                            {t("solutionDetail.showMore")}
                                         </Button>
                                     )}
                                 </Flex>
                             </Box>
                             <Box>
-                                <Text fontSize={{ base: 8, md: 14 }} fontWeight='bold' textDecor={'underline'}>Idiomas:</Text>
+                                <Text fontSize={{ base: 8, md: 14 }} fontWeight='bold' textDecor={'underline'}>{t("solutionDetail.languages")}:</Text>
                                 <Flex align={'center'} gap={2} pt={1} flexWrap='wrap'>
                                     {solution?.languages?.map((language, index) => (
                                         <Text key={index} fontSize={{ base: 8, md: 16 }}>{languageLabelFromValue(language)} </Text>

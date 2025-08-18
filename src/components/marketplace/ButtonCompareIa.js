@@ -19,16 +19,22 @@ import { compareSolutionsIA } from '../../services/search'
 import LoadingSpinner from '../base/LoadingSpinner'
 import { useTranslation } from 'react-i18next'
 import CustomButton from '../base/CustomButton'
-
-
-
-
-
+import { UserContext } from '../../context/userContext'
+import { useNavigate } from 'react-router-dom'
 
 
 export const ButtonCompareIA = ({ refreshSolutions, disabled }) => {
-    const { isOpen, onOpen, onClose } = useDisclosure()
     const { t } = useTranslation("global")
+    const { isLoggedIn } = useContext(UserContext)
+    const navigate = useNavigate()
+
+    const { isOpen, onOpen, onClose } = useDisclosure()
+
+    const { 
+        isOpen: isPromptOpen, 
+        onOpen: onPromptOpen, 
+        onClose: onPromptClose 
+    } = useDisclosure()
 
     const [solutionId1, setsolutionId1] = useState('')
     const [solutionId2, setsolutionId2] = useState('')
@@ -55,16 +61,27 @@ export const ButtonCompareIA = ({ refreshSolutions, disabled }) => {
                 setLoading(false)
             })
             .catch((error) => {
-                setError(error.response.data.message)
-                setLoading(false)
+                if (error.response?.status === 401) {
+                    closeModal()
+                    onPromptOpen()
+                } else {
+                    setError(error.response?.data?.message || "Unexpected error")
+                    setLoading(false)
+                }
             })
     }
 
-
+    const handleOpen = () => {
+        if (!isLoggedIn) {
+            onPromptOpen()
+            return
+        }
+        onOpen()
+    }
 
     return (
         <>
-            <CustomButton onClick={onOpen} text={t('compareWithAI')} extraClass='text-sm py-2' showIcon></CustomButton>
+            <CustomButton onClick={handleOpen} text={t('compareWithAI')} extraClass='text-sm py-2' showIcon></CustomButton>
 
 
             <Modal isOpen={isOpen} onClose={closeModal} size='3xl'>
@@ -97,14 +114,44 @@ export const ButtonCompareIA = ({ refreshSolutions, disabled }) => {
                                 </Box>
                             </Box>
                         )}
+
+                        {error && (
+                            <Text color='red.500' mt={2}>{error}</Text>
+                        )}
                     </ModalBody>
 
 
                     <ModalFooter>
-                        <Button variant='ghost' mr={3} onClick={onClose}>
+                        <Button variant='ghost' mr={3} onClick={closeModal}>
                             {t('compareAI.cancel')}
                         </Button>
                         <Button onClick={compareSolutions} colorScheme='gray'>{t('compareAI.compare')}</Button>
+                    </ModalFooter>
+                </ModalContent>
+            </Modal>
+
+            {/* Prompt Modal for login or continue */}
+            <Modal isOpen={isPromptOpen} onClose={onPromptClose} isCentered>
+                <ModalOverlay />
+                <ModalContent>
+                    <ModalHeader>{t('auth.requiredTitle')}</ModalHeader>
+                    <ModalCloseButton />
+                    <ModalBody>
+                        <Text>{t('auth.requiredMessage')}</Text>
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button variant="ghost" mr={3} onClick={() => {
+                            onPromptClose()
+                            onClose()
+                        }}>
+                            {t('auth.continueWithoutLogin')}
+                        </Button>
+                        <Button colorScheme="blue" onClick={() => {
+                            onPromptClose()
+                            navigate('/start')
+                        }}>
+                            {t('loginKey')}
+                        </Button>
                     </ModalFooter>
                 </ModalContent>
             </Modal>

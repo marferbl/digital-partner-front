@@ -41,7 +41,7 @@ const CardService = ({ item, isFavorites }) => {
                             {item.title || item.serviceType}
                         </Link>
                     </h3>
-                    <span className="text-xs text-darkgray text-center">Servicio</span>
+                    <span className="text-xs text-darkgray text-center">{t('service')}</span>
                 </div>
             </div>
 

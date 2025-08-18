@@ -15,6 +15,8 @@
     "completeTest": "Completa el test",
     "solutions": "Soluciones",
     "services": "Servicios",
+    "service": "Servicio",
+    "solution": "Solución",
     "talent": "Talento",
     "events": "Eventos",
     "position": "Posición",
@@ -542,5 +544,111 @@
         "project_based": "Por proyecto",
         "hourly": "Por horas",
         "other_contract": "Otro tipo de contrato"
+    },
+    "auth": {
+    "requiredTitle": "Inicio de sesión requerido",
+    "requiredMessage": "Necesitas iniciar sesión para comparar resultados con la IA. ¿Quieres continuar sin iniciar sesión? (No podrás comparar con la IA)",
+    "continueWithoutLogin": "Continuar sin iniciar sesión"
+    },
+    "solutionDetail": {
+        "back": "Atrás",
+        "info": "Info",
+        "partners": "Descubrir socios",
+        "references": "Referencias",
+        "certifications": "Obtener certificaciones",
+        "acquire": "Adquirir",
+        "contact": "Contacto",
+        "mustLogin": "Debes iniciar sesión",
+        "mustLoginDetails": "Debes iniciar sesión para ver más detalles",
+        "login": "Iniciar sesión",
+        "description": "Descripción",
+        "functionality": "Funcionalidad",
+        "specificFeatures": "Funcionalidades específicas",
+        "countries": "Países",
+        "languages": "Idiomas",
+        "showMore": "Ver más...",
+        "features": {
+            "rrhh": "RRHH",
+            "sellmarketing": "Ventas y marketing",
+            "finance": "Finanzas",
+            "logistics": "CSM",
+            "it": "IT",
+            "data": "Datos",
+            "other": "Otro",
+            "law": "Legal",
+            "transversal": "Transversal"
+        }
+    },
+    "common": {
+        "nothingHere": "Nada por aquí..."
+    },
+    "certifications": {
+        "title": "Certificaciones",
+        "goTo": "Ir a la certificación",
+        "empty": "Esta solución todavía no tiene certificaciones dadas de alta"
+    },
+    "partners": {
+        "empty": "Esta solución todavía no tiene partners dados de alta",
+        "notLogged": "¿Quieres descubrir los Partners de Servicio que ayudan en la implantación, formación soporte de esta solución?\nDebes iniciar sesión para que te contemos con detalle."
+    },
+    "plans": {
+        "title": "Planes",
+        "empty": "Esta solución todavía no tiene planes dados de alta"
+    },
+    "references": {
+        "of": "de",
+        "view": "Ver",
+        "status": "Estado",
+        "completed": "Completada",
+        "pending": "Pendiente",
+        "answeredOn": "Contestada el",
+        "empty": "Esta solución todavía no tiene referencias",
+        "notLogged": "En Digitalando las referencias no son un sistema de estrellas ni te posicionan en la plataforma.\nSon referencias de los clientes totalmente objetivas.\n¿Quieres conocer las referencias de clientes de este servicio?",
+        "notLogged2": "Debes iniciar sesión para ver más detalles."
+    },
+    "favorites": {
+        "remove": "Eliminar de favoritos",
+        "add": "Añadir a favoritos"
+    },
+    "serviceDetails": {
+        "back": "Volver",
+        "visitWebsite": "Ir a su web",
+        "contact": "Contactar",
+        "loginToContact": "Inicia sesión para contactar",
+        "corporate": "Corporate",
+        "serviceType": "Tipo de servicio",
+        "description": "Descripción",
+        "availableLanguages": "Idiomas disponibles",
+        "availableCountries": "Países disponibles",
+        "solution": "Solución",
+        "solutionNotRegistered": "Esta solución no está dada de alta",
+        "goToDetails": "Ir a detalles",
+        "seeOtherServices": "Ver otros servicios de esta corporate",
+        "noOtherServices": "No hay más servicios de esta corporate",
+        "info": "Info",
+        "acquire": "Adquirir",
+        "references": "Referencias",
+        "loginToSeeDetails": "Debes iniciar sesión para ver más detalles",
+        "login": "Iniciar sesión",
+        "partnerTypes": {
+        "selling": "Venta",
+        "implant": "Implantador",
+        "training": "Formación"
+        }
+    },
+    "eventDetails": {
+        "corporate": "Corporate",
+        "description": "Descripción",
+        "date": "Fecha",
+        "time": "Hora",
+        "type": "Tipo de Evento",
+        "remote": "Remoto",
+        "presential": "Presencial",
+        "duration": "Duración",
+        "capacity": "Aforo",
+        "people": "personas",
+        "price": "Precio",
+        "free": "GRATIS",
+        "location": "Ubicación"
     }
 }

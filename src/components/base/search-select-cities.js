@@ -3,10 +3,12 @@ import React, { useEffect, useState } from 'react'
 import { COLORS } from '../../colors/colors'
 import { getDistinctCities } from '../../services/event'
 import SearchSelect from './search-select'
+import { useTranslation } from 'react-i18next';
 
 const SearchSelectCities = ({ term, value, onChange, placeholder, emitFullObject }) => {
     const [cities, setCities] = useState([])
     const [selected, setSelected] = useState(value)
+    const { t } = useTranslation("global");
 
     useEffect(() => {
         getCities();
@@ -51,7 +53,7 @@ const SearchSelectCities = ({ term, value, onChange, placeholder, emitFullObject
             value={selected}
             onChange={(value) => setSelected(value)}
             searchable
-            label={'Ciudad'}
+            label={t('profileUser.events.2.city')}
             placeholder={placeholder || "Selecciona una ciudad"}
             isClearable
         />

@@ -1,4 +1,4 @@
-import { Box, Text, Flex, Avatar, VStack, HStack, Badge, Icon } from "@chakra-ui/react";
+import { Box, Text, Flex, Avatar, VStack, HStack, Badge, Icon, Center } from "@chakra-ui/react";
 import React, { useState, useEffect, useContext } from "react";
 import { SolutionDetail } from "../../../components/corporate/solutions/solution-detail";
 import { getSolutionById } from "../../../services/solution";
@@ -18,9 +18,11 @@ import { isDemoSolutionId } from "../../../utils/methods";
 import GradientButton from "../../../components/base/GradientButton";
 import CustomButton from "../../../components/base/CustomButton";
 import { PlansComponent } from "../../../components/corporate/solutions/solution-detail/plans-component";
+import { useTranslation } from "react-i18next";
 
 export const SolutionDetailPage = () => {
     const { isLoggedIn } = useContext(UserContext)
+    const { t } = useTranslation("global")
     const [solution, setSolution] = useState(null);
     const [selectedComponent, setSelectedComponent] = useState(null);
     const [label, setLabel] = useState(null);
@@ -51,14 +53,13 @@ export const SolutionDetailPage = () => {
 
 
     const LINKS = [
-        { label: 'Info', component: <SolutionDetail solution={solution} isDemo={isDemoSolution} />, icon: FaInfoCircle },
-        { label: 'Descubrir partners', component: <PartnerComponent isDemo={isDemoSolution} />, icon: FaUsers },
-        { label: 'Pedir demo', component: <DemoComponent solution={solution} isDemo={isDemoSolution} />, icon: FaLaptop },
+        { label: t('solutionDetail.info'), component: <SolutionDetail solution={solution} isDemo={isDemoSolution} />, icon: FaInfoCircle },
+        { label: t('solutionDetail.partners'), component: <PartnerComponent isDemo={isDemoSolution} />, icon: FaUsers },
+        // { label: 'Pedir demo', component: <DemoComponent solution={solution} isDemo={isDemoSolution} />, icon: FaLaptop },
         // { label: 'Descargar manuales', component: <ManualComponent solution={solution} isDemo={isDemoSolution} /> },
-        { label: 'Referencias', component: <ReferencesComponent isDemo={isDemoSolution} />, icon: FaStar },
-        { label: 'Obtener certificaciones', component: <CertificationComponent solution={solution} isDemo={isDemoSolution} />, icon: FaCertificate },
-        { label: 'Adquirir', component: <PlansComponent entity={solution} isDemo={isDemoSolution} />, icon: FaCreditCard },
-
+        { label: t('solutionDetail.references'), component: <ReferencesComponent isDemo={isDemoSolution} />, icon: FaStar },
+        { label: t('solutionDetail.certifications'), component: <CertificationComponent solution={solution} isDemo={isDemoSolution} />, icon: FaCertificate },
+        { label: t('solutionDetail.acquire'), component: <PlansComponent entity={solution} isDemo={isDemoSolution} />, icon: FaCreditCard },
     ];
 
 
@@ -79,7 +80,7 @@ export const SolutionDetailPage = () => {
 
     const renderComponent = (label) => {
         const selectedLink = LINKS.find(link => link.label === label);
-        setLabel(selectedLink.label);
+        setLabel(selectedLink?.label);
         setSelectedComponent(selectedLink ? selectedLink.component : null);
     };
 
@@ -100,7 +101,7 @@ export const SolutionDetailPage = () => {
                         transition="all 0.3s ease"
                     >
                         <IoChevronBack size={20} />
-                        <Text ml={2} pt={-1} fontSize={16} fontWeight={'bold'}>Volver</Text>
+                        <Text ml={2} pt={-1} fontSize={16} fontWeight={'bold'}>{t('solutionDetail.back')}</Text>
                     </Flex>
                     {isLoggedIn && <AddFavoriteButton entity={solution} />}
                 </Flex>
@@ -133,6 +134,7 @@ export const SolutionDetailPage = () => {
                                     <Text fontSize={{ base: 14, md: 30 }} whiteSpace='nowrap' color='white' fontWeight={300}>
                                         {solution.name}
                                     </Text>
+                                    {/*
                                     <HStack>
                                         <Icon as={FaGlobe} color="yellow.400" />
                                         <Text fontSize={{ base: 8, md: 14 }} color="gray.300" _hover={{ color: 'yellow.400' }}>
@@ -141,16 +143,17 @@ export const SolutionDetailPage = () => {
                                             </a>
                                         </Text>
                                     </HStack>
+                                    */}
                                 </VStack>
                             </Flex>
                             <div>
                                 <CustomButton
-                                    text='Contactar'
+                                    text={t('solutionDetail.contact')}
                                     disabled={!isLoggedIn}
                                     showIcon={true}
                                     onClick={() => window.open(`mailto:${solution?.corporate?.superadmin?.email}`)}
                                 />
-                                {!isLoggedIn && <Text className='text-sm text-neutral pl-3'>Debes iniciar sesión</Text>}
+                                {!isLoggedIn && <Text className='text-sm text-neutral pl-3'>{t('solutionDetail.mustLogin')}</Text>}
                             </div>
                         </Flex>
                     )}
@@ -191,27 +194,64 @@ export const SolutionDetailPage = () => {
                     ))}
                 </Flex>
 
-                {isLoggedIn || isDemoSolution || label === 'Info' ? (
+                {isLoggedIn || isDemoSolution || label === t('solutionDetail.info') ? (
                     <Box mt={4} px={{ base: 2, md: 14 }} flex={1}>
                         {selectedComponent}
                     </Box>
                 ) : (
-                    <Flex w='full' justify={'center'} align={'center'} flexDir='column' mt={4}>
-                        <Text mt={6} fontSize='xl' fontWeight='bold' color={'gray.400'}>
-                            Debes iniciar sesión para ver más detalles
-                        </Text>
-                        <Link to={'/start'}>
+                <Flex w='full' justify={'center'} align={'center'} flexDir='column' mt={4}>
+                    {label === t('solutionDetail.references') ? (
+                        <>
+                            <Text
+                                mt={6}
+                                fontSize='xl'
+                                fontWeight='bold'
+                                color='gray.400'
+                                whiteSpace="pre-line"
+                                textAlign='center'
+                                fontStyle='italic'
+                            >
+                                {t('references.notLogged')}
+                            </Text>
                             <Text
                                 mt={2}
-                                fontSize='sm'
+                                fontSize='xl'
                                 fontWeight='bold'
-                                color={'yellow.400'}
-                                _hover={{ color: 'yellow.300' }}
+                                color='gray.400'
+                                whiteSpace="pre-line"
+                                textAlign='center'
                             >
-                                Iniciar sesión
+                                {t('references.notLogged2')}
                             </Text>
-                        </Link>
-                    </Flex>
+                        </>
+                    ) : (
+                        <Text
+                            mt={6}
+                            fontSize='xl'
+                            fontWeight='bold'
+                            color='gray.400'
+                            whiteSpace="pre-line"
+                            textAlign='center'
+                        >
+                            {label === t('solutionDetail.partners')
+                                ? t('partners.notLogged')
+                                : t('solutionDetail.mustLoginDetails')
+                            }
+                        </Text>
+                    )}
+
+                    <Link to={'/start'}>
+                        <Text
+                            mt={2}
+                            fontSize='sm'
+                            fontWeight='bold'
+                            color={'yellow.400'}
+                            _hover={{ color: 'yellow.300' }}
+                        >
+                            {t('solutionDetail.login')}
+                        </Text>
+                    </Link>
+                </Flex>
                 )}
             </Box>
         </Box>
