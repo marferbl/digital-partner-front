@@ -17,6 +17,7 @@ import { PaymentForm } from '../stripe';
 import { FaInfoCircle } from "react-icons/fa";
 import SearchSelectCountries from '../base/search-select-countries';
 import PlansSelector from '../plan/plan-selector';
+import { useTranslation } from "react-i18next";
 
 
 
@@ -60,14 +61,19 @@ export const ButtonCreateCorporate = ({ refreshCorporate }) => {
         setSelectedPlan(plan)
     };
 
+    const { t } = useTranslation("global");
     return (
         <>
-            <Button bg={DARK_COLORS.gridyellow} color={'black'} _hover={{ bg: 'blue.700' }} onClick={onOpen}>Crear corporate</Button>
+            <Button bg={DARK_COLORS.gridyellow} color={'black'} _hover={{ bg: 'blue.700' }} onClick={onOpen}>
+                {t('createCorporate')}
+            </Button>
 
             <Modal isOpen={isOpen} onClose={closeModal} size={step === 1 ? '4xl' : 'xl'}>
                 <ModalOverlay />
                 <ModalContent bg={'#1a1a1a'}>
-                    <ModalHeader color='white'>Crear Corporate</ModalHeader>
+                    <ModalHeader color='white'>
+                        {t('createCorporate')}
+                    </ModalHeader>
                     <ModalCloseButton />
                     <ModalBody py={5}>
                         {step === 0 ? <Box fontSize={12} display={'flex'} alignItems={'start'} flexDir={'column'} color='white'>
