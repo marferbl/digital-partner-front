@@ -1,4 +1,5 @@
 {
+    "createCorporate": "Create Corporate",
     "discoverCompareTransform": "Discover, compare, and transform.",
     "welcomeToDigitalCommunity": "Welcome to your digital community",
     "whatDoYouSearch": "What are you looking for",
@@ -446,6 +447,12 @@
             "myCorporate": "My Corporate",
             "references": "References"
         },
+        "emptyStateTitle": "You don't have a corporate yet.",
+        "emptyStateDescription": "Publish and manage your ads.",
+    "noCorporateToast": {
+        "title": "Welcome to Digitalando",
+        "description": "This is your personal panel where you will soon be able to register your digital profile and appear in talent searches by top companies. If you want to access the corporate panel to post announcements or manage your company, you must create a corporate account."
+    },
         "actions": {
             "changeToCorporate": "Change to corporate account",
             "changeToPersonal": "Change to personal account",
