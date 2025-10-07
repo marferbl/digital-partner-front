@@ -87,7 +87,17 @@ const RegisterForm = () => {
   };
 
   return (
-    <Box py={0} rounded={"xl"} fontFamily='Roobert' fontWeight={'light'}>
+    <Box 
+      py={0} 
+      rounded={"xl"} 
+      fontFamily='Roobert' 
+      fontWeight={'light'}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter') {
+          handleSubmit();
+        }
+      }}
+    >
       <Text fontSize="5xl" fontWeight="light" textAlign="center" color='white'>
         {t("register.welcome")}
       </Text>
