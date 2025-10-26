@@ -21,6 +21,8 @@ import { COLORS, DARK_COLORS } from "../../colors/colors";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 import { IoIosArrowRoundForward } from 'react-icons/io';
+import { FiEdit } from "react-icons/fi";
+import ModalDefaultPhoto from '../base/modal-default-photos';
 
 const RegisterForm = () => {
   const { t } = useTranslation("global");
@@ -34,6 +36,7 @@ const RegisterForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [rol, setRol] = useState('1');
   const [error, setError] = useState({ message: null });
+  const [logo, setLogo] = useState(null);
 
   const toast = useToast();
 
@@ -42,6 +45,11 @@ const RegisterForm = () => {
 
   const resetFields = () => {
     setEmail("");
+    setLogo(null);
+  };
+
+  const handleSaveLogo = (selectedImage) => {
+    setLogo(selectedImage);
   };
 
   const handleSubmit = () => {
@@ -61,7 +69,7 @@ const RegisterForm = () => {
       return;
     }
 
-    signup(email, password, name, rol)
+    signup(email, password, name, rol, logo)
       .then((res) => {
         setEmptyFieldMessage(false);
         toast({
@@ -104,7 +112,7 @@ const RegisterForm = () => {
       <Text fontWeight="light" textAlign="center" color={DARK_COLORS.neutral} mb={5}>
         {t("register.enterDataToCreate")}
       </Text>
-      <FormControl my={5}>
+      <FormControl my={4}>
         <FormLabel color='white' htmlFor="name">{t("nameLabel")}</FormLabel>
         <Input
           id="name"
@@ -113,7 +121,7 @@ const RegisterForm = () => {
           value={name}
         />
       </FormControl>
-      <FormControl my={5}>
+      <FormControl my={4}>
         <FormLabel color='white' htmlFor="email">{t("emailLabel")}</FormLabel>
         <Input
           id="email"
@@ -123,7 +131,7 @@ const RegisterForm = () => {
         />
       </FormControl>
 
-      <FormControl my={5}>
+      <FormControl my={4}>
         <FormLabel color='white' htmlFor="password">{t("passwordLabel")}</FormLabel>
         <InputGroup size="md">
           <Input
@@ -147,9 +155,28 @@ const RegisterForm = () => {
           </InputRightElement>
         </InputGroup>
       </FormControl>
+      
+      <FormControl mt={4}>
+        <FormLabel color='white'>{t("profilePhotoLabel")}</FormLabel>
+        <ModalDefaultPhoto defaultImage={logo} onSave={handleSaveLogo} setLogo={setLogo}>
+          <div className="relative w-10 h-10 md:w-20 md:h-20">
+            {/* Image */}
+            <img
+              src={logo || '/profile-photos/profile-photo-1.png'}
+              alt="Profile Avatar"
+              className="w-10 h-10 md:w-20 md:h-20 rounded-xl"
+            />
+
+            {/* Edit Icon */}
+            <div className="absolute top-0 left-0 bg-neutral rounded-full p-1 shadow-md cursor-pointer">
+              <FiEdit className="text-gray-600" size={20} />
+            </div>
+          </div>
+        </ModalDefaultPhoto>
+      </FormControl>
 
       <Button
-        mt={4}
+        my={4}
         type="submit"
         width={"100%"}
         bg={DARK_COLORS.gridyellow}

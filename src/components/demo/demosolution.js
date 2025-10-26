@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react'
 import { COLORS } from '../../colors/colors'
 import SolutionDetailDemo from './solution-detail'
 import CustomToast from './Toast'
-import { keyframes } from '@chakra-ui/react';
 import ServicesTableDemo from './services-demo'
 import { AskForDemoComponent } from './askdemodemo'
 import Manualsdemo from './manualsdemo'
@@ -14,7 +13,6 @@ import GradientButton from '../base/GradientButton'
 import { FiZap } from "react-icons/fi";
 import { Link } from 'react-router-dom'
 
-// Define the keyframes for scaling animation
 
 
 
@@ -22,11 +20,6 @@ export const DemoSolution = () => {
 
     const [label, setLabel] = useState('Info')
     const [step, setStep] = useState(0)
-    const scaleAnimation = keyframes`
-  0% { transform: scale(1); }
-  50% { transform: scale(1.2); }
-  100% { transform: scale(1); }
-`;
 
     useEffect(() => {
         window.scrollTo(0, 0)
@@ -120,7 +113,6 @@ export const DemoSolution = () => {
                         color={label === link.label ? 'white' : 'black'}
                         cursor={index + 1 > step ? 'not-allowed' : 'pointer'}
                         opacity={index + 1 > step ? 0.3 : 1}
-                        animation={index + 1 === step ? `${scaleAnimation} 1s infinite` : 'none'}
                     >
                         {link.label}
                     </Text>
