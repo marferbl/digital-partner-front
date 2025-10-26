@@ -16,7 +16,8 @@ import { createCorporate } from '../../services/corporate';
 import { PaymentForm } from '../stripe';
 import { FaInfoCircle } from "react-icons/fa";
 import SearchSelectCountries from '../base/search-select-countries';
-import PlansSelector from '../plan/plan-selector';
+// import PlansSelector from '../plan/plan-selector';
+import { useTranslation } from "react-i18next";
 
 
 
@@ -60,14 +61,19 @@ export const ButtonCreateCorporate = ({ refreshCorporate }) => {
         setSelectedPlan(plan)
     };
 
+    const { t } = useTranslation("global");
     return (
         <>
-            <Button bg={DARK_COLORS.gridyellow} color={'black'} _hover={{ bg: 'blue.700' }} onClick={onOpen}>Crear corporate</Button>
+            <Button bg={DARK_COLORS.gridyellow} color={'black'} _hover={{ bg: 'blue.700' }} onClick={onOpen}>
+                {t('createCorporate')}
+            </Button>
 
             <Modal isOpen={isOpen} onClose={closeModal} size={step === 1 ? '4xl' : 'xl'}>
                 <ModalOverlay />
                 <ModalContent bg={'#1a1a1a'}>
-                    <ModalHeader color='white'>Crear Corporate</ModalHeader>
+                    <ModalHeader color='white'>
+                        {t('createCorporate')}
+                    </ModalHeader>
                     <ModalCloseButton />
                     <ModalBody py={5}>
                         {step === 0 ? <Box fontSize={12} display={'flex'} alignItems={'start'} flexDir={'column'} color='white'>
@@ -111,8 +117,9 @@ export const ButtonCreateCorporate = ({ refreshCorporate }) => {
                                 onChange={(e) => setWeb(e.target.value)}
                             />
                         </Box> : step === 1 ? <Box>
-                            <PlansSelector setPlanSelected={handlePlanSelection} selectedPlan={selectedPlan} />
+                            {/* <PlansSelector setPlanSelected={handlePlanSelection} selectedPlan={selectedPlan} /> */}
                         </Box> : <Box py={1}>
+                            {/*
                             <Flex flexDir={'column'} pb={8} >
                                 <Flex align='baseline' justify={'start'} color='white'>
                                     <Text ml={2} fontSize={50} fontWeight={'extrabold'}> 0€</Text>
@@ -124,6 +131,7 @@ export const ButtonCreateCorporate = ({ refreshCorporate }) => {
                                     </Text>
                                 </Flex>
                             </Flex>
+                            */}
                             {/* <Box position='relative' minH={52} >
                                 <Text align={'center'} position={'absolute'} left={'%'} top={'40%'} zIndex={99} bg={'gray.100'} rounded='xl' p={2}>
                                     Para pagos de 0 euros no es necesario introducir datos de pago.
@@ -139,7 +147,13 @@ export const ButtonCreateCorporate = ({ refreshCorporate }) => {
                         <Button bg={'gray.200'} mr={3} onClick={closeModal}>
                             cancelar
                         </Button>
-                        <Button disabled={loading} bg={DARK_COLORS.gridyellow} onClick={() => { step < 2 ? setStep(step + 1) : create() }} colorScheme='gray'>{loading ? 'Creando...' : step < 2 ? 'Continuar' : 'Confirmar'}</Button>
+                        <Button
+                            disabled={loading}
+                            bg={DARK_COLORS.gridyellow}
+                            // onClick={() => { step < 2 ? setStep(step + 1) : create() }} colorScheme='gray'>{loading ? 'Creando...' : step < 2 ? 'Continuar' : 'Confirmar'}
+                            onClick={() => create()}>
+                                {loading ? t('creating') : t('create')}
+                        </Button>
                     </ModalFooter>
                 </ModalContent>
             </Modal>

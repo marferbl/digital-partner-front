@@ -68,8 +68,8 @@ export const Profile = () => {
     <Box mt={6} p={5} rounded={"xl"} bgColor={"black"} minH={400}>
       {(!hasCorporate() && !hideTag) && <AlertDigi text='¿Empresa? Crea ahora tu cuenta Corporate y descubre por qué la gente adora Digitalando'>
         <div className="flex items-center gap-4">
-          <span onClick={changeUserView} className="py-2 px-6 rounded-lg bg-light text-white bg-black cursor-pointer">¡Crea tu cuenta!</span>
-          <span onClick={() => setHideTag(true)} className="py-2 px-6 rounded-lg bg-light text-black border-1 border-black cursor-pointer">Más tarde</span>
+          <span onClick={changeUserView} className="font-semibold py-2 px-6 rounded-lg bg-light cursor-pointer hover:bg-[#2c5282]">¡Crea tu cuenta!</span>
+          <span onClick={() => setHideTag(true)} className="font-semibold py-2 px-6 rounded-lg bg-light text-black cursor-pointer hover:bg-[#2c5282]">Más tarde</span>
         </div>
       </AlertDigi>}
       <Flex w='full' justify='space-between' mt={5} pb={3}>

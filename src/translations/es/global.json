@@ -1,4 +1,8 @@
 {
+    "createCorporate": "Crear Corporate",
+    "profilePhotoLabel": "Foto de perfil",
+    "create": "Crear",
+    "creating": "Creando...",
     "discoverCompareTransform": "Descubre, compara y transforma.",
     "welcomeToDigitalCommunity": "Bienvenidx a tu comunidad digital",
     "whatDoYouSearch": "Que buscas",
@@ -454,6 +458,12 @@
     "profileUser": {
         "title": "MI PANEL",
         "legend": "Por ahora no hay mucho que hacer por aquí, pero puedes ir creando tu Digital Profile.\nPronto te seguiremos contando.",
+        "emptyStateTitle": "Todavía no tienes una corporate.",
+        "emptyStateDescription": "Publica y gestiona tus anuncios.",
+    "noCorporateToast": {
+        "title": "Bienvenido a Digitalando",
+        "description": "Este es tu panel personal donde muy pronto podrás dar de alta tu digital profile y aparecer en las búsquedas de talento de las mejores empresas. Si quieres acceder al panel de corporate para publicar anuncios o gestionar tu empresa, debes crear una corporate."
+    },
         "navbar": {
             "profile": "Perfil",
             "myCorporate": "Mi Corporate",
